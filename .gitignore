@@ -1,0 +1,30 @@
+# dependencies
+node_modules
+
+# Next.js
+.next
+out
+
+# Build outputs
+dist
+build
+
+# Turborepo
+.turbo
+
+# Environment files
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
