@@ -25,17 +25,17 @@ Decimal phases appear between their surrounding integers in numeric order.
 **Goal**: 모든 앱이 공유하는 데이터베이스 스키마, RLS 보안 정책, Monorepo 인프라가 완성된다
 **Depends on**: Nothing (first phase)
 **Requirements**: None (infrastructure only - enables all other phases)
+**Plans**: 3 plans in 2 waves
 **Success Criteria** (what must be TRUE):
   1. Supabase에 users, profiles, job_posts, likes 테이블이 존재하고 RLS가 활성화됨
   2. `pnpm dev` 명령으로 apps/web과 apps/admin이 동시에 실행됨
   3. packages/supabase에서 생성된 TypeScript 타입이 apps에서 import 가능
   4. 브라우저와 서버에서 각각 Supabase 클라이언트가 정상 동작함
-**Plans**: TBD
 
 Plans:
-- [ ] 01-01: Database schema and RLS policies
-- [ ] 01-02: Monorepo setup (Turborepo, packages)
-- [ ] 01-03: Supabase clients and type generation
+- [ ] 01-01-PLAN.md — Database schema and RLS policies (Wave 1)
+- [ ] 01-02-PLAN.md — Monorepo setup with Turborepo and packages (Wave 1)
+- [ ] 01-03-PLAN.md — Supabase clients and type generation (Wave 2)
 
 ### Phase 2: Authentication
 **Goal**: 사용자가 Google로 로그인하고 역할을 선택하여 온보딩을 완료할 수 있다
@@ -129,7 +129,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Not started | - |
+| 1. Foundation | 0/3 | Planned | - |
 | 2. Authentication | 0/3 | Not started | - |
 | 3. Job Seeker Experience | 0/4 | Not started | - |
 | 4. Employer Experience | 0/2 | Not started | - |
@@ -138,4 +138,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 ---
 *Roadmap created: 2026-01-17*
+*Phase 1 planned: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
