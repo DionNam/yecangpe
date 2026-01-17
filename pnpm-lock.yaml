@@ -104,6 +104,12 @@ importers:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@types/node':
+        specifier: ^22.0.0
+        version: 22.19.7
+      next:
+        specifier: ^15.1.0
+        version: 15.5.9(react-dom@19.2.3(react@19.2.3))(react@19.2.3)
       supabase:
         specifier: ^1.8.0
         version: 1.226.4
