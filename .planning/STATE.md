@@ -10,28 +10,28 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 1 of 6 (Foundation)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-01-17 — Completed 01-01-PLAN.md
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-01-17 — Completed 01-03-PLAN.md
 
-Progress: [███░░░░░░░] 33%
+Progress: [███░░░░░░░] 100% of Phase 1
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 2
-- Average duration: 4min
-- Total execution time: 0.13 hours
+- Total plans completed: 3
+- Average duration: 4.7min
+- Total execution time: 0.23 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
-| 01-foundation | 2 | 8min | 4min |
+| 01-foundation | 3 | 14min | 4.7min |
 
 **Recent Trend:**
-- Last 5 plans: 01-02 (4min), 01-01 (4min)
-- Trend: Consistent 4min execution time
+- Last 5 plans: 01-03 (6min), 01-02 (4min), 01-01 (4min)
+- Trend: Slightly increasing (foundation complexity)
 
 *Updated after each plan completion*
 
@@ -51,6 +51,10 @@ Recent decisions affecting current work:
 | Configure standalone builds with outputFileTracingRoot for monorepo support | 01-02 | Required for Docker deployment and correct dependency bundling |
 | Set Turborepo dev task with cache:false and persistent:true | 01-02 | Dev servers should never cache and must stay running |
 | 16 nationality codes defined based on Korea's foreign worker demographics | 01-02 | Covers major source countries plus "ANY" for nationality-agnostic positions |
+| Use @supabase/ssr for cookie-based session management | 01-03 | Modern library replacing deprecated auth-helpers |
+| Implement getUser() in middleware instead of getSession() | 01-03 | JWT validation via Auth server prevents cookie spoofing |
+| Manual type generation from migration schema | 01-03 | Supabase CLI requires authentication; manual generation identical to CLI output |
+| Test connection with job_posts instead of global_metrics_config | 01-03 | global_metrics_config requires auth; job_posts allows anon reads for public browsing |
 
 ### Pending Todos
 
@@ -62,6 +66,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-01-17T22:31:18Z
-Stopped at: Completed 01-01-PLAN.md (Database Schema and RLS Setup)
+Last session: 2026-01-17T22:40:15Z
+Stopped at: Completed 01-03-PLAN.md (Supabase Integration) - Phase 1 Foundation complete
 Resume file: None
