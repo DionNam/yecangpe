@@ -128,24 +128,63 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 ~ AUTH-05 | Phase 2 | Pending |
-| LIST-01 ~ LIST-05 | Phase 3 | Pending |
-| DETL-01 ~ DETL-04 | Phase 3 | Pending |
-| LIKE-01 ~ LIKE-03 | Phase 3 | Pending |
-| SEEK-01 ~ SEEK-03 | Phase 3 | Pending |
-| EMPL-01 ~ EMPL-04 | Phase 4 | Pending |
-| EMPM-01 ~ EMPM-04 | Phase 4 | Pending |
-| ADMP-01 ~ ADMP-05 | Phase 5 | Pending |
-| ADMU-01 ~ ADMU-05 | Phase 5 | Pending |
-| ADMM-01 ~ ADMM-02 | Phase 5 | Pending |
-| METR-01 ~ METR-04 | Phase 5 | Pending |
-| LAND-01 ~ LAND-07 | Phase 6 | Pending |
+| AUTH-01 | Phase 2 | Pending |
+| AUTH-02 | Phase 2 | Pending |
+| AUTH-03 | Phase 2 | Pending |
+| AUTH-04 | Phase 2 | Pending |
+| AUTH-05 | Phase 2 | Pending |
+| LIST-01 | Phase 3 | Pending |
+| LIST-02 | Phase 3 | Pending |
+| LIST-03 | Phase 3 | Pending |
+| LIST-04 | Phase 3 | Pending |
+| LIST-05 | Phase 3 | Pending |
+| DETL-01 | Phase 3 | Pending |
+| DETL-02 | Phase 3 | Pending |
+| DETL-03 | Phase 3 | Pending |
+| DETL-04 | Phase 3 | Pending |
+| LIKE-01 | Phase 3 | Pending |
+| LIKE-02 | Phase 3 | Pending |
+| LIKE-03 | Phase 3 | Pending |
+| SEEK-01 | Phase 3 | Pending |
+| SEEK-02 | Phase 3 | Pending |
+| SEEK-03 | Phase 3 | Pending |
+| METR-01 | Phase 3 | Pending |
+| METR-02 | Phase 3 | Pending |
+| METR-03 | Phase 3 | Pending |
+| METR-04 | Phase 3 | Pending |
+| EMPL-01 | Phase 4 | Pending |
+| EMPL-02 | Phase 4 | Pending |
+| EMPL-03 | Phase 4 | Pending |
+| EMPL-04 | Phase 4 | Pending |
+| EMPM-01 | Phase 4 | Pending |
+| EMPM-02 | Phase 4 | Pending |
+| EMPM-03 | Phase 4 | Pending |
+| EMPM-04 | Phase 4 | Pending |
+| ADMP-01 | Phase 5 | Pending |
+| ADMP-02 | Phase 5 | Pending |
+| ADMP-03 | Phase 5 | Pending |
+| ADMP-04 | Phase 5 | Pending |
+| ADMP-05 | Phase 5 | Pending |
+| ADMU-01 | Phase 5 | Pending |
+| ADMU-02 | Phase 5 | Pending |
+| ADMU-03 | Phase 5 | Pending |
+| ADMU-04 | Phase 5 | Pending |
+| ADMU-05 | Phase 5 | Pending |
+| ADMM-01 | Phase 5 | Pending |
+| ADMM-02 | Phase 5 | Pending |
+| LAND-01 | Phase 6 | Pending |
+| LAND-02 | Phase 6 | Pending |
+| LAND-03 | Phase 6 | Pending |
+| LAND-04 | Phase 6 | Pending |
+| LAND-05 | Phase 6 | Pending |
+| LAND-06 | Phase 6 | Pending |
+| LAND-07 | Phase 6 | Pending |
 
 **Coverage:**
 - v1 requirements: 46 total
 - Mapped to phases: 46
-- Unmapped: 0 ✓
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-17*
-*Last updated: 2026-01-17 after initial definition*
+*Last updated: 2026-01-17 after roadmap creation*
