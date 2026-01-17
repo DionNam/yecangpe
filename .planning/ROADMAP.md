@@ -12,7 +12,7 @@
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Foundation** - DB 스키마, RLS 정책, Monorepo 설정, 공유 패키지
+- [x] **Phase 1: Foundation** - DB 스키마, RLS 정책, Monorepo 설정, 공유 패키지
 - [ ] **Phase 2: Authentication** - Google OAuth, 역할 선택, 온보딩 플로우
 - [ ] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
 - [ ] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
@@ -33,9 +33,9 @@ Decimal phases appear between their surrounding integers in numeric order.
   4. 브라우저와 서버에서 각각 Supabase 클라이언트가 정상 동작함
 
 Plans:
-- [ ] 01-01-PLAN.md — Database schema and RLS policies (Wave 1)
-- [ ] 01-02-PLAN.md — Monorepo setup with Turborepo and packages (Wave 1)
-- [ ] 01-03-PLAN.md — Supabase clients and type generation (Wave 2)
+- [x] 01-01-PLAN.md — Database schema and RLS policies (Wave 1)
+- [x] 01-02-PLAN.md — Monorepo setup with Turborepo and packages (Wave 1)
+- [x] 01-03-PLAN.md — Supabase clients and type generation (Wave 2)
 
 ### Phase 2: Authentication
 **Goal**: 사용자가 Google로 로그인하고 역할을 선택하여 온보딩을 완료할 수 있다
@@ -129,7 +129,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Foundation | 0/3 | Planned | - |
+| 1. Foundation | 3/3 | Complete | 2026-01-18 |
 | 2. Authentication | 0/3 | Not started | - |
 | 3. Job Seeker Experience | 0/4 | Not started | - |
 | 4. Employer Experience | 0/2 | Not started | - |
@@ -139,4 +139,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 ---
 *Roadmap created: 2026-01-17*
 *Phase 1 planned: 2026-01-18*
+*Phase 1 completed: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
