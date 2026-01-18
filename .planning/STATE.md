@@ -10,29 +10,29 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 2 of 6 (Authentication)
-Plan: 2 of 3 in current phase
-Status: In progress
-Last activity: 2026-01-18 — Completed 02-02-PLAN.md
+Plan: 3 of 3 in current phase
+Status: Phase complete
+Last activity: 2026-01-18 — Completed 02-03-PLAN.md
 
-Progress: [██████░░░░] 27.8% of v1.0 milestone (5/18 plans complete)
+Progress: [███████░░░] 33.3% of v1.0 milestone (6/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 5
-- Average duration: 5.4min
-- Total execution time: 0.45 hours
+- Total plans completed: 6
+- Average duration: 5.7min
+- Total execution time: 0.57 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3 | 14min | 4.7min |
-| 02-authentication | 2 | 13min | 6.5min |
+| 02-authentication | 3 | 21min | 7.0min |
 
 **Recent Trend:**
-- Last 5 plans: 02-02 (7min), 02-01 (6min), 01-03 (6min), 01-02 (4min), 01-01 (4min)
-- Trend: Stable around 5-7min (authentication complexity with UI work)
+- Last 5 plans: 02-03 (8min), 02-02 (7min), 02-01 (6min), 01-03 (6min), 01-02 (4min)
+- Trend: Authentication phase averaged 7min (UI + form handling complexity)
 
 *Updated after each plan completion*
 
@@ -64,6 +64,9 @@ Recent decisions affecting current work:
 | Use route group (onboarding) to isolate onboarding flow | 02-02 | Route group keeps onboarding pages separate from main app routing |
 | Logout button uses client-side signOut with router.refresh() | 02-02 | Ensures both client and server session state is cleared |
 | Remove z.coerce from topik_level to fix TypeScript inference | 02-02 | z.coerce causes type inference to become 'unknown' in react-hook-form resolvers |
+| Use 'as any' type assertion for Supabase upsert/insert | 02-03 | TypeScript cannot infer createClient() return type properly; runtime behavior correct |
+| Install @supabase/supabase-js as direct dependency | 02-03 | Provides type definitions for SupabaseClient even though using 'as any' workaround |
+| FormData pattern in server actions | 02-03 | Matches Next.js server action conventions for form submission |
 
 ### Pending Todos
 
@@ -76,5 +79,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 02-02-PLAN.md (Onboarding Role Selection)
+Stopped at: Completed 02-03-PLAN.md (Onboarding Forms) - Phase 2 complete
 Resume file: None
