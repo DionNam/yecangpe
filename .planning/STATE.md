@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 3 of 6 (Job Seeker Experience)
-Plan: 1 of 4 in current phase
+Plan: 4 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-18 — Completed 03-01-PLAN.md
+Last activity: 2026-01-18 — Completed 03-04-PLAN.md
 
-Progress: [███████░░░] 38.9% of v1.0 milestone (7/18 plans complete)
+Progress: [████████░░] 44.4% of v1.0 milestone (8/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 7
+- Total plans completed: 8
 - Average duration: 5.6min
-- Total execution time: 0.65 hours
+- Total execution time: 0.74 hours
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [███████░░░] 38.9% of v1.0 milestone (7/18 plans c
 |-------|-------|-------|----------|
 | 01-foundation | 3 | 14min | 4.7min |
 | 02-authentication | 3 | 21min | 7.0min |
-| 03-job-seeker-experience | 1 | 4.5min | 4.5min |
+| 03-job-seeker-experience | 2 | 10min | 5.0min |
 
 **Recent Trend:**
-- Last 5 plans: 03-01 (4.5min), 02-03 (8min), 02-02 (7min), 02-01 (6min), 01-03 (6min)
-- Trend: Phase 3 starting strong with fast execution (simple table UI)
+- Last 5 plans: 03-04 (5.5min), 03-01 (4.5min), 02-03 (8min), 02-02 (7min), 02-01 (6min)
+- Trend: Phase 3 maintaining fast pace, averaging 5.0min per plan
 
 *Updated after each plan completion*
 
@@ -72,6 +72,9 @@ Recent decisions affecting current work:
 | Use logarithmic growth curve for fake metrics | 03-01 | Smooth ramp from 0 to target over ramp_days period using log(1 + x*strength) |
 | Calculate display metrics server-side | 03-01 | Prevents client-side calculation mismatches, centralizes logic |
 | URL-based filter and pagination state | 03-01 | Enables shareable links, back button preservation, SEO-friendly |
+| Use modal for profile editing | 03-04 | Better UX for quick edits without leaving page |
+| Separate profile validation schema for updates | 03-04 | Allows different update rules vs creation even though similar |
+| Use 'as any' for Supabase joined queries | 03-04 | TypeScript cannot infer types for .select() with joins, runtime correct |
 
 ### Pending Todos
 
@@ -84,5 +87,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 03-01-PLAN.md — Job list page with filtering and pagination
+Stopped at: Completed 03-04-PLAN.md — Seeker my-page with profile editing and liked jobs
 Resume file: None
