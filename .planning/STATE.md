@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 3 of 6 (Job Seeker Experience)
-Plan: 0 of 4 in current phase
-Status: Ready to start
-Last activity: 2026-01-18 — Phase 2 verified and complete
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-01-18 — Completed 03-01-PLAN.md
 
-Progress: [███████░░░] 33.3% of v1.0 milestone (6/18 plans complete)
+Progress: [███████░░░] 38.9% of v1.0 milestone (7/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 6
-- Average duration: 5.7min
-- Total execution time: 0.57 hours
+- Total plans completed: 7
+- Average duration: 5.6min
+- Total execution time: 0.65 hours
 
 **By Phase:**
 
@@ -29,10 +29,11 @@ Progress: [███████░░░] 33.3% of v1.0 milestone (6/18 plans c
 |-------|-------|-------|----------|
 | 01-foundation | 3 | 14min | 4.7min |
 | 02-authentication | 3 | 21min | 7.0min |
+| 03-job-seeker-experience | 1 | 4.5min | 4.5min |
 
 **Recent Trend:**
-- Last 5 plans: 02-03 (8min), 02-02 (7min), 02-01 (6min), 01-03 (6min), 01-02 (4min)
-- Trend: Authentication phase averaged 7min (UI + form handling complexity)
+- Last 5 plans: 03-01 (4.5min), 02-03 (8min), 02-02 (7min), 02-01 (6min), 01-03 (6min)
+- Trend: Phase 3 starting strong with fast execution (simple table UI)
 
 *Updated after each plan completion*
 
@@ -67,6 +68,10 @@ Recent decisions affecting current work:
 | Use 'as any' type assertion for Supabase upsert/insert | 02-03 | TypeScript cannot infer createClient() return type properly; runtime behavior correct |
 | Install @supabase/supabase-js as direct dependency | 02-03 | Provides type definitions for SupabaseClient even though using 'as any' workaround |
 | FormData pattern in server actions | 02-03 | Matches Next.js server action conventions for form submission |
+| Allow /jobs/* routes without auth, handle detail access via modal | 03-01 | Enables public browsing, defers auth check to detail page interaction |
+| Use logarithmic growth curve for fake metrics | 03-01 | Smooth ramp from 0 to target over ramp_days period using log(1 + x*strength) |
+| Calculate display metrics server-side | 03-01 | Prevents client-side calculation mismatches, centralizes logic |
+| URL-based filter and pagination state | 03-01 | Enables shareable links, back button preservation, SEO-friendly |
 
 ### Pending Todos
 
@@ -79,5 +84,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Phase 2 Authentication verified complete - ready for Phase 3 Job Seeker Experience
+Stopped at: Completed 03-01-PLAN.md — Job list page with filtering and pagination
 Resume file: None
