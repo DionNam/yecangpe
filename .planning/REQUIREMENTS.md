@@ -84,13 +84,13 @@
 
 ### Landing Page
 
-- [ ] **LAND-01**: Hero 섹션: 헤드라인 + 서브카피 + CTA(공고 둘러보기, 구인글 올리기)
-- [ ] **LAND-02**: Why Employers 섹션: 구인자에게 좋은 점 3가지
-- [ ] **LAND-03**: Why Talent 섹션: 구직자에게 좋은 점 3가지
-- [ ] **LAND-04**: How it Works 섹션: 구직자/구인자/운영 3단계 안내
-- [ ] **LAND-05**: Preview 섹션: 공고 카드 미리보기 + 국적 필터
-- [ ] **LAND-06**: Trust & CTA 섹션: 승인형 공고 안내 + CTA 재노출
-- [ ] **LAND-07**: Footer: 이용약관, 개인정보처리방침, 문의
+- [x] **LAND-01**: Hero 섹션: 헤드라인 + 서브카피 + CTA(공고 둘러보기, 구인글 올리기)
+- [x] **LAND-02**: Why Employers 섹션: 구인자에게 좋은 점 3가지
+- [x] **LAND-03**: Why Talent 섹션: 구직자에게 좋은 점 3가지
+- [x] **LAND-04**: How it Works 섹션: 구직자/구인자/운영 3단계 안내
+- [x] **LAND-05**: Preview 섹션: 공고 카드 미리보기 + 국적 필터
+- [x] **LAND-06**: Trust & CTA 섹션: 승인형 공고 안내 + CTA 재노출
+- [x] **LAND-07**: Footer: 이용약관, 개인정보처리방침, 문의
 
 ## v2 Requirements
 
@@ -172,13 +172,13 @@
 | ADMU-05 | Phase 5 | Complete |
 | ADMM-01 | Phase 5 | Complete |
 | ADMM-02 | Phase 5 | Complete |
-| LAND-01 | Phase 6 | Pending |
-| LAND-02 | Phase 6 | Pending |
-| LAND-03 | Phase 6 | Pending |
-| LAND-04 | Phase 6 | Pending |
-| LAND-05 | Phase 6 | Pending |
-| LAND-06 | Phase 6 | Pending |
-| LAND-07 | Phase 6 | Pending |
+| LAND-01 | Phase 6 | Complete |
+| LAND-02 | Phase 6 | Complete |
+| LAND-03 | Phase 6 | Complete |
+| LAND-04 | Phase 6 | Complete |
+| LAND-05 | Phase 6 | Complete |
+| LAND-06 | Phase 6 | Complete |
+| LAND-07 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 46 total

@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
 - [x] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
 - [x] **Phase 5: Admin Panel** - 공고 승인/반려, 사용자 관리, 지표 설정
-- [ ] **Phase 6: Landing Page** - 랜딩 페이지 섹션, 최종 마무리
+- [x] **Phase 6: Landing Page** - 랜딩 페이지 섹션, 최종 마무리
 
 ## Phase Details
 
@@ -119,8 +119,8 @@ Plans:
   5. Footer에 이용약관/개인정보처리방침/문의 링크가 있다
 
 Plans:
-- [ ] 06-01-PLAN.md — Landing page sections (Hero, Benefits, How It Works, Preview, Trust)
-- [ ] 06-02-PLAN.md — Footer and legal pages (Terms, Privacy)
+- [x] 06-01-PLAN.md — Landing page sections (Hero, Benefits, How It Works, Preview, Trust)
+- [x] 06-02-PLAN.md — Footer and legal pages (Terms, Privacy)
 
 ## Progress
 
@@ -134,7 +134,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
 | 4. Employer Experience | 2/2 | Complete | 2026-01-18 |
 | 5. Admin Panel | 4/4 | Complete | 2026-01-18 |
-| 6. Landing Page | 0/2 | Planned | - |
+| 6. Landing Page | 2/2 | Complete | 2026-01-19 |
 
 ---
 *Roadmap created: 2026-01-17*
@@ -149,4 +149,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 5 planned: 2026-01-18*
 *Phase 5 completed: 2026-01-18*
 *Phase 6 planned: 2026-01-19*
+*Phase 6 completed: 2026-01-19*
 *Total phases: 6 | Total plans: 18*
