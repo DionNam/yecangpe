@@ -31,7 +31,7 @@ DECLARE
 BEGIN
   SELECT COUNT(*)::INTEGER INTO like_count
   FROM likes
-  WHERE post_id = post_id;
+  WHERE likes.post_id = get_like_count.post_id;
 
   RETURN COALESCE(like_count, 0);
 END;
@@ -53,8 +53,8 @@ BEGIN
   SELECT EXISTS(
     SELECT 1
     FROM likes
-    WHERE user_id = (SELECT auth.uid())
-      AND post_id = post_id
+    WHERE likes.user_id = (SELECT auth.uid())
+      AND likes.post_id = user_liked_post.post_id
   ) INTO liked;
 
   RETURN COALESCE(liked, false);
