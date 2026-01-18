@@ -1,28 +1,40 @@
+import { Metadata } from 'next'
 import { createClient } from '@repo/supabase/server'
+import { HeroSection } from '@/components/landing/hero-section'
+import { WhyEmployersSection } from '@/components/landing/why-employers-section'
+import { WhyTalentSection } from '@/components/landing/why-talent-section'
+import { HowItWorksSection } from '@/components/landing/how-it-works-section'
+import { PreviewSection } from '@/components/landing/preview-section'
+import { TrustCtaSection } from '@/components/landing/trust-cta-section'
+import { Footer } from '@/components/landing/footer'
+
+export const metadata: Metadata = {
+  title: 'PotenHire - 한국어 가능한 외국인 채용 플랫폼',
+  description:
+    '한국어를 구사하고 한국 문화를 이해하는 외국인 인재와 신뢰할 수 있는 채용 공고를 연결합니다. 국적에 맞는 공고를 찾고, 한국어로 소통하며, 검증된 공고만 게시되는 안전한 플랫폼입니다.',
+}
 
 export default async function Home() {
   const supabase = await createClient()
 
-  // Test query - job_posts allows anon reads
-  const { data: posts, error } = await supabase
+  // Fetch latest 6 published, hiring jobs
+  const { data: previewJobs } = await supabase
     .from('job_posts')
-    .select('id')
-    .limit(1)
+    .select('id, title, company_name, target_nationality, hiring_status, published_at')
+    .eq('review_status', 'published')
+    .eq('hiring_status', 'hiring')
+    .order('published_at', { ascending: false })
+    .limit(6)
 
   return (
-    <main className="p-8">
-      <h1 className="text-2xl font-bold mb-4">외국인 구인구직</h1>
-      <p className="mb-2">Foundation setup complete.</p>
-      <div className="p-4 bg-gray-100 rounded">
-        <h2 className="font-semibold">Supabase Connection Test:</h2>
-        {error ? (
-          <p className="text-red-500">Error: {error.message}</p>
-        ) : (
-          <p className="text-green-500">
-            Connected! Job posts found: {posts?.length ?? 0}
-          </p>
-        )}
-      </div>
+    <main>
+      <HeroSection />
+      <WhyEmployersSection />
+      <WhyTalentSection />
+      <HowItWorksSection />
+      <PreviewSection initialJobs={previewJobs || []} />
+      <TrustCtaSection />
+      <Footer />
     </main>
   )
 }
