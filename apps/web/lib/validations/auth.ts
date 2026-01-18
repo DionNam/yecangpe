@@ -8,7 +8,7 @@ export const seekerProfileSchema = z.object({
   nationality: z.enum(nationalityCodes, {
     message: '국적을 선택해주세요',
   }),
-  topik_level: z.coerce.number().min(0).max(6).nullable().optional(),
+  topik_level: z.number().min(0).max(6).nullable().optional(),
   occupation: z.string().max(100).nullable().optional(),
   referral_source: z.string().max(200).nullable().optional(),
 })
