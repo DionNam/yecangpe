@@ -10,17 +10,17 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 6 (Admin Panel)
-Plan: 4 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-18 — Completed 05-04-PLAN.md
+Last activity: 2026-01-18 — Completed 05-03-PLAN.md
 
-Progress: [██████████████] 77.8% of v1.0 milestone (14/18 plans complete)
+Progress: [███████████████] 83.3% of v1.0 milestone (15/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
 - Total plans completed: 14
-- Average duration: 4.8min
+- Average duration: 4.9min
 - Total execution time: 1.13 hours
 
 **By Phase:**
@@ -31,11 +31,11 @@ Progress: [██████████████] 77.8% of v1.0 milestone (
 | 02-authentication | 3 | 21min | 7.0min |
 | 03-job-seeker-experience | 4 | 19.2min | 4.8min |
 | 04-employer-experience | 2 | 10.8min | 5.4min |
-| 05-admin-panel | 2 | 7min | 3.5min |
+| 05-admin-panel | 2 | 9min | 4.5min |
 
 **Recent Trend:**
-- Last 5 plans: 05-04 (3min), 05-01 (4min), 04-02 (4.8min), 04-01 (6min), 03-03 (2.6min)
-- Trend: Excellent velocity, sub-4min average for Phase 5
+- Last 5 plans: 05-02 (5min), 05-01 (4min), 04-02 (4.8min), 04-01 (6min), 03-04 (4min)
+- Trend: Consistent fast execution maintained
 
 *Updated after each plan completion*
 
@@ -95,6 +95,9 @@ Recent decisions affecting current work:
 | Use Number() conversion in onChange handlers for proper form value types | 05-04 | react-hook-form needs numeric values but inputs provide strings |
 | Separate Cards for view settings, like settings, and curve settings | 05-04 | Matches 05-CONTEXT.md user decision for separate sections, improves visual hierarchy |
 | Apply min/max validation at schema level with refine for range checks | 05-04 | Field-level constraints plus cross-field validation via .refine() provides better error messages |
+| Use joined queries (users + profiles) to prevent N+1 performance issues | 05-03 | Fetches profiles in single query, avoids multiple database round-trips |
+| Fetch employer post counts individually via Promise.all | 05-03 | Simpler query construction, acceptable performance for admin use case with low employer counts |
+| Display TOPIK level 0 as '0 (없음)' for clarity | 05-03 | Distinguishes between no TOPIK certification and missing data |
 
 ### Pending Todos
 
@@ -107,5 +110,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 05-04-PLAN.md (Metrics Configuration)
+Stopped at: Completed 05-03-PLAN.md (User Management)
 Resume file: None
