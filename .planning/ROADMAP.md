@@ -76,17 +76,17 @@ Plans:
 **Goal**: 구인자가 공고를 작성하고 내 공고를 관리할 수 있다
 **Depends on**: Phase 3
 **Requirements**: EMPL-01, EMPL-02, EMPL-03, EMPL-04, EMPM-01, EMPM-02, EMPM-03, EMPM-04
+**Plans**: 2 plans in 2 waves
 **Success Criteria** (what must be TRUE):
   1. 구인자가 "구인글 올리기" 버튼으로 공고를 작성할 수 있다
   2. 제출 시 "심사중" 상태로 생성되고 승인 안내 다이얼로그가 뜬다
   3. 내 공고 목록에서 상태(심사중/게시됨/반려)/채용상태/제목/조회수/관심수/작성일을 볼 수 있다
   4. 구인자가 공고 제목/내용을 수정하고 채용상태를 변경할 수 있다
   5. 반려된 공고에서 반려 사유를 확인할 수 있다
-**Plans**: TBD
 
 Plans:
-- [ ] 04-01: Job posting form with validation
-- [ ] 04-02: My posts management page
+- [ ] 04-01-PLAN.md — Job posting form with validation (Wave 1)
+- [ ] 04-02-PLAN.md — My posts management page (Wave 2)
 
 ### Phase 5: Admin Panel
 **Goal**: 관리자가 공고를 승인/반려하고, 사용자를 관리하고, 지표 설정을 할 수 있다
@@ -132,7 +132,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Foundation | 3/3 | Complete | 2026-01-18 |
 | 2. Authentication | 3/3 | Complete | 2026-01-18 |
 | 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
-| 4. Employer Experience | 0/2 | Not started | - |
+| 4. Employer Experience | 0/2 | Planned | - |
 | 5. Admin Panel | 0/4 | Not started | - |
 | 6. Landing Page | 0/2 | Not started | - |
 
@@ -144,4 +144,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 2 completed: 2026-01-18*
 *Phase 3 planned: 2026-01-18*
 *Phase 3 completed: 2026-01-18*
+*Phase 4 planned: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
