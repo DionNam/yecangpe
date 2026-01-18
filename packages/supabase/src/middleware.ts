@@ -34,5 +34,5 @@ export async function updateSession(request: NextRequest) {
   // getSession() only reads from cookies (can be spoofed)
   const { data: { user } } = await supabase.auth.getUser()
 
-  return { supabaseResponse, user }
+  return { supabaseResponse, user, supabase }
 }
