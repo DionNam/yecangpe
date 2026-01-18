@@ -42,17 +42,17 @@
 
 ### Employer Posting
 
-- [ ] **EMPL-01**: 구인자는 "구인글 올리기" 버튼으로 공고를 작성할 수 있다
-- [ ] **EMPL-02**: 공고 작성 시 제목, 내용, 대상국적(단일선택), 회사명을 입력한다
-- [ ] **EMPL-03**: 제출 시 "1일 이내 관리자 승인 후 게시됩니다" 다이얼로그가 뜬다
-- [ ] **EMPL-04**: 제출된 공고는 "심사중" 상태로 생성된다
+- [x] **EMPL-01**: 구인자는 "구인글 올리기" 버튼으로 공고를 작성할 수 있다
+- [x] **EMPL-02**: 공고 작성 시 제목, 내용, 대상국적(단일선택), 회사명을 입력한다
+- [x] **EMPL-03**: 제출 시 "1일 이내 관리자 승인 후 게시됩니다" 다이얼로그가 뜬다
+- [x] **EMPL-04**: 제출된 공고는 "심사중" 상태로 생성된다
 
 ### Employer My Posts
 
-- [ ] **EMPM-01**: 구인자는 내 공고 목록에서 상태(심사중/게시됨/반려), 채용상태, 제목, 조회수, 관심수, 작성일을 볼 수 있다
-- [ ] **EMPM-02**: 구인자는 내 공고의 제목과 내용을 수정할 수 있다
-- [ ] **EMPM-03**: 구인자는 게시된 공고의 채용상태(채용중/마감)를 변경할 수 있다
-- [ ] **EMPM-04**: 반려된 공고는 반려 사유를 표시한다
+- [x] **EMPM-01**: 구인자는 내 공고 목록에서 상태(심사중/게시됨/반려), 채용상태, 제목, 조회수, 관심수, 작성일을 볼 수 있다
+- [x] **EMPM-02**: 구인자는 내 공고의 제목과 내용을 수정할 수 있다
+- [x] **EMPM-03**: 구인자는 게시된 공고의 채용상태(채용중/마감)를 변경할 수 있다
+- [x] **EMPM-04**: 반려된 공고는 반려 사유를 표시한다
 
 ### Admin - Post Management
 
@@ -151,15 +151,15 @@
 | METR-01 | Phase 3 | Complete |
 | METR-02 | Phase 3 | Complete |
 | METR-03 | Phase 3 | Complete |
-| METR-04 | Phase 3 | Pending |
-| EMPL-01 | Phase 4 | Pending |
-| EMPL-02 | Phase 4 | Pending |
-| EMPL-03 | Phase 4 | Pending |
-| EMPL-04 | Phase 4 | Pending |
-| EMPM-01 | Phase 4 | Pending |
-| EMPM-02 | Phase 4 | Pending |
-| EMPM-03 | Phase 4 | Pending |
-| EMPM-04 | Phase 4 | Pending |
+| METR-04 | Phase 4 | Complete |
+| EMPL-01 | Phase 4 | Complete |
+| EMPL-02 | Phase 4 | Complete |
+| EMPL-03 | Phase 4 | Complete |
+| EMPL-04 | Phase 4 | Complete |
+| EMPM-01 | Phase 4 | Complete |
+| EMPM-02 | Phase 4 | Complete |
+| EMPM-03 | Phase 4 | Complete |
+| EMPM-04 | Phase 4 | Complete |
 | ADMP-01 | Phase 5 | Pending |
 | ADMP-02 | Phase 5 | Pending |
 | ADMP-03 | Phase 5 | Pending |

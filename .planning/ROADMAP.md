@@ -15,7 +15,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 1: Foundation** - DB 스키마, RLS 정책, Monorepo 설정, 공유 패키지
 - [x] **Phase 2: Authentication** - Google OAuth, 역할 선택, 온보딩 플로우
 - [x] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
-- [ ] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
+- [x] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
 - [ ] **Phase 5: Admin Panel** - 공고 승인/반려, 사용자 관리, 지표 설정
 - [ ] **Phase 6: Landing Page** - 랜딩 페이지 섹션, 최종 마무리
 
@@ -85,8 +85,8 @@ Plans:
   5. 반려된 공고에서 반려 사유를 확인할 수 있다
 
 Plans:
-- [ ] 04-01-PLAN.md — Job posting form with validation (Wave 1)
-- [ ] 04-02-PLAN.md — My posts management page (Wave 2)
+- [x] 04-01-PLAN.md — Job posting form with validation (Wave 1)
+- [x] 04-02-PLAN.md — My posts management page (Wave 2)
 
 ### Phase 5: Admin Panel
 **Goal**: 관리자가 공고를 승인/반려하고, 사용자를 관리하고, 지표 설정을 할 수 있다
@@ -132,7 +132,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Foundation | 3/3 | Complete | 2026-01-18 |
 | 2. Authentication | 3/3 | Complete | 2026-01-18 |
 | 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
-| 4. Employer Experience | 0/2 | Planned | - |
+| 4. Employer Experience | 2/2 | Complete | 2026-01-18 |
 | 5. Admin Panel | 0/4 | Not started | - |
 | 6. Landing Page | 0/2 | Not started | - |
 
@@ -145,4 +145,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 3 planned: 2026-01-18*
 *Phase 3 completed: 2026-01-18*
 *Phase 4 planned: 2026-01-18*
+*Phase 4 completed: 2026-01-18*
 *Total phases: 6 | Total plans: 18*

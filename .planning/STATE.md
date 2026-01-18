@@ -5,14 +5,14 @@
 See: .planning/PROJECT.md (updated 2026-01-17)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 댓글로 질문할 수 있어야 한다.
-**Current focus:** Phase 4 - Employer Experience
+**Current focus:** Phase 5 - Admin Panel
 
 ## Current Position
 
-Phase: 4 of 6 (Employer Experience)
-Plan: 2 of 2 in current phase
-Status: Phase complete
-Last activity: 2026-01-18 — Completed 04-02-PLAN.md
+Phase: 5 of 6 (Admin Panel)
+Plan: 0 of 4 in current phase
+Status: Ready to plan
+Last activity: 2026-01-18 — Phase 4 verified and complete
 
 Progress: [████████████] 66.7% of v1.0 milestone (12/18 plans complete)
 
@@ -99,6 +99,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 04-02-PLAN.md - Employer posts management page
+Stopped at: Phase 4 Employer Experience verified complete - ready for Phase 5 Admin Panel
 Resume file: None
-Next: 05-01-PLAN.md - Admin review system
