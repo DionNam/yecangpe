@@ -73,7 +73,9 @@
 
 **기술 환경:**
 - Supabase 프로젝트: https://xztfqnznwcgjjbpyuchf.supabase.co
+- Supabase Anon Key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6dGZxbnpud2NnampicHl1Y2hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2NTM0MjMsImV4cCI6MjA4NDIyOTQyM30.93FMAkeqNhT8OTNoG3La7AGA9gJI6bsVyGR97w80PLU`
 - DB 비밀번호: Nasig0reng!
+- Google OAuth: ✅ 설정 완료 (Google Cloud Console + Supabase Dashboard)
 
 ## Constraints
 
@@ -93,4 +95,4 @@
 | 한국어 전용 MVP | 빠른 출시, 다국어는 추후 | — Pending |
 
 ---
-*Last updated: 2026-01-17 after initialization*
+*Last updated: 2026-01-18 — Google OAuth 설정 완료*
