@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 6 (Admin Panel)
-Plan: 0 of 4 in current phase
-Status: Ready to plan
-Last activity: 2026-01-18 — Phase 4 verified and complete
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-01-18 — Completed 05-01-PLAN.md
 
-Progress: [████████████] 66.7% of v1.0 milestone (12/18 plans complete)
+Progress: [█████████████] 72.2% of v1.0 milestone (13/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 12
-- Average duration: 5.1min
-- Total execution time: 1.01 hours
+- Total plans completed: 13
+- Average duration: 5.0min
+- Total execution time: 1.08 hours
 
 **By Phase:**
 
@@ -31,10 +31,11 @@ Progress: [████████████] 66.7% of v1.0 milestone (12/18 
 | 02-authentication | 3 | 21min | 7.0min |
 | 03-job-seeker-experience | 4 | 19.2min | 4.8min |
 | 04-employer-experience | 2 | 10.8min | 5.4min |
+| 05-admin-panel | 1 | 4min | 4.0min |
 
 **Recent Trend:**
-- Last 5 plans: 04-02 (4.8min), 04-01 (6min), 03-03 (2.6min), 03-02 (6.6min), 03-01 (4.5min)
-- Trend: Consistent execution pace maintained
+- Last 5 plans: 05-01 (4min), 04-02 (4.8min), 04-01 (6min), 03-03 (2.6min), 03-02 (6.6min)
+- Trend: Fast execution maintained
 
 *Updated after each plan completion*
 
@@ -87,6 +88,10 @@ Recent decisions affecting current work:
 | Hiring status toggle disabled for non-published posts | 04-02 | Only published posts can change hiring status per EMPM-03 |
 | Metrics display shows '-' for pending/rejected posts | 04-02 | Metrics not calculated until post is published |
 | Like counts fetched individually per post | 04-02 | Ensures accuracy of like count display for each post |
+| Admin middleware checks users.role after session validation | 05-01 | Defense-in-depth security, middleware verifies role from database not just session |
+| Redirect non-admin users to web app instead of error page | 05-01 | Better UX, keeps users in ecosystem rather than showing access denied |
+| Use NEXT_PUBLIC_WEB_URL for cross-app redirects | 05-01 | Configurable redirect target, defaults to localhost:3000 for development |
+| Use route group (dashboard) for admin pages with shared sidebar | 05-01 | Shared sidebar layout without affecting /login route |
 
 ### Pending Todos
 
@@ -99,5 +104,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Phase 4 Employer Experience verified complete - ready for Phase 5 Admin Panel
+Stopped at: Completed 05-01-PLAN.md (Admin Auth and Layout)
 Resume file: None
