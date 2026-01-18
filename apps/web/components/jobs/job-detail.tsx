@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { JobDetailHeader } from './job-detail-header'
+import { LikeButton } from './like-button'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -60,14 +61,15 @@ export function JobDetail({
         </div>
       </div>
 
-      {/* Placeholder for LikeButton (will be added in Plan 03) */}
-      {canLike && (
-        <div className="pt-4">
-          <div className="text-sm text-muted-foreground">
-            관심 버튼은 Plan 03-03에서 추가됩니다
-          </div>
-        </div>
-      )}
+      {/* Like Button */}
+      <div className="pt-4 flex justify-center">
+        <LikeButton
+          postId={job.id}
+          initialLiked={isLiked}
+          initialCount={displayLikes}
+          canLike={canLike}
+        />
+      </div>
     </div>
   )
 }
