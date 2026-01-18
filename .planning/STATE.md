@@ -104,6 +104,10 @@ Recent decisions affecting current work:
 | Use joined queries (users + profiles) to prevent N+1 performance issues | 05-03 | Fetches profiles in single query, avoids multiple database round-trips |
 | Fetch employer post counts individually via Promise.all | 05-03 | Simpler query construction, acceptable performance for admin use case with low employer counts |
 | Display TOPIK level 0 as '0 (없음)' for clarity | 05-03 | Distinguishes between no TOPIK certification and missing data |
+| Use gradient background for Hero instead of image | 06-01 | Cleaner, more trustworthy feel without needing image assets |
+| Separate benefit sections for employers vs seekers | 06-01 | Dual-audience platform requires clear value prop for each user type |
+| Client-side filtering in preview section | 06-01 | Local state sufficient for 6 jobs, no need for shareability unlike /jobs page |
+| Preview cards link to /jobs not /jobs/[id] | 06-01 | Avoids auth wall for non-logged-in visitors, maintains browsing flow |
 | Use placeholder KakaoTalk URL with TODO comment | 06-02 | Actual Open Chat URL will be replaced later |
 | Add visible placeholder notices on legal pages | 06-02 | Clear indication content needs legal review before production |
 | Dynamic copyright year via new Date().getFullYear() | 06-02 | Automatically stays current without manual updates |
