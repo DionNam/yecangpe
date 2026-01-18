@@ -1,7 +1,8 @@
 'use server'
 
 import { createClient } from '@repo/supabase/server'
-import { jobPostSchema } from '@/lib/validations/job-post'
+import { revalidatePath } from 'next/cache'
+import { jobPostSchema, jobPostUpdateSchema } from '@/lib/validations/job-post'
 
 export async function createJobPost(formData: FormData) {
   const supabase = await createClient()
@@ -79,5 +80,108 @@ export async function createJobPost(formData: FormData) {
     return { error: { _form: ['구인글 등록에 실패했습니다. 다시 시도해주세요.'] } }
   }
 
+  return { success: true }
+}
+
+export async function updateJobPost(formData: FormData) {
+  const supabase = await createClient()
+
+  // Get authenticated user
+  const { data: { user }, error: authError } = await supabase.auth.getUser()
+  if (authError || !user) {
+    return { error: { _form: ['로그인이 필요합니다.'] } }
+  }
+
+  // Parse form data
+  const postId = formData.get('id') as string
+  const rawData = {
+    title: formData.get('title'),
+    content: formData.get('content'),
+  }
+
+  // Validate with Zod schema
+  const result = jobPostUpdateSchema.safeParse(rawData)
+  if (!result.success) {
+    return { error: result.error.flatten().fieldErrors }
+  }
+
+  // Verify ownership - must be author of this post
+  const { data: postData } = await (supabase as any)
+    .from('job_posts')
+    .select('author_id')
+    .eq('id', postId)
+    .single()
+
+  const post = postData as { author_id: string } | null
+  if (!post || post.author_id !== user.id) {
+    return { error: { _form: ['자신이 작성한 공고만 수정할 수 있습니다.'] } }
+  }
+
+  // Update job post
+  const { error: updateError } = await (supabase as any)
+    .from('job_posts')
+    .update({
+      title: result.data.title,
+      content: result.data.content,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', postId)
+
+  if (updateError) {
+    console.error('Job post update error:', updateError)
+    return { error: { _form: ['구인글 수정에 실패했습니다. 다시 시도해주세요.'] } }
+  }
+
+  revalidatePath('/employer/posts')
+  return { success: true }
+}
+
+export async function updateHiringStatus(
+  postId: string,
+  newStatus: 'hiring' | 'closed'
+) {
+  const supabase = await createClient()
+
+  // Get authenticated user
+  const { data: { user }, error: authError } = await supabase.auth.getUser()
+  if (authError || !user) {
+    throw new Error('로그인이 필요합니다.')
+  }
+
+  // Fetch post and verify ownership + published status
+  const { data: postData } = await (supabase as any)
+    .from('job_posts')
+    .select('author_id, review_status')
+    .eq('id', postId)
+    .single()
+
+  const post = postData as { author_id: string; review_status: string } | null
+  if (!post) {
+    throw new Error('공고를 찾을 수 없습니다.')
+  }
+
+  if (post.author_id !== user.id) {
+    throw new Error('자신이 작성한 공고만 수정할 수 있습니다.')
+  }
+
+  if (post.review_status !== 'published') {
+    throw new Error('게시된 공고만 채용 상태를 변경할 수 있습니다.')
+  }
+
+  // Update hiring status
+  const { error: updateError } = await (supabase as any)
+    .from('job_posts')
+    .update({
+      hiring_status: newStatus,
+      updated_at: new Date().toISOString(),
+    })
+    .eq('id', postId)
+
+  if (updateError) {
+    console.error('Hiring status update error:', updateError)
+    throw new Error('채용 상태 변경에 실패했습니다.')
+  }
+
+  revalidatePath('/employer/posts')
   return { success: true }
 }
