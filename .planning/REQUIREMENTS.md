@@ -7,11 +7,11 @@
 
 ### Authentication
 
-- [ ] **AUTH-01**: 사용자는 Google OAuth로 로그인할 수 있다
-- [ ] **AUTH-02**: 로그인 시 역할(구직자/구인자)을 선택할 수 있다
-- [ ] **AUTH-03**: 구직자는 온보딩에서 국적, TOPIK 급수, 직업, 유입경로를 입력한다
-- [ ] **AUTH-04**: 구인자는 온보딩에서 기업/개인명, 유입경로를 입력한다
-- [ ] **AUTH-05**: 세션은 브라우저 새로고침 후에도 유지된다
+- [x] **AUTH-01**: 사용자는 Google OAuth로 로그인할 수 있다
+- [x] **AUTH-02**: 로그인 시 역할(구직자/구인자)을 선택할 수 있다
+- [x] **AUTH-03**: 구직자는 온보딩에서 국적, TOPIK 급수, 직업, 유입경로를 입력한다
+- [x] **AUTH-04**: 구인자는 온보딩에서 기업/개인명, 유입경로를 입력한다
+- [x] **AUTH-05**: 세션은 브라우저 새로고침 후에도 유지된다
 
 ### Job Listing
 
@@ -128,11 +128,11 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | Phase 2 | Pending |
-| AUTH-02 | Phase 2 | Pending |
-| AUTH-03 | Phase 2 | Pending |
-| AUTH-04 | Phase 2 | Pending |
-| AUTH-05 | Phase 2 | Pending |
+| AUTH-01 | Phase 2 | Complete |
+| AUTH-02 | Phase 2 | Complete |
+| AUTH-03 | Phase 2 | Complete |
+| AUTH-04 | Phase 2 | Complete |
+| AUTH-05 | Phase 2 | Complete |
 | LIST-01 | Phase 3 | Pending |
 | LIST-02 | Phase 3 | Pending |
 | LIST-03 | Phase 3 | Pending |

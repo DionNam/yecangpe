@@ -13,7 +13,7 @@
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - DB 스키마, RLS 정책, Monorepo 설정, 공유 패키지
-- [ ] **Phase 2: Authentication** - Google OAuth, 역할 선택, 온보딩 플로우
+- [x] **Phase 2: Authentication** - Google OAuth, 역할 선택, 온보딩 플로우
 - [ ] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
 - [ ] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
 - [ ] **Phase 5: Admin Panel** - 공고 승인/반려, 사용자 관리, 지표 설정
@@ -50,9 +50,9 @@ Plans:
   5. 브라우저 새로고침 후에도 세션이 유지된다
 
 Plans:
-- [ ] 02-01-PLAN.md — OAuth callback, login page, middleware enhancement (Wave 1)
-- [ ] 02-02-PLAN.md — Role selection page and Zod schemas (Wave 2)
-- [ ] 02-03-PLAN.md — Seeker and employer onboarding forms (Wave 2)
+- [x] 02-01-PLAN.md — OAuth callback, login page, middleware enhancement (Wave 1)
+- [x] 02-02-PLAN.md — Role selection page and Zod schemas (Wave 2)
+- [x] 02-03-PLAN.md — Seeker and employer onboarding forms (Wave 2)
 
 ### Phase 3: Job Seeker Experience
 **Goal**: 구직자가 공고를 탐색하고, 상세를 보고, 관심 표시하고, 마이페이지를 이용할 수 있다
@@ -130,7 +130,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-18 |
-| 2. Authentication | 0/3 | Planned | - |
+| 2. Authentication | 3/3 | Complete | 2026-01-18 |
 | 3. Job Seeker Experience | 0/4 | Not started | - |
 | 4. Employer Experience | 0/2 | Not started | - |
 | 5. Admin Panel | 0/4 | Not started | - |
@@ -141,4 +141,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 1 planned: 2026-01-18*
 *Phase 1 completed: 2026-01-18*
 *Phase 2 planned: 2026-01-18*
+*Phase 2 completed: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
