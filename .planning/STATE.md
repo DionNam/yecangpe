@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 5 of 6 (Admin Panel)
-Plan: 1 of 4 in current phase
+Plan: 4 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-18 — Completed 05-01-PLAN.md
+Last activity: 2026-01-18 — Completed 05-04-PLAN.md
 
-Progress: [█████████████] 72.2% of v1.0 milestone (13/18 plans complete)
+Progress: [██████████████] 77.8% of v1.0 milestone (14/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 13
-- Average duration: 5.0min
-- Total execution time: 1.08 hours
+- Total plans completed: 14
+- Average duration: 4.8min
+- Total execution time: 1.13 hours
 
 **By Phase:**
 
@@ -31,11 +31,11 @@ Progress: [█████████████] 72.2% of v1.0 milestone (13/
 | 02-authentication | 3 | 21min | 7.0min |
 | 03-job-seeker-experience | 4 | 19.2min | 4.8min |
 | 04-employer-experience | 2 | 10.8min | 5.4min |
-| 05-admin-panel | 1 | 4min | 4.0min |
+| 05-admin-panel | 2 | 7min | 3.5min |
 
 **Recent Trend:**
-- Last 5 plans: 05-01 (4min), 04-02 (4.8min), 04-01 (6min), 03-03 (2.6min), 03-02 (6.6min)
-- Trend: Fast execution maintained
+- Last 5 plans: 05-04 (3min), 05-01 (4min), 04-02 (4.8min), 04-01 (6min), 03-03 (2.6min)
+- Trend: Excellent velocity, sub-4min average for Phase 5
 
 *Updated after each plan completion*
 
@@ -92,6 +92,9 @@ Recent decisions affecting current work:
 | Redirect non-admin users to web app instead of error page | 05-01 | Better UX, keeps users in ecosystem rather than showing access denied |
 | Use NEXT_PUBLIC_WEB_URL for cross-app redirects | 05-01 | Configurable redirect target, defaults to localhost:3000 for development |
 | Use route group (dashboard) for admin pages with shared sidebar | 05-01 | Shared sidebar layout without affecting /login route |
+| Use Number() conversion in onChange handlers for proper form value types | 05-04 | react-hook-form needs numeric values but inputs provide strings |
+| Separate Cards for view settings, like settings, and curve settings | 05-04 | Matches 05-CONTEXT.md user decision for separate sections, improves visual hierarchy |
+| Apply min/max validation at schema level with refine for range checks | 05-04 | Field-level constraints plus cross-field validation via .refine() provides better error messages |
 
 ### Pending Todos
 
@@ -104,5 +107,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 05-01-PLAN.md (Admin Auth and Layout)
+Stopped at: Completed 05-04-PLAN.md (Metrics Configuration)
 Resume file: None
