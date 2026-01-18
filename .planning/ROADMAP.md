@@ -14,7 +14,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Foundation** - DB 스키마, RLS 정책, Monorepo 설정, 공유 패키지
 - [x] **Phase 2: Authentication** - Google OAuth, 역할 선택, 온보딩 플로우
-- [ ] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
+- [x] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
 - [ ] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
 - [ ] **Phase 5: Admin Panel** - 공고 승인/반려, 사용자 관리, 지표 설정
 - [ ] **Phase 6: Landing Page** - 랜딩 페이지 섹션, 최종 마무리
@@ -67,10 +67,10 @@ Plans:
   5. 구직자 마이페이지에서 프로필 수정과 관심 공고 목록 확인이 가능하다
 
 Plans:
-- [ ] 03-01-PLAN.md — Job list page with filtering, pagination, login modal (Wave 1)
-- [ ] 03-02-PLAN.md — Job detail page with view tracking and metrics display (Wave 2)
-- [ ] 03-03-PLAN.md — Heart toggle with optimistic UI (Wave 2)
-- [ ] 03-04-PLAN.md — Seeker my page with profile editing and liked jobs (Wave 2)
+- [x] 03-01-PLAN.md — Job list page with filtering, pagination, login modal (Wave 1)
+- [x] 03-02-PLAN.md — Job detail page with view tracking and metrics display (Wave 2)
+- [x] 03-03-PLAN.md — Heart toggle with optimistic UI (Wave 2)
+- [x] 03-04-PLAN.md — Seeker my page with profile editing and liked jobs (Wave 2)
 
 ### Phase 4: Employer Experience
 **Goal**: 구인자가 공고를 작성하고 내 공고를 관리할 수 있다
@@ -131,7 +131,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-18 |
 | 2. Authentication | 3/3 | Complete | 2026-01-18 |
-| 3. Job Seeker Experience | 0/4 | Planned | - |
+| 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
 | 4. Employer Experience | 0/2 | Not started | - |
 | 5. Admin Panel | 0/4 | Not started | - |
 | 6. Landing Page | 0/2 | Not started | - |
@@ -143,4 +143,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 2 planned: 2026-01-18*
 *Phase 2 completed: 2026-01-18*
 *Phase 3 planned: 2026-01-18*
+*Phase 3 completed: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
