@@ -92,19 +92,19 @@ Plans:
 **Goal**: 관리자가 공고를 승인/반려하고, 사용자를 관리하고, 지표 설정을 할 수 있다
 **Depends on**: Phase 4
 **Requirements**: ADMP-01, ADMP-02, ADMP-03, ADMP-04, ADMP-05, ADMU-01, ADMU-02, ADMU-03, ADMU-04, ADMU-05, ADMM-01, ADMM-02
+**Plans**: 4 plans in 2 waves
 **Success Criteria** (what must be TRUE):
   1. 관리자가 심사중 공고 목록을 보고 승인/반려(사유 입력)할 수 있다
   2. 관리자가 모든 공고의 제목/내용/국적/회사명을 수정할 수 있다
   3. 관리자가 직접 공고를 등록하면 즉시 게시됨 상태가 된다
   4. 관리자가 구직자/구인자 목록과 상세 정보를 볼 수 있다
   5. 관리자가 조작 조회수/관심수 전역 설정(목표 범위, 기간, 커브강도)을 할 수 있다
-**Plans**: TBD
 
 Plans:
-- [ ] 05-01: Admin auth and layout
-- [ ] 05-02: Post approval workflow
-- [ ] 05-03: User management (seekers and employers)
-- [ ] 05-04: Metrics configuration
+- [ ] 05-01-PLAN.md — Admin auth and layout (Wave 1)
+- [ ] 05-02-PLAN.md — Post approval workflow (Wave 2)
+- [ ] 05-03-PLAN.md — User management (Wave 2)
+- [ ] 05-04-PLAN.md — Metrics configuration (Wave 2)
 
 ### Phase 6: Landing Page
 **Goal**: 랜딩 페이지에서 서비스 가치를 전달하고 CTA로 전환한다
@@ -133,7 +133,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Authentication | 3/3 | Complete | 2026-01-18 |
 | 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
 | 4. Employer Experience | 2/2 | Complete | 2026-01-18 |
-| 5. Admin Panel | 0/4 | Not started | - |
+| 5. Admin Panel | 0/4 | Planned | - |
 | 6. Landing Page | 0/2 | Not started | - |
 
 ---
@@ -146,4 +146,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 3 completed: 2026-01-18*
 *Phase 4 planned: 2026-01-18*
 *Phase 4 completed: 2026-01-18*
+*Phase 5 planned: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
