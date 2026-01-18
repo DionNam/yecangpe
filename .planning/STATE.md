@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 4 of 6 (Employer Experience)
-Plan: 1 of 2 in current phase
-Status: In progress
-Last activity: 2026-01-18 — Completed 04-01-PLAN.md
+Plan: 2 of 2 in current phase
+Status: Phase complete
+Last activity: 2026-01-18 — Completed 04-02-PLAN.md
 
-Progress: [██████████░] 61.1% of v1.0 milestone (11/18 plans complete)
+Progress: [████████████] 66.7% of v1.0 milestone (12/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 11
+- Total plans completed: 12
 - Average duration: 5.1min
-- Total execution time: 0.93 hours
+- Total execution time: 1.01 hours
 
 **By Phase:**
 
@@ -30,10 +30,10 @@ Progress: [██████████░] 61.1% of v1.0 milestone (11/18 pla
 | 01-foundation | 3 | 14min | 4.7min |
 | 02-authentication | 3 | 21min | 7.0min |
 | 03-job-seeker-experience | 4 | 19.2min | 4.8min |
-| 04-employer-experience | 1 | 6min | 6.0min |
+| 04-employer-experience | 2 | 10.8min | 5.4min |
 
 **Recent Trend:**
-- Last 5 plans: 04-01 (6min), 03-03 (2.6min), 03-02 (6.6min), 03-01 (4.5min), 02-03 (8min)
+- Last 5 plans: 04-02 (4.8min), 04-01 (6min), 03-03 (2.6min), 03-02 (6.6min), 03-01 (4.5min)
 - Trend: Consistent execution pace maintained
 
 *Updated after each plan completion*
@@ -84,6 +84,9 @@ Recent decisions affecting current work:
 | Role-based like capability validation | 03-03 | Server-side check of seeker_profiles prevents unauthorized likes |
 | Include 'ANY' nationality code for job posts | 04-01 | Job posts allow ANY nationality unlike seeker profiles which exclude it |
 | Random view_target and like_target from global_metrics_config | 04-01 | Job posts get random targets within configured min/max ranges |
+| Hiring status toggle disabled for non-published posts | 04-02 | Only published posts can change hiring status per EMPM-03 |
+| Metrics display shows '-' for pending/rejected posts | 04-02 | Metrics not calculated until post is published |
+| Like counts fetched individually per post | 04-02 | Ensures accuracy of like count display for each post |
 
 ### Pending Todos
 
@@ -96,6 +99,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 04-01-PLAN.md - Job posting form for employers
+Stopped at: Completed 04-02-PLAN.md - Employer posts management page
 Resume file: None
-Next: 04-02-PLAN.md - Employer posts management page
+Next: 05-01-PLAN.md - Admin review system
