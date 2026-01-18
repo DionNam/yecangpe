@@ -110,17 +110,17 @@ Plans:
 **Goal**: 랜딩 페이지에서 서비스 가치를 전달하고 CTA로 전환한다
 **Depends on**: Phase 5
 **Requirements**: LAND-01, LAND-02, LAND-03, LAND-04, LAND-05, LAND-06, LAND-07
+**Plans**: 2 plans in 1 wave
 **Success Criteria** (what must be TRUE):
   1. Hero 섹션에서 헤드라인/서브카피/CTA 버튼이 표시된다
   2. 구직자/구인자 각각에게 좋은 점이 3가지씩 안내된다
   3. 이용 방법 3단계(구직자/구인자/운영)가 안내된다
   4. 공고 미리보기 카드가 표시되고 국적 필터가 동작한다
   5. Footer에 이용약관/개인정보처리방침/문의 링크가 있다
-**Plans**: TBD
 
 Plans:
-- [ ] 06-01: Landing page sections
-- [ ] 06-02: Footer and legal pages
+- [ ] 06-01-PLAN.md — Landing page sections (Hero, Benefits, How It Works, Preview, Trust)
+- [ ] 06-02-PLAN.md — Footer and legal pages (Terms, Privacy)
 
 ## Progress
 
@@ -134,7 +134,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
 | 4. Employer Experience | 2/2 | Complete | 2026-01-18 |
 | 5. Admin Panel | 4/4 | Complete | 2026-01-18 |
-| 6. Landing Page | 0/2 | Not started | - |
+| 6. Landing Page | 0/2 | Planned | - |
 
 ---
 *Roadmap created: 2026-01-17*
@@ -148,4 +148,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 4 completed: 2026-01-18*
 *Phase 5 planned: 2026-01-18*
 *Phase 5 completed: 2026-01-18*
+*Phase 6 planned: 2026-01-19*
 *Total phases: 6 | Total plans: 18*
