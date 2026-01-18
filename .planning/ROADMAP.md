@@ -16,7 +16,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 2: Authentication** - Google OAuth, 역할 선택, 온보딩 플로우
 - [x] **Phase 3: Job Seeker Experience** - 공고 리스트, 상세, 하트, 마이페이지
 - [x] **Phase 4: Employer Experience** - 공고 작성, 내 공고 관리
-- [ ] **Phase 5: Admin Panel** - 공고 승인/반려, 사용자 관리, 지표 설정
+- [x] **Phase 5: Admin Panel** - 공고 승인/반려, 사용자 관리, 지표 설정
 - [ ] **Phase 6: Landing Page** - 랜딩 페이지 섹션, 최종 마무리
 
 ## Phase Details
@@ -101,10 +101,10 @@ Plans:
   5. 관리자가 조작 조회수/관심수 전역 설정(목표 범위, 기간, 커브강도)을 할 수 있다
 
 Plans:
-- [ ] 05-01-PLAN.md — Admin auth and layout (Wave 1)
-- [ ] 05-02-PLAN.md — Post approval workflow (Wave 2)
-- [ ] 05-03-PLAN.md — User management (Wave 2)
-- [ ] 05-04-PLAN.md — Metrics configuration (Wave 2)
+- [x] 05-01-PLAN.md — Admin auth and layout (Wave 1)
+- [x] 05-02-PLAN.md — Post approval workflow (Wave 2)
+- [x] 05-03-PLAN.md — User management (Wave 2)
+- [x] 05-04-PLAN.md — Metrics configuration (Wave 2)
 
 ### Phase 6: Landing Page
 **Goal**: 랜딩 페이지에서 서비스 가치를 전달하고 CTA로 전환한다
@@ -133,7 +133,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Authentication | 3/3 | Complete | 2026-01-18 |
 | 3. Job Seeker Experience | 4/4 | Complete | 2026-01-18 |
 | 4. Employer Experience | 2/2 | Complete | 2026-01-18 |
-| 5. Admin Panel | 0/4 | Planned | - |
+| 5. Admin Panel | 4/4 | Complete | 2026-01-18 |
 | 6. Landing Page | 0/2 | Not started | - |
 
 ---
@@ -147,4 +147,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 4 planned: 2026-01-18*
 *Phase 4 completed: 2026-01-18*
 *Phase 5 planned: 2026-01-18*
+*Phase 5 completed: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
