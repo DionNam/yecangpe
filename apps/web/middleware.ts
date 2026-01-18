@@ -16,6 +16,7 @@ export async function middleware(request: NextRequest) {
   // Allow public routes and auth routes without checking authentication
   if (
     publicRoutes.includes(pathname) ||
+    pathname.startsWith('/jobs') ||
     authRoutes.some(route => pathname.startsWith(route))
   ) {
     return supabaseResponse
