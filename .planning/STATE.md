@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 4 of 6 (Employer Experience)
-Plan: 0 of 2 in current phase
-Status: Ready to start
-Last activity: 2026-01-18 — Phase 3 verified and complete
+Plan: 1 of 2 in current phase
+Status: In progress
+Last activity: 2026-01-18 — Completed 04-01-PLAN.md
 
-Progress: [█████████░] 55.6% of v1.0 milestone (10/18 plans complete)
+Progress: [██████████░] 61.1% of v1.0 milestone (11/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 10
+- Total plans completed: 11
 - Average duration: 5.1min
-- Total execution time: 0.86 hours
+- Total execution time: 0.93 hours
 
 **By Phase:**
 
@@ -30,10 +30,11 @@ Progress: [█████████░] 55.6% of v1.0 milestone (10/18 plans 
 | 01-foundation | 3 | 14min | 4.7min |
 | 02-authentication | 3 | 21min | 7.0min |
 | 03-job-seeker-experience | 4 | 19.2min | 4.8min |
+| 04-employer-experience | 1 | 6min | 6.0min |
 
 **Recent Trend:**
-- Last 5 plans: 03-03 (2.6min), 03-02 (6.6min), 03-01 (4.5min), 02-03 (8min), 02-02 (7min)
-- Trend: Phase 3 accelerating - fastest plan yet at 2.6min, now averaging 4.8min
+- Last 5 plans: 04-01 (6min), 03-03 (2.6min), 03-02 (6.6min), 03-01 (4.5min), 02-03 (8min)
+- Trend: Consistent execution pace maintained
 
 *Updated after each plan completion*
 
@@ -81,6 +82,8 @@ Recent decisions affecting current work:
 | Array query instead of .single() for existence checks | 03-03 | Avoids TypeScript 'never' type issues when record may not exist |
 | useOptimistic hook for like button | 03-03 | Provides instant visual feedback before server response |
 | Role-based like capability validation | 03-03 | Server-side check of seeker_profiles prevents unauthorized likes |
+| Include 'ANY' nationality code for job posts | 04-01 | Job posts allow ANY nationality unlike seeker profiles which exclude it |
+| Random view_target and like_target from global_metrics_config | 04-01 | Job posts get random targets within configured min/max ranges |
 
 ### Pending Todos
 
@@ -93,5 +96,6 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Phase 3 Job Seeker Experience verified complete - ready for Phase 4 Employer Experience
+Stopped at: Completed 04-01-PLAN.md - Job posting form for employers
 Resume file: None
+Next: 04-02-PLAN.md - Employer posts management page
