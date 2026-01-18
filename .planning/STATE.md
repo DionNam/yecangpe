@@ -92,6 +92,11 @@ Recent decisions affecting current work:
 | Redirect non-admin users to web app instead of error page | 05-01 | Better UX, keeps users in ecosystem rather than showing access denied |
 | Use NEXT_PUBLIC_WEB_URL for cross-app redirects | 05-01 | Configurable redirect target, defaults to localhost:3000 for development |
 | Use route group (dashboard) for admin pages with shared sidebar | 05-01 | Shared sidebar layout without affecting /login route |
+| All server actions verify admin role (defense in depth) | 05-02 | CVE-2025-29927 guidance - never rely solely on middleware for authorization |
+| Approval sets published_at timestamp | 05-02 | Required for metrics calculation (from phase 03 logic) |
+| Admin posts skip approval queue | 05-02 | Admin-created content is pre-trusted, sets review_status='published' immediately |
+| Mandatory rejection reason | 05-02 | Employers need actionable feedback to fix issues |
+| Zod enum pattern without errorMap | 05-02 | z.enum v4 doesn't support errorMap in second parameter |
 | Use Number() conversion in onChange handlers for proper form value types | 05-04 | react-hook-form needs numeric values but inputs provide strings |
 | Separate Cards for view settings, like settings, and curve settings | 05-04 | Matches 05-CONTEXT.md user decision for separate sections, improves visual hierarchy |
 | Apply min/max validation at schema level with refine for range checks | 05-04 | Field-level constraints plus cross-field validation via .refine() provides better error messages |
