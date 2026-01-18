@@ -1,0 +1,113 @@
+'use client'
+
+import { useState, useTransition } from 'react'
+import Link from 'next/link'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
+import { Button } from '@/components/ui/button'
+import { toggleUserActive } from '@/app/actions/users'
+
+interface SeekerProfile {
+  nationality: string
+  topik_level: number
+  occupation: string | null
+}
+
+interface Seeker {
+  id: string
+  email: string
+  is_active: boolean
+  created_at: string
+  seeker_profiles: SeekerProfile[]
+}
+
+interface SeekersTableProps {
+  seekers: Seeker[]
+}
+
+export function SeekersTable({ seekers }: SeekersTableProps) {
+  const [isPending, startTransition] = useTransition()
+
+  const handleToggleActive = (userId: string, currentActive: boolean) => {
+    startTransition(async () => {
+      await toggleUserActive(userId, !currentActive)
+    })
+  }
+
+  return (
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>이메일</TableHead>
+          <TableHead>국적</TableHead>
+          <TableHead>TOPIK</TableHead>
+          <TableHead>직업</TableHead>
+          <TableHead>가입일</TableHead>
+          <TableHead>상태</TableHead>
+          <TableHead>액션</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {seekers.length === 0 ? (
+          <TableRow>
+            <TableCell colSpan={7} className="text-center text-muted-foreground">
+              등록된 구직자가 없습니다.
+            </TableCell>
+          </TableRow>
+        ) : (
+          seekers.map((seeker) => {
+            const profile = seeker.seeker_profiles[0]
+            return (
+              <TableRow key={seeker.id}>
+                <TableCell className="font-medium">{seeker.email}</TableCell>
+                <TableCell>{profile?.nationality || '-'}</TableCell>
+                <TableCell>{profile?.topik_level ?? '-'}</TableCell>
+                <TableCell>{profile?.occupation || '-'}</TableCell>
+                <TableCell>
+                  {new Date(seeker.created_at).toLocaleDateString('ko-KR')}
+                </TableCell>
+                <TableCell>
+                  {seeker.is_active ? (
+                    <Badge variant="outline" className="bg-green-50 text-green-700">
+                      활성
+                    </Badge>
+                  ) : (
+                    <Badge variant="outline" className="bg-gray-50 text-gray-700">
+                      비활성
+                    </Badge>
+                  )}
+                </TableCell>
+                <TableCell>
+                  <div className="flex gap-2">
+                    <Button
+                      asChild
+                      size="sm"
+                      variant="outline"
+                    >
+                      <Link href={`/users/seekers/${seeker.id}`}>상세</Link>
+                    </Button>
+                    <Button
+                      size="sm"
+                      variant={seeker.is_active ? 'destructive' : 'default'}
+                      onClick={() => handleToggleActive(seeker.id, seeker.is_active)}
+                      disabled={isPending}
+                    >
+                      {seeker.is_active ? '비활성화' : '활성화'}
+                    </Button>
+                  </div>
+                </TableCell>
+              </TableRow>
+            )
+          })
+        )}
+      </TableBody>
+    </Table>
+  )
+}
