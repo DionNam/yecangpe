@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 3 of 6 (Job Seeker Experience)
-Plan: 4 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-01-18 — Completed 03-04-PLAN.md
+Last activity: 2026-01-18 — Completed 03-02-PLAN.md
 
-Progress: [████████░░] 44.4% of v1.0 milestone (8/18 plans complete)
+Progress: [████████░░] 50.0% of v1.0 milestone (9/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 8
+- Total plans completed: 9
 - Average duration: 5.6min
-- Total execution time: 0.74 hours
+- Total execution time: 0.85 hours
 
 **By Phase:**
 
@@ -29,11 +29,11 @@ Progress: [████████░░] 44.4% of v1.0 milestone (8/18 plans c
 |-------|-------|-------|----------|
 | 01-foundation | 3 | 14min | 4.7min |
 | 02-authentication | 3 | 21min | 7.0min |
-| 03-job-seeker-experience | 2 | 10min | 5.0min |
+| 03-job-seeker-experience | 3 | 16.6min | 5.5min |
 
 **Recent Trend:**
-- Last 5 plans: 03-04 (5.5min), 03-01 (4.5min), 02-03 (8min), 02-02 (7min), 02-01 (6min)
-- Trend: Phase 3 maintaining fast pace, averaging 5.0min per plan
+- Last 5 plans: 03-02 (6.6min), 03-01 (4.5min), 02-03 (8min), 02-02 (7min), 02-01 (6min)
+- Trend: Phase 3 maintaining consistent pace, averaging 5.5min per plan
 
 *Updated after each plan completion*
 
@@ -72,6 +72,9 @@ Recent decisions affecting current work:
 | Use logarithmic growth curve for fake metrics | 03-01 | Smooth ramp from 0 to target over ramp_days period using log(1 + x*strength) |
 | Calculate display metrics server-side | 03-01 | Prevents client-side calculation mismatches, centralizes logic |
 | URL-based filter and pagination state | 03-01 | Enables shareable links, back button preservation, SEO-friendly |
+| Use redirect() for auth check instead of middleware enforcement | 03-02 | Allows middleware to pass /jobs/* routes while detail pages enforce auth |
+| Check seeker_profiles to determine like capability | 03-02 | Only seekers can like posts, employers cannot |
+| Global not-found.tsx at app root | 03-02 | Required for Next.js App Router 404 handling, prevents build errors |
 | Use modal for profile editing | 03-04 | Better UX for quick edits without leaving page |
 | Separate profile validation schema for updates | 03-04 | Allows different update rules vs creation even though similar |
 | Use 'as any' for Supabase joined queries | 03-04 | TypeScript cannot infer types for .select() with joins, runtime correct |
@@ -87,5 +90,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 03-04-PLAN.md — Seeker my-page with profile editing and liked jobs
+Stopped at: Completed 03-02-PLAN.md — Job detail page with view tracking
 Resume file: None
