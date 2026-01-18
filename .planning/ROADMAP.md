@@ -58,19 +58,19 @@ Plans:
 **Goal**: 구직자가 공고를 탐색하고, 상세를 보고, 관심 표시하고, 마이페이지를 이용할 수 있다
 **Depends on**: Phase 2
 **Requirements**: LIST-01, LIST-02, LIST-03, LIST-04, LIST-05, DETL-01, DETL-02, DETL-03, DETL-04, LIKE-01, LIKE-02, LIKE-03, SEEK-01, SEEK-02, SEEK-03, METR-01, METR-02, METR-03, METR-04
+**Plans**: 4 plans in 2 waves
 **Success Criteria** (what must be TRUE):
   1. 비로그인 사용자가 공고 리스트(제목/상태/게시일/조회수)를 볼 수 있다
   2. 국적 필터로 15개국 + 무관 중 선택하면 해당 공고만 표시된다
   3. 로그인한 사용자만 공고 상세(본문/댓글/조회수/관심수)를 볼 수 있다
   4. 구직자가 공고에 하트를 토글하면 관심수가 증감한다
   5. 구직자 마이페이지에서 프로필 수정과 관심 공고 목록 확인이 가능하다
-**Plans**: TBD
 
 Plans:
-- [ ] 03-01: Job list page with filtering and pagination
-- [ ] 03-02: Job detail page with metrics display
-- [ ] 03-03: Heart toggle functionality
-- [ ] 03-04: Seeker my page (profile and liked jobs)
+- [ ] 03-01-PLAN.md — Job list page with filtering, pagination, login modal (Wave 1)
+- [ ] 03-02-PLAN.md — Job detail page with view tracking and metrics display (Wave 2)
+- [ ] 03-03-PLAN.md — Heart toggle with optimistic UI (Wave 2)
+- [ ] 03-04-PLAN.md — Seeker my page with profile editing and liked jobs (Wave 2)
 
 ### Phase 4: Employer Experience
 **Goal**: 구인자가 공고를 작성하고 내 공고를 관리할 수 있다
@@ -131,7 +131,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-18 |
 | 2. Authentication | 3/3 | Complete | 2026-01-18 |
-| 3. Job Seeker Experience | 0/4 | Not started | - |
+| 3. Job Seeker Experience | 0/4 | Planned | - |
 | 4. Employer Experience | 0/2 | Not started | - |
 | 5. Admin Panel | 0/4 | Not started | - |
 | 6. Landing Page | 0/2 | Not started | - |
@@ -142,4 +142,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Phase 1 completed: 2026-01-18*
 *Phase 2 planned: 2026-01-18*
 *Phase 2 completed: 2026-01-18*
+*Phase 3 planned: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
