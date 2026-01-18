@@ -10,29 +10,29 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 2 of 6 (Authentication)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-18 — Completed 02-01-PLAN.md
+Last activity: 2026-01-18 — Completed 02-02-PLAN.md
 
-Progress: [██████░░░░] 22.2% of v1.0 milestone (4/18 plans complete)
+Progress: [██████░░░░] 27.8% of v1.0 milestone (5/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 4
-- Average duration: 5.0min
-- Total execution time: 0.33 hours
+- Total plans completed: 5
+- Average duration: 5.4min
+- Total execution time: 0.45 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3 | 14min | 4.7min |
-| 02-authentication | 1 | 6min | 6.0min |
+| 02-authentication | 2 | 13min | 6.5min |
 
 **Recent Trend:**
-- Last 5 plans: 02-01 (6min), 01-03 (6min), 01-02 (4min), 01-01 (4min)
-- Trend: Stable around 5-6min (authentication complexity)
+- Last 5 plans: 02-02 (7min), 02-01 (6min), 01-03 (6min), 01-02 (4min), 01-01 (4min)
+- Trend: Stable around 5-7min (authentication complexity with UI work)
 
 *Updated after each plan completion*
 
@@ -61,6 +61,9 @@ Recent decisions affecting current work:
 | Check user role field to determine onboarding completion | 02-01 | Null role indicates incomplete profile requiring onboarding |
 | Use explicit TypeScript type assertions for Supabase queries | 02-01 | TypeScript strict mode requires explicit typing for .single() results |
 | Define route arrays for middleware logic | 02-01 | Centralized route definitions (publicRoutes, authRoutes, onboardingRoutes) improve maintainability |
+| Use route group (onboarding) to isolate onboarding flow | 02-02 | Route group keeps onboarding pages separate from main app routing |
+| Logout button uses client-side signOut with router.refresh() | 02-02 | Ensures both client and server session state is cleared |
+| Remove z.coerce from topik_level to fix TypeScript inference | 02-02 | z.coerce causes type inference to become 'unknown' in react-hook-form resolvers |
 
 ### Pending Todos
 
@@ -73,5 +76,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Completed 02-01-PLAN.md (OAuth & Middleware)
+Stopped at: Completed 02-02-PLAN.md (Onboarding Role Selection)
 Resume file: None
