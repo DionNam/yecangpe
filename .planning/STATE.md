@@ -10,28 +10,29 @@ See: .planning/PROJECT.md (updated 2026-01-17)
 ## Current Position
 
 Phase: 2 of 6 (Authentication)
-Plan: 0 of 3 in current phase
-Status: Ready to start
-Last activity: 2026-01-18 — Phase 1 verified and complete
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-18 — Completed 02-01-PLAN.md
 
-Progress: [█████░░░░░] 16.7% of v1.0 milestone (1/6 phases)
+Progress: [██████░░░░] 22.2% of v1.0 milestone (4/18 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 3
-- Average duration: 4.7min
-- Total execution time: 0.23 hours
+- Total plans completed: 4
+- Average duration: 5.0min
+- Total execution time: 0.33 hours
 
 **By Phase:**
 
 | Phase | Plans | Total | Avg/Plan |
 |-------|-------|-------|----------|
 | 01-foundation | 3 | 14min | 4.7min |
+| 02-authentication | 1 | 6min | 6.0min |
 
 **Recent Trend:**
-- Last 5 plans: 01-03 (6min), 01-02 (4min), 01-01 (4min)
-- Trend: Slightly increasing (foundation complexity)
+- Last 5 plans: 02-01 (6min), 01-03 (6min), 01-02 (4min), 01-01 (4min)
+- Trend: Stable around 5-6min (authentication complexity)
 
 *Updated after each plan completion*
 
@@ -55,6 +56,11 @@ Recent decisions affecting current work:
 | Implement getUser() in middleware instead of getSession() | 01-03 | JWT validation via Auth server prevents cookie spoofing |
 | Manual type generation from migration schema | 01-03 | Supabase CLI requires authentication; manual generation identical to CLI output |
 | Test connection with job_posts instead of global_metrics_config | 01-03 | global_metrics_config requires auth; job_posts allows anon reads for public browsing |
+| Use TailwindCSS v4 with @tailwindcss/postcss plugin | 02-01 | TailwindCSS v4 requires separate PostCSS plugin package |
+| Implement PKCE flow with exchangeCodeForSession | 02-01 | PKCE provides security for OAuth code exchange |
+| Check user role field to determine onboarding completion | 02-01 | Null role indicates incomplete profile requiring onboarding |
+| Use explicit TypeScript type assertions for Supabase queries | 02-01 | TypeScript strict mode requires explicit typing for .single() results |
+| Define route arrays for middleware logic | 02-01 | Centralized route definitions (publicRoutes, authRoutes, onboardingRoutes) improve maintainability |
 
 ### Pending Todos
 
@@ -67,5 +73,5 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-18
-Stopped at: Phase 1 Foundation verified complete - ready for Phase 2 Authentication
+Stopped at: Completed 02-01-PLAN.md (OAuth & Middleware)
 Resume file: None
