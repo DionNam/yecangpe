@@ -41,18 +41,18 @@ Plans:
 **Goal**: 사용자가 Google로 로그인하고 역할을 선택하여 온보딩을 완료할 수 있다
 **Depends on**: Phase 1
 **Requirements**: AUTH-01, AUTH-02, AUTH-03, AUTH-04, AUTH-05
+**Plans**: 3 plans in 2 waves
 **Success Criteria** (what must be TRUE):
   1. 사용자가 Google 계정으로 로그인할 수 있다
   2. 첫 로그인 시 역할(구직자/구인자) 선택 화면이 뜬다
   3. 구직자가 국적/TOPIK/직업/유입경로를 입력하면 프로필이 생성된다
   4. 구인자가 기업명/유입경로를 입력하면 프로필이 생성된다
   5. 브라우저 새로고침 후에도 세션이 유지된다
-**Plans**: TBD
 
 Plans:
-- [ ] 02-01: OAuth and middleware setup
-- [ ] 02-02: Role selection flow
-- [ ] 02-03: Seeker and employer onboarding
+- [ ] 02-01-PLAN.md — OAuth callback, login page, middleware enhancement (Wave 1)
+- [ ] 02-02-PLAN.md — Role selection page and Zod schemas (Wave 2)
+- [ ] 02-03-PLAN.md — Seeker and employer onboarding forms (Wave 2)
 
 ### Phase 3: Job Seeker Experience
 **Goal**: 구직자가 공고를 탐색하고, 상세를 보고, 관심 표시하고, 마이페이지를 이용할 수 있다
@@ -130,7 +130,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Foundation | 3/3 | Complete | 2026-01-18 |
-| 2. Authentication | 0/3 | Not started | - |
+| 2. Authentication | 0/3 | Planned | - |
 | 3. Job Seeker Experience | 0/4 | Not started | - |
 | 4. Employer Experience | 0/2 | Not started | - |
 | 5. Admin Panel | 0/4 | Not started | - |
@@ -140,4 +140,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 *Roadmap created: 2026-01-17*
 *Phase 1 planned: 2026-01-18*
 *Phase 1 completed: 2026-01-18*
+*Phase 2 planned: 2026-01-18*
 *Total phases: 6 | Total plans: 18*
