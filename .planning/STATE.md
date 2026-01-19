@@ -114,7 +114,10 @@ Recent decisions affecting current work:
 
 ### Pending Todos
 
-None yet.
+1. **Redesign UI with distinctive aesthetics for admin and web apps** (ui)
+   - `.planning/todos/pending/2026-01-20-redesign-ui-with-distinctive-aesthetics.md`
+   - Landing page needs complete visual overhaul with distinctive design
+   - Admin and web UIs lack visual appeal and images
 
 ### Blockers/Concerns
 
