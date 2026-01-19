@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Work+Sans:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 
 @plugin "tailwindcss-animate";
@@ -104,25 +106,31 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --radius: 0.5rem;
+  /* Warm cream background instead of pure white */
+  --background: oklch(0.985 0.005 85);
+  --foreground: oklch(0.18 0.02 285);
+  /* Cards with subtle warmth */
+  --card: oklch(0.995 0.003 85);
+  --card-foreground: oklch(0.18 0.02 285);
+  --popover: oklch(0.995 0.003 85);
+  --popover-foreground: oklch(0.18 0.02 285);
+  /* Rich teal as primary - distinctive and professional */
+  --primary: oklch(0.45 0.12 200);
+  --primary-foreground: oklch(0.99 0 0);
+  /* Warm coral/terracotta as secondary */
+  --secondary: oklch(0.72 0.15 35);
+  --secondary-foreground: oklch(0.18 0.02 285);
+  /* Muted with warmth */
+  --muted: oklch(0.96 0.01 85);
+  --muted-foreground: oklch(0.52 0.015 285);
+  /* Accent warm tone */
+  --accent: oklch(0.88 0.08 75);
+  --accent-foreground: oklch(0.25 0.03 285);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: oklch(0.9 0.01 85);
+  --input: oklch(0.92 0.01 85);
+  --ring: oklch(0.45 0.12 200);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -178,5 +186,64 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: 'Work Sans', 'Pretendard', -apple-system, sans-serif;
   }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Pretendard', serif;
+    font-weight: 700;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Editorial-style decorative elements */
+  .decorative-line {
+    position: relative;
+  }
+  .decorative-line::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, oklch(0.72 0.15 35), transparent);
+  }
+
+  /* Subtle grain texture for depth */
+  .grain-texture {
+    position: relative;
+  }
+  .grain-texture::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+
+  /* Smooth scroll reveal animation */
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger delays for sequential animations */
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
 }
