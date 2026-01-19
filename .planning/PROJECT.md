@@ -2,54 +2,69 @@
 
 ## What This Is
 
-한국어가 가능한 외국인(구직자)이 한국의 채용 공고에 쉽게 접근하고 지원할 수 있도록 돕는 구인/구직 플랫폼. 국적 기반 필터링, Google OAuth 로그인, 댓글 기반 Q&A를 제공하며, 관리자 승인 프로세스를 통해 공고 품질을 관리한다.
+한국어가 가능한 외국인(구직자)이 한국의 채용 공고에 쉽게 접근하고 관심 표시할 수 있도록 돕는 구인/구직 플랫폼. 국적 기반 필터링, Google OAuth 로그인, 하트(관심) 기능, 조작 지표 시스템을 제공하며, 관리자 승인 프로세스를 통해 공고 품질을 관리한다.
+
+**Current Version:** v1.0 MVP (Shipped: 2026-01-19)
 
 ## Core Value
 
-**한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 댓글로 질문할 수 있어야 한다.**
+**한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.**
 
 ## Requirements
 
 ### Validated
 
-(None yet — ship to validate)
+#### v1.0 MVP (Shipped 2026-01-19)
+
+**인증/온보딩:**
+- ✓ Google OAuth 로그인 — v1.0 (PKCE flow with exchangeCodeForSession)
+- ✓ 로그인 시 역할 선택 (구직자/구인자) — v1.0
+- ✓ 구직자 온보딩: 국적, TOPIK 급수, 직업, 유입경로 — v1.0
+- ✓ 구인자 온보딩: 기업/개인명, 유입경로 — v1.0
+
+**잡포스팅 (구직자 플로우):**
+- ✓ 공고 리스트 조회 (비로그인 가능) — v1.0
+- ✓ 국적 단일 필터 (15개국 + 무관) — v1.0
+- ✓ 공고 상세 조회 (로그인 필수) — v1.0
+- ✓ 하트(관심) 토글 — v1.0 (Optimistic UI with useOptimistic)
+- ✓ 마이페이지: 프로필 수정, 관심 공고 목록 — v1.0
+
+**잡포스팅 (구인자 플로우):**
+- ✓ 공고 작성 (심사중 상태로 생성) — v1.0
+- ✓ 내 공고 관리: 목록, 수정, 상태 변경 — v1.0
+- ✓ 반려 사유 확인 — v1.0
+
+**관리자:**
+- ✓ 공고 승인/반려 (반려 시 사유 입력) — v1.0 (Defense-in-depth admin verification)
+- ✓ 공고 내용 수정 — v1.0
+- ✓ 관리자 직접 공고 등록 (즉시 게시) — v1.0
+- ✓ 조작 지표 전역 설정 (조회수/관심수 범위, 기간) — v1.0
+- ✓ 구직자/구인자 관리 — v1.0
+
+**조작 지표:**
+- ✓ 조회수/관심수 노출값 = 실제값 + 조작값 — v1.0 (getDisplayMetrics utility)
+- ✓ 조작값은 API 요청 시점에 log 커브로 계산 — v1.0
+- ✓ 전역 설정: target 범위, ramp 기간(14일), 커브 강도 — v1.0
+
+**랜딩 페이지:**
+- ✓ 서비스 소개 + CTA 버튼 — v1.0 (Hero, Benefits, How It Works, Preview, Trust sections)
+- ✓ 이용약관/개인정보처리방침/문의 — v1.0 (Footer with legal pages)
 
 ### Active
 
-#### 인증/온보딩
-- [ ] Google OAuth 로그인
-- [ ] 로그인 시 역할 선택 (구직자/구인자)
-- [ ] 구직자 온보딩: 국적, TOPIK 급수, 직업, 유입경로
-- [ ] 구인자 온보딩: 기업/개인명, 유입경로
+#### v2.0 계획 (댓글 시스템)
+- [ ] 댓글 작성/조회 (구직자가 공고에 댓글 작성)
+- [ ] 댓글 수정/삭제 (본인 댓글 관리)
+- [ ] 관리자 댓글 관리 (삭제 권한)
 
-#### 잡포스팅 (구직자 플로우)
-- [ ] 공고 리스트 조회 (비로그인 가능)
-- [ ] 국적 단일 필터 (15개국 + 무관)
-- [ ] 공고 상세 조회 (로그인 필수)
-- [ ] 하트(관심) 토글
-- [ ] 댓글 작성/조회
-- [ ] 마이페이지: 프로필 수정, 관심 공고 목록
+#### 알림 시스템
+- [ ] 구인자 알림 (공고 승인/반려 시)
+- [ ] 구인자 알림 (새 댓글 시)
 
-#### 잡포스팅 (구인자 플로우)
-- [ ] 공고 작성 (심사중 상태로 생성)
-- [ ] 내 공고 관리: 목록, 수정, 상태 변경
-- [ ] 반려 사유 확인
-
-#### 관리자
-- [ ] 공고 승인/반려 (반려 시 사유 입력)
-- [ ] 공고 내용 수정
-- [ ] 관리자 직접 공고 등록 (즉시 게시)
-- [ ] 조작 지표 전역 설정 (조회수/관심수 범위, 기간)
-- [ ] 구직자/구인자 관리
-
-#### 조작 지표
-- [ ] 조회수/관심수 노출값 = 실제값 + 조작값
-- [ ] 조작값은 API 요청 시점에 log 커브로 계산
-- [ ] 전역 설정: target 범위, ramp 기간(14일), 커브 강도
-
-#### 랜딩 페이지
-- [ ] 서비스 소개 + CTA 버튼
-- [ ] 이용약관/개인정보처리방침/문의
+#### 고급 검색
+- [ ] 복수 국적 필터
+- [ ] 직종/업종 태그 필터
+- [ ] 키워드 검색
 
 ### Out of Scope
 
@@ -71,11 +86,23 @@
 - 초기 그로스: 조작 지표로 활성화된 플랫폼처럼 보이게
 - 품질 관리: 관리자 승인 프로세스로 공고 품질 확보
 
+**현재 상태 (v1.0):**
+- 코드베이스: ~13,000 LOC TypeScript/TSX
+- 앱 구조: Monorepo (apps/web:3000, apps/admin:3001)
+- 데이터베이스: 6 tables with RLS (users, seeker_profiles, employer_profiles, job_posts, likes, global_metrics_config)
+- 배포 준비: 완료 (Vercel 배포 가능)
+
 **기술 환경:**
 - Supabase 프로젝트: https://xztfqnznwcgjjbpyuchf.supabase.co
 - Supabase Anon Key: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inh6dGZxbnpud2NnampicHl1Y2hmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg2NTM0MjMsImV4cCI6MjA4NDIyOTQyM30.93FMAkeqNhT8OTNoG3La7AGA9gJI6bsVyGR97w80PLU`
 - DB 비밀번호: Nasig0reng!
 - Google OAuth: ✅ 설정 완료 (Google Cloud Console + Supabase Dashboard)
+
+**Tech Debt (v1.0):**
+- Job list missing real like counts (displays fake metrics only) — apps/web/components/jobs/job-list-table.tsx:50
+- Employer onboarding redirects to / instead of /employer/new-post — apps/web/app/actions/auth.ts:101
+- KakaoTalk link is placeholder — apps/web/components/landing/footer.tsx:33
+- Legal pages need legal review before production
 
 ## Constraints
 
@@ -89,10 +116,14 @@
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Monorepo 구조 | 스키마/타입 공유, 일관된 개발 경험 | — Pending |
-| 조작 지표 실시간 계산 | DB 저장 불필요, target/published_at만 저장 | — Pending |
-| 별도 Admin 앱 | 메인 앱과 권한/UI 분리 | — Pending |
-| 한국어 전용 MVP | 빠른 출시, 다국어는 추후 | — Pending |
+| Monorepo 구조 | 스키마/타입 공유, 일관된 개발 경험 | ✓ Good - apps/web와 apps/admin이 @repo/supabase, @repo/lib 공유 |
+| 조작 지표 실시간 계산 | DB 저장 불필요, target/published_at만 저장 | ✓ Good - getDisplayMetrics()로 API 요청 시점 계산 |
+| 별도 Admin 앱 | 메인 앱과 권한/UI 분리 | ✓ Good - 독립 인증/라우팅, port 3001 |
+| 한국어 전용 MVP | 빠른 출시, 다국어는 추후 | ✓ Good - 2일 만에 MVP 출시 |
+| TailwindCSS v4 | 최신 PostCSS 플러그인 아키텍처 | ✓ Good - 일관된 스타일링 |
+| 'as any' 패턴 for Supabase | TypeScript 타입 추론 문제 우회 | ⚠️ Revisit - 런타임은 정상이나 타입 안전성 저하 |
+| PKCE OAuth 플로우 | 보안 강화 | ✓ Good - exchangeCodeForSession 사용 |
+| Defense-in-depth admin 검증 | 미들웨어 + 서버 액션 모두 검증 | ✓ Good - CVE-2025-29927 대응 |
 
 ---
-*Last updated: 2026-01-18 — Google OAuth 설정 완료*
+*Last updated: 2026-01-19 after v1.0 milestone completion*
