@@ -1,6 +1,29 @@
-import { LogIn, Search, Heart, FileText, CheckCircle, Megaphone } from 'lucide-react'
+'use client'
+
+import { LogIn, Search, Heart, FileText, Megaphone, ArrowRight } from 'lucide-react'
+import { useEffect, useRef } from 'react'
 
 export function HowItWorksSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-up')
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    const elements = sectionRef.current?.querySelectorAll('.animate-on-scroll')
+    elements?.forEach((el) => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
   const seekerSteps = [
     {
       icon: LogIn,
@@ -38,41 +61,55 @@ export function HowItWorksSection() {
   ]
 
   return (
-    <section className="py-16 md:py-24 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              이용 방법
+    <section ref={sectionRef} className="py-20 md:py-32 bg-card relative overflow-hidden">
+      {/* Background pattern */}
+      <div className="absolute inset-0 opacity-40" style={{
+        backgroundImage: `radial-gradient(circle at 2px 2px, oklch(0.45 0.12 200 / 0.08) 1px, transparent 0)`,
+        backgroundSize: '48px 48px'
+      }} />
+
+      <div className="container mx-auto px-4 relative">
+        <div className="max-w-7xl mx-auto">
+          {/* Section header */}
+          <div className="text-center mb-16 md:mb-24 animate-on-scroll">
+            <div className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-6">
+              시작하기
+            </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
+              간단한 <span className="text-primary">3단계</span>로 시작하세요
             </h2>
-            <p className="text-lg text-muted-foreground">
-              간단한 3단계로 시작하세요
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              구직자든 구인자든, 누구나 쉽게 시작할 수 있습니다
             </p>
           </div>
 
-          {/* Two columns: Seeker and Employer */}
-          <div className="grid md:grid-cols-2 gap-12">
+          {/* Two columns with visual flow */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Seeker Steps */}
-            <div>
-              <h3 className="text-2xl font-bold mb-8 text-center">구직자</h3>
-              <div className="space-y-6">
+            <div className="animate-on-scroll delay-100">
+              <div className="mb-10">
+                <div className="inline-block px-6 py-3 rounded-2xl bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border-2 border-blue-500/20">
+                  <h3 className="text-2xl font-bold text-blue-600">구직자</h3>
+                </div>
+              </div>
+              <div className="space-y-8 relative">
+                {/* Connecting line */}
+                <div className="absolute left-6 top-12 bottom-12 w-0.5 bg-gradient-to-b from-blue-500/30 to-cyan-500/30" />
+
                 {seekerSteps.map((step, index) => {
                   const Icon = step.icon
                   return (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-lg font-bold text-primary">
-                          {index + 1}
-                        </span>
+                    <div key={index} className="flex gap-6 relative">
+                      <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 shadow-lg shadow-blue-500/30 flex items-center justify-center relative z-10">
+                        <Icon className="w-7 h-7 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Icon className="w-5 h-5 text-primary" />
-                          <h4 className="font-semibold text-lg">{step.title}</h4>
-                        </div>
-                        <p className="text-muted-foreground">{step.description}</p>
+                      <div className="flex-1 pt-2">
+                        <h4 className="font-bold text-xl mb-2">{step.title}</h4>
+                        <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                       </div>
+                      {index < seekerSteps.length - 1 && (
+                        <ArrowRight className="absolute left-20 -bottom-6 w-5 h-5 text-blue-500/40" />
+                      )}
                     </div>
                   )
                 })}
@@ -80,25 +117,30 @@ export function HowItWorksSection() {
             </div>
 
             {/* Employer Steps */}
-            <div>
-              <h3 className="text-2xl font-bold mb-8 text-center">구인자</h3>
-              <div className="space-y-6">
+            <div className="animate-on-scroll delay-200">
+              <div className="mb-10">
+                <div className="inline-block px-6 py-3 rounded-2xl bg-gradient-to-br from-violet-500/10 to-purple-500/10 border-2 border-violet-500/20">
+                  <h3 className="text-2xl font-bold text-violet-600">구인자</h3>
+                </div>
+              </div>
+              <div className="space-y-8 relative">
+                {/* Connecting line */}
+                <div className="absolute left-6 top-12 bottom-12 w-0.5 bg-gradient-to-b from-violet-500/30 to-purple-500/30" />
+
                 {employerSteps.map((step, index) => {
                   const Icon = step.icon
                   return (
-                    <div key={index} className="flex gap-4">
-                      <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
-                        <span className="text-lg font-bold text-primary">
-                          {index + 1}
-                        </span>
+                    <div key={index} className="flex gap-6 relative">
+                      <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-gradient-to-br from-violet-500 to-purple-500 shadow-lg shadow-violet-500/30 flex items-center justify-center relative z-10">
+                        <Icon className="w-7 h-7 text-white" />
                       </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Icon className="w-5 h-5 text-primary" />
-                          <h4 className="font-semibold text-lg">{step.title}</h4>
-                        </div>
-                        <p className="text-muted-foreground">{step.description}</p>
+                      <div className="flex-1 pt-2">
+                        <h4 className="font-bold text-xl mb-2">{step.title}</h4>
+                        <p className="text-muted-foreground leading-relaxed">{step.description}</p>
                       </div>
+                      {index < employerSteps.length - 1 && (
+                        <ArrowRight className="absolute left-20 -bottom-6 w-5 h-5 text-violet-500/40" />
+                      )}
                     </div>
                   )
                 })}
