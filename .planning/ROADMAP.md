@@ -77,10 +77,10 @@ Plans:
   4. All PRD discrepancies between spec and implementation documented
   5. All functional bugs discovered during testing documented with reproduction steps
 
-**Plans**: TBD
+**Plans**: 1 plan
 
 Plans:
-- [ ] 08-01: TBD
+- [ ] 08-01-PLAN.md — Execute user journey UAT (seeker, employer, admin - 46 test cases total)
 
 #### Phase 9: UAT Execution - Cross-Flow & System Tests
 
