@@ -3,7 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 MVP** - Phases 1-6 (shipped 2026-01-19)
-- 🚧 **v1.1 UAT & Quality Assurance** - Phases 7-11 (in progress)
+- 🚧 **v1.1 UAT & Quality Assurance** - Phases 7-9 (in progress)
 - 📋 **v2.0 Feature Expansion** - Phases 12+ (planned)
 
 ## Phases
@@ -83,51 +83,11 @@ Plans:
 - [ ] 08-01-PLAN.md — Seeker & Employer journey execution (31 test cases, interactive browser testing)
 - [ ] 08-02-PLAN.md — Admin journey execution + UAT summary report (15 test cases, 46 total aggregated)
 
-#### Phase 9: UAT Execution - Cross-Flow & System Tests
-
-**Goal**: Cross-cutting features and system behaviors verified
-
-**Depends on**: Phase 8
-
-**Requirements**: UAT-CROS-01, UAT-CROS-02, UAT-CROS-03, UAT-CROS-04, UAT-CROS-05, UAT-CROS-06, UAT-CROS-07, UAT-CROS-08, UAT-CROS-09, UAT-CROS-10
-
-**Success Criteria** (what must be TRUE):
-  1. Manipulated metrics calculate correctly (log curve, actual + fake)
-  2. Role-based access control prevents unauthorized actions (seeker/employer/admin boundaries enforced)
-  3. Landing page and footer links work correctly
-  4. RLS policies block unauthorized data access
-  5. Mobile responsive layout displays correctly on common viewports
-
-**Plans**: TBD
-
-Plans:
-- [ ] 09-01: TBD
-
-#### Phase 10: Bug Fixes & Tech Debt Resolution
-
-**Goal**: All known bugs and tech debt items resolved
-
-**Depends on**: Phase 9
-
-**Requirements**: BUG-01, BUG-02, BUG-03, DEBT-01, DEBT-02, DEBT-03
-
-**Success Criteria** (what must be TRUE):
-  1. Job list displays actual like counts (not just fake metrics)
-  2. Employer onboarding redirects to /employer/new-post after completion
-  3. All PRD discrepancies discovered in UAT are fixed
-  4. KakaoTalk link points to real Open Chat URL
-  5. Legal pages contain actual terms and privacy policy content (legal review complete)
-
-**Plans**: TBD
-
-Plans:
-- [ ] 10-01: TBD
-
-#### Phase 11: Final Verification & Production Readiness
+#### Phase 9: Final Verification & Production Readiness
 
 **Goal**: All fixes verified and platform ready for production
 
-**Depends on**: Phase 10
+**Depends on**: Phase 8
 
 **Requirements**: (Verification of all previous phase fixes)
 
@@ -141,7 +101,7 @@ Plans:
 **Plans**: TBD
 
 Plans:
-- [ ] 11-01: TBD
+- [ ] 09-01: TBD
 
 ### 📋 v2.0 Feature Expansion (Planned)
 
@@ -152,7 +112,7 @@ Requirements tracked in REQUIREMENTS.md v2.0 section (CMNT-01 through SRCH-03).
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 7 → 8 → 9 → 10 → 11 → 12...
+Phases execute in numeric order: 7 → 8 → 9 → 10...
 
 | Phase | Milestone | Plans Complete | Status | Completed |
 |-------|-----------|----------------|--------|-----------|
@@ -164,9 +124,7 @@ Phases execute in numeric order: 7 → 8 → 9 → 10 → 11 → 12...
 | 6. UI Polish & Deployment | v1.0 | Complete | Complete | 2026-01-19 |
 | 7. UAT Test Case Design | v1.1 | 2/2 | Complete | 2026-01-20 |
 | 8. UAT Execution - User Journeys | v1.1 | 0/2 | Not started | - |
-| 9. UAT Execution - Cross-Flow | v1.1 | 0/1 | Not started | - |
-| 10. Bug Fixes & Tech Debt | v1.1 | 0/1 | Not started | - |
-| 11. Final Verification | v1.1 | 0/1 | Not started | - |
+| 9. Final Verification | v1.1 | 0/1 | Not started | - |
 
 ---
 *Last updated: 2026-01-20*
