@@ -56,10 +56,11 @@
   4. Test cases map directly to PRD requirements in PROJECT.md
   5. Test case structure enables automated execution via Chrome extension
 
-**Plans**: TBD
+**Plans**: 2 plans
 
 Plans:
-- [ ] 07-01: TBD
+- [ ] 07-01-PLAN.md — User journey test cases (seeker + employer, 25+ cases)
+- [ ] 07-02-PLAN.md — Admin + cross-flow test cases + traceability matrix + seed script (25+ cases)
 
 #### Phase 8: UAT Execution - User Journeys
 
@@ -160,7 +161,7 @@ Phases execute in numeric order: 7 → 8 → 9 → 10 → 11 → 12...
 | 4. Engagement Features | v1.0 | Complete | Complete | 2026-01-19 |
 | 5. Employer & Admin | v1.0 | Complete | Complete | 2026-01-19 |
 | 6. UI Polish & Deployment | v1.0 | Complete | Complete | 2026-01-19 |
-| 7. UAT Test Case Design | v1.1 | 0/1 | Not started | - |
+| 7. UAT Test Case Design | v1.1 | 0/2 | Not started | - |
 | 8. UAT Execution - User Journeys | v1.1 | 0/1 | Not started | - |
 | 9. UAT Execution - Cross-Flow | v1.1 | 0/1 | Not started | - |
 | 10. Bug Fixes & Tech Debt | v1.1 | 0/1 | Not started | - |
