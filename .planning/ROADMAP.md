@@ -4,6 +4,7 @@
 
 - ✅ **v1.0 MVP** - Phases 1-6 (shipped 2026-01-19)
 - ✅ **v1.1 UAT Test Case Design** - Phase 7 (complete 2026-01-21)
+- 🚧 **v1.2 User Flow Verification** - Phase 8 (in progress)
 
 ## Phases
 
@@ -64,6 +65,26 @@ Plans:
 
 </details>
 
+### 🚧 v1.2 User Flow Verification (In Progress)
+
+#### Phase 8: User Flow Verification with Chrome MCP
+
+**Goal**: Verify seeker user flow matches PRD specifications using automated browser testing
+
+**Depends on**: Phase 7
+
+**Success Criteria** (what must be TRUE):
+  1. Job listing page displays correctly without login
+  2. Clicking job item triggers login prompt when not authenticated
+  3. Google OAuth login flow completes successfully
+  4. After login, user can access job detail page and view full content
+  5. User flow behavior matches PRD specifications
+
+**Plans**: 1 plan in 1 wave
+
+Plans:
+- [ ] 08-01-PLAN.md — Seeker journey UAT execution (10 test cases via Chrome MCP)
+
 ## Project Status
 
 **Current State:** Development complete, ready for handoff or future continuation
@@ -94,8 +115,9 @@ Plans:
 | 5. Employer & Admin | v1.0 | 4/4 | ✅ Complete | 2026-01-19 |
 | 6. UI Polish & Deployment | v1.0 | 2/2 | ✅ Complete | 2026-01-19 |
 | 7. UAT Test Case Design | v1.1 | 2/2 | ✅ Complete | 2026-01-20 |
+| 8. User Flow Verification | v1.2 | 1/1 | Ready to execute | - |
 
-**Total:** 7 phases, 20 plans, all complete
+**Total:** 8 phases, 20 plans complete, 1 plan ready to execute
 
 ---
 *Last updated: 2026-01-21*
