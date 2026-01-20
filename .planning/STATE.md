@@ -11,9 +11,9 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 7 of 11 (UAT Test Case Design)
-Plan: Ready to plan
-Status: Not started
-Last activity: 2026-01-20 — v1.1 milestone roadmap created
+Plan: 1 of 4 complete
+Status: In progress
+Last activity: 2026-01-20 — Completed 07-01-PLAN.md (test case design)
 
 Progress: [██████░░░░░░░░░░░░░░] 55% (6/11 phases complete)
 
@@ -54,6 +54,9 @@ Recent decisions affecting v1.1 work:
 - **v1.0**: Manipulated metrics calculated at runtime via getDisplayMetrics
 - **v1.0**: Korean-only MVP for rapid shipping
 - **v1.1**: UAT with Chrome extension automation planned
+- **07-01**: Markdown format for test cases (version-controllable, AI-readable)
+- **07-01**: Hierarchical test organization by journey > scenario > test cases
+- **07-01**: Standard 11-field test case template with requirements traceability
 
 ### Pending Todos
 
@@ -74,7 +77,7 @@ None yet.
 ## Session Continuity
 
 Last session: 2026-01-20
-Stopped at: v1.1 roadmap created, ready to plan Phase 7
+Stopped at: Completed 07-01-PLAN.md (test case design for seeker and employer journeys)
 Resume file: None
 
 ---
