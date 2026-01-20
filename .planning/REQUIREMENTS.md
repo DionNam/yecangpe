@@ -30,31 +30,31 @@ Requirements for UAT testing and quality assurance. Each requirement maps to tes
 
 ### UAT Execution - 구인자 여정
 
-- [ ] **UAT-EMPL-01**: Google OAuth 로그인 플로우 테스트
-- [ ] **UAT-EMPL-02**: 구인자 온보딩 플로우 테스트 (기업명, 유입경로)
-- [ ] **UAT-EMPL-03**: 공고 작성 플로우 테스트 (제목, 내용, 국적)
-- [ ] **UAT-EMPL-04**: 공고 작성 후 "심사중" 상태 확인
-- [ ] **UAT-EMPL-05**: 공고 제출 후 다이얼로그 확인 ("1일 이내 승인")
-- [ ] **UAT-EMPL-06**: 내 공고 목록 조회 테스트
-- [ ] **UAT-EMPL-07**: 내 공고 수정 기능 테스트
-- [ ] **UAT-EMPL-08**: 채용중/마감 상태 변경 테스트 (게시된 공고만)
-- [ ] **UAT-EMPL-09**: 반려된 공고의 반려 사유 표시 확인
-- [ ] **UAT-EMPL-10**: 구인자는 하트 버튼 비활성화, 수치만 표시 확인
+- [ ] **UAT-EMPL-01**: Google OAuth 로그인 플로우 테스트— Deferred (Phase 8 focuses on seeker journey only)
+- [ ] **UAT-EMPL-02**: 구인자 온보딩 플로우 테스트 (기업명, 유입경로) — Deferred
+- [ ] **UAT-EMPL-03**: 공고 작성 플로우 테스트 (제목, 내용, 국적) — Deferred
+- [ ] **UAT-EMPL-04**: 공고 작성 후 "심사중" 상태 확인 — Deferred
+- [ ] **UAT-EMPL-05**: 공고 제출 후 다이얼로그 확인 ("1일 이내 승인") — Deferred
+- [ ] **UAT-EMPL-06**: 내 공고 목록 조회 테스트 — Deferred
+- [ ] **UAT-EMPL-07**: 내 공고 수정 기능 테스트 — Deferred
+- [ ] **UAT-EMPL-08**: 채용중/마감 상태 변경 테스트 (게시된 공고만) — Deferred
+- [ ] **UAT-EMPL-09**: 반려된 공고의 반려 사유 표시 확인 — Deferred
+- [ ] **UAT-EMPL-10**: 구인자는 하트 버튼 비활성화, 수치만 표시 확인 — Deferred
 
 ### UAT Execution - 관리자 여정
 
-- [ ] **UAT-ADMN-01**: 관리자 로그인 및 권한 확인
-- [ ] **UAT-ADMN-02**: 심사중 공고 목록 조회 테스트
-- [ ] **UAT-ADMN-03**: 공고 승인 기능 테스트 (상태 → 게시됨, published_at 설정)
-- [ ] **UAT-ADMN-04**: 공고 반려 기능 테스트 (반려 사유 입력 필수)
-- [ ] **UAT-ADMN-05**: 공고 내용 수정 기능 테스트 (제목, 내용, 국적, 회사명)
-- [ ] **UAT-ADMN-06**: 관리자 직접 공고 등록 테스트 (즉시 게시)
-- [ ] **UAT-ADMN-07**: 조작 지표 전역 설정 테스트 (조회수 범위 min/max)
-- [ ] **UAT-ADMN-08**: 조작 지표 전역 설정 테스트 (관심수 범위 min/max)
-- [ ] **UAT-ADMN-09**: 조작 지표 ramp_days 및 curve 강도 설정 테스트
-- [ ] **UAT-ADMN-10**: 구직자 목록 조회 및 프로필 확인 테스트
-- [ ] **UAT-ADMN-11**: 구인자 목록 조회 및 정보 확인 테스트
-- [ ] **UAT-ADMN-12**: 비관리자 사용자가 Admin 페이지 접근 차단 확인
+- [ ] **UAT-ADMN-01**: 관리자 로그인 및 권한 확인 — Deferred (Phase 8 focuses on seeker journey only)
+- [ ] **UAT-ADMN-02**: 심사중 공고 목록 조회 테스트 — Deferred
+- [ ] **UAT-ADMN-03**: 공고 승인 기능 테스트 (상태 → 게시됨, published_at 설정) — Deferred
+- [ ] **UAT-ADMN-04**: 공고 반려 기능 테스트 (반려 사유 입력 필수) — Deferred
+- [ ] **UAT-ADMN-05**: 공고 내용 수정 기능 테스트 (제목, 내용, 국적, 회사명) — Deferred
+- [ ] **UAT-ADMN-06**: 관리자 직접 공고 등록 테스트 (즉시 게시) — Deferred
+- [ ] **UAT-ADMN-07**: 조작 지표 전역 설정 테스트 (조회수 범위 min/max) — Deferred
+- [ ] **UAT-ADMN-08**: 조작 지표 전역 설정 테스트 (관심수 범위 min/max) — Deferred
+- [ ] **UAT-ADMN-09**: 조작 지표 ramp_days 및 curve 강도 설정 테스트 — Deferred
+- [ ] **UAT-ADMN-10**: 구직자 목록 조회 및 프로필 확인 테스트 — Deferred
+- [ ] **UAT-ADMN-11**: 구인자 목록 조회 및 정보 확인 테스트 — Deferred
+- [ ] **UAT-ADMN-12**: 비관리자 사용자가 Admin 페이지 접근 차단 확인 — Deferred
 
 ### UAT Execution - 크로스 플로우
 
@@ -141,28 +141,28 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UAT-SEEK-08 | Phase 8 | Pending |
 | UAT-SEEK-09 | Phase 8 | Pending |
 | UAT-SEEK-10 | Phase 8 | Pending |
-| UAT-EMPL-01 | Phase 8 | Pending |
-| UAT-EMPL-02 | Phase 8 | Pending |
-| UAT-EMPL-03 | Phase 8 | Pending |
-| UAT-EMPL-04 | Phase 8 | Pending |
-| UAT-EMPL-05 | Phase 8 | Pending |
-| UAT-EMPL-06 | Phase 8 | Pending |
-| UAT-EMPL-07 | Phase 8 | Pending |
-| UAT-EMPL-08 | Phase 8 | Pending |
-| UAT-EMPL-09 | Phase 8 | Pending |
-| UAT-EMPL-10 | Phase 8 | Pending |
-| UAT-ADMN-01 | Phase 8 | Pending |
-| UAT-ADMN-02 | Phase 8 | Pending |
-| UAT-ADMN-03 | Phase 8 | Pending |
-| UAT-ADMN-04 | Phase 8 | Pending |
-| UAT-ADMN-05 | Phase 8 | Pending |
-| UAT-ADMN-06 | Phase 8 | Pending |
-| UAT-ADMN-07 | Phase 8 | Pending |
-| UAT-ADMN-08 | Phase 8 | Pending |
-| UAT-ADMN-09 | Phase 8 | Pending |
-| UAT-ADMN-10 | Phase 8 | Pending |
-| UAT-ADMN-11 | Phase 8 | Pending |
-| UAT-ADMN-12 | Phase 8 | Pending |
+| UAT-EMPL-01 | Deferred | Not planned |
+| UAT-EMPL-02 | Deferred | Not planned |
+| UAT-EMPL-03 | Deferred | Not planned |
+| UAT-EMPL-04 | Deferred | Not planned |
+| UAT-EMPL-05 | Deferred | Not planned |
+| UAT-EMPL-06 | Deferred | Not planned |
+| UAT-EMPL-07 | Deferred | Not planned |
+| UAT-EMPL-08 | Deferred | Not planned |
+| UAT-EMPL-09 | Deferred | Not planned |
+| UAT-EMPL-10 | Deferred | Not planned |
+| UAT-ADMN-01 | Deferred | Not planned |
+| UAT-ADMN-02 | Deferred | Not planned |
+| UAT-ADMN-03 | Deferred | Not planned |
+| UAT-ADMN-04 | Deferred | Not planned |
+| UAT-ADMN-05 | Deferred | Not planned |
+| UAT-ADMN-06 | Deferred | Not planned |
+| UAT-ADMN-07 | Deferred | Not planned |
+| UAT-ADMN-08 | Deferred | Not planned |
+| UAT-ADMN-09 | Deferred | Not planned |
+| UAT-ADMN-10 | Deferred | Not planned |
+| UAT-ADMN-11 | Deferred | Not planned |
+| UAT-ADMN-12 | Deferred | Not planned |
 | UAT-CROS-01 | Phase 9 | Pending |
 | UAT-CROS-02 | Phase 9 | Pending |
 | UAT-CROS-03 | Phase 9 | Pending |
@@ -182,9 +182,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 **Coverage:**
 - v1.1 requirements: 53 total
-- Mapped to phases: 53 (100%)
-- Unmapped: 0
+- Mapped to phases: 31 (58%)
+- Deferred: 22 (42% - employer and admin journeys)
 
 ---
 *Requirements defined: 2026-01-20*
-*Last updated: 2026-01-20 after roadmap creation*
+*Last updated: 2026-01-21 - marked employer and admin UAT tests as Deferred (Phase 8 focuses on seeker journey only)*
