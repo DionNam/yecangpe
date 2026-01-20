@@ -11,9 +11,9 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 7 of 11 (UAT Test Case Design)
-Plan: 1 of 4 complete
+Plan: 2 of 4 complete
 Status: In progress
-Last activity: 2026-01-20 — Completed 07-01-PLAN.md (test case design)
+Last activity: 2026-01-20 — Completed 07-02-PLAN.md (admin/cross-flow test cases, traceability matrix, test data seed)
 
 Progress: [██████░░░░░░░░░░░░░░] 55% (6/11 phases complete)
 
@@ -57,6 +57,9 @@ Recent decisions affecting v1.1 work:
 - **07-01**: Markdown format for test cases (version-controllable, AI-readable)
 - **07-01**: Hierarchical test organization by journey > scenario > test cases
 - **07-01**: Standard 11-field test case template with requirements traceability
+- **07-02**: Bi-directional traceability matrix (100% requirement coverage, 58 test cases)
+- **07-02**: SQL seed script with idempotent design for repeatable UAT execution
+- **07-02**: Fixed UUID pattern for deterministic test data
 
 ### Pending Todos
 
@@ -71,13 +74,13 @@ None yet.
 - Legal pages need legal review
 
 **UAT Preparation:**
-- Chrome extension automation testing capability needs verification
-- Test data seeding strategy needed for repeatable UAT execution
+- ✓ Test data seeding strategy complete (seed-uat-data.sql created)
+- Chrome extension automation testing capability needs verification during Phase 8 execution
 
 ## Session Continuity
 
 Last session: 2026-01-20
-Stopped at: Completed 07-01-PLAN.md (test case design for seeker and employer journeys)
+Stopped at: Completed 07-02-PLAN.md (admin/cross-flow test cases, traceability matrix, test data seed script)
 Resume file: None
 
 ---
