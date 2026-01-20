@@ -124,13 +124,67 @@ Explicitly excluded. Documented to prevent scope creep.
 
 Which phases cover which requirements. Updated during roadmap creation.
 
-*Will be populated by roadmap creation*
+| Requirement | Phase | Status |
+|-------------|-------|--------|
+| UAT-PLAN-01 | Phase 7 | Pending |
+| UAT-PLAN-02 | Phase 7 | Pending |
+| UAT-PLAN-03 | Phase 7 | Pending |
+| UAT-PLAN-04 | Phase 7 | Pending |
+| UAT-PLAN-05 | Phase 7 | Pending |
+| UAT-SEEK-01 | Phase 8 | Pending |
+| UAT-SEEK-02 | Phase 8 | Pending |
+| UAT-SEEK-03 | Phase 8 | Pending |
+| UAT-SEEK-04 | Phase 8 | Pending |
+| UAT-SEEK-05 | Phase 8 | Pending |
+| UAT-SEEK-06 | Phase 8 | Pending |
+| UAT-SEEK-07 | Phase 8 | Pending |
+| UAT-SEEK-08 | Phase 8 | Pending |
+| UAT-SEEK-09 | Phase 8 | Pending |
+| UAT-SEEK-10 | Phase 8 | Pending |
+| UAT-EMPL-01 | Phase 8 | Pending |
+| UAT-EMPL-02 | Phase 8 | Pending |
+| UAT-EMPL-03 | Phase 8 | Pending |
+| UAT-EMPL-04 | Phase 8 | Pending |
+| UAT-EMPL-05 | Phase 8 | Pending |
+| UAT-EMPL-06 | Phase 8 | Pending |
+| UAT-EMPL-07 | Phase 8 | Pending |
+| UAT-EMPL-08 | Phase 8 | Pending |
+| UAT-EMPL-09 | Phase 8 | Pending |
+| UAT-EMPL-10 | Phase 8 | Pending |
+| UAT-ADMN-01 | Phase 8 | Pending |
+| UAT-ADMN-02 | Phase 8 | Pending |
+| UAT-ADMN-03 | Phase 8 | Pending |
+| UAT-ADMN-04 | Phase 8 | Pending |
+| UAT-ADMN-05 | Phase 8 | Pending |
+| UAT-ADMN-06 | Phase 8 | Pending |
+| UAT-ADMN-07 | Phase 8 | Pending |
+| UAT-ADMN-08 | Phase 8 | Pending |
+| UAT-ADMN-09 | Phase 8 | Pending |
+| UAT-ADMN-10 | Phase 8 | Pending |
+| UAT-ADMN-11 | Phase 8 | Pending |
+| UAT-ADMN-12 | Phase 8 | Pending |
+| UAT-CROS-01 | Phase 9 | Pending |
+| UAT-CROS-02 | Phase 9 | Pending |
+| UAT-CROS-03 | Phase 9 | Pending |
+| UAT-CROS-04 | Phase 9 | Pending |
+| UAT-CROS-05 | Phase 9 | Pending |
+| UAT-CROS-06 | Phase 9 | Pending |
+| UAT-CROS-07 | Phase 9 | Pending |
+| UAT-CROS-08 | Phase 9 | Pending |
+| UAT-CROS-09 | Phase 9 | Pending |
+| UAT-CROS-10 | Phase 9 | Pending |
+| BUG-01 | Phase 10 | Pending |
+| BUG-02 | Phase 10 | Pending |
+| BUG-03 | Phase 10 | Pending |
+| DEBT-01 | Phase 10 | Pending |
+| DEBT-02 | Phase 10 | Pending |
+| DEBT-03 | Phase 10 | Pending |
 
 **Coverage:**
-- v1.1 requirements: 0 total
-- Mapped to phases: 0
+- v1.1 requirements: 53 total
+- Mapped to phases: 53 (100%)
 - Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-20*
-*Last updated: 2026-01-20 after initial definition*
+*Last updated: 2026-01-20 after roadmap creation*

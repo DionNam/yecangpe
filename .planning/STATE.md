@@ -2,24 +2,25 @@
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-01-17)
+See: .planning/PROJECT.md (updated 2026-01-20)
 
-**Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 댓글로 질문할 수 있어야 한다.
-**Current focus:** Phase 6 - Landing Page
+**Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
+
+**Current focus:** Phase 7 - UAT Test Case Design
 
 ## Current Position
 
-Phase: 6 of 6 (Landing Page)
-Plan: 2 of 2 in current phase
-Status: Milestone complete
-Last activity: 2026-01-19 — Phase 6 verified and complete
+Phase: 7 of 11 (UAT Test Case Design)
+Plan: Ready to plan
+Status: Not started
+Last activity: 2026-01-20 — v1.1 milestone roadmap created
 
-Progress: [█████████████████] 100% of v1.0 milestone (18/18 plans complete)
+Progress: [██████░░░░░░░░░░░░░░] 55% (6/11 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 18
+- Total plans completed: 18 (v1.0)
 - Average duration: 4.7min
 - Total execution time: 1.4 hours
 
@@ -35,97 +36,46 @@ Progress: [█████████████████] 100% of v1.0 mil
 | 06-landing-page | 2 | 8min | 4.0min |
 
 **Recent Trend:**
-- Last 5 plans: 06-02 (4min), 06-01 (4min), 05-04 (3min), 05-03 (5min), 05-02 (5min)
-- Trend: Consistent 4min execution, all phases complete
+- v1.0 completed in 1.4 hours (18 plans)
+- v1.1 focus: Quality assurance over speed
+- Trend: Comprehensive testing phase expected
 
-*Updated after each plan completion*
+*Metrics will update after Phase 7 completion*
 
 ## Accumulated Context
 
 ### Decisions
 
 Decisions are logged in PROJECT.md Key Decisions table.
-Recent decisions affecting current work:
+Recent decisions affecting v1.1 work:
 
-| Decision | Phase | Context |
-|----------|-------|---------|
-| Use gen_random_uuid() instead of uuid_generate_v4() | 01-01 | Native Postgres 13+ function, no extension dependency required |
-| Use (SELECT auth.uid()) pattern in all RLS policies | 01-01 | 95% performance improvement via statement-level caching |
-| Helper functions with SECURITY DEFINER for role checks | 01-01 | Centralized role logic (is_admin, is_employer, is_seeker) reusable across policies |
-| Use pnpm workspace protocol (workspace:*) for internal package dependencies | 01-02 | Enables proper version resolution and better IDE support |
-| Configure standalone builds with outputFileTracingRoot for monorepo support | 01-02 | Required for Docker deployment and correct dependency bundling |
-| Set Turborepo dev task with cache:false and persistent:true | 01-02 | Dev servers should never cache and must stay running |
-| 16 nationality codes defined based on Korea's foreign worker demographics | 01-02 | Covers major source countries plus "ANY" for nationality-agnostic positions |
-| Use @supabase/ssr for cookie-based session management | 01-03 | Modern library replacing deprecated auth-helpers |
-| Implement getUser() in middleware instead of getSession() | 01-03 | JWT validation via Auth server prevents cookie spoofing |
-| Manual type generation from migration schema | 01-03 | Supabase CLI requires authentication; manual generation identical to CLI output |
-| Test connection with job_posts instead of global_metrics_config | 01-03 | global_metrics_config requires auth; job_posts allows anon reads for public browsing |
-| Use TailwindCSS v4 with @tailwindcss/postcss plugin | 02-01 | TailwindCSS v4 requires separate PostCSS plugin package |
-| Implement PKCE flow with exchangeCodeForSession | 02-01 | PKCE provides security for OAuth code exchange |
-| Check user role field to determine onboarding completion | 02-01 | Null role indicates incomplete profile requiring onboarding |
-| Use explicit TypeScript type assertions for Supabase queries | 02-01 | TypeScript strict mode requires explicit typing for .single() results |
-| Define route arrays for middleware logic | 02-01 | Centralized route definitions (publicRoutes, authRoutes, onboardingRoutes) improve maintainability |
-| Use route group (onboarding) to isolate onboarding flow | 02-02 | Route group keeps onboarding pages separate from main app routing |
-| Logout button uses client-side signOut with router.refresh() | 02-02 | Ensures both client and server session state is cleared |
-| Remove z.coerce from topik_level to fix TypeScript inference | 02-02 | z.coerce causes type inference to become 'unknown' in react-hook-form resolvers |
-| Use 'as any' type assertion for Supabase upsert/insert | 02-03 | TypeScript cannot infer createClient() return type properly; runtime behavior correct |
-| Install @supabase/supabase-js as direct dependency | 02-03 | Provides type definitions for SupabaseClient even though using 'as any' workaround |
-| FormData pattern in server actions | 02-03 | Matches Next.js server action conventions for form submission |
-| Allow /jobs/* routes without auth, handle detail access via modal | 03-01 | Enables public browsing, defers auth check to detail page interaction |
-| Use logarithmic growth curve for fake metrics | 03-01 | Smooth ramp from 0 to target over ramp_days period using log(1 + x*strength) |
-| Calculate display metrics server-side | 03-01 | Prevents client-side calculation mismatches, centralizes logic |
-| URL-based filter and pagination state | 03-01 | Enables shareable links, back button preservation, SEO-friendly |
-| Use redirect() for auth check instead of middleware enforcement | 03-02 | Allows middleware to pass /jobs/* routes while detail pages enforce auth |
-| Check seeker_profiles to determine like capability | 03-02 | Only seekers can like posts, employers cannot |
-| Global not-found.tsx at app root | 03-02 | Required for Next.js App Router 404 handling, prevents build errors |
-| Use modal for profile editing | 03-04 | Better UX for quick edits without leaving page |
-| Separate profile validation schema for updates | 03-04 | Allows different update rules vs creation even though similar |
-| Use 'as any' for Supabase joined queries | 03-04 | TypeScript cannot infer types for .select() with joins, runtime correct |
-| Array query instead of .single() for existence checks | 03-03 | Avoids TypeScript 'never' type issues when record may not exist |
-| useOptimistic hook for like button | 03-03 | Provides instant visual feedback before server response |
-| Role-based like capability validation | 03-03 | Server-side check of seeker_profiles prevents unauthorized likes |
-| Include 'ANY' nationality code for job posts | 04-01 | Job posts allow ANY nationality unlike seeker profiles which exclude it |
-| Random view_target and like_target from global_metrics_config | 04-01 | Job posts get random targets within configured min/max ranges |
-| Hiring status toggle disabled for non-published posts | 04-02 | Only published posts can change hiring status per EMPM-03 |
-| Metrics display shows '-' for pending/rejected posts | 04-02 | Metrics not calculated until post is published |
-| Like counts fetched individually per post | 04-02 | Ensures accuracy of like count display for each post |
-| Admin middleware checks users.role after session validation | 05-01 | Defense-in-depth security, middleware verifies role from database not just session |
-| Redirect non-admin users to web app instead of error page | 05-01 | Better UX, keeps users in ecosystem rather than showing access denied |
-| Use NEXT_PUBLIC_WEB_URL for cross-app redirects | 05-01 | Configurable redirect target, defaults to localhost:3000 for development |
-| Use route group (dashboard) for admin pages with shared sidebar | 05-01 | Shared sidebar layout without affecting /login route |
-| All server actions verify admin role (defense in depth) | 05-02 | CVE-2025-29927 guidance - never rely solely on middleware for authorization |
-| Approval sets published_at timestamp | 05-02 | Required for metrics calculation (from phase 03 logic) |
-| Admin posts skip approval queue | 05-02 | Admin-created content is pre-trusted, sets review_status='published' immediately |
-| Mandatory rejection reason | 05-02 | Employers need actionable feedback to fix issues |
-| Zod enum pattern without errorMap | 05-02 | z.enum v4 doesn't support errorMap in second parameter |
-| Use Number() conversion in onChange handlers for proper form value types | 05-04 | react-hook-form needs numeric values but inputs provide strings |
-| Separate Cards for view settings, like settings, and curve settings | 05-04 | Matches 05-CONTEXT.md user decision for separate sections, improves visual hierarchy |
-| Apply min/max validation at schema level with refine for range checks | 05-04 | Field-level constraints plus cross-field validation via .refine() provides better error messages |
-| Use joined queries (users + profiles) to prevent N+1 performance issues | 05-03 | Fetches profiles in single query, avoids multiple database round-trips |
-| Fetch employer post counts individually via Promise.all | 05-03 | Simpler query construction, acceptable performance for admin use case with low employer counts |
-| Display TOPIK level 0 as '0 (없음)' for clarity | 05-03 | Distinguishes between no TOPIK certification and missing data |
-| Use gradient background for Hero instead of image | 06-01 | Cleaner, more trustworthy feel without needing image assets |
-| Separate benefit sections for employers vs seekers | 06-01 | Dual-audience platform requires clear value prop for each user type |
-| Client-side filtering in preview section | 06-01 | Local state sufficient for 6 jobs, no need for shareability unlike /jobs page |
-| Preview cards link to /jobs not /jobs/[id] | 06-01 | Avoids auth wall for non-logged-in visitors, maintains browsing flow |
-| Use placeholder KakaoTalk URL with TODO comment | 06-02 | Actual Open Chat URL will be replaced later |
-| Add visible placeholder notices on legal pages | 06-02 | Clear indication content needs legal review before production |
-| Dynamic copyright year via new Date().getFullYear() | 06-02 | Automatically stays current without manual updates |
+- **v1.0**: PKCE OAuth with exchangeCodeForSession for security
+- **v1.0**: Defense-in-depth admin verification (CVE-2025-29927 mitigation)
+- **v1.0**: Manipulated metrics calculated at runtime via getDisplayMetrics
+- **v1.0**: Korean-only MVP for rapid shipping
+- **v1.1**: UAT with Chrome extension automation planned
 
 ### Pending Todos
 
-None - currently working on UI redesign.
+None yet.
 
 ### Blockers/Concerns
 
-None yet.
+**Known Tech Debt (from v1.0):**
+- Job list missing real like counts (displays fake metrics only)
+- Employer onboarding redirects to / instead of /employer/new-post
+- KakaoTalk link is placeholder
+- Legal pages need legal review
+
+**UAT Preparation:**
+- Chrome extension automation testing capability needs verification
+- Test data seeding strategy needed for repeatable UAT execution
 
 ## Session Continuity
 
-Last session: 2026-01-18
-Stopped at: Completed 06-02-PLAN.md (Footer & Legal Pages)
+Last session: 2026-01-20
+Stopped at: v1.1 roadmap created, ready to plan Phase 7
 Resume file: None
 
 ---
-
-**🎉 v1.0 MILESTONE COMPLETE - ALL 18 PLANS EXECUTED**
+*Last updated: 2026-01-20*

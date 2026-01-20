@@ -1,0 +1,170 @@
+# Roadmap: 외국인 구인/구직 플랫폼
+
+## Milestones
+
+- ✅ **v1.0 MVP** - Phases 1-6 (shipped 2026-01-19)
+- 🚧 **v1.1 UAT & Quality Assurance** - Phases 7-11 (in progress)
+- 📋 **v2.0 Feature Expansion** - Phases 12+ (planned)
+
+## Phases
+
+<details>
+<summary>✅ v1.0 MVP (Phases 1-6) - SHIPPED 2026-01-19</summary>
+
+### Phase 1: Project Setup
+**Goal**: Development environment ready for rapid iteration
+**Plans**: Complete
+
+### Phase 2: Authentication & Onboarding
+**Goal**: Users can sign up and complete role-specific onboarding
+**Plans**: Complete
+
+### Phase 3: Job Listings (Seeker Flow)
+**Goal**: Seekers can browse and filter job postings
+**Plans**: Complete
+
+### Phase 4: Engagement Features
+**Goal**: Seekers can express interest and manage their profile
+**Plans**: Complete
+
+### Phase 5: Employer & Admin Features
+**Goal**: Employers can post jobs; admins can manage platform
+**Plans**: Complete
+
+### Phase 6: UI Polish & Deployment
+**Goal**: Platform has distinctive aesthetics and is production-ready
+**Plans**: Complete
+
+</details>
+
+### 🚧 v1.1 UAT & Quality Assurance (In Progress)
+
+**Milestone Goal:** v1.0 features verified against PRD specifications with all functional bugs fixed and tech debt resolved for production readiness.
+
+#### Phase 7: UAT Test Case Design
+
+**Goal**: Comprehensive test case suite covers all v1.0 user journeys
+
+**Depends on**: Phase 6 (v1.0 shipped)
+
+**Requirements**: UAT-PLAN-01, UAT-PLAN-02, UAT-PLAN-03, UAT-PLAN-04, UAT-PLAN-05
+
+**Success Criteria** (what must be TRUE):
+  1. 50+ UAT test cases documented covering seeker, employer, and admin journeys
+  2. Each test case includes preconditions, steps, and expected outcomes
+  3. Error cases and edge cases included for each user journey (minimum 2 per journey)
+  4. Test cases map directly to PRD requirements in PROJECT.md
+  5. Test case structure enables automated execution via Chrome extension
+
+**Plans**: TBD
+
+Plans:
+- [ ] 07-01: TBD
+
+#### Phase 8: UAT Execution - User Journeys
+
+**Goal**: All user journeys tested and functional issues documented
+
+**Depends on**: Phase 7
+
+**Requirements**: UAT-SEEK-01, UAT-SEEK-02, UAT-SEEK-03, UAT-SEEK-04, UAT-SEEK-05, UAT-SEEK-06, UAT-SEEK-07, UAT-SEEK-08, UAT-SEEK-09, UAT-SEEK-10, UAT-EMPL-01, UAT-EMPL-02, UAT-EMPL-03, UAT-EMPL-04, UAT-EMPL-05, UAT-EMPL-06, UAT-EMPL-07, UAT-EMPL-08, UAT-EMPL-09, UAT-EMPL-10, UAT-ADMN-01, UAT-ADMN-02, UAT-ADMN-03, UAT-ADMN-04, UAT-ADMN-05, UAT-ADMN-06, UAT-ADMN-07, UAT-ADMN-08, UAT-ADMN-09, UAT-ADMN-10, UAT-ADMN-11, UAT-ADMN-12
+
+**Success Criteria** (what must be TRUE):
+  1. Seeker journey tested end-to-end (signup → onboarding → browse → detail → heart → profile)
+  2. Employer journey tested end-to-end (signup → onboarding → create post → manage posts)
+  3. Admin journey tested end-to-end (login → approve/reject → user management → metrics config)
+  4. All PRD discrepancies between spec and implementation documented
+  5. All functional bugs discovered during testing documented with reproduction steps
+
+**Plans**: TBD
+
+Plans:
+- [ ] 08-01: TBD
+
+#### Phase 9: UAT Execution - Cross-Flow & System Tests
+
+**Goal**: Cross-cutting features and system behaviors verified
+
+**Depends on**: Phase 8
+
+**Requirements**: UAT-CROS-01, UAT-CROS-02, UAT-CROS-03, UAT-CROS-04, UAT-CROS-05, UAT-CROS-06, UAT-CROS-07, UAT-CROS-08, UAT-CROS-09, UAT-CROS-10
+
+**Success Criteria** (what must be TRUE):
+  1. Manipulated metrics calculate correctly (log curve, actual + fake)
+  2. Role-based access control prevents unauthorized actions (seeker/employer/admin boundaries enforced)
+  3. Landing page and footer links work correctly
+  4. RLS policies block unauthorized data access
+  5. Mobile responsive layout displays correctly on common viewports
+
+**Plans**: TBD
+
+Plans:
+- [ ] 09-01: TBD
+
+#### Phase 10: Bug Fixes & Tech Debt Resolution
+
+**Goal**: All known bugs and tech debt items resolved
+
+**Depends on**: Phase 9
+
+**Requirements**: BUG-01, BUG-02, BUG-03, DEBT-01, DEBT-02, DEBT-03
+
+**Success Criteria** (what must be TRUE):
+  1. Job list displays actual like counts (not just fake metrics)
+  2. Employer onboarding redirects to /employer/new-post after completion
+  3. All PRD discrepancies discovered in UAT are fixed
+  4. KakaoTalk link points to real Open Chat URL
+  5. Legal pages contain actual terms and privacy policy content (legal review complete)
+
+**Plans**: TBD
+
+Plans:
+- [ ] 10-01: TBD
+
+#### Phase 11: Final Verification & Production Readiness
+
+**Goal**: All fixes verified and platform ready for production
+
+**Depends on**: Phase 10
+
+**Requirements**: (Verification of all previous phase fixes)
+
+**Success Criteria** (what must be TRUE):
+  1. All 50+ UAT test cases pass without functional errors
+  2. All bug fixes re-tested and verified working
+  3. Tech debt items confirmed resolved
+  4. No known PRD discrepancies remain
+  5. Platform behavior matches PRD specifications across all user journeys
+
+**Plans**: TBD
+
+Plans:
+- [ ] 11-01: TBD
+
+### 📋 v2.0 Feature Expansion (Planned)
+
+**Milestone Goal:** Add commenting system, notifications, and advanced search capabilities.
+
+Requirements tracked in REQUIREMENTS.md v2.0 section (CMNT-01 through SRCH-03).
+
+## Progress
+
+**Execution Order:**
+Phases execute in numeric order: 7 → 8 → 9 → 10 → 11 → 12...
+
+| Phase | Milestone | Plans Complete | Status | Completed |
+|-------|-----------|----------------|--------|-----------|
+| 1. Project Setup | v1.0 | Complete | Complete | 2026-01-19 |
+| 2. Authentication & Onboarding | v1.0 | Complete | Complete | 2026-01-19 |
+| 3. Job Listings | v1.0 | Complete | Complete | 2026-01-19 |
+| 4. Engagement Features | v1.0 | Complete | Complete | 2026-01-19 |
+| 5. Employer & Admin | v1.0 | Complete | Complete | 2026-01-19 |
+| 6. UI Polish & Deployment | v1.0 | Complete | Complete | 2026-01-19 |
+| 7. UAT Test Case Design | v1.1 | 0/1 | Not started | - |
+| 8. UAT Execution - User Journeys | v1.1 | 0/1 | Not started | - |
+| 9. UAT Execution - Cross-Flow | v1.1 | 0/1 | Not started | - |
+| 10. Bug Fixes & Tech Debt | v1.1 | 0/1 | Not started | - |
+| 11. Final Verification | v1.1 | 0/1 | Not started | - |
+
+---
+*Last updated: 2026-01-20*
