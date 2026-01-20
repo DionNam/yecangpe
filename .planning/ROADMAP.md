@@ -3,8 +3,7 @@
 ## Milestones
 
 - ✅ **v1.0 MVP** - Phases 1-6 (shipped 2026-01-19)
-- 🚧 **v1.1 UAT & Quality Assurance** - Phases 7-9 (in progress)
-- 📋 **v2.0 Feature Expansion** - Phases 12+ (planned)
+- ✅ **v1.1 UAT Test Case Design** - Phase 7 (complete 2026-01-21)
 
 ## Phases
 
@@ -37,11 +36,10 @@
 
 </details>
 
-### 🚧 v1.1 UAT & Quality Assurance (In Progress)
+<details>
+<summary>✅ v1.1 UAT Test Case Design (Phase 7) - COMPLETE 2026-01-21</summary>
 
-**Milestone Goal:** v1.0 features verified against PRD specifications with all functional bugs fixed and tech debt resolved for production readiness.
-
-#### Phase 7: UAT Test Case Design
+### Phase 7: UAT Test Case Design
 
 **Goal**: Comprehensive test case suite covers all v1.0 user journeys
 
@@ -62,69 +60,42 @@ Plans:
 - [x] 07-01-PLAN.md — User journey test cases (seeker + employer, 31 cases)
 - [x] 07-02-PLAN.md — Admin + cross-flow test cases + traceability matrix + seed script (27 cases, 58 total)
 
-#### Phase 8: UAT Execution - User Journeys
+**Note:** UAT execution deferred. Test cases documented and ready for future manual or automated testing.
 
-**Goal**: All user journeys tested and functional issues documented
+</details>
 
-**Depends on**: Phase 7
+## Project Status
 
-**Requirements**: UAT-SEEK-01, UAT-SEEK-02, UAT-SEEK-03, UAT-SEEK-04, UAT-SEEK-05, UAT-SEEK-06, UAT-SEEK-07, UAT-SEEK-08, UAT-SEEK-09, UAT-SEEK-10, UAT-EMPL-01, UAT-EMPL-02, UAT-EMPL-03, UAT-EMPL-04, UAT-EMPL-05, UAT-EMPL-06, UAT-EMPL-07, UAT-EMPL-08, UAT-EMPL-09, UAT-EMPL-10, UAT-ADMN-01, UAT-ADMN-02, UAT-ADMN-03, UAT-ADMN-04, UAT-ADMN-05, UAT-ADMN-06, UAT-ADMN-07, UAT-ADMN-08, UAT-ADMN-09, UAT-ADMN-10, UAT-ADMN-11, UAT-ADMN-12
+**Current State:** Development complete, ready for handoff or future continuation
 
-**Success Criteria** (what must be TRUE):
-  1. Seeker journey tested end-to-end (signup → onboarding → browse → detail → heart → profile)
-  2. Employer journey tested end-to-end (signup → onboarding → create post → manage posts)
-  3. Admin journey tested end-to-end (login → approve/reject → user management → metrics config)
-  4. All PRD discrepancies between spec and implementation documented
-  5. All functional bugs discovered during testing documented with reproduction steps
+**Shipped:**
+- v1.0 MVP (Phases 1-6): Full platform with auth, job listings, employer/admin features
+- v1.1 UAT Test Cases (Phase 7): 58 test cases documented with traceability matrix and seed data
 
-**Plans**: 2 plans
+**Known Tech Debt:**
+- Job list missing real like counts (displays fake metrics only)
+- Employer onboarding redirects to / instead of /employer/new-post
+- KakaoTalk link is placeholder
+- Legal pages need legal review
 
-Plans:
-- [ ] 08-01-PLAN.md — Seeker & Employer journey execution (31 test cases, interactive browser testing)
-- [ ] 08-02-PLAN.md — Admin journey execution + UAT summary report (15 test cases, 46 total aggregated)
+**Future Work (if continued):**
+- Execute UAT test cases (58 cases documented in Phase 7)
+- Fix discovered bugs and tech debt
+- Add v2.0 features (comments, notifications, advanced search)
 
-#### Phase 9: Final Verification & Production Readiness
+## Summary
 
-**Goal**: All fixes verified and platform ready for production
+| Phase | Milestone | Plans | Status | Completed |
+|-------|-----------|-------|--------|-----------|
+| 1. Project Setup | v1.0 | 3/3 | ✅ Complete | 2026-01-19 |
+| 2. Authentication & Onboarding | v1.0 | 3/3 | ✅ Complete | 2026-01-19 |
+| 3. Job Listings | v1.0 | 4/4 | ✅ Complete | 2026-01-19 |
+| 4. Engagement Features | v1.0 | 2/2 | ✅ Complete | 2026-01-19 |
+| 5. Employer & Admin | v1.0 | 4/4 | ✅ Complete | 2026-01-19 |
+| 6. UI Polish & Deployment | v1.0 | 2/2 | ✅ Complete | 2026-01-19 |
+| 7. UAT Test Case Design | v1.1 | 2/2 | ✅ Complete | 2026-01-20 |
 
-**Depends on**: Phase 8
-
-**Requirements**: (Verification of all previous phase fixes)
-
-**Success Criteria** (what must be TRUE):
-  1. All 50+ UAT test cases pass without functional errors
-  2. All bug fixes re-tested and verified working
-  3. Tech debt items confirmed resolved
-  4. No known PRD discrepancies remain
-  5. Platform behavior matches PRD specifications across all user journeys
-
-**Plans**: TBD
-
-Plans:
-- [ ] 09-01: TBD
-
-### 📋 v2.0 Feature Expansion (Planned)
-
-**Milestone Goal:** Add commenting system, notifications, and advanced search capabilities.
-
-Requirements tracked in REQUIREMENTS.md v2.0 section (CMNT-01 through SRCH-03).
-
-## Progress
-
-**Execution Order:**
-Phases execute in numeric order: 7 → 8 → 9 → 10...
-
-| Phase | Milestone | Plans Complete | Status | Completed |
-|-------|-----------|----------------|--------|-----------|
-| 1. Project Setup | v1.0 | Complete | Complete | 2026-01-19 |
-| 2. Authentication & Onboarding | v1.0 | Complete | Complete | 2026-01-19 |
-| 3. Job Listings | v1.0 | Complete | Complete | 2026-01-19 |
-| 4. Engagement Features | v1.0 | Complete | Complete | 2026-01-19 |
-| 5. Employer & Admin | v1.0 | Complete | Complete | 2026-01-19 |
-| 6. UI Polish & Deployment | v1.0 | Complete | Complete | 2026-01-19 |
-| 7. UAT Test Case Design | v1.1 | 2/2 | Complete | 2026-01-20 |
-| 8. UAT Execution - User Journeys | v1.1 | 0/2 | Not started | - |
-| 9. Final Verification | v1.1 | 0/1 | Not started | - |
+**Total:** 7 phases, 20 plans, all complete
 
 ---
-*Last updated: 2026-01-20*
+*Last updated: 2026-01-21*

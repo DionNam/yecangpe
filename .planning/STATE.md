@@ -6,16 +6,16 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
 
-**Current focus:** Phase 8 - UAT Execution - User Journeys
+**Current focus:** Project complete
 
 ## Current Position
 
-Phase: 8 of 9 (UAT Execution - User Journeys)
-Plan: Ready to plan
-Status: Not started
-Last activity: 2026-01-20 — Phase 7 complete (58 test cases, 100% requirement coverage, verified)
+Phase: 7 of 7 (UAT Test Case Design)
+Plan: All complete
+Status: Project complete
+Last activity: 2026-01-21 — Project closure (v1.0 shipped, v1.1 test cases documented)
 
-Progress: [███████░░░] 78% (7/9 phases complete)
+Progress: [██████████] 100% (7/7 phases complete)
 
 ## Performance Metrics
 
