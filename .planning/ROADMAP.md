@@ -77,10 +77,11 @@ Plans:
   4. All PRD discrepancies between spec and implementation documented
   5. All functional bugs discovered during testing documented with reproduction steps
 
-**Plans**: 1 plan
+**Plans**: 2 plans
 
 Plans:
-- [ ] 08-01-PLAN.md — Execute user journey UAT (seeker, employer, admin - 46 test cases total)
+- [ ] 08-01-PLAN.md — Seeker & Employer journey execution (31 test cases, interactive browser testing)
+- [ ] 08-02-PLAN.md — Admin journey execution + UAT summary report (15 test cases, 46 total aggregated)
 
 #### Phase 9: UAT Execution - Cross-Flow & System Tests
 
@@ -162,7 +163,7 @@ Phases execute in numeric order: 7 → 8 → 9 → 10 → 11 → 12...
 | 5. Employer & Admin | v1.0 | Complete | Complete | 2026-01-19 |
 | 6. UI Polish & Deployment | v1.0 | Complete | Complete | 2026-01-19 |
 | 7. UAT Test Case Design | v1.1 | 2/2 | Complete | 2026-01-20 |
-| 8. UAT Execution - User Journeys | v1.1 | 0/1 | Not started | - |
+| 8. UAT Execution - User Journeys | v1.1 | 0/2 | Not started | - |
 | 9. UAT Execution - Cross-Flow | v1.1 | 0/1 | Not started | - |
 | 10. Bug Fixes & Tech Debt | v1.1 | 0/1 | Not started | - |
 | 11. Final Verification | v1.1 | 0/1 | Not started | - |
