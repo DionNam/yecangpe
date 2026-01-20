@@ -6,6 +6,16 @@
 
 **Current Version:** v1.0 MVP (Shipped: 2026-01-19)
 
+## Current Milestone: v1.1 UAT & Quality Assurance
+
+**Goal:** v1.0 기능들이 PRD 명세대로 정확히 동작하는지 검증하고, 발견된 기능 버그와 PRD 불일치를 모두 수정하여 production-ready 상태 달성.
+
+**Target features:**
+- 50+ UAT 케이스 작성 (User Journey 기반: 구직자 여정, 구인자 여정, 관리자 여정)
+- Claude in Chrome extension을 통한 브라우저 자동화 테스트 실행
+- 기능 버그 및 PRD 불일치 이슈 수집 및 일괄 수정
+- v1.0 Tech debt 해결 (like counts, redirect, placeholders)
+
 ## Core Value
 
 **한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.**
@@ -52,19 +62,21 @@
 
 ### Active
 
-#### v2.0 계획 (댓글 시스템)
-- [ ] 댓글 작성/조회 (구직자가 공고에 댓글 작성)
-- [ ] 댓글 수정/삭제 (본인 댓글 관리)
-- [ ] 관리자 댓글 관리 (삭제 권한)
+#### v1.1 UAT & Quality Assurance
+- [ ] 50+ UAT 케이스 작성 (PRD 기반, User Journey 구조)
+- [ ] 구직자 여정 테스트 (회원가입 → 로그인 → 온보딩 → 공고 조회 → 상세 → 하트 → 마이페이지)
+- [ ] 구인자 여정 테스트 (회원가입 → 로그인 → 온보딩 → 공고 작성 → 내 공고 관리)
+- [ ] 관리자 여정 테스트 (로그인 → 공고 승인/반려 → 사용자 관리 → 조작 지표 설정)
+- [ ] Chrome extension 자동화 테스트 실행
+- [ ] 기능 버그 및 PRD 불일치 이슈 수집
+- [ ] 이슈 일괄 수정 및 검증
+- [ ] Tech debt 해결 (Job list like counts, Employer onboarding redirect, KakaoTalk link, Legal pages)
 
-#### 알림 시스템
-- [ ] 구인자 알림 (공고 승인/반려 시)
-- [ ] 구인자 알림 (새 댓글 시)
-
-#### 고급 검색
-- [ ] 복수 국적 필터
-- [ ] 직종/업종 태그 필터
-- [ ] 키워드 검색
+#### v2.0 이후 계획
+- [ ] 댓글 작성/조회/수정/삭제 (구직자)
+- [ ] 관리자 댓글 관리
+- [ ] 알림 시스템 (구인자 알림)
+- [ ] 고급 검색 (복수 국적, 태그, 키워드)
 
 ### Out of Scope
 
@@ -126,4 +138,4 @@
 | Defense-in-depth admin 검증 | 미들웨어 + 서버 액션 모두 검증 | ✓ Good - CVE-2025-29927 대응 |
 
 ---
-*Last updated: 2026-01-19 after v1.0 milestone completion*
+*Last updated: 2026-01-20 after starting v1.1 UAT milestone*
