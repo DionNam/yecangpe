@@ -126,11 +126,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| UAT-PLAN-01 | Phase 7 | Pending |
-| UAT-PLAN-02 | Phase 7 | Pending |
-| UAT-PLAN-03 | Phase 7 | Pending |
-| UAT-PLAN-04 | Phase 7 | Pending |
-| UAT-PLAN-05 | Phase 7 | Pending |
+| UAT-PLAN-01 | Phase 7 | Complete |
+| UAT-PLAN-02 | Phase 7 | Complete |
+| UAT-PLAN-03 | Phase 7 | Complete |
+| UAT-PLAN-04 | Phase 7 | Complete |
+| UAT-PLAN-05 | Phase 7 | Complete |
 | UAT-SEEK-01 | Phase 8 | Pending |
 | UAT-SEEK-02 | Phase 8 | Pending |
 | UAT-SEEK-03 | Phase 8 | Pending |
