@@ -6,23 +6,23 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
 
-**Current focus:** v1.2 Complete - All phases shipped
+**Current focus:** Phase 9 - UI Polish & Core UX
 
 ## Current Position
 
-Phase: 8 of 8 (User Flow Verification with Chrome MCP)
-Plan: 08-01-PLAN.md (Seeker Journey UAT Execution)
-Status: ✅ Complete
-Last activity: 2026-01-21 — Phase 8 complete, seeker journey verified
+Phase: 9 of 9 (UI Polish & Core UX)
+Plan: 1 of 1 complete
+Status: Phase complete
+Last activity: 2026-01-21 — Completed 09-01-PLAN.md (Navigation & Logout)
 
-Progress: [████████████] 100% (8/8 phases complete)
+Progress: [████████████] 100% (9/9 phases complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 21 (v1.0: 18, v1.1: 2, v1.2: 1)
-- Average duration: 5.2min
-- Total execution time: 1.8 hours
+- Total plans completed: 22 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 1)
+- Average duration: 5.1min
+- Total execution time: 1.9 hours
 
 **By Phase:**
 
@@ -36,12 +36,14 @@ Progress: [████████████] 100% (8/8 phases complete)
 | 06-landing-page | 2 | 8min | 4.0min |
 | 07-uat-test-case-design | 2 | 15min | 7.5min |
 | 08-user-flow-verification | 1 | ~10min | 10min |
+| 09-ui-polish-core-ux | 1 | 6min | 6min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
 - v1.1 completed in 15 minutes (2 plans)
 - v1.2 completed in ~10 minutes (1 plan)
-- Trend: UAT execution with real-time bug fixes and verification
+- v1.3 completed in 6 minutes (1 plan)
+- Trend: Fast iteration on targeted UI improvements and bug fixes
 
 ## Accumulated Context
 
@@ -66,14 +68,18 @@ Recent decisions affecting v1.1 work:
 - **08-01**: Real OAuth accounts used instead of seed data (BUG-INFRA-001 workaround)
 - **08-01**: Server actions return errors, allow redirect() to throw NEXT_REDIRECT
 - **08-01**: FormData number fields require explicit Number() conversion for Zod validation
+- **09-01**: Redirect to / after logout (not /login) - allows browsing public job list
+- **09-01**: Form POST to /auth/signout for server cache invalidation via revalidatePath
+- **09-01**: MainNav server component + UserMenu client component split for performance
+- **09-01**: Sticky navigation on all (main) routes for consistent UX
+
+### Roadmap Evolution
+
+- Phase 9 added (2026-01-21): UI Polish & Core UX - Improve seeker-facing UI design quality and add essential features like logout
 
 ### Pending Todos
 
-1. **Improve seeker UI design and add logout button** (2026-01-21)
-   - Area: ui
-   - Priority: High
-   - Reference: https://purple-elephant.vercel.app/ko/vulnerable-employment
-   - Details: `.planning/todos/pending/2026-01-21-improve-ui-add-logout.md`
+None - all identified todos completed.
 
 ### Blockers/Concerns
 
@@ -82,8 +88,10 @@ Recent decisions affecting v1.1 work:
 - Employer onboarding redirects to / instead of /employer/new-post
 - KakaoTalk link is placeholder
 - Legal pages need legal review
-- BUG-SEEK-002: No explicit login button in navigation (design choice to review)
 - BUG-INFRA-001: Cannot seed test data with fixed UUIDs (Supabase Auth limitation)
+
+**Resolved in Phase 9:**
+- ✅ BUG-SEEK-002: No explicit logout functionality - RESOLVED with navigation dropdown
 
 **Resolved in Phase 8:**
 - ✅ BUG-SEEK-003 (Critical): Seeker onboarding form submission - fixed with 3 commits
@@ -93,7 +101,7 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-01-21
-Stopped at: ✅ Phase 8 complete - Core seeker journey verified and production-ready
+Stopped at: ✅ Phase 9 complete - Navigation & logout functionality added
 Resume file: None
 
 ---
