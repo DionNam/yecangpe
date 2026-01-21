@@ -69,7 +69,11 @@ Recent decisions affecting v1.1 work:
 
 ### Pending Todos
 
-None. All v1.2 work complete.
+1. **Improve seeker UI design and add logout button** (2026-01-21)
+   - Area: ui
+   - Priority: High
+   - Reference: https://purple-elephant.vercel.app/ko/vulnerable-employment
+   - Details: `.planning/todos/pending/2026-01-21-improve-ui-add-logout.md`
 
 ### Blockers/Concerns
 
