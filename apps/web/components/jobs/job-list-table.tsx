@@ -33,10 +33,18 @@ export function JobListTable({
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">날짜</TableHead>
-          <TableHead>제목</TableHead>
-          <TableHead className="w-[80px] text-right">조회수</TableHead>
-          <TableHead className="w-[80px] text-right">관심수</TableHead>
+          <TableHead className="w-[100px] text-xs font-medium text-muted-foreground">
+            날짜
+          </TableHead>
+          <TableHead className="text-xs font-medium text-muted-foreground">
+            제목
+          </TableHead>
+          <TableHead className="w-[80px] text-right text-xs font-medium text-muted-foreground">
+            조회수
+          </TableHead>
+          <TableHead className="w-[80px] text-right text-xs font-medium text-muted-foreground">
+            관심수
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

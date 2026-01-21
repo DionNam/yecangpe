@@ -46,15 +46,17 @@ export function JobRow({
   return (
     <>
       <TableRow
-        className="cursor-pointer hover:bg-muted/50"
+        className="group cursor-pointer hover:bg-muted/50 transition-colors duration-150"
         onClick={handleClick}
       >
-        <TableCell className="font-medium">
+        <TableCell className="font-medium text-sm">
           {formatDate(job.published_at)}
         </TableCell>
         <TableCell>
           <div className="flex items-center gap-2">
-            <span>{job.title}</span>
+            <span className="font-semibold group-hover:text-primary transition-colors">
+              {job.title}
+            </span>
             <Badge
               variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
             >
@@ -62,8 +64,12 @@ export function JobRow({
             </Badge>
           </div>
         </TableCell>
-        <TableCell className="text-right">{displayViews}</TableCell>
-        <TableCell className="text-right">{displayLikes}</TableCell>
+        <TableCell className="text-right text-sm text-muted-foreground">
+          {displayViews}
+        </TableCell>
+        <TableCell className="text-right text-sm text-muted-foreground">
+          {displayLikes}
+        </TableCell>
       </TableRow>
 
       <LoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />

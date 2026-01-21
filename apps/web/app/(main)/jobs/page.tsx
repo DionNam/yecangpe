@@ -65,7 +65,9 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     console.error('Error fetching job posts:', error)
     return (
       <div className="container py-8">
-        <h1 className="text-2xl font-bold mb-6">채용 공고</h1>
+        <div className="mb-8 space-y-4">
+          <h1 className="text-3xl font-bold tracking-tight">채용 공고</h1>
+        </div>
         <p className="text-red-500">
           공고를 불러오는 중 오류가 발생했습니다.
         </p>
@@ -88,8 +90,15 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
   return (
     <div className="container py-8">
-      <h1 className="text-2xl font-bold mb-6">채용 공고</h1>
+      {/* Header section with descriptive content */}
+      <div className="mb-8 space-y-4">
+        <h1 className="text-3xl font-bold tracking-tight">채용 공고</h1>
+        <p className="text-muted-foreground leading-relaxed">
+          한국어 가능한 외국인을 위한 채용 공고를 확인하세요
+        </p>
+      </div>
 
+      {/* Filters section */}
       <div className="mb-6">
         <JobListFilters
           currentNationality={nationality}
@@ -97,12 +106,16 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
         />
       </div>
 
-      <JobListTable
-        posts={posts || []}
-        isAuthenticated={isAuthenticated}
-        metricsConfig={metricsConfig}
-      />
+      {/* Table with card-like container */}
+      <div className="rounded-lg border">
+        <JobListTable
+          posts={posts || []}
+          isAuthenticated={isAuthenticated}
+          metricsConfig={metricsConfig}
+        />
+      </div>
 
+      {/* Pagination */}
       {totalPages > 1 && (
         <div className="mt-6">
           <JobListPagination
@@ -114,6 +127,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
         </div>
       )}
 
+      {/* Empty state */}
       {(!posts || posts.length === 0) && (
         <div className="text-center py-12 text-muted-foreground">
           등록된 공고가 없습니다.
