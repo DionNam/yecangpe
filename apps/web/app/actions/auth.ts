@@ -15,9 +15,10 @@ export async function createSeekerProfile(formData: FormData) {
   }
 
   // Parse form data
+  const topikValue = formData.get('topik_level')
   const rawData = {
     nationality: formData.get('nationality'),
-    topik_level: formData.get('topik_level') || null,
+    topik_level: topikValue ? Number(topikValue) : null,
     occupation: formData.get('occupation') || null,
     referral_source: formData.get('referral_source') || null,
   }
