@@ -38,15 +38,16 @@ export function SeekerForm() {
   })
 
   const onSubmit = (data: SeekerProfileInput) => {
-    startTransition(async () => {
-      const formData = new FormData()
-      formData.append('nationality', data.nationality)
-      if (data.topik_level !== null && data.topik_level !== undefined) {
-        formData.append('topik_level', String(data.topik_level))
-      }
-      if (data.occupation) formData.append('occupation', data.occupation)
-      if (data.referral_source) formData.append('referral_source', data.referral_source)
-      await createSeekerProfile(formData)
+    const formData = new FormData()
+    formData.append('nationality', data.nationality)
+    if (data.topik_level !== null && data.topik_level !== undefined) {
+      formData.append('topik_level', String(data.topik_level))
+    }
+    if (data.occupation) formData.append('occupation', data.occupation)
+    if (data.referral_source) formData.append('referral_source', data.referral_source)
+
+    startTransition(() => {
+      createSeekerProfile(formData)
     })
   }
 
@@ -88,13 +89,13 @@ export function SeekerForm() {
               <FormLabel>TOPIK 급수</FormLabel>
               <Select
                 onValueChange={(value) => {
-                  if (value === '') {
+                  if (value === 'none') {
                     field.onChange(null)
                   } else {
                     field.onChange(Number(value))
                   }
                 }}
-                defaultValue={field.value === null ? '' : String(field.value)}
+                defaultValue={field.value === null ? 'none' : String(field.value)}
               >
                 <FormControl>
                   <SelectTrigger>
@@ -102,7 +103,7 @@ export function SeekerForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="">선택 안함</SelectItem>
+                  <SelectItem value="none">선택 안함</SelectItem>
                   <SelectItem value="0">없음</SelectItem>
                   <SelectItem value="1">1급</SelectItem>
                   <SelectItem value="2">2급</SelectItem>

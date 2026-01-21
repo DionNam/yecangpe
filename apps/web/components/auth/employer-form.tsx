@@ -28,11 +28,12 @@ export function EmployerForm() {
   })
 
   const onSubmit = (data: EmployerProfileInput) => {
-    startTransition(async () => {
-      const formData = new FormData()
-      formData.append('company_name', data.company_name)
-      if (data.referral_source) formData.append('referral_source', data.referral_source)
-      await createEmployerProfile(formData)
+    const formData = new FormData()
+    formData.append('company_name', data.company_name)
+    if (data.referral_source) formData.append('referral_source', data.referral_source)
+
+    startTransition(() => {
+      createEmployerProfile(formData)
     })
   }
 
