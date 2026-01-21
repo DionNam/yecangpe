@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTransition } from 'react'
+import { useTransition, useState } from 'react'
 import { NATIONALITIES } from '@repo/lib'
 import { seekerProfileSchema, type SeekerProfileInput } from '@/lib/validations/auth'
 import { createSeekerProfile } from '@/app/actions/auth'
@@ -26,6 +26,7 @@ import { Button } from '@/components/ui/button'
 
 export function SeekerForm() {
   const [isPending, startTransition] = useTransition()
+  const [error, setError] = useState<string | null>(null)
 
   const form = useForm<SeekerProfileInput>({
     resolver: zodResolver(seekerProfileSchema),
@@ -38,6 +39,7 @@ export function SeekerForm() {
   })
 
   const onSubmit = (data: SeekerProfileInput) => {
+    setError(null)
     const formData = new FormData()
     formData.append('nationality', data.nationality)
     if (data.topik_level !== null && data.topik_level !== undefined) {
@@ -46,8 +48,15 @@ export function SeekerForm() {
     if (data.occupation) formData.append('occupation', data.occupation)
     if (data.referral_source) formData.append('referral_source', data.referral_source)
 
-    startTransition(() => {
-      createSeekerProfile(formData)
+    startTransition(async () => {
+      const result = await createSeekerProfile(formData)
+      if (result?.error) {
+        const errorMessage = typeof result.error === 'string'
+          ? result.error
+          : JSON.stringify(result.error)
+        setError(errorMessage)
+      }
+      // If no error, redirect() will have been called and will throw NEXT_REDIRECT
     })
   }
 
@@ -155,6 +164,13 @@ export function SeekerForm() {
             </FormItem>
           )}
         />
+
+        {/* Error message */}
+        {error && (
+          <div className="rounded-md bg-red-50 p-3 text-sm text-red-800">
+            {error}
+          </div>
+        )}
 
         {/* Submit button */}
         <Button type="submit" className="w-full" disabled={isPending}>

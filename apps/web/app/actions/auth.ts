@@ -11,7 +11,7 @@ export async function createSeekerProfile(formData: FormData) {
   // Get authenticated user
   const { data: { user }, error: authError } = await supabase.auth.getUser()
   if (authError || !user) {
-    throw new Error('Unauthorized')
+    return { error: 'Unauthorized' }
   }
 
   // Parse form data
@@ -37,7 +37,10 @@ export async function createSeekerProfile(formData: FormData) {
       role: 'seeker',
     } as any)
 
-  if (userError) throw userError
+  if (userError) {
+    console.error('User upsert error:', userError)
+    return { error: userError.message }
+  }
 
   // Insert seeker profile
   const { error: profileError } = await supabase
@@ -47,7 +50,10 @@ export async function createSeekerProfile(formData: FormData) {
       ...result.data,
     } as any)
 
-  if (profileError) throw profileError
+  if (profileError) {
+    console.error('Profile insert error:', profileError)
+    return { error: profileError.message }
+  }
 
   // Revalidate and redirect
   revalidatePath('/')
@@ -60,7 +66,7 @@ export async function createEmployerProfile(formData: FormData) {
   // Get authenticated user
   const { data: { user }, error: authError } = await supabase.auth.getUser()
   if (authError || !user) {
-    throw new Error('Unauthorized')
+    return { error: 'Unauthorized' }
   }
 
   // Parse form data
@@ -84,7 +90,10 @@ export async function createEmployerProfile(formData: FormData) {
       role: 'employer',
     } as any)
 
-  if (userError) throw userError
+  if (userError) {
+    console.error('User upsert error:', userError)
+    return { error: userError.message }
+  }
 
   // Insert employer profile
   const { error: profileError } = await supabase
@@ -94,7 +103,10 @@ export async function createEmployerProfile(formData: FormData) {
       ...result.data,
     } as any)
 
-  if (profileError) throw profileError
+  if (profileError) {
+    console.error('Profile insert error:', profileError)
+    return { error: profileError.message }
+  }
 
   // Revalidate and redirect
   revalidatePath('/')
