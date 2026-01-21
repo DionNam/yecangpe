@@ -43,6 +43,11 @@ ON public.users FOR SELECT
 TO authenticated
 USING ((SELECT public.is_admin()));
 
+CREATE POLICY "Users can insert own data"
+ON public.users FOR INSERT
+TO authenticated
+WITH CHECK ((SELECT auth.uid()) = id);
+
 CREATE POLICY "Users can update own data"
 ON public.users FOR UPDATE
 TO authenticated

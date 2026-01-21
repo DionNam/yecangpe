@@ -30,6 +30,12 @@ export async function GET(request: NextRequest) {
         if (!profile || !profile.role) {
           return NextResponse.redirect(new URL('/onboarding', request.url))
         }
+
+        // Redirect admin users to admin dashboard
+        if (profile.role === 'admin') {
+          const adminUrl = process.env.NEXT_PUBLIC_ADMIN_URL || 'http://localhost:3001'
+          return NextResponse.redirect(new URL('/', adminUrl))
+        }
       }
 
       // Success - redirect to home
