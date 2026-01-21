@@ -5,8 +5,8 @@
 
 ## Bug Summary
 
-**Total Bugs:** 3 (1 confirmed, 1 needs review, 1 infrastructure)
-**Critical:** 2 (blocks core functionality)
+**Total Bugs:** 3 (1 resolved, 1 needs review, 1 infrastructure)
+**Critical:** 1 (blocks UAT execution)
 **High:** 0 (significant UX impact)
 **Medium:** 1 (UX enhancement opportunity)
 **Low:** 0 (cosmetic or documentation)
@@ -19,7 +19,7 @@
 |--------|-----------|----------|-------------|-------------------|--------|
 | ~~BUG-SEEK-001~~ | ~~UAT-SEEK-03~~ | ~~Critical~~ | ~~Job detail accessible without login~~ | ~~1. Navigate to /jobs<br>2. Click job title<br>3. Observe full detail page loads~~ | **FALSE POSITIVE** |
 | BUG-SEEK-002 | UAT-SEEK-01 | Medium | No explicit login entry point in navigation | 1. Navigate to /<br>2. Look for login button in nav<br>3. Observe no button exists<br>4. Note: Login modal appears when clicking jobs | Needs Review |
-| BUG-SEEK-003 | UAT-SEEK-02 | Critical | Seeker onboarding form submission does not work | 1. Complete OAuth login as new user<br>2. Redirect to /onboarding/seeker<br>3. Fill all required fields<br>4. Click "프로필 완성하기"<br>5. Observe: No redirect, form stays on same page | **CONFIRMED** |
+| ~~BUG-SEEK-003~~ | ~~UAT-SEEK-02~~ | ~~Critical~~ | ~~Seeker onboarding form submission does not work~~ | ~~1. Complete OAuth login as new user<br>2. Redirect to /onboarding/seeker<br>3. Fill all required fields<br>4. Click "프로필 완성하기"<br>5. Observe: No redirect, form stays on same page~~ | **RESOLVED** |
 | BUG-INFRA-001 | All UAT | Critical | Cannot seed test data due to auth.users FK constraint | 1. Attempt to run seed-uat-data.sql<br>2. INSERT into public.users fails<br>3. Error: users.id must exist in auth.users<br>4. Cannot create test users with fixed UUIDs | **BLOCKER** |
 
 ---
@@ -108,12 +108,12 @@ This is a **design decision**, not a bug. The current implementation follows a "
 
 ---
 
-### BUG-SEEK-003: Seeker Onboarding Form Submission Does Not Work
+### ~~BUG-SEEK-003: Seeker Onboarding Form Submission Does Not Work~~ (RESOLVED)
 
-**Bug ID:** BUG-SEEK-003
+**Bug ID:** ~~BUG-SEEK-003~~
 **Test Case:** UAT-SEEK-02
-**Severity:** Critical (blocks seeker onboarding)
-**Status:** **CONFIRMED**
+**Severity:** ~~Critical~~ → **Resolved**
+**Status:** **RESOLVED** (2026-01-21)
 
 **Description:**
 After completing OAuth authentication, new users are correctly redirected to the seeker onboarding page (`/onboarding/seeker`). However, when all required fields are filled and the "프로필 완성하기" (Complete Profile) button is clicked, the form does not submit and no redirect occurs. The user remains stuck on the onboarding page.
@@ -157,7 +157,40 @@ None. This completely blocks seeker onboarding flow.
 
 **Related PRD Requirement:**
 - AUTH-03: "신규 사용자 온보딩" - 구직자는 국적, TOPIK 급수, 직업, 유입경로 입력
-- This requirement is **NOT MET** - form exists but does not function
+- This requirement is now **MET** ✓
+
+**Resolution:**
+
+**Root Cause Identified:**
+The issue had multiple layers:
+1. **Type conversion error**: The `topik_level` field was being sent as a string from FormData, but the Zod validation schema expected a number, causing silent validation failures
+2. **Error handling missing**: The form component didn't display validation errors returned from the server action, leaving users unaware of submission failures
+3. **Redirect mechanism**: Initially attempted to `await` the server action inside `startTransition`, which would have caught the `NEXT_REDIRECT` error thrown by `redirect()`, preventing navigation
+
+**Fixes Applied:**
+1. **Type conversion** (commit 48e9cfc): Added `Number()` conversion for `topik_level` in `/apps/web/app/actions/auth.ts` to properly parse FormData string to number
+2. **Error handling** (commit c33dec7):
+   - Modified server actions to return error objects instead of throwing
+   - Added error state and display in both `SeekerForm` and `EmployerForm` components
+   - Added console logging for debugging database errors
+3. **Async handling** (commit c33dec7): Properly `await` server action result to check for errors, while allowing `redirect()` to throw `NEXT_REDIRECT` for successful navigation
+
+**Verification:**
+- ✅ Form submission now succeeds with valid data
+- ✅ Validation errors are displayed to users when data is invalid
+- ✅ Successful submissions redirect to landing page (`/`)
+- ✅ Profile data correctly saved to database:
+  ```sql
+  SELECT * FROM seeker_profiles WHERE user_id = '03244373-f673-4a5f-b387-a7e42d147bf8';
+  -- Result: nationality='VN', topik_level=2, occupation='Software Engineer', referral_source='Google Search'
+  ```
+
+**Files Modified:**
+- `/apps/web/app/actions/auth.ts` - Type conversion and error handling
+- `/apps/web/components/auth/seeker-form.tsx` - Error display and async handling
+- `/apps/web/components/auth/employer-form.tsx` - Error display and async handling (preventive fix)
+
+**Status:** Fully resolved. Seeker onboarding flow now works end-to-end.
 
 ---
 
