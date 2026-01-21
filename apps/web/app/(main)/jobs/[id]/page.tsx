@@ -86,13 +86,15 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   return (
     <div className="container py-8">
-      <JobDetail
-        job={job}
-        displayViews={displayViews}
-        displayLikes={displayLikes}
-        isLiked={isLiked}
-        canLike={canLike}
-      />
+      <div className="max-w-4xl mx-auto">
+        <JobDetail
+          job={job}
+          displayViews={displayViews}
+          displayLikes={displayLikes}
+          isLiked={isLiked}
+          canLike={canLike}
+        />
+      </div>
     </div>
   )
 }

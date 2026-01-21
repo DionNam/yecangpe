@@ -33,11 +33,13 @@ export function JobDetailHeader({
 
   return (
     <div className="space-y-4">
-      <h1 className="text-3xl font-bold">{title}</h1>
+      <h1 className="text-3xl font-bold tracking-tight">{title}</h1>
 
-      <div className="flex items-center gap-3 text-sm">
-        <span className="font-medium">{companyName}</span>
+      <div className="text-lg text-muted-foreground mb-4">
+        {companyName}
+      </div>
 
+      <div className="flex items-center gap-2">
         <span className="inline-flex items-center rounded-full bg-blue-50 px-2.5 py-0.5 text-xs font-medium text-blue-700">
           {nationalityName}
         </span>
@@ -53,7 +55,7 @@ export function JobDetailHeader({
         </span>
 
         {formattedDate && (
-          <span className="text-muted-foreground">{formattedDate}</span>
+          <span className="text-sm text-muted-foreground">{formattedDate}</span>
         )}
       </div>
     </div>

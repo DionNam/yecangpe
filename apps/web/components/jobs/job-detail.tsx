@@ -21,11 +21,11 @@ export function JobDetail({
   canLike,
 }: JobDetailProps) {
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="space-y-6">
       {/* Back link */}
       <Link
         href="/jobs"
-        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+        className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors duration-150"
       >
         ← 목록으로 돌아가기
       </Link>
@@ -42,11 +42,14 @@ export function JobDetail({
       <hr className="border-border" />
 
       {/* Content section */}
-      <div className="prose prose-sm max-w-none">
-        <div className="whitespace-pre-wrap">{job.content}</div>
+      <div className="space-y-3">
+        <h2 className="text-xl font-semibold mb-3">채용 상세</h2>
+        <div className="text-base leading-relaxed whitespace-pre-wrap">
+          {job.content}
+        </div>
       </div>
 
-      <hr className="border-border" />
+      <hr className="border-border pt-6" />
 
       {/* Stats section */}
       <div className="flex items-center gap-6 text-sm text-muted-foreground">
