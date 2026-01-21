@@ -101,20 +101,22 @@ Plans:
   4. Job list and detail pages visually polished
   5. All interactive elements have proper hover states and feedback
 
-**Plans**: 2 plans
+**Plans**: 3 plans (2 complete, 1 gap closure)
 
 Plans:
-- [ ] 09-01-PLAN.md — Navigation header with user dropdown and logout functionality
-- [ ] 09-02-PLAN.md — Visual polish for job list and detail pages
+- [x] 09-01-PLAN.md — Navigation header with user dropdown and logout functionality
+- [x] 09-02-PLAN.md — Visual polish for job list and detail pages (basic structure)
+- [ ] 09-03-PLAN.md — Design quality overhaul (gap closure for GAP-09-01)
 
 **Details:**
 - Reference design: https://purple-elephant.vercel.app/ko/vulnerable-employment
 - Focus areas: navigation, job list, job detail, overall polish
+- Gap: GAP-09-01 (Design Quality Below Professional Standards) - requires complete visual redesign
 - Todo: `.planning/todos/pending/2026-01-21-improve-ui-add-logout.md`
 
 ## Project Status
 
-**Current State:** Core user flow verified and production-ready
+**Current State:** Core user flow verified, navigation functional, design quality gap identified
 
 **Shipped:**
 - v1.0 MVP (Phases 1-6): Full platform with auth, job listings, employer/admin features
@@ -126,12 +128,12 @@ Plans:
 - Employer onboarding redirects to / instead of /employer/new-post
 - KakaoTalk link is placeholder
 - Legal pages need legal review
-- BUG-SEEK-002 (Medium): No explicit login button in navigation (design choice to review)
 
-**Recent Fixes (Phase 8):**
-- ✅ BUG-SEEK-003 (Critical): Seeker onboarding form submission - RESOLVED
-- ✅ Added error handling and user feedback for form validation errors
-- ✅ Fixed type conversion issue for TOPIK level field
+**Recent Fixes (Phase 9):**
+- ✅ BUG-SEEK-002: No explicit logout functionality - RESOLVED (09-01)
+
+**Pending Work:**
+- GAP-09-01: Design quality below professional standards - requires visual overhaul (09-03)
 
 **Future Work (if continued):**
 - Execute remaining 12 UAT test cases (5 of 17 completed in Phase 8)
@@ -150,9 +152,9 @@ Plans:
 | 6. UI Polish & Deployment | v1.0 | 2/2 | ✅ Complete | 2026-01-19 |
 | 7. UAT Test Case Design | v1.1 | 2/2 | ✅ Complete | 2026-01-20 |
 | 8. User Flow Verification | v1.2 | 1/1 | ✅ Complete | 2026-01-21 |
-| 9. UI Polish & Core UX | v1.3 | 2/2 | 🚧 Planning | - |
+| 9. UI Polish & Core UX | v1.3 | 2/3 | 🚧 Gap Closure | - |
 
-**Total:** 9 phases, 23 plans (21 complete, 2 planned), Phase 9 ready to execute
+**Total:** 9 phases, 24 plans (23 complete, 1 gap closure planned), Phase 9 gap closure ready to execute
 
 ---
 *Last updated: 2026-01-21*
