@@ -4,7 +4,8 @@
 
 - ✅ **v1.0 MVP** - Phases 1-6 (shipped 2026-01-19)
 - ✅ **v1.1 UAT Test Case Design** - Phase 7 (complete 2026-01-21)
-- 🚧 **v1.2 User Flow Verification** - Phase 8 (in progress)
+- ✅ **v1.2 User Flow Verification** - Phase 8 (complete 2026-01-21)
+- 🚧 **v1.3 UI Polish & Core UX** - Phase 9 (in progress)
 
 ## Phases
 
@@ -85,6 +86,32 @@ Plans:
 Plans:
 - [x] 08-01-PLAN.md — Seeker journey UAT execution (5 core test cases executed, 1 critical bug fixed)
 
+### 🚧 v1.3 UI Polish & Core UX (In Progress)
+
+#### Phase 9: UI Polish & Core UX
+
+**Goal**: Improve seeker-facing UI design quality and add essential features like logout
+
+**Depends on**: Phase 8
+
+**Success Criteria** (what must be TRUE):
+  1. Logout button visible and functional in navigation
+  2. UI design quality matches or exceeds reference (Purple Elephant)
+  3. Professional visual hierarchy and spacing implemented
+  4. Job list and detail pages visually polished
+  5. All interactive elements have proper hover states and feedback
+
+**Plans**: 2 plans
+
+Plans:
+- [ ] 09-01-PLAN.md — Navigation header with user dropdown and logout functionality
+- [ ] 09-02-PLAN.md — Visual polish for job list and detail pages
+
+**Details:**
+- Reference design: https://purple-elephant.vercel.app/ko/vulnerable-employment
+- Focus areas: navigation, job list, job detail, overall polish
+- Todo: `.planning/todos/pending/2026-01-21-improve-ui-add-logout.md`
+
 ## Project Status
 
 **Current State:** Core user flow verified and production-ready
@@ -122,9 +149,10 @@ Plans:
 | 5. Employer & Admin | v1.0 | 4/4 | ✅ Complete | 2026-01-19 |
 | 6. UI Polish & Deployment | v1.0 | 2/2 | ✅ Complete | 2026-01-19 |
 | 7. UAT Test Case Design | v1.1 | 2/2 | ✅ Complete | 2026-01-20 |
-| 8. User Flow Verification | v1.2 | 1/1 | Ready to execute | - |
+| 8. User Flow Verification | v1.2 | 1/1 | ✅ Complete | 2026-01-21 |
+| 9. UI Polish & Core UX | v1.3 | 2/2 | 🚧 Planning | - |
 
-**Total:** 8 phases, 20 plans complete, 1 plan ready to execute
+**Total:** 9 phases, 23 plans (21 complete, 2 planned), Phase 9 ready to execute
 
 ---
 *Last updated: 2026-01-21*
