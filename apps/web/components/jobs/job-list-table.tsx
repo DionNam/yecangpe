@@ -32,23 +32,23 @@ export function JobListTable({
   return (
     <Table>
       <TableHeader>
-        <TableRow>
-          <TableHead className="w-[100px] text-xs font-medium text-muted-foreground">
+        <TableRow className="border-b border-border/50 hover:bg-transparent">
+          <TableHead className="w-[120px] text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             날짜
           </TableHead>
-          <TableHead className="text-xs font-medium text-muted-foreground">
+          <TableHead className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             제목
           </TableHead>
-          <TableHead className="w-[80px] text-right text-xs font-medium text-muted-foreground">
+          <TableHead className="w-[100px] text-right text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             조회수
           </TableHead>
-          <TableHead className="w-[80px] text-right text-xs font-medium text-muted-foreground">
+          <TableHead className="w-[100px] text-right text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             관심수
           </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {posts.map(post => {
+        {posts.map((post, index) => {
           const publishedAt = post.published_at
             ? new Date(post.published_at)
             : new Date()
@@ -69,6 +69,7 @@ export function JobListTable({
               isAuthenticated={isAuthenticated}
               displayViews={displayViews}
               displayLikes={displayLikes}
+              animationDelay={index * 50}
             />
           )
         })}

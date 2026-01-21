@@ -14,6 +14,7 @@ interface JobRowProps {
   isAuthenticated: boolean
   displayViews: number
   displayLikes: number
+  animationDelay?: number
 }
 
 export function JobRow({
@@ -21,6 +22,7 @@ export function JobRow({
   isAuthenticated,
   displayViews,
   displayLikes,
+  animationDelay = 0,
 }: JobRowProps) {
   const router = useRouter()
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -46,29 +48,46 @@ export function JobRow({
   return (
     <>
       <TableRow
-        className="group cursor-pointer hover:bg-muted/50 transition-colors duration-150"
         onClick={handleClick}
+        className="
+          cursor-pointer
+          border-b border-border/30 last:border-0
+          hover:bg-primary/5
+          transition-all duration-200
+          group
+          card-hover
+          fade-in-up
+        "
+        style={{ animationDelay: `${animationDelay}ms` }}
       >
         <TableCell className="font-medium text-sm">
           {formatDate(job.published_at)}
         </TableCell>
         <TableCell>
-          <div className="flex items-center gap-2">
-            <span className="font-semibold group-hover:text-primary transition-colors">
+          <div className="space-y-1">
+            <h3 className="font-semibold text-base group-hover:text-primary transition-colors duration-200">
               {job.title}
-            </span>
-            <Badge
-              variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
-            >
-              {job.hiring_status === 'hiring' ? '채용중' : '마감'}
-            </Badge>
+            </h3>
+            <p className="text-sm text-muted-foreground">
+              {job.company_name}
+            </p>
           </div>
+          <Badge
+            variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
+            className={`mt-2 ${job.hiring_status === 'hiring' ? 'animate-pulse-subtle' : ''}`}
+          >
+            {job.hiring_status === 'hiring' ? '채용중' : '마감'}
+          </Badge>
         </TableCell>
-        <TableCell className="text-right text-sm text-muted-foreground">
-          {displayViews}
+        <TableCell className="text-right">
+          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+            {displayViews.toLocaleString()}
+          </span>
         </TableCell>
-        <TableCell className="text-right text-sm text-muted-foreground">
-          {displayLikes}
+        <TableCell className="text-right">
+          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+            {displayLikes.toLocaleString()}
+          </span>
         </TableCell>
       </TableRow>
 
