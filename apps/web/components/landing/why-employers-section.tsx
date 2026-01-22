@@ -19,10 +19,10 @@ const benefits = [
 ]
 
 interface WhyEmployersSectionProps {
-  employerCount: number
+  talentCount: number
 }
 
-export function WhyEmployersSection({ employerCount }: WhyEmployersSectionProps) {
+export function WhyEmployersSection({ talentCount }: WhyEmployersSectionProps) {
   return (
     <section className="relative py-24 bg-white overflow-hidden">
       {/* Subtle background pattern */}
@@ -74,12 +74,12 @@ export function WhyEmployersSection({ employerCount }: WhyEmployersSectionProps)
             {/* Animated Counter */}
             <div className="flex items-baseline gap-2">
               <AnimatedCounter
-                value={employerCount}
+                value={talentCount}
                 duration={2500}
                 className="text-2xl md:text-3xl font-bold text-slate-900 tabular-nums"
               />
               <span className="text-sm font-medium text-slate-600">
-                개 기업이 채용 중
+                명의 외국인 인재
               </span>
             </div>
           </motion.div>

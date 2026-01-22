@@ -57,8 +57,8 @@ export default async function Home() {
   return (
     <main>
       <HeroSection memberCount={totalMemberCount} />
-      <WhyEmployersSection employerCount={totalEmployerCount} />
-      <WhyTalentSection memberCount={totalMemberCount} />
+      <WhyEmployersSection talentCount={totalMemberCount} />
+      <WhyTalentSection employerCount={totalEmployerCount} />
       <HowItWorksSection />
       <PreviewSection initialJobs={previewJobs || []} />
       <TrustCtaSection />
