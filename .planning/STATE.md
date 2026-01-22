@@ -6,23 +6,23 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
 
-**Current focus:** Phase 11 - Work Location Type & Country Selection (In Progress)
+**Current focus:** Phase 11 - Work Location Type & Country Selection (Complete)
 
 ## Current Position
 
 Phase: 11 of 11 (Work Location & Country)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-01-23 — Completed 11-04-PLAN.md
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-01-22 — Completed 11-05-PLAN.md
 
-Progress: [█████████████████] 97% (32/33 plans complete)
+Progress: [█████████████████] 100% (33/33 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 32 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 4)
-- Average duration: 4.1min
-- Total execution time: 2.2 hours
+- Total plans completed: 33 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5)
+- Average duration: 4.0min
+- Total execution time: 2.3 hours
 
 **By Phase:**
 
@@ -38,7 +38,7 @@ Progress: [█████████████████] 97% (32/33 plans
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
-| 11-work-location | 3 | 9min | 3.0min |
+| 11-work-location | 5 | 14min | 2.8min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -46,8 +46,8 @@ Progress: [█████████████████] 97% (32/33 plans
 - v1.2 completed in ~10 minutes (1 plan)
 - v1.3 completed in 10.5 minutes (3 plans)
 - v1.4 completed in 11 minutes (4 plans)
-- v1.5 in progress: 9 minutes (3 plans complete)
-- Trend: Fast iteration on database foundation, validation, and form integration
+- v1.5 completed in 14 minutes (5 plans)
+- Trend: Consistently fast iteration with average 2.8min per plan in Phase 11
 
 ## Accumulated Context
 
@@ -109,6 +109,9 @@ Recent decisions affecting v1.1 work:
 - **11-03**: superRefine added to jobPostUpdateSchema for consistent validation across create/update
 - **11-04**: Admin forms mirror employer form conditional logic for consistency
 - **11-04**: Admin posts bypass review and publish immediately with location data
+- **11-05**: Badge variant="outline" for location badge to distinguish from hiring status
+- **11-05**: Location filter placed after nationality, before sort for logical grouping
+- **11-05**: Country name shown directly in job list badge for on-site jobs
 
 ### Roadmap Evolution
 
@@ -130,6 +133,9 @@ Recent decisions affecting v1.1 work:
 - Legal pages need legal review
 - BUG-INFRA-001: Cannot seed test data with fixed UUIDs (Supabase Auth limitation)
 
+**Resolved in Phase 11:**
+- Work Location Type & Country Selection feature complete - remote/hybrid/on-site with country picker and filtering
+
 **Resolved in Phase 10:**
 - Job Post Images feature complete - employers and admins can upload images for job posts
 
@@ -144,9 +150,9 @@ Recent decisions affecting v1.1 work:
 
 ## Session Continuity
 
-Last session: 2026-01-23
-Stopped at: Completed 11-04-PLAN.md - admin work location integration
+Last session: 2026-01-22
+Stopped at: Completed 11-05-PLAN.md - display and filter work location in job list
 Resume file: None
 
 ---
-*Last updated: 2026-01-23 (Phase 11 plan 04 complete)*
+*Last updated: 2026-01-22 (Phase 11 complete - all 5 plans executed)*
