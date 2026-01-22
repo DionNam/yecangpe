@@ -6,22 +6,22 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
 
-**Current focus:** Phase 10 - Job Post Images (Complete)
+**Current focus:** Phase 11 - Work Location Type & Country Selection (In Progress)
 
 ## Current Position
 
-Phase: 10 of 10 (Job Post Images)
-Plan: 4 of 4 complete
-Status: Phase complete
-Last activity: 2026-01-22 — Completed 10-04-PLAN.md (Admin Form Integration)
+Phase: 11 of 11 (Work Location & Country)
+Plan: 1 of 3 in current phase
+Status: In progress
+Last activity: 2026-01-22 — Completed 11-01-PLAN.md
 
-Progress: [████████████████] 100% (28/28 plans complete)
+Progress: [████████████████░] 97% (29/30 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 28 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4)
-- Average duration: 4.5min
+- Total plans completed: 29 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 1)
+- Average duration: 4.3min
 - Total execution time: 2.1 hours
 
 **By Phase:**
@@ -38,6 +38,7 @@ Progress: [████████████████] 100% (28/28 plans c
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
+| 11-work-location | 1 | 2min | 2.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -45,7 +46,8 @@ Progress: [████████████████] 100% (28/28 plans c
 - v1.2 completed in ~10 minutes (1 plan)
 - v1.3 completed in 10.5 minutes (3 plans)
 - v1.4 completed in 11 minutes (4 plans)
-- Trend: Fast iteration on targeted UI improvements and production-grade visual polish
+- v1.5 in progress: 2 minutes (1 plan complete)
+- Trend: Fast iteration on database foundation and form enhancements
 
 ## Accumulated Context
 
@@ -95,12 +97,18 @@ Recent decisions affecting v1.1 work:
 - **10-03**: 64px thumbnail in job list, full-width in job detail
 - **10-04**: Component mirroring to admin app for simple UI components with app-specific imports
 - **10-04**: Dynamic update object building for optional field changes (image_url)
+- **11-01**: Single work_location_type ENUM with 3 values (not separate ENUMs per type)
+- **11-01**: Default existing job posts to on_site, drop DEFAULT for new posts
+- **11-01**: Nullable work_location_country for conditional requirement (on_site only)
+- **11-01**: 26 countries covering Asia and major Western work locations
+- **11-01**: COUNTRIES constant following NATIONALITIES pattern for consistency
 
 ### Roadmap Evolution
 
 - Phase 9 added (2026-01-21): UI Polish & Core UX - Improve seeker-facing UI design quality and add essential features like logout
 - Plan 09-03 added (2026-01-21): Design Quality Overhaul - Close GAP-09-01 with production-grade editorial design transformation
 - Phase 10 added (2026-01-22): Job Post Images - Allow employers/admins to upload images for job posts
+- Phase 11 added (2026-01-22): Work Location Type & Country Selection - Remote/hybrid/on-site selection with country picker for on-site positions
 
 ### Pending Todos
 
@@ -130,8 +138,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-01-22
-Stopped at: Completed 10-04-PLAN.md (Admin Form Integration) - Phase 10 complete
+Stopped at: Completed 11-01-PLAN.md - work location database foundation
 Resume file: None
 
 ---
-*Last updated: 2026-01-22*
+*Last updated: 2026-01-22 (Phase 11 plan 01 complete)*
