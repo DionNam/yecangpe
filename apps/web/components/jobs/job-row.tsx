@@ -74,16 +74,13 @@ export function JobRow({
           group
         "
       >
+        {/* Date */}
         <TableCell className="font-medium text-sm py-8 px-6">
           {formatDate(job.published_at)}
         </TableCell>
-        <TableCell className="text-center py-8 px-6">
-          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
-            {displayViews.toLocaleString()}
-          </span>
-        </TableCell>
+
+        {/* Title and company info */}
         <TableCell className="py-8 px-6">
-          {/* Title and company info */}
           <div className="space-y-1 min-w-0">
             <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
               {job.title}
@@ -91,7 +88,7 @@ export function JobRow({
             <p className="text-sm text-slate-600">
               {job.company_name}
             </p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               <Badge
                 variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
               >
@@ -103,26 +100,38 @@ export function JobRow({
             </div>
           </div>
         </TableCell>
+
+        {/* Views */}
+        <TableCell className="text-center py-8 px-6">
+          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
+            {displayViews.toLocaleString()}
+          </span>
+        </TableCell>
+
+        {/* Likes */}
         <TableCell className="text-center py-8 px-6">
           <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayLikes.toLocaleString()}
           </span>
         </TableCell>
+
+        {/* Thumbnail */}
         <TableCell className="py-8 px-6">
-          {/* Thumbnail */}
-          {job.image_url ? (
-            <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100 ml-auto">
-              <Image
-                src={job.image_url}
-                alt=""
-                fill
-                className="object-cover"
-                sizes="64px"
-              />
-            </div>
-          ) : (
-            <div className="w-16 h-16" />
-          )}
+          <div className="flex justify-center">
+            {job.image_url ? (
+              <div className="relative w-20 h-20 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100 shadow-sm">
+                <Image
+                  src={job.image_url}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="80px"
+                />
+              </div>
+            ) : (
+              <div className="w-20 h-20 rounded-lg bg-slate-100/50" />
+            )}
+          </div>
         </TableCell>
       </TableRow>
 
