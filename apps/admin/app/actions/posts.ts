@@ -100,15 +100,25 @@ export async function updatePost(postId: string, formData: FormData) {
     return { error: result.error.flatten().fieldErrors }
   }
 
+  // Build update object
+  const updateData: Record<string, any> = {
+    title: result.data.title,
+    content: result.data.content,
+    company_name: result.data.company_name,
+    target_nationality: result.data.target_nationality,
+    updated_at: new Date().toISOString(),
+  }
+
+  // Handle image_url - check if it was explicitly set in formData
+  const imageUrlRaw = formData.get('image_url')
+  if (imageUrlRaw !== null) {
+    // If image_url field was submitted, update it (empty string means remove)
+    updateData.image_url = imageUrlRaw === '' ? null : imageUrlRaw
+  }
+
   const { error } = await (supabase as any)
     .from('job_posts')
-    .update({
-      title: result.data.title,
-      content: result.data.content,
-      company_name: result.data.company_name,
-      target_nationality: result.data.target_nationality,
-      updated_at: new Date().toISOString(),
-    })
+    .update(updateData)
     .eq('id', postId)
 
   if (error) {
@@ -127,12 +137,14 @@ export async function updatePost(postId: string, formData: FormData) {
 export async function createAdminPost(formData: FormData) {
   const { supabase, user } = await verifyAdmin()
 
+  const imageUrlRaw = formData.get('image_url')
   const rawData = {
     title: formData.get('title'),
     content: formData.get('content'),
     company_name: formData.get('company_name'),
     target_nationality: formData.get('target_nationality'),
     created_at: formData.get('created_at') || undefined,
+    image_url: imageUrlRaw ? String(imageUrlRaw) : null,
   }
 
   const result = postCreateSchema.safeParse(rawData)
@@ -179,6 +191,7 @@ export async function createAdminPost(formData: FormData) {
       hiring_status: 'hiring',
       view_target: viewTarget,
       like_target: likeTarget,
+      image_url: result.data.image_url || null,
     })
 
   if (error) {

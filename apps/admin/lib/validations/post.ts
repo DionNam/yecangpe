@@ -8,6 +8,7 @@ export const postEditSchema = z.object({
   target_nationality: z.enum(
     NATIONALITIES.map((n) => n.code) as [string, ...string[]]
   ),
+  image_url: z.string().url().nullable().optional(),
 })
 
 export const postCreateSchema = postEditSchema.extend({
