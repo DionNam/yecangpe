@@ -13,11 +13,13 @@ import {
 interface JobListFiltersProps {
   currentNationality?: string
   currentSort?: string
+  currentLocationType?: string
 }
 
 export function JobListFilters({
   currentNationality,
   currentSort,
+  currentLocationType,
 }: JobListFiltersProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -42,6 +44,18 @@ export function JobListFilters({
     router.push(`/jobs?${params.toString()}`)
   }
 
+  const handleLocationTypeChange = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (value === 'all') {
+      params.delete('location_type')
+    } else {
+      params.set('location_type', value)
+    }
+    // Reset to page 1 when filter changes
+    params.delete('page')
+    router.push(`/jobs?${params.toString()}`)
+  }
+
   return (
     <div className="flex gap-4 flex-wrap">
       <div className="flex items-center gap-2">
@@ -60,6 +74,24 @@ export function JobListFilters({
                 {nationality.name}
               </SelectItem>
             ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      <div className="flex items-center gap-2">
+        <label className="text-sm font-medium">근무 형태</label>
+        <Select
+          value={currentLocationType || 'all'}
+          onValueChange={handleLocationTypeChange}
+        >
+          <SelectTrigger className="w-[140px]">
+            <SelectValue placeholder="전체" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">전체</SelectItem>
+            <SelectItem value="remote">원격근무</SelectItem>
+            <SelectItem value="hybrid">하이브리드</SelectItem>
+            <SelectItem value="on_site">대면근무</SelectItem>
           </SelectContent>
         </Select>
       </div>
