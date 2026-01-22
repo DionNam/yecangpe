@@ -10,7 +10,9 @@ export const postEditSchema = z.object({
   ),
 })
 
-export const postCreateSchema = postEditSchema
+export const postCreateSchema = postEditSchema.extend({
+  created_at: z.string().optional(),
+})
 
 export type PostEditInput = z.infer<typeof postEditSchema>
 export type PostCreateInput = z.infer<typeof postCreateSchema>

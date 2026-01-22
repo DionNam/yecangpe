@@ -37,6 +37,7 @@ export function PostCreateForm() {
       content: '',
       company_name: '',
       target_nationality: 'ANY',
+      created_at: '',
     },
   })
 
@@ -47,6 +48,9 @@ export function PostCreateForm() {
       formData.append('content', data.content)
       formData.append('company_name', data.company_name)
       formData.append('target_nationality', data.target_nationality)
+      if (data.created_at) {
+        formData.append('created_at', data.created_at)
+      }
 
       const result = await createAdminPost(formData)
 
@@ -136,6 +140,20 @@ export function PostCreateForm() {
                   ))}
                 </SelectContent>
               </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="created_at"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>작성 일자 (선택사항)</FormLabel>
+              <FormControl>
+                <Input {...field} type="datetime-local" placeholder="비워두면 현재 시각으로 설정됩니다" />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}

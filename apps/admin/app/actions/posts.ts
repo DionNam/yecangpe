@@ -132,6 +132,7 @@ export async function createAdminPost(formData: FormData) {
     content: formData.get('content'),
     company_name: formData.get('company_name'),
     target_nationality: formData.get('target_nationality'),
+    created_at: formData.get('created_at') || undefined,
   }
 
   const result = postCreateSchema.safeParse(rawData)
@@ -161,6 +162,9 @@ export async function createAdminPost(formData: FormData) {
     Math.random() * (config.like_target_max - config.like_target_min + 1) + config.like_target_min
   )
 
+  // Use custom created_at if provided, otherwise use current time
+  const createdAt = result.data.created_at ? new Date(result.data.created_at).toISOString() : new Date().toISOString()
+
   const { error } = await (supabase as any)
     .from('job_posts')
     .insert({
@@ -170,7 +174,8 @@ export async function createAdminPost(formData: FormData) {
       company_name: result.data.company_name,
       target_nationality: result.data.target_nationality,
       review_status: 'published',
-      published_at: new Date().toISOString(),
+      published_at: createdAt,
+      created_at: createdAt,
       hiring_status: 'hiring',
       view_target: viewTarget,
       like_target: likeTarget,
