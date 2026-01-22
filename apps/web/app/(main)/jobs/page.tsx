@@ -144,7 +144,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    itemListElement: posts?.map((job, index) => ({
+    itemListElement: (posts || []).map((job, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       item: {
@@ -157,7 +157,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
         datePosted: job.created_at,
         employmentType: job.employment_type?.toUpperCase(),
       },
-    })) || [],
+    })),
   }
 
   return (
