@@ -1,6 +1,15 @@
+'use client'
+
+import { useState } from 'react'
 import Image from 'next/image'
 import { JobDetailHeader } from './job-detail-header'
 import { LikeButton } from './like-button'
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import { X } from 'lucide-react'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -20,6 +29,8 @@ export function JobDetail({
   isLiked,
   canLike,
 }: JobDetailProps) {
+  const [isImageDialogOpen, setIsImageDialogOpen] = useState(false)
+
   return (
     <div>
 
@@ -39,15 +50,46 @@ export function JobDetail({
 
       {/* Job image (if exists) */}
       {job.image_url && (
-        <div className="relative w-full aspect-video overflow-hidden">
-          <Image
-            src={job.image_url}
-            alt={`${job.title} 공고 이미지`}
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
+        <>
+          <div
+            className="relative w-full aspect-video overflow-hidden cursor-pointer group"
+            onClick={() => setIsImageDialogOpen(true)}
+          >
+            <Image
+              src={job.image_url}
+              alt={`${job.title} 공고 이미지`}
+              fill
+              className="object-cover transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-white text-sm font-medium bg-black/50 px-4 py-2 rounded-lg">
+                클릭하여 확대
+              </span>
+            </div>
+          </div>
+
+          {/* Full screen image dialog */}
+          <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
+            <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 border-0 bg-transparent">
+              <DialogTitle className="sr-only">
+                {job.title} 공고 이미지
+              </DialogTitle>
+              <div className="relative w-full h-full flex items-center justify-center">
+                <div className="relative w-full max-w-7xl max-h-[90vh]">
+                  <Image
+                    src={job.image_url}
+                    alt={`${job.title} 공고 이미지`}
+                    width={1200}
+                    height={800}
+                    className="object-contain w-full h-full"
+                    priority
+                  />
+                </div>
+              </div>
+            </DialogContent>
+          </Dialog>
+        </>
       )}
 
       {/* Main content */}

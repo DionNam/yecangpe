@@ -77,51 +77,52 @@ export function JobRow({
         <TableCell className="font-medium text-sm py-8 px-6">
           {formatDate(job.published_at)}
         </TableCell>
-        <TableCell className="py-8 px-6">
-          <div className="flex gap-4">
-            {/* Thumbnail */}
-            {job.image_url && (
-              <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100">
-                <Image
-                  src={job.image_url}
-                  alt=""
-                  fill
-                  className="object-cover"
-                  sizes="64px"
-                />
-              </div>
-            )}
-
-            {/* Title and company info */}
-            <div className="space-y-1 min-w-0 flex-1">
-              <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
-                {job.title}
-              </h3>
-              <p className="text-sm text-slate-600">
-                {job.company_name}
-              </p>
-              <div className="flex gap-2">
-                <Badge
-                  variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
-                >
-                  {job.hiring_status === 'hiring' ? '채용중' : '마감'}
-                </Badge>
-                <Badge variant="outline">
-                  {getLocationBadgeText()}
-                </Badge>
-              </div>
-            </div>
-          </div>
-        </TableCell>
-        <TableCell className="text-right py-8 px-6">
+        <TableCell className="text-center py-8 px-6">
           <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayViews.toLocaleString()}
           </span>
         </TableCell>
-        <TableCell className="text-right py-8 px-6">
+        <TableCell className="py-8 px-6">
+          {/* Title and company info */}
+          <div className="space-y-1 min-w-0">
+            <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
+              {job.title}
+            </h3>
+            <p className="text-sm text-slate-600">
+              {job.company_name}
+            </p>
+            <div className="flex gap-2">
+              <Badge
+                variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
+              >
+                {job.hiring_status === 'hiring' ? '채용중' : '마감'}
+              </Badge>
+              <Badge variant="outline">
+                {getLocationBadgeText()}
+              </Badge>
+            </div>
+          </div>
+        </TableCell>
+        <TableCell className="text-center py-8 px-6">
           <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayLikes.toLocaleString()}
           </span>
+        </TableCell>
+        <TableCell className="py-8 px-6">
+          {/* Thumbnail */}
+          {job.image_url ? (
+            <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100 ml-auto">
+              <Image
+                src={job.image_url}
+                alt=""
+                fill
+                className="object-cover"
+                sizes="64px"
+              />
+            </div>
+          ) : (
+            <div className="w-16 h-16" />
+          )}
         </TableCell>
       </TableRow>
 
