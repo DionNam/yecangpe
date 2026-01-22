@@ -89,6 +89,8 @@ export type Database = {
           hiring_status: Database["public"]["Enums"]["hiring_status"]
           rejection_reason: string | null
           image_url: string | null
+          work_location_type: Database["public"]["Enums"]["work_location_type"]
+          work_location_country: string | null
           view_count: number
           view_target: number
           like_target: number
@@ -107,6 +109,8 @@ export type Database = {
           hiring_status?: Database["public"]["Enums"]["hiring_status"]
           rejection_reason?: string | null
           image_url?: string | null
+          work_location_type: Database["public"]["Enums"]["work_location_type"]
+          work_location_country?: string | null
           view_count?: number
           view_target?: number
           like_target?: number
@@ -125,6 +129,8 @@ export type Database = {
           hiring_status?: Database["public"]["Enums"]["hiring_status"]
           rejection_reason?: string | null
           image_url?: string | null
+          work_location_type?: Database["public"]["Enums"]["work_location_type"]
+          work_location_country?: string | null
           view_count?: number
           view_target?: number
           like_target?: number
@@ -276,6 +282,7 @@ export type Database = {
       hiring_status: "hiring" | "closed"
       review_status: "pending" | "published" | "rejected"
       user_role: "seeker" | "employer" | "admin"
+      work_location_type: "remote" | "hybrid" | "on_site"
     }
     CompositeTypes: {
       [_ in never]: never
