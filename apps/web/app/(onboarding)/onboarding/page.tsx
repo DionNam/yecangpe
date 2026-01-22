@@ -72,10 +72,6 @@ export default function OnboardingPage() {
               </Link>
             </Button>
           </div>
-
-          <p className="text-center text-sm text-slate-500 mt-6">
-            선택 후 언제든지 변경할 수 있습니다
-          </p>
         </CardContent>
       </Card>
     </div>
