@@ -1,0 +1,13 @@
+[
+    {
+        "id": "TC-001",
+        "title": "Verify Home Page",
+        "description": "Navigate to the home page and verify it loads correctly",
+        "steps": [
+            {
+                "step": "Navigate to home page",
+                "expectedResult": "Home page loads successfully"
+            }
+        ]
+    }
+]

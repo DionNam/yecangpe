@@ -7,7 +7,7 @@ export default async function MainLayout({ children }: { children: ReactNode }) 
 
   return (
     <>
-      <main className="min-h-screen pt-20">{children}</main>
+      <main className="min-h-screen pt-16 bg-slate-50">{children}</main>
     </>
   )
 }

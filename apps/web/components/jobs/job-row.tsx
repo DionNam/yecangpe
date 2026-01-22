@@ -57,10 +57,10 @@ export function JobRow({
           group
         "
       >
-        <TableCell className="font-medium text-sm">
+        <TableCell className="font-medium text-sm py-8 px-6">
           {formatDate(job.published_at)}
         </TableCell>
-        <TableCell>
+        <TableCell className="py-8 px-6">
           <div className="space-y-1">
             <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
               {job.title}
@@ -76,12 +76,12 @@ export function JobRow({
             {job.hiring_status === 'hiring' ? '채용중' : '마감'}
           </Badge>
         </TableCell>
-        <TableCell className="text-right">
+        <TableCell className="text-right py-8 px-6">
           <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayViews.toLocaleString()}
           </span>
         </TableCell>
-        <TableCell className="text-right">
+        <TableCell className="text-right py-8 px-6">
           <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayLikes.toLocaleString()}
           </span>

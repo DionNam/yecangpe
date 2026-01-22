@@ -33,16 +33,16 @@ export function JobListTable({
     <Table>
       <TableHeader>
         <TableRow className="border-b border-border/50 hover:bg-transparent">
-          <TableHead className="w-[120px] text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <TableHead className="w-[120px] text-xs font-semibold text-muted-foreground uppercase tracking-wider h-16 px-6">
             날짜
           </TableHead>
-          <TableHead className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <TableHead className="text-xs font-semibold text-muted-foreground uppercase tracking-wider h-16 px-6">
             제목
           </TableHead>
-          <TableHead className="w-[100px] text-right text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <TableHead className="w-[100px] text-right text-xs font-semibold text-muted-foreground uppercase tracking-wider h-16 px-6">
             조회수
           </TableHead>
-          <TableHead className="w-[100px] text-right text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+          <TableHead className="w-[100px] text-right text-xs font-semibold text-muted-foreground uppercase tracking-wider h-16 px-6">
             관심수
           </TableHead>
         </TableRow>

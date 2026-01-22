@@ -30,7 +30,7 @@ export default async function NewPostPage() {
   const companyName = (employerProfile as { company_name: string }).company_name
 
   return (
-    <div className="container py-8">
+    <div className="container pt-4 pb-8">
       <Card className="max-w-2xl mx-auto">
         <CardHeader>
           <CardTitle className="text-2xl">구인글 작성</CardTitle>

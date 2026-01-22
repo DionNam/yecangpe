@@ -4,13 +4,18 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
-import { loginAsAdmin } from '@/actions/admin-auth'
+import { createClient } from '@repo/supabase/client'
 import { useRouter } from 'next/navigation'
+
+const ADMIN_USERNAME = 'admin'
+const ADMIN_PASSWORD = 'Nasig0reng!'
+const ADMIN_EMAIL = 'ndh8392@gmail.com'
 
 export function AdminLoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
+  const supabase = createClient()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -21,13 +26,38 @@ export function AdminLoginForm() {
     const username = formData.get('username') as string
     const password = formData.get('password') as string
 
-    const result = await loginAsAdmin(username, password)
+    // Verify credentials
+    if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+      setError('아이디 또는 비밀번호가 일치하지 않습니다')
+      setIsLoading(false)
+      return
+    }
 
-    if (result.success) {
+    try {
+      // Sign in with admin email and password
+      const { data, error: signInError } = await supabase.auth.signInWithPassword({
+        email: ADMIN_EMAIL,
+        password: ADMIN_PASSWORD,
+      })
+
+      if (signInError) {
+        console.error('Supabase auth error:', signInError)
+        setError('로그인 처리 중 오류가 발생했습니다')
+        setIsLoading(false)
+        return
+      }
+
+      if (!data.user) {
+        setError('관리자 계정을 찾을 수 없습니다')
+        setIsLoading(false)
+        return
+      }
+
       router.push('/employer/posts')
       router.refresh()
-    } else {
-      setError(result.error || '로그인에 실패했습니다')
+    } catch (error) {
+      console.error('Admin login error:', error)
+      setError('로그인 처리 중 오류가 발생했습니다')
       setIsLoading(false)
     }
   }

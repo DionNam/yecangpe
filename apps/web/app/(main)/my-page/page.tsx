@@ -69,7 +69,7 @@ export default async function MyPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12">
+    <div className="min-h-screen bg-slate-50 pt-6 pb-12">
       <div className="max-w-5xl mx-auto px-6 lg:px-8">
         <div className="mb-10">
           <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">마이페이지</p>

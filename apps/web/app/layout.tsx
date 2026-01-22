@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { createClient } from '@repo/supabase/server'
 import { SiteHeader } from '@/components/site-header'
 import './globals.css'
+import { ScrollFix } from '@/components/scroll-fix'
 
 export const metadata: Metadata = {
   title: '외국인 구인구직',
@@ -20,6 +21,7 @@ export default async function RootLayout({
     <html lang="ko">
       <body>
         <SiteHeader user={user} />
+        <ScrollFix />
         {children}
       </body>
     </html>

@@ -64,7 +64,7 @@ export default async function EmployerPostsPage() {
   }
 
   return (
-    <div className="container py-8">
+    <div className="container pt-4 pb-8">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold">내 공고 관리</h1>
         <Button asChild>

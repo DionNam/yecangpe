@@ -65,7 +65,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     console.error('Error fetching job posts:', error)
     return (
       <div className="min-h-screen bg-slate-50">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-20">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
               채용 공고
@@ -97,7 +97,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 pb-24">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-24">
         {/* Header section with descriptive content */}
         <div className="text-center mb-16 space-y-4">
           <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-3">채용 공고</p>

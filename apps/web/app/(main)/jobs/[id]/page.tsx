@@ -85,7 +85,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   )
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12">
+    <div className="min-h-screen bg-slate-50 pt-6 pb-12">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         <div className="mb-6">
           <a
