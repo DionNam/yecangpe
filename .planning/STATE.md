@@ -90,7 +90,7 @@ Recent decisions affecting v1.1 work:
 
 ### Pending Todos
 
-2 pending todo(s) - use /gsd:check-todos to view
+3 pending todo(s) - use /gsd:check-todos to view
 
 ### Blockers/Concerns
 
