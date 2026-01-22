@@ -88,6 +88,7 @@ export type Database = {
           review_status: Database["public"]["Enums"]["review_status"]
           hiring_status: Database["public"]["Enums"]["hiring_status"]
           rejection_reason: string | null
+          image_url: string | null
           view_count: number
           view_target: number
           like_target: number
@@ -105,6 +106,7 @@ export type Database = {
           review_status?: Database["public"]["Enums"]["review_status"]
           hiring_status?: Database["public"]["Enums"]["hiring_status"]
           rejection_reason?: string | null
+          image_url?: string | null
           view_count?: number
           view_target?: number
           like_target?: number
@@ -122,6 +124,7 @@ export type Database = {
           review_status?: Database["public"]["Enums"]["review_status"]
           hiring_status?: Database["public"]["Enums"]["hiring_status"]
           rejection_reason?: string | null
+          image_url?: string | null
           view_count?: number
           view_target?: number
           like_target?: number
