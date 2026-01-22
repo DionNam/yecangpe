@@ -6,7 +6,7 @@
 - ✅ **v1.1 UAT Test Case Design** - Phase 7 (complete 2026-01-21)
 - ✅ **v1.2 User Flow Verification** - Phase 8 (complete 2026-01-21)
 - ✅ **v1.3 UI Polish & Core UX** - Phase 9 (complete 2026-01-21)
-- 🔄 **v1.4 Job Post Images** - Phase 10 (in progress)
+- ✅ **v1.4 Job Post Images** - Phase 10 (complete 2026-01-22)
 
 ## Phases
 
@@ -117,7 +117,7 @@ Plans:
 - Orchestrated animations and sophisticated micro-interactions
 - GAP-09-01 RESOLVED: All 5 design quality criteria met (Typography, Spacing, Visual Details, Animations, Overall Aesthetic)
 
-### 🔄 v1.4 Job Post Images (In Progress)
+### ✅ v1.4 Job Post Images (Complete 2026-01-22)
 
 #### Phase 10: Job Post Image Upload
 
@@ -126,21 +126,21 @@ Plans:
 **Depends on**: Phase 9
 
 **Success Criteria** (what must be TRUE):
-  1. Employers can upload 1 image when creating a new job post
-  2. Employers can add/change/remove image when editing existing posts
-  3. Admins can upload 1 image when creating job posts directly
-  4. Admins can add/change/remove image when editing any job post
-  5. Job detail page displays the uploaded image
-  6. Job list page shows thumbnail if image exists
-  7. Images stored in Supabase Storage with proper RLS policies
+  1. ✅ Employers can upload 1 image when creating a new job post
+  2. ✅ Employers can add/change/remove image when editing existing posts
+  3. ✅ Admins can upload 1 image when creating job posts directly
+  4. ✅ Admins can add/change/remove image when editing any job post
+  5. ✅ Job detail page displays the uploaded image
+  6. ✅ Job list page shows thumbnail if image exists
+  7. ✅ Images stored in Supabase Storage with proper RLS policies
 
-**Plans**: 4 plans in 3 waves
+**Plans**: 4/4 complete
 
 Plans:
-- [ ] 10-01-PLAN.md — Database migration + storage bucket + Next.js config (Wave 1)
-- [ ] 10-02-PLAN.md — Image upload component + storage server actions (Wave 2)
-- [ ] 10-03-PLAN.md — Web employer forms + job display integration (Wave 3)
-- [ ] 10-04-PLAN.md — Admin forms integration (Wave 3, parallel with 10-03)
+- [x] 10-01-PLAN.md — Database migration + storage bucket + Next.js config (Wave 1)
+- [x] 10-02-PLAN.md — Image upload component + storage server actions (Wave 2)
+- [x] 10-03-PLAN.md — Web employer forms + job display integration (Wave 3)
+- [x] 10-04-PLAN.md — Admin forms integration (Wave 3, parallel with 10-03)
 
 **Technical approach:**
 - Signed upload URLs to bypass Next.js 1MB server action body limit
@@ -150,19 +150,23 @@ Plans:
 
 ## Project Status
 
-**Current State:** v1.3 complete - Production-grade UI with editorial design, navigation, and logout
+**Current State:** v1.4 complete - Job post image upload feature shipped
 
 **Shipped:**
 - v1.0 MVP (Phases 1-6): Full platform with auth, job listings, employer/admin features
 - v1.1 UAT Test Cases (Phase 7): 58 test cases documented with traceability matrix and seed data
 - v1.2 User Flow Verification (Phase 8): Core seeker journey validated, critical onboarding bug fixed
 - v1.3 UI Polish & Core UX (Phase 9): Production-grade editorial design, navigation header, logout functionality
+- v1.4 Job Post Images (Phase 10): Employers and admins can upload images for job posts
 
 **Known Tech Debt:**
 - Job list missing real like counts (displays fake metrics only)
 - Employer onboarding redirects to / instead of /employer/new-post
 - KakaoTalk link is placeholder
 - Legal pages need legal review
+
+**Resolved in Phase 10:**
+- ✅ Job post image upload feature - employers and admins can attach/edit/remove images
 
 **Resolved in Phase 9:**
 - ✅ BUG-SEEK-002: No explicit logout functionality - RESOLVED (09-01)
@@ -186,9 +190,9 @@ Plans:
 | 7. UAT Test Case Design | v1.1 | 2/2 | ✅ Complete | 2026-01-20 |
 | 8. User Flow Verification | v1.2 | 1/1 | ✅ Complete | 2026-01-21 |
 | 9. UI Polish & Core UX | v1.3 | 3/3 | ✅ Complete | 2026-01-21 |
-| 10. Job Post Image Upload | v1.4 | 0/4 | 🔄 Planning | - |
+| 10. Job Post Image Upload | v1.4 | 4/4 | ✅ Complete | 2026-01-22 |
 
-**Total:** 10 phases, 24 plans complete, v1.4 in progress
+**Total:** 10 phases, 28 plans complete
 
 ---
 *Last updated: 2026-01-22*
