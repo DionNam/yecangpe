@@ -13,6 +13,7 @@ interface SearchParams {
   page?: string
   sort?: string
   location_type?: string
+  location_country?: string
 }
 
 interface JobsPageProps {
@@ -25,6 +26,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const page = parseInt(params.page || '1', 10)
   const sortBy = params.sort || 'latest'
   const locationType = params.location_type
+  const locationCountry = params.location_country
   const pageSize = 10
 
   const supabase = await createClient()
@@ -51,6 +53,11 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   // Apply location type filter
   if (locationType && locationType !== 'all') {
     query = query.eq('work_location_type', locationType)
+  }
+
+  // Apply location country filter (only for on_site jobs)
+  if (locationCountry && locationCountry !== 'all') {
+    query = query.eq('work_location_country', locationCountry)
   }
 
   // Apply sorting
@@ -125,6 +132,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
             currentNationality={nationality}
             currentSort={sortBy}
             currentLocationType={locationType}
+            currentLocationCountry={locationCountry}
           />
         </div>
 

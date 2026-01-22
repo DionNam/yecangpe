@@ -71,18 +71,18 @@ export function JobDetail({
 
           {/* Full screen image dialog */}
           <Dialog open={isImageDialogOpen} onOpenChange={setIsImageDialogOpen}>
-            <DialogContent className="max-w-[95vw] max-h-[95vh] w-auto h-auto p-0 border-0 bg-transparent">
+            <DialogContent className="max-w-[98vw] max-h-[98vh] w-auto h-auto p-0 border-0 bg-transparent overflow-hidden">
               <DialogTitle className="sr-only">
                 {job.title} 공고 이미지
               </DialogTitle>
-              <div className="relative w-full h-full flex items-center justify-center">
-                <div className="relative w-full max-w-7xl max-h-[90vh]">
+              <div className="relative w-full h-full flex items-center justify-center min-h-[90vh]">
+                <div className="relative w-full h-full">
                   <Image
                     src={job.image_url}
                     alt={`${job.title} 공고 이미지`}
-                    width={1200}
-                    height={800}
-                    className="object-contain w-full h-full"
+                    width={2400}
+                    height={1600}
+                    className="object-contain w-full h-full max-h-[95vh]"
                     priority
                   />
                 </div>

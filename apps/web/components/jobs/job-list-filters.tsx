@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { NATIONALITIES } from '@repo/lib/constants'
+import { NATIONALITIES, COUNTRIES } from '@repo/lib/constants'
 import {
   Select,
   SelectContent,
@@ -14,12 +14,14 @@ interface JobListFiltersProps {
   currentNationality?: string
   currentSort?: string
   currentLocationType?: string
+  currentLocationCountry?: string
 }
 
 export function JobListFilters({
   currentNationality,
   currentSort,
   currentLocationType,
+  currentLocationCountry,
 }: JobListFiltersProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -48,8 +50,25 @@ export function JobListFilters({
     const params = new URLSearchParams(searchParams.toString())
     if (value === 'all') {
       params.delete('location_type')
+      params.delete('location_country') // Clear country filter when changing location type
     } else {
       params.set('location_type', value)
+      // Clear country filter if not on_site
+      if (value !== 'on_site') {
+        params.delete('location_country')
+      }
+    }
+    // Reset to page 1 when filter changes
+    params.delete('page')
+    router.push(`/jobs?${params.toString()}`)
+  }
+
+  const handleLocationCountryChange = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString())
+    if (value === 'all') {
+      params.delete('location_country')
+    } else {
+      params.set('location_country', value)
     }
     // Reset to page 1 when filter changes
     params.delete('page')
@@ -95,6 +114,29 @@ export function JobListFilters({
           </SelectContent>
         </Select>
       </div>
+
+      {/* Country filter - only show when on_site is selected */}
+      {currentLocationType === 'on_site' && (
+        <div className="flex items-center gap-2">
+          <label className="text-sm font-medium">근무 국가</label>
+          <Select
+            value={currentLocationCountry || 'all'}
+            onValueChange={handleLocationCountryChange}
+          >
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="전체" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="all">전체</SelectItem>
+              {COUNTRIES.map(country => (
+                <SelectItem key={country.code} value={country.code}>
+                  {country.name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+      )}
 
       <div className="flex items-center gap-2">
         <label className="text-sm font-medium">정렬</label>
