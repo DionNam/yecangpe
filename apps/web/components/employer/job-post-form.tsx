@@ -6,6 +6,7 @@ import { useTransition, useState } from 'react'
 import { NATIONALITIES } from '@repo/lib'
 import { jobPostSchema, type JobPostInput } from '@/lib/validations/job-post'
 import { createJobPost } from '@/app/actions/jobs'
+import { getSignedUploadUrl } from '@/app/actions/storage'
 import {
   Form,
   FormControl,
@@ -25,6 +26,7 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { SubmissionDialog } from './submission-dialog'
+import { ImageUpload } from '@/components/ui/image-upload'
 
 interface JobPostFormProps {
   defaultCompanyName: string
@@ -33,6 +35,8 @@ interface JobPostFormProps {
 export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
   const [isPending, startTransition] = useTransition()
   const [showDialog, setShowDialog] = useState(false)
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [isUploading, setIsUploading] = useState(false)
 
   const form = useForm<JobPostInput>({
     resolver: zodResolver(jobPostSchema),
@@ -44,13 +48,53 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
     },
   })
 
+  const handleImageChange = (file: File | null) => {
+    setImageFile(file)
+  }
+
   const onSubmit = (data: JobPostInput) => {
     startTransition(async () => {
+      let imageUrl: string | null = null
+
+      // Upload image if selected
+      if (imageFile) {
+        setIsUploading(true)
+
+        // Use timestamp as folder name for new posts
+        const tempId = `new-${Date.now()}`
+        const uploadResult = await getSignedUploadUrl(tempId, imageFile.name)
+
+        if (uploadResult.error) {
+          form.setError('root', { message: uploadResult.error })
+          setIsUploading(false)
+          return
+        }
+
+        // Upload file directly to storage
+        const uploadResponse = await fetch(uploadResult.signedUrl!, {
+          method: 'PUT',
+          body: imageFile,
+          headers: { 'Content-Type': imageFile.type },
+        })
+
+        if (!uploadResponse.ok) {
+          form.setError('root', { message: '이미지 업로드에 실패했습니다.' })
+          setIsUploading(false)
+          return
+        }
+
+        imageUrl = uploadResult.publicUrl!
+        setIsUploading(false)
+      }
+
       const formData = new FormData()
       formData.append('title', data.title)
       formData.append('content', data.content)
       formData.append('company_name', data.company_name)
       formData.append('target_nationality', data.target_nationality)
+      if (imageUrl) {
+        formData.append('image_url', imageUrl)
+      }
 
       const result = await createJobPost(formData)
 
@@ -168,9 +212,18 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             )}
           />
 
+          {/* Image upload field */}
+          <FormItem>
+            <FormLabel>이미지 (선택사항)</FormLabel>
+            <ImageUpload
+              onImageChange={handleImageChange}
+              disabled={isPending || isUploading}
+            />
+          </FormItem>
+
           {/* Submit button */}
-          <Button type="submit" className="w-full" disabled={isPending}>
-            {isPending ? '등록 중...' : '구인글 등록하기'}
+          <Button type="submit" className="w-full" disabled={isPending || isUploading}>
+            {isUploading ? '이미지 업로드 중...' : isPending ? '등록 중...' : '구인글 등록하기'}
           </Button>
         </form>
       </Form>

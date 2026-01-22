@@ -12,7 +12,6 @@ import {
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { HiringStatusToggle } from './hiring-status-toggle'
 import { PostEditModal } from './post-edit-modal'
 import { getDisplayMetrics } from '@/lib/utils/metrics'
 import type { Database } from '@repo/supabase/types'
@@ -92,6 +91,14 @@ export function MyPostsTable({
     }
   }
 
+  const getHiringStatusBadge = (status: 'hiring' | 'closed') => {
+    return (
+      <Badge variant={status === 'hiring' ? 'default' : 'secondary'}>
+        {status === 'hiring' ? '채용중' : '마감'}
+      </Badge>
+    )
+  }
+
   return (
     <>
       <Table>
@@ -144,11 +151,7 @@ export function MyPostsTable({
               <TableRow key={post.id}>
                 <TableCell>{getReviewStatusBadge(post.review_status)}</TableCell>
                 <TableCell>
-                  <HiringStatusToggle
-                    postId={post.id}
-                    currentStatus={post.hiring_status}
-                    disabled={!isPublished}
-                  />
+                  {getHiringStatusBadge(post.hiring_status)}
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-col gap-1">
@@ -199,7 +202,10 @@ export function MyPostsTable({
           defaultValues={{
             title: editingPost.title,
             content: editingPost.content,
+            hiring_status: editingPost.hiring_status,
+            image_url: editingPost.image_url,
           }}
+          reviewStatus={editingPost.review_status}
         />
       )}
     </>
