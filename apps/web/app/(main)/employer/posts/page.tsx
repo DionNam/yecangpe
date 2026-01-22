@@ -64,19 +64,54 @@ export default async function EmployerPostsPage() {
   }
 
   return (
-    <div className="container pt-4 pb-8">
-      <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold">내 공고 관리</h1>
-        <Button asChild>
-          <Link href="/employer/new-post">구인글 올리기</Link>
-        </Button>
+    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+      {/* Decorative gradient blob */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+      {/* Grain texture overlay */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, rgb(15 23 42) 1px, transparent 1px)`,
+            backgroundSize: '32px 32px',
+          }}
+        />
       </div>
 
-      <MyPostsTable
-        posts={posts}
-        metricsConfig={metricsConfig}
-        likeCounts={likeCounts}
-      />
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-24">
+        {/* Header section with three-tier typography */}
+        <div className="text-center mb-16 space-y-4">
+          <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-3">
+            구인자 대시보드
+          </p>
+          <div className="inline-block relative">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+              내 공고 관리
+            </h1>
+            <div className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/10 -rotate-1 -z-10 rounded-full"></div>
+          </div>
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mt-6">
+            등록한 채용 공고를 관리하고 지원자를 확인하세요
+          </p>
+
+          {/* CTA button centered below description */}
+          <div className="pt-4">
+            <Button asChild size="lg">
+              <Link href="/employer/new-post">구인글 올리기</Link>
+            </Button>
+          </div>
+        </div>
+
+        {/* Table with card wrapper */}
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+          <MyPostsTable
+            posts={posts}
+            metricsConfig={metricsConfig}
+            likeCounts={likeCounts}
+          />
+        </div>
+      </div>
     </div>
   )
 }
