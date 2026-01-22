@@ -7,6 +7,7 @@
 - ✅ **v1.2 User Flow Verification** - Phase 8 (complete 2026-01-21)
 - ✅ **v1.3 UI Polish & Core UX** - Phase 9 (complete 2026-01-21)
 - ✅ **v1.4 Job Post Images** - Phase 10 (complete 2026-01-22)
+- 🔄 **v1.5 Work Location & Country** - Phase 11 (in progress)
 
 ## Phases
 
@@ -148,9 +149,51 @@ Plans:
 - Reusable ImageUpload component with preview
 - Next.js Image component for optimized display
 
+### v1.5 Work Location Type & Country Selection
+
+#### Phase 11: Work Location Type & Country Selection
+
+**Goal**: Employers and admins can specify work location type (remote/hybrid/on-site) and country for on-site positions
+
+**Depends on**: Phase 10
+
+**Success Criteria** (what must be TRUE):
+  1. Employers can select work location type when creating job posts
+  2. Country picker appears only when on-site is selected
+  3. Admins can select work location type when creating job posts
+  4. Job list displays location type badge for each job
+  5. Job detail page shows location type and country (if on-site)
+  6. Seekers can filter jobs by work location type
+  7. On-site jobs without country are rejected by validation
+
+**Plans**: 5 plans
+
+Plans:
+- [ ] 11-01-PLAN.md — Database foundation (migration + types + constants, Wave 1)
+- [ ] 11-02-PLAN.md — Validation schemas (web + admin conditional validation, Wave 2)
+- [ ] 11-03-PLAN.md — Employer forms (new post + edit integration, Wave 3)
+- [ ] 11-04-PLAN.md — Admin forms (create + edit integration, Wave 3 parallel)
+- [ ] 11-05-PLAN.md — Display + filter (job list/detail display + location filter, Wave 4)
+
+**Details:**
+- PostgreSQL ENUM for work_location_type (remote, hybrid, on_site)
+- Nullable work_location_country TEXT field (required only for on_site)
+- COUNTRIES constant in @repo/lib following NATIONALITIES pattern
+- React Hook Form watch() for conditional country picker
+- Zod superRefine for conditional validation
+- Location badge in job list, location info in job detail
+- Location type filter alongside existing nationality filter
+
+**Technical approach:**
+- Database migration creating ENUM and columns
+- Conditional form fields using React Hook Form watch()
+- Validation with Zod superRefine for conditional country requirement
+- Component mirroring between web and admin apps
+- 26 countries with Korean names for work location selection
+
 ## Project Status
 
-**Current State:** v1.4 complete - Job post image upload feature shipped
+**Current State:** v1.5 in progress - Adding work location type and country selection
 
 **Shipped:**
 - v1.0 MVP (Phases 1-6): Full platform with auth, job listings, employer/admin features
@@ -158,6 +201,9 @@ Plans:
 - v1.2 User Flow Verification (Phase 8): Core seeker journey validated, critical onboarding bug fixed
 - v1.3 UI Polish & Core UX (Phase 9): Production-grade editorial design, navigation header, logout functionality
 - v1.4 Job Post Images (Phase 10): Employers and admins can upload images for job posts
+
+**In Progress:**
+- v1.5 Work Location & Country (Phase 11): Remote/hybrid/on-site selection with country picker
 
 **Known Tech Debt:**
 - Job list missing real like counts (displays fake metrics only)
@@ -191,8 +237,9 @@ Plans:
 | 8. User Flow Verification | v1.2 | 1/1 | ✅ Complete | 2026-01-21 |
 | 9. UI Polish & Core UX | v1.3 | 3/3 | ✅ Complete | 2026-01-21 |
 | 10. Job Post Image Upload | v1.4 | 4/4 | ✅ Complete | 2026-01-22 |
+| 11. Work Location & Country | v1.5 | 5 | 🔄 Planning | — |
 
-**Total:** 10 phases, 28 plans complete
+**Total:** 11 phases, 28 plans complete, 5 plans pending
 
 ---
-*Last updated: 2026-01-22*
+*Last updated: 2026-01-23 (Phase 11 planned)*
