@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
+import Image from 'next/image'
 import { JobDetailHeader } from './job-detail-header'
 import { LikeButton } from './like-button'
 import type { Database } from '@repo/supabase/types'
@@ -35,6 +34,19 @@ export function JobDetail({
         displayViews={displayViews}
         displayLikes={displayLikes}
       />
+
+      {/* Job image (if exists) */}
+      {job.image_url && (
+        <div className="relative w-full aspect-video overflow-hidden">
+          <Image
+            src={job.image_url}
+            alt={`${job.title} 공고 이미지`}
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
 
       {/* Main content */}
       <div className="p-8 md:p-12 space-y-8">

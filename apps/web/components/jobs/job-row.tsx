@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 import { TableCell, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { LoginModal } from './login-modal'
@@ -61,20 +62,35 @@ export function JobRow({
           {formatDate(job.published_at)}
         </TableCell>
         <TableCell className="py-8 px-6">
-          <div className="space-y-1">
-            <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
-              {job.title}
-            </h3>
-            <p className="text-sm text-slate-600">
-              {job.company_name}
-            </p>
+          <div className="flex gap-4">
+            {/* Thumbnail */}
+            {job.image_url && (
+              <div className="relative w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden bg-slate-100">
+                <Image
+                  src={job.image_url}
+                  alt=""
+                  fill
+                  className="object-cover"
+                  sizes="64px"
+                />
+              </div>
+            )}
+
+            {/* Title and company info */}
+            <div className="space-y-1 min-w-0 flex-1">
+              <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
+                {job.title}
+              </h3>
+              <p className="text-sm text-slate-600">
+                {job.company_name}
+              </p>
+              <Badge
+                variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
+              >
+                {job.hiring_status === 'hiring' ? '채용중' : '마감'}
+              </Badge>
+            </div>
           </div>
-          <Badge
-            variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
-            className="mt-2"
-          >
-            {job.hiring_status === 'hiring' ? '채용중' : '마감'}
-          </Badge>
         </TableCell>
         <TableCell className="text-right py-8 px-6">
           <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
