@@ -1,44 +1,32 @@
-import Link from 'next/link'
+'use client'
 
 export function Footer() {
-  const currentYear = new Date().getFullYear()
-
   return (
-    <footer className="bg-muted border-t">
-      <div className="container mx-auto px-4 py-8 md:py-12">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-          {/* Logo/Service Name */}
-          <div className="text-center md:text-left">
-            <div className="font-bold text-lg mb-1">PotenHire</div>
-            <div className="text-sm text-muted-foreground">
-              &copy; {currentYear} PotenHire. All rights reserved.
+    <footer className="bg-slate-900 text-slate-400 py-12">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center border border-slate-700">
+              <span className="text-lg font-bold text-white italic">P</span>
             </div>
+            <span className="text-xl font-bold text-white">PotenHire</span>
           </div>
 
-          {/* Links */}
-          <nav className="flex items-center gap-6">
-            <Link
-              href="/terms"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
+          <div className="flex flex-wrap justify-center gap-6 text-xs">
+            <a href="#" className="hover:text-white transition-colors">
               이용약관
-            </Link>
-            <Link
-              href="/privacy"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
               개인정보처리방침
-            </Link>
-            {/* TODO: Replace with actual KakaoTalk Open Chat URL */}
-            <a
-              href="https://open.kakao.com/placeholder"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
+            </a>
+            <a href="#" className="hover:text-white transition-colors">
               문의하기
             </a>
-          </nav>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-slate-800 text-center text-xs">
+          <p>© 2026 PotenHire. All rights reserved.</p>
         </div>
       </div>
     </footer>
