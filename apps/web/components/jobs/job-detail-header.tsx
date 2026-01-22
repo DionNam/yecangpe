@@ -29,30 +29,30 @@ export function JobDetailHeader({
   const nationalityName = nationalityInfo?.name || nationality
 
   return (
-    <div className="relative space-y-6 p-8 md:p-12 pb-8 border-b border-border/50">
-      {/* Title with decorative element */}
-      <div className="space-y-4 relative decorative-line fade-in-up">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-display leading-tight">
+    <div className="relative space-y-6 p-8 md:p-12 pb-8 border-b border-slate-200">
+      {/* Title */}
+      <div className="space-y-4 relative">
+        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
           {title}
         </h1>
 
-        {/* Company name with visual distinction */}
-        <div className="flex items-center gap-3 fade-in-up delay-100">
-          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-            <Building2 className="w-6 h-6 text-primary" />
+        {/* Company name */}
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center">
+            <Building2 className="w-6 h-6 text-slate-900" />
           </div>
           <div>
-            <p className="text-lg font-medium text-foreground">
+            <p className="text-lg font-medium text-gray-900">
               {companyName}
             </p>
           </div>
         </div>
 
         {/* Badges and metadata */}
-        <div className="flex flex-wrap items-center gap-3 fade-in-up delay-200">
+        <div className="flex flex-wrap items-center gap-3">
           <Badge
             variant={hiringStatus === 'hiring' ? 'default' : 'secondary'}
-            className={`text-sm px-4 py-1.5 ${hiringStatus === 'hiring' ? 'animate-pulse-subtle' : ''}`}
+            className="text-sm px-4 py-1.5"
           >
             {hiringStatus === 'hiring' ? '채용중' : '마감'}
           </Badge>
@@ -62,7 +62,7 @@ export function JobDetailHeader({
           </Badge>
 
           {/* Metrics with icons */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground ml-auto">
+          <div className="flex items-center gap-4 text-sm text-slate-600 ml-auto">
             <span className="flex items-center gap-1.5">
               <Eye className="w-4 h-4" />
               {displayViews.toLocaleString()}

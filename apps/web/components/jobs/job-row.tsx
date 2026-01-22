@@ -51,41 +51,38 @@ export function JobRow({
         onClick={handleClick}
         className="
           cursor-pointer
-          border-b border-border/30 last:border-0
-          hover:bg-primary/5
+          border-b border-slate-200 last:border-0
+          hover:bg-slate-50
           transition-all duration-200
           group
-          card-hover
-          fade-in-up
         "
-        style={{ animationDelay: `${animationDelay}ms` }}
       >
         <TableCell className="font-medium text-sm">
           {formatDate(job.published_at)}
         </TableCell>
         <TableCell>
           <div className="space-y-1">
-            <h3 className="font-semibold text-base group-hover:text-primary transition-colors duration-200">
+            <h3 className="font-semibold text-base group-hover:text-slate-900 transition-colors duration-200">
               {job.title}
             </h3>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-slate-600">
               {job.company_name}
             </p>
           </div>
           <Badge
             variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
-            className={`mt-2 ${job.hiring_status === 'hiring' ? 'animate-pulse-subtle' : ''}`}
+            className="mt-2"
           >
             {job.hiring_status === 'hiring' ? '채용중' : '마감'}
           </Badge>
         </TableCell>
         <TableCell className="text-right">
-          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayViews.toLocaleString()}
           </span>
         </TableCell>
         <TableCell className="text-right">
-          <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
             {displayLikes.toLocaleString()}
           </span>
         </TableCell>

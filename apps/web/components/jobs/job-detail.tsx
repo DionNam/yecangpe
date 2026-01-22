@@ -23,16 +23,7 @@ export function JobDetail({
 }: JobDetailProps) {
   return (
     <div>
-      {/* Back navigation with style */}
-      <div className="p-8 md:p-12 pb-0">
-        <Link
-          href="/jobs"
-          className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors group"
-        >
-          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          <span>채용 공고로 돌아가기</span>
-        </Link>
-      </div>
+
 
       {/* Header with metadata */}
       <JobDetailHeader
@@ -46,14 +37,14 @@ export function JobDetail({
       />
 
       {/* Main content */}
-      <div className="p-8 md:p-12 space-y-8 fade-in-up delay-400">
+      <div className="p-8 md:p-12 space-y-8">
         {/* Job description section */}
         <section className="space-y-4">
-          <h2 className="text-2xl font-bold relative accent-line-bold pt-4">
+          <h2 className="text-2xl font-bold text-gray-900">
             공고 내용
           </h2>
           <div className="prose prose-slate max-w-none">
-            <p className="text-base leading-relaxed text-foreground/90 whitespace-pre-wrap">
+            <p className="text-base leading-relaxed text-slate-700 whitespace-pre-wrap">
               {job.content}
             </p>
           </div>
@@ -61,12 +52,12 @@ export function JobDetail({
 
         {/* Requirements section if exists */}
         {job.requirements && (
-          <section className="space-y-4 pt-8 border-t border-border/50 fade-in-up delay-500">
-            <h2 className="text-2xl font-bold relative accent-line-bold pt-4">
+          <section className="space-y-4 pt-8 border-t border-slate-200">
+            <h2 className="text-2xl font-bold text-gray-900">
               자격 요건
             </h2>
             <div className="prose prose-slate max-w-none">
-              <p className="text-base leading-relaxed text-foreground/90 whitespace-pre-wrap">
+              <p className="text-base leading-relaxed text-slate-700 whitespace-pre-wrap">
                 {job.requirements}
               </p>
             </div>
@@ -74,21 +65,21 @@ export function JobDetail({
         )}
 
         {/* Application info section */}
-        <section className="space-y-4 pt-8 border-t border-border/50 fade-in-up delay-600">
-          <h2 className="text-2xl font-bold relative accent-line-bold pt-4">
+        <section className="space-y-4 pt-8 border-t border-slate-200">
+          <h2 className="text-2xl font-bold text-gray-900">
             지원 방법
           </h2>
-          <div className="bg-muted/50 rounded-xl p-6 space-y-3">
-            <p className="text-sm text-muted-foreground">
+          <div className="bg-slate-50 rounded-xl p-6 space-y-3 border border-slate-200">
+            <p className="text-sm text-slate-600">
               이 공고에 관심이 있으시면 하트 버튼을 눌러주세요.
               구인자가 관심 표시를 확인하고 연락 드릴 예정입니다.
             </p>
             {job.contact_info && (
               <div className="flex items-start gap-2 text-sm">
-                <Mail className="w-4 h-4 mt-0.5 text-primary" />
+                <Mail className="w-4 h-4 mt-0.5 text-slate-900" />
                 <div>
-                  <p className="font-medium text-foreground">문의 연락처</p>
-                  <p className="text-muted-foreground">{job.contact_info}</p>
+                  <p className="font-medium text-gray-900">문의 연락처</p>
+                  <p className="text-slate-600">{job.contact_info}</p>
                 </div>
               </div>
             )}
@@ -97,17 +88,18 @@ export function JobDetail({
 
         {/* Like button with prominent placement */}
         {canLike && (
-          <div className="fade-in-up delay-300 flex justify-center pt-4">
+          <div className="flex justify-center pt-4">
             <LikeButton
               postId={job.id}
-              initialIsLiked={isLiked}
-              className="w-full sm:w-auto"
+              initialLiked={isLiked}
+              initialCount={displayLikes}
+              canLike={canLike}
             />
           </div>
         )}
 
         {/* Published date footer */}
-        <div className="pt-8 border-t border-border/50 text-sm text-muted-foreground text-center fade-in-up delay-700">
+        <div className="pt-8 border-t border-slate-200 text-sm text-slate-600 text-center">
           게시일: {new Date(job.published_at || job.created_at).toLocaleDateString('ko-KR')}
         </div>
       </div>
