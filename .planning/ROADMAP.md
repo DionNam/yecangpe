@@ -6,6 +6,7 @@
 - ✅ **v1.1 UAT Test Case Design** - Phase 7 (complete 2026-01-21)
 - ✅ **v1.2 User Flow Verification** - Phase 8 (complete 2026-01-21)
 - ✅ **v1.3 UI Polish & Core UX** - Phase 9 (complete 2026-01-21)
+- 🔄 **v1.4 Job Post Images** - Phase 10 (in progress)
 
 ## Phases
 
@@ -116,6 +117,37 @@ Plans:
 - Orchestrated animations and sophisticated micro-interactions
 - GAP-09-01 RESOLVED: All 5 design quality criteria met (Typography, Spacing, Visual Details, Animations, Overall Aesthetic)
 
+### 🔄 v1.4 Job Post Images (In Progress)
+
+#### Phase 10: Job Post Image Upload
+
+**Goal**: Employers and admins can attach up to 1 image to job posts, with edit and display capabilities
+
+**Depends on**: Phase 9
+
+**Success Criteria** (what must be TRUE):
+  1. Employers can upload 1 image when creating a new job post
+  2. Employers can add/change/remove image when editing existing posts
+  3. Admins can upload 1 image when creating job posts directly
+  4. Admins can add/change/remove image when editing any job post
+  5. Job detail page displays the uploaded image
+  6. Job list page shows thumbnail if image exists
+  7. Images stored in Supabase Storage with proper RLS policies
+
+**Plans**: 4 plans in 3 waves
+
+Plans:
+- [ ] 10-01-PLAN.md — Database migration + storage bucket + Next.js config (Wave 1)
+- [ ] 10-02-PLAN.md — Image upload component + storage server actions (Wave 2)
+- [ ] 10-03-PLAN.md — Web employer forms + job display integration (Wave 3)
+- [ ] 10-04-PLAN.md — Admin forms integration (Wave 3, parallel with 10-03)
+
+**Technical approach:**
+- Signed upload URLs to bypass Next.js 1MB server action body limit
+- Supabase Storage bucket with RLS policies
+- Reusable ImageUpload component with preview
+- Next.js Image component for optimized display
+
 ## Project Status
 
 **Current State:** v1.3 complete - Production-grade UI with editorial design, navigation, and logout
@@ -154,8 +186,9 @@ Plans:
 | 7. UAT Test Case Design | v1.1 | 2/2 | ✅ Complete | 2026-01-20 |
 | 8. User Flow Verification | v1.2 | 1/1 | ✅ Complete | 2026-01-21 |
 | 9. UI Polish & Core UX | v1.3 | 3/3 | ✅ Complete | 2026-01-21 |
+| 10. Job Post Image Upload | v1.4 | 0/4 | 🔄 Planning | - |
 
-**Total:** 9 phases, 24 plans complete, v1.3 shipped
+**Total:** 10 phases, 24 plans complete, v1.4 in progress
 
 ---
-*Last updated: 2026-01-21*
+*Last updated: 2026-01-22*
