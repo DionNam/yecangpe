@@ -15,9 +15,10 @@ import { User } from '@supabase/supabase-js'
 
 interface UserMenuProps {
   user: User
+  role: 'seeker' | 'employer' | 'admin' | null
 }
 
-export function UserMenu({ user }: UserMenuProps) {
+export function UserMenu({ user, role }: UserMenuProps) {
   const initials = user.email?.charAt(0).toUpperCase() || 'U'
 
   return (
@@ -40,10 +41,22 @@ export function UserMenu({ user }: UserMenuProps) {
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
-        <DropdownMenuItem asChild>
-          <Link href="/seeker/mypage">프로필</Link>
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
+
+        {/* Show dashboard link for employer, hide profile for seeker */}
+        {role === 'employer' && (
+          <DropdownMenuItem asChild>
+            <Link href="/employer/posts">구인자 대시보드</Link>
+          </DropdownMenuItem>
+        )}
+
+        {role === 'admin' && (
+          <DropdownMenuItem asChild>
+            <Link href="/admin">관리자 대시보드</Link>
+          </DropdownMenuItem>
+        )}
+
+        {(role === 'employer' || role === 'admin') && <DropdownMenuSeparator />}
+
         <DropdownMenuItem asChild>
           <form action="/auth/signout" method="POST" className="w-full">
             <button type="submit" className="w-full text-left text-destructive">

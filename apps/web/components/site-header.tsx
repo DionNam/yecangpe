@@ -9,9 +9,10 @@ import { UserMenu } from '@/components/layout/user-menu'
 
 interface SiteHeaderProps {
   user: User | null
+  role: 'seeker' | 'employer' | 'admin' | null
 }
 
-export function SiteHeader({ user }: SiteHeaderProps) {
+export function SiteHeader({ user, role }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   return (
@@ -42,7 +43,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
             </Link>
             
             {user ? (
-               <UserMenu user={user} />
+               <UserMenu user={user} role={role} />
             ) : (
                <Link href="/login" className="px-5 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium">
                  로그인
@@ -51,7 +52,7 @@ export function SiteHeader({ user }: SiteHeaderProps) {
           </nav>
 
           <div className="flex items-center gap-4 md:hidden">
-             {user && <UserMenu user={user} />}
+             {user && <UserMenu user={user} role={role} />}
              <button 
                 className="p-2"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
