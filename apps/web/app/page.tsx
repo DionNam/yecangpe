@@ -12,7 +12,22 @@ export const metadata: Metadata = {
   title: 'PotenHire - 한국어 가능한 외국인 채용 플랫폼',
   description:
     '한국어를 구사하고 한국 문화를 이해하는 외국인 인재와 신뢰할 수 있는 채용 공고를 연결합니다. 국적에 맞는 공고를 찾고, 한국어로 소통하며, 검증된 공고만 게시되는 안전한 플랫폼입니다.',
+  keywords: ['외국인 채용', '한국어 가능', '글로벌 인재', '구인구직', '외국인 인재'],
+  openGraph: {
+    title: 'PotenHire - 한국어 가능한 외국인 채용 플랫폼',
+    description: '한국어를 구사하는 외국인 인재와 검증된 채용 공고를 연결하는 신뢰할 수 있는 플랫폼',
+    type: 'website',
+    locale: 'ko_KR',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'PotenHire - 한국어 가능한 외국인 채용 플랫폼',
+    description: '한국어를 구사하는 외국인 인재와 검증된 채용 공고를 연결하는 신뢰할 수 있는 플랫폼',
+  },
 }
+
+// Add ISR revalidation - revalidate every hour
+export const revalidate = 3600
 
 export default async function Home() {
   const supabase = await createClient()
@@ -54,8 +69,39 @@ export default async function Home() {
   const employerOffset = Number(employerOffsetConfig?.value || 0)
   const totalEmployerCount = (actualEmployerCount || 0) + employerOffset
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://potenhire.com'
+
+  const organizationSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'PotenHire',
+    url: baseUrl,
+    description: '한국어 가능한 외국인을 위한 구인구직 플랫폼',
+    logo: `${baseUrl}/logo.png`,
+  }
+
+  const webSiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'PotenHire',
+    url: baseUrl,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${baseUrl}/jobs?search={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  }
+
   return (
     <main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+      />
       <HeroSection memberCount={totalMemberCount} />
       <WhyEmployersSection talentCount={totalMemberCount} />
       <WhyTalentSection employerCount={totalEmployerCount} />

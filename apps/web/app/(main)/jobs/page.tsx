@@ -1,3 +1,4 @@
+import { Metadata } from 'next'
 import { createClient } from '@repo/supabase/server'
 import { JobListTable } from '@/components/jobs/job-list-table'
 import { JobListFilters } from '@/components/jobs/job-list-filters'
@@ -18,6 +19,38 @@ interface SearchParams {
 
 interface JobsPageProps {
   searchParams: Promise<SearchParams>
+}
+
+// Add ISR revalidation - revalidate every 5 minutes
+export const revalidate = 300
+
+export async function generateMetadata(): Promise<Metadata> {
+  const supabase = await createClient()
+
+  // Get job count for dynamic description
+  const { count } = await supabase
+    .from('job_posts')
+    .select('*', { count: 'exact', head: true })
+    .eq('review_status', 'published')
+    .eq('hiring_status', 'hiring')
+
+  const title = '한국어 가능한 외국인 채용 공고 | PotenHire'
+  const description = `${count || '수많은'}개의 검증된 외국인 채용 공고를 확인하세요. 한국어를 구사하는 글로벌 인재를 위한 신뢰할 수 있는 구인구직 플랫폼입니다.`
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+    },
+  }
 }
 
 export default async function JobsPage({ searchParams }: JobsPageProps) {
@@ -106,8 +139,33 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
   const totalPages = count ? Math.ceil(count / pageSize) : 0
 
+  // Create ItemList structured data for SEO
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://potenhire.com'
+  const itemListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: posts?.map((job, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'JobPosting',
+        name: job.title,
+        hiringOrganization: {
+          '@type': 'Organization',
+          name: job.company_name,
+        },
+        datePosted: job.created_at,
+        employmentType: job.employment_type?.toUpperCase(),
+      },
+    })) || [],
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListSchema) }}
+      />
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
       

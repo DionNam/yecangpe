@@ -50,17 +50,28 @@ export default async function EmployerPostsPage() {
     curve_strength: 2.0,
   }
 
-  // Fetch like counts for each post
+  // Fetch like counts for all posts in a single query
   const likeCounts: Record<string, number> = {}
   if (posts.length > 0) {
     const postIds = posts.map(p => p.id)
-    for (const postId of postIds) {
-      const { count } = await (supabase as any)
-        .from('likes')
-        .select('*', { count: 'exact', head: true })
-        .eq('post_id', postId)
-      likeCounts[postId] = count || 0
+    const { data: likesData } = await (supabase as any)
+      .from('likes')
+      .select('post_id')
+      .in('post_id', postIds)
+
+    // Count likes per post
+    if (likesData) {
+      likesData.forEach((like: { post_id: string }) => {
+        likeCounts[like.post_id] = (likeCounts[like.post_id] || 0) + 1
+      })
     }
+
+    // Initialize counts to 0 for posts with no likes
+    postIds.forEach(postId => {
+      if (!likeCounts[postId]) {
+        likeCounts[postId] = 0
+      }
+    })
   }
 
   return (
