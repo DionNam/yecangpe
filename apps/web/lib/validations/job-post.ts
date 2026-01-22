@@ -1,8 +1,9 @@
 import { z } from 'zod'
-import { NATIONALITIES } from '@repo/lib'
+import { NATIONALITIES, COUNTRIES } from '@repo/lib'
 
 // Extract nationality codes for validation (include 'ANY' for job posts)
 const nationalityCodes = NATIONALITIES.map(n => n.code) as [string, ...string[]]
+const countryCodes = COUNTRIES.map(c => c.code) as [string, ...string[]]
 
 export const jobPostSchema = z.object({
   title: z
@@ -20,7 +21,25 @@ export const jobPostSchema = z.object({
   target_nationality: z.enum(nationalityCodes, {
     message: '대상 국적을 선택해주세요',
   }),
+  work_location_type: z.enum(['remote', 'hybrid', 'on_site'], {
+    message: '근무 형태를 선택해주세요',
+  }),
+  work_location_country: z.enum(countryCodes).optional(),
   image_url: z.string().url().nullable().optional(),
+}).superRefine((data, ctx) => {
+  // Country required only for on_site
+  if (data.work_location_type === 'on_site' && !data.work_location_country) {
+    ctx.addIssue({
+      code: z.ZodIssueCode.custom,
+      message: '대면 근무의 경우 근무 국가를 선택해주세요',
+      path: ['work_location_country'],
+    })
+  }
+
+  // Clear country for remote/hybrid
+  if (data.work_location_type !== 'on_site') {
+    data.work_location_country = undefined
+  }
 })
 
 export const jobPostUpdateSchema = z.object({
@@ -35,6 +54,10 @@ export const jobPostUpdateSchema = z.object({
   hiring_status: z.enum(['hiring', 'closed'], {
     message: '채용 상태를 선택해주세요',
   }),
+  work_location_type: z.enum(['remote', 'hybrid', 'on_site'], {
+    message: '근무 형태를 선택해주세요',
+  }),
+  work_location_country: z.enum(countryCodes).optional(),
   image_url: z.string().url().nullable().optional(),
 })
 
