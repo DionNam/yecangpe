@@ -69,6 +69,7 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
               content: post.content,
               company_name: post.company_name,
               target_nationality: post.target_nationality,
+              image_url: post.image_url,
             }}
           />
         </CardContent>

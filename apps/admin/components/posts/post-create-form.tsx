@@ -1,11 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { postCreateSchema, type PostCreateInput } from '@/lib/validations/post'
 import { createAdminPost } from '@/app/actions/posts'
+import { getSignedUploadUrl } from '@/app/actions/storage'
 import { NATIONALITIES } from '@repo/lib'
 import {
   Form,
@@ -25,10 +27,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { ImageUpload } from '@/components/ui/image-upload'
 
 export function PostCreateForm() {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
+
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
+  const [isUploading, setIsUploading] = useState(false)
 
   const form = useForm<PostCreateInput>({
     resolver: zodResolver(postCreateSchema),
@@ -41,8 +48,43 @@ export function PostCreateForm() {
     },
   })
 
+  const handleImageChange = (file: File | null, previewUrl: string | null) => {
+    setImageFile(file)
+    setImagePreview(previewUrl)
+  }
+
   const onSubmit = (data: PostCreateInput) => {
     startTransition(async () => {
+      let imageUrl: string | null = null
+
+      // Upload image if selected
+      if (imageFile) {
+        setIsUploading(true)
+        const tempId = `admin-${Date.now()}`
+        const uploadResult = await getSignedUploadUrl(tempId, imageFile.name)
+
+        if (uploadResult.error) {
+          alert(uploadResult.error)
+          setIsUploading(false)
+          return
+        }
+
+        const uploadResponse = await fetch(uploadResult.signedUrl!, {
+          method: 'PUT',
+          body: imageFile,
+          headers: { 'Content-Type': imageFile.type },
+        })
+
+        if (!uploadResponse.ok) {
+          alert('이미지 업로드에 실패했습니다.')
+          setIsUploading(false)
+          return
+        }
+
+        imageUrl = uploadResult.publicUrl!
+        setIsUploading(false)
+      }
+
       const formData = new FormData()
       formData.append('title', data.title)
       formData.append('content', data.content)
@@ -50,6 +92,9 @@ export function PostCreateForm() {
       formData.append('target_nationality', data.target_nationality)
       if (data.created_at) {
         formData.append('created_at', data.created_at)
+      }
+      if (imageUrl) {
+        formData.append('image_url', imageUrl)
       }
 
       const result = await createAdminPost(formData)
@@ -159,8 +204,16 @@ export function PostCreateForm() {
           )}
         />
 
-        <Button type="submit" disabled={isPending}>
-          {isPending ? '등록 중...' : '등록'}
+        <FormItem>
+          <FormLabel>이미지 (선택사항)</FormLabel>
+          <ImageUpload
+            onImageChange={handleImageChange}
+            disabled={isPending || isUploading}
+          />
+        </FormItem>
+
+        <Button type="submit" disabled={isPending || isUploading}>
+          {isUploading ? '이미지 업로드 중...' : isPending ? '등록 중...' : '등록'}
         </Button>
       </form>
     </Form>

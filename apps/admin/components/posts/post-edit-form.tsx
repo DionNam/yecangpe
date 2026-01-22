@@ -1,11 +1,13 @@
 'use client'
 
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { useRouter } from 'next/navigation'
 import { postEditSchema, type PostEditInput } from '@/lib/validations/post'
 import { updatePost } from '@/app/actions/posts'
+import { getSignedUploadUrl } from '@/app/actions/storage'
 import { NATIONALITIES } from '@repo/lib'
 import {
   Form,
@@ -25,28 +27,84 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { ImageUpload } from '@/components/ui/image-upload'
 
 interface PostEditFormProps {
   postId: string
-  defaultValues: PostEditInput
+  defaultValues: PostEditInput & { image_url?: string | null }
 }
 
 export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
   const [isPending, startTransition] = useTransition()
   const router = useRouter()
 
+  const [imageFile, setImageFile] = useState<File | null>(null)
+  const [imagePreview, setImagePreview] = useState<string | null>(
+    defaultValues.image_url || null
+  )
+  const [isUploading, setIsUploading] = useState(false)
+  const [imageRemoved, setImageRemoved] = useState(false)
+
   const form = useForm<PostEditInput>({
     resolver: zodResolver(postEditSchema),
     defaultValues,
   })
 
+  const handleImageChange = (file: File | null, previewUrl: string | null) => {
+    setImageFile(file)
+    setImagePreview(previewUrl)
+    setImageRemoved(false)
+  }
+
+  const handleImageRemove = () => {
+    setImageFile(null)
+    setImagePreview(null)
+    setImageRemoved(true)
+  }
+
   const onSubmit = (data: PostEditInput) => {
     startTransition(async () => {
+      let imageUrl: string | null | undefined = undefined
+
+      // Handle new image upload
+      if (imageFile) {
+        setIsUploading(true)
+        const uploadResult = await getSignedUploadUrl(postId, imageFile.name)
+
+        if (uploadResult.error) {
+          alert(uploadResult.error)
+          setIsUploading(false)
+          return
+        }
+
+        const uploadResponse = await fetch(uploadResult.signedUrl!, {
+          method: 'PUT',
+          body: imageFile,
+          headers: { 'Content-Type': imageFile.type },
+        })
+
+        if (!uploadResponse.ok) {
+          alert('이미지 업로드에 실패했습니다.')
+          setIsUploading(false)
+          return
+        }
+
+        imageUrl = uploadResult.publicUrl!
+        setIsUploading(false)
+      } else if (imageRemoved) {
+        // Image was explicitly removed
+        imageUrl = '' // Will be converted to null by server action
+      }
+      // If neither, imageUrl stays undefined and won't be sent
+
       const formData = new FormData()
       formData.append('title', data.title)
       formData.append('content', data.content)
       formData.append('company_name', data.company_name)
       formData.append('target_nationality', data.target_nationality)
+      if (imageUrl !== undefined) {
+        formData.append('image_url', imageUrl)
+      }
 
       const result = await updatePost(postId, formData)
 
@@ -141,8 +199,18 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
           )}
         />
 
-        <Button type="submit" disabled={isPending}>
-          {isPending ? '저장 중...' : '저장'}
+        <FormItem>
+          <FormLabel>이미지 (선택사항)</FormLabel>
+          <ImageUpload
+            currentImageUrl={imagePreview}
+            onImageChange={handleImageChange}
+            onImageRemove={handleImageRemove}
+            disabled={isPending || isUploading}
+          />
+        </FormItem>
+
+        <Button type="submit" disabled={isPending || isUploading}>
+          {isUploading ? '이미지 업로드 중...' : isPending ? '저장 중...' : '저장'}
         </Button>
       </form>
     </Form>
