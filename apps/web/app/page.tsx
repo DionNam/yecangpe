@@ -26,9 +26,23 @@ export default async function Home() {
     .order('published_at', { ascending: false })
     .limit(6)
 
+  // Get member count with offset
+  const { count: actualMemberCount } = await supabase
+    .from('users')
+    .select('*', { count: 'exact', head: true })
+
+  const { data: offsetConfig } = await (supabase as any)
+    .from('site_config')
+    .select('value')
+    .eq('key', 'member_count_offset')
+    .single()
+
+  const offset = Number(offsetConfig?.value || 0)
+  const totalMemberCount = (actualMemberCount || 0) + offset
+
   return (
     <main>
-      <HeroSection />
+      <HeroSection memberCount={totalMemberCount} />
       <WhyEmployersSection />
       <WhyTalentSection />
       <HowItWorksSection />

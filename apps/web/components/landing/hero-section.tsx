@@ -1,11 +1,15 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Users } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export function HeroSection() {
+interface HeroSectionProps {
+  memberCount: number
+}
+
+export function HeroSection({ memberCount }: HeroSectionProps) {
   return (
     <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 pt-20 pb-10">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
@@ -71,19 +75,31 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-6 text-xs text-gray-600"
+              className="space-y-4"
             >
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                <span>관리자 승인형 공고</span>
+              {/* Member count badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full">
+                <Users className="w-4 h-4 text-slate-700" />
+                <span className="text-sm font-semibold text-slate-900">
+                  {memberCount.toLocaleString()}명
+                </span>
+                <span className="text-xs text-slate-600">의 멤버</span>
               </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                <span>국적별 맞춤 검색</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                <span>한국어 소통 가능</span>
+
+              {/* Features */}
+              <div className="flex flex-wrap items-center gap-6 text-xs text-gray-600">
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                  <span>관리자 승인형 공고</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                  <span>국적별 맞춤 검색</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                  <span>한국어 소통 가능</span>
+                </div>
               </div>
             </motion.div>
           </div>

@@ -48,3 +48,50 @@ export async function updateMetricsConfig(formData: FormData) {
   revalidatePath('/settings')
   return { success: true }
 }
+
+export async function updateSiteConfig(formData: FormData) {
+  const supabase = await createClient()
+
+  // Verify admin (defense in depth)
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) return { error: { _form: ['로그인이 필요합니다'] } }
+
+  const { data: profile } = await (supabase as any)
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if (profile?.role !== 'admin') {
+    return { error: { _form: ['관리자 권한이 필요합니다'] } }
+  }
+
+  const memberCountOffset = formData.get('member_count_offset')
+  if (!memberCountOffset) {
+    return { error: { _form: ['멤버 수 오프셋을 입력해주세요'] } }
+  }
+
+  // Validate number
+  const offsetValue = Number(memberCountOffset)
+  if (isNaN(offsetValue) || offsetValue < 0) {
+    return { error: { _form: ['0 이상의 숫자를 입력해주세요'] } }
+  }
+
+  // Update site config
+  const { error } = await (supabase as any)
+    .from('site_config')
+    .update({
+      value: String(offsetValue),
+      updated_at: new Date().toISOString(),
+    })
+    .eq('key', 'member_count_offset')
+
+  if (error) {
+    console.error('Site config update error:', error)
+    return { error: { _form: ['설정 저장에 실패했습니다'] } }
+  }
+
+  revalidatePath('/settings')
+  revalidatePath('/', 'page') // Revalidate landing page
+  return { success: true }
+}
