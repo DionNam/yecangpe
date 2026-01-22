@@ -11,17 +11,17 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 10 of 10 (Job Post Images)
-Plan: 1 of 4 complete
+Plan: 2 of 4 complete
 Status: In progress
-Last activity: 2026-01-22 — Completed 10-01-PLAN.md (Database Schema and Storage Infrastructure)
+Last activity: 2026-01-22 — Completed 10-02-PLAN.md (Upload Infrastructure)
 
-Progress: [█████████████░░░] 89% (25/28 plans complete)
+Progress: [██████████████░░] 93% (26/28 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 25 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 1)
-- Average duration: 4.7min
+- Total plans completed: 26 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 2)
+- Average duration: 4.6min
 - Total execution time: 2.0 hours
 
 **By Phase:**
@@ -37,7 +37,7 @@ Progress: [█████████████░░░] 89% (25/28 plans co
 | 07-uat-test-case-design | 2 | 15min | 7.5min |
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
-| 10-job-post-images | 1 | 2min | 2min |
+| 10-job-post-images | 2 | 5min | 2.5min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -87,6 +87,9 @@ Recent decisions affecting v1.1 work:
 - **10-01**: Public bucket for job images - allows anonymous viewing without signed URLs
 - **10-01**: Wildcard hostname pattern (*.supabase.co) for flexibility across environments
 - **10-01**: Storage RLS policies use existing is_employer() and is_admin() helper functions
+- **10-02**: Signed URL upload pattern for bypassing server action 1MB body limit
+- **10-02**: ImageUpload component uses controlled pattern with onImageChange callback
+- **10-02**: 5MB max file size, JPG/PNG/WebP formats for image validation
 
 ### Roadmap Evolution
 
@@ -119,7 +122,7 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-01-22
-Stopped at: Completed 10-01-PLAN.md (Database Schema and Storage Infrastructure)
+Stopped at: Completed 10-02-PLAN.md (Upload Infrastructure)
 Resume file: None
 
 ---
