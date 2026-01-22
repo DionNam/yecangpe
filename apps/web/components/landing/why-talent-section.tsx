@@ -20,7 +20,11 @@ const benefits = [
   },
 ]
 
-export function WhyTalentSection() {
+interface WhyTalentSectionProps {
+  memberCount: number
+}
+
+export function WhyTalentSection({ memberCount }: WhyTalentSectionProps) {
   return (
     <section className="py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -37,6 +41,13 @@ export function WhyTalentSection() {
             <br />
             일자리를 쉽게 찾으세요
           </h2>
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <span className="text-lg text-gray-600">현재</span>
+            <span className="text-4xl md:text-5xl font-bold text-slate-900">
+              {memberCount.toLocaleString()}명
+            </span>
+            <span className="text-lg text-gray-600">의 외국인 인재가 활동 중</span>
+          </div>
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
             PotenHire는 외국인 구직자에게 신뢰할 수 있는 채용 정보를 제공합니다
           </p>

@@ -40,11 +40,25 @@ export default async function Home() {
   const offset = Number(offsetConfig?.value || 0)
   const totalMemberCount = (actualMemberCount || 0) + offset
 
+  // Get employer count with offset
+  const { count: actualEmployerCount } = await supabase
+    .from('employer_profiles')
+    .select('*', { count: 'exact', head: true })
+
+  const { data: employerOffsetConfig } = await (supabase as any)
+    .from('site_config')
+    .select('value')
+    .eq('key', 'employer_count_offset')
+    .single()
+
+  const employerOffset = Number(employerOffsetConfig?.value || 0)
+  const totalEmployerCount = (actualEmployerCount || 0) + employerOffset
+
   return (
     <main>
       <HeroSection memberCount={totalMemberCount} />
-      <WhyEmployersSection />
-      <WhyTalentSection />
+      <WhyEmployersSection employerCount={totalEmployerCount} />
+      <WhyTalentSection memberCount={totalMemberCount} />
       <HowItWorksSection />
       <PreviewSection initialJobs={previewJobs || []} />
       <TrustCtaSection />
