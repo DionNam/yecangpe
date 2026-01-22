@@ -203,6 +203,8 @@ export function MyPostsTable({
             title: editingPost.title,
             content: editingPost.content,
             hiring_status: editingPost.hiring_status,
+            work_location_type: editingPost.work_location_type,
+            work_location_country: editingPost.work_location_country,
             image_url: editingPost.image_url,
           }}
           reviewStatus={editingPost.review_status}

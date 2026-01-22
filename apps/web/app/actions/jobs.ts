@@ -31,6 +31,8 @@ export async function createJobPost(formData: FormData) {
     content: formData.get('content'),
     company_name: formData.get('company_name'),
     target_nationality: formData.get('target_nationality'),
+    work_location_type: formData.get('work_location_type'),
+    work_location_country: formData.get('work_location_country') || undefined,
     image_url: imageUrlRaw ? String(imageUrlRaw) : null,
   }
 
@@ -71,6 +73,8 @@ export async function createJobPost(formData: FormData) {
       content: result.data.content,
       company_name: result.data.company_name,
       target_nationality: result.data.target_nationality,
+      work_location_type: result.data.work_location_type,
+      work_location_country: result.data.work_location_country || null,
       review_status: 'pending',
       hiring_status: 'hiring',
       view_target: viewTarget,
@@ -102,6 +106,8 @@ export async function updateJobPost(formData: FormData) {
     title: formData.get('title'),
     content: formData.get('content'),
     hiring_status: formData.get('hiring_status'),
+    work_location_type: formData.get('work_location_type'),
+    work_location_country: formData.get('work_location_country') || undefined,
     // Handle image_url: only include in validation if explicitly provided
     ...(imageUrlFormValue !== null && {
       image_url: imageUrlFormValue === '' ? null : String(imageUrlFormValue),
@@ -136,6 +142,8 @@ export async function updateJobPost(formData: FormData) {
     title: result.data.title,
     content: result.data.content,
     hiring_status: result.data.hiring_status,
+    work_location_type: result.data.work_location_type,
+    work_location_country: result.data.work_location_country || null,
     updated_at: new Date().toISOString(),
   }
 

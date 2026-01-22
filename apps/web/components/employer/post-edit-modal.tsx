@@ -3,6 +3,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition, useState } from 'react'
+import { COUNTRIES } from '@repo/lib'
 import {
   jobPostUpdateSchema,
   type JobPostUpdateInput,
@@ -45,6 +46,8 @@ interface PostEditModalProps {
     title: string
     content: string
     hiring_status: 'hiring' | 'closed'
+    work_location_type: 'remote' | 'hybrid' | 'on_site'
+    work_location_country?: string | null
     image_url?: string | null
   }
   reviewStatus: string
@@ -68,6 +71,8 @@ export function PostEditModal({
       title: defaultValues.title,
       content: defaultValues.content,
       hiring_status: defaultValues.hiring_status,
+      work_location_type: defaultValues.work_location_type,
+      work_location_country: defaultValues.work_location_country || undefined,
     },
   })
 
@@ -82,6 +87,9 @@ export function PostEditModal({
     setImageRemoved(true)
     setImageFile(null)
   }
+
+  // Watch location type for conditional country picker
+  const workLocationType = form.watch('work_location_type')
 
   const onSubmit = (data: JobPostUpdateInput) => {
     startTransition(async () => {
@@ -126,6 +134,12 @@ export function PostEditModal({
       formData.append('title', data.title)
       formData.append('content', data.content)
       formData.append('hiring_status', data.hiring_status)
+      formData.append('work_location_type', data.work_location_type)
+
+      // Only append country if on_site and selected
+      if (data.work_location_type === 'on_site' && data.work_location_country) {
+        formData.append('work_location_country', data.work_location_country)
+      }
 
       // Only include image_url in formData if it was explicitly changed
       if (imageUrl !== undefined) {
@@ -231,6 +245,67 @@ export function PostEditModal({
                   </FormItem>
                 )}
               />
+
+              {/* Work Location Type field */}
+              <FormField
+                control={form.control}
+                name="work_location_type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>근무 형태 *</FormLabel>
+                    <Select
+                      onValueChange={(value) => {
+                        field.onChange(value)
+                        // Clear country when switching away from on_site
+                        if (value !== 'on_site') {
+                          form.setValue('work_location_country', undefined)
+                        }
+                      }}
+                      defaultValue={field.value}
+                    >
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="근무 형태를 선택해주세요" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        <SelectItem value="remote">원격근무</SelectItem>
+                        <SelectItem value="hybrid">하이브리드</SelectItem>
+                        <SelectItem value="on_site">대면근무</SelectItem>
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Conditional Country field - only show for on_site */}
+              {workLocationType === 'on_site' && (
+                <FormField
+                  control={form.control}
+                  name="work_location_country"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>근무 국가 *</FormLabel>
+                      <Select onValueChange={field.onChange} defaultValue={field.value}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="근무 국가를 선택해주세요" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {COUNTRIES.map((country) => (
+                            <SelectItem key={country.code} value={country.code}>
+                              {country.name}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              )}
 
               {/* Image upload field */}
               <FormItem>
