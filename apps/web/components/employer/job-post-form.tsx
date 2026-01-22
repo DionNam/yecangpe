@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition, useState } from 'react'
-import { NATIONALITIES } from '@repo/lib'
+import { NATIONALITIES, COUNTRIES } from '@repo/lib'
 import { jobPostSchema, type JobPostInput } from '@/lib/validations/job-post'
 import { createJobPost } from '@/app/actions/jobs'
 import { getSignedUploadUrl } from '@/app/actions/storage'
@@ -45,12 +45,17 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
       content: '',
       company_name: defaultCompanyName,
       target_nationality: undefined,
+      work_location_type: 'on_site',
+      work_location_country: undefined,
     },
   })
 
   const handleImageChange = (file: File | null) => {
     setImageFile(file)
   }
+
+  // Watch location type for conditional country picker
+  const workLocationType = form.watch('work_location_type')
 
   const onSubmit = (data: JobPostInput) => {
     startTransition(async () => {
@@ -92,6 +97,13 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
       formData.append('content', data.content)
       formData.append('company_name', data.company_name)
       formData.append('target_nationality', data.target_nationality)
+      formData.append('work_location_type', data.work_location_type)
+
+      // Only append country if on_site and selected
+      if (data.work_location_type === 'on_site' && data.work_location_country) {
+        formData.append('work_location_country', data.work_location_country)
+      }
+
       if (imageUrl) {
         formData.append('image_url', imageUrl)
       }
@@ -185,6 +197,67 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               </FormItem>
             )}
           />
+
+          {/* Work Location Type field */}
+          <FormField
+            control={form.control}
+            name="work_location_type"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>근무 형태 *</FormLabel>
+                <Select
+                  onValueChange={(value) => {
+                    field.onChange(value)
+                    // Clear country when switching away from on_site
+                    if (value !== 'on_site') {
+                      form.setValue('work_location_country', undefined)
+                    }
+                  }}
+                  defaultValue={field.value}
+                >
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="근무 형태를 선택해주세요" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    <SelectItem value="remote">원격근무</SelectItem>
+                    <SelectItem value="hybrid">하이브리드</SelectItem>
+                    <SelectItem value="on_site">대면근무</SelectItem>
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          {/* Conditional Country field - only show for on_site */}
+          {workLocationType === 'on_site' && (
+            <FormField
+              control={form.control}
+              name="work_location_country"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>근무 국가 *</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="근무 국가를 선택해주세요" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {COUNTRIES.map((country) => (
+                        <SelectItem key={country.code} value={country.code}>
+                          {country.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
 
           {/* Content field */}
           <FormField
