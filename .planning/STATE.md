@@ -6,23 +6,23 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
 
-**Current focus:** Phase 10 - Job Post Images
+**Current focus:** Phase 10 - Job Post Images (Complete)
 
 ## Current Position
 
 Phase: 10 of 10 (Job Post Images)
-Plan: 2 of 4 complete
-Status: In progress
-Last activity: 2026-01-22 — Completed 10-02-PLAN.md (Upload Infrastructure)
+Plan: 4 of 4 complete
+Status: Phase complete
+Last activity: 2026-01-22 — Completed 10-04-PLAN.md (Admin Form Integration)
 
-Progress: [██████████████░░] 93% (26/28 plans complete)
+Progress: [████████████████] 100% (28/28 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 26 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 2)
-- Average duration: 4.6min
-- Total execution time: 2.0 hours
+- Total plans completed: 28 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4)
+- Average duration: 4.5min
+- Total execution time: 2.1 hours
 
 **By Phase:**
 
@@ -37,14 +37,14 @@ Progress: [██████████████░░] 93% (26/28 plans co
 | 07-uat-test-case-design | 2 | 15min | 7.5min |
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
-| 10-job-post-images | 2 | 5min | 2.5min |
+| 10-job-post-images | 4 | 11min | 2.75min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
 - v1.1 completed in 15 minutes (2 plans)
 - v1.2 completed in ~10 minutes (1 plan)
 - v1.3 completed in 10.5 minutes (3 plans)
-- v1.4 in progress: Job Post Images feature
+- v1.4 completed in 11 minutes (4 plans)
 - Trend: Fast iteration on targeted UI improvements and production-grade visual polish
 
 ## Accumulated Context
@@ -90,6 +90,8 @@ Recent decisions affecting v1.1 work:
 - **10-02**: Signed URL upload pattern for bypassing server action 1MB body limit
 - **10-02**: ImageUpload component uses controlled pattern with onImageChange callback
 - **10-02**: 5MB max file size, JPG/PNG/WebP formats for image validation
+- **10-04**: Component mirroring to admin app for simple UI components with app-specific imports
+- **10-04**: Dynamic update object building for optional field changes (image_url)
 
 ### Roadmap Evolution
 
@@ -110,6 +112,9 @@ Recent decisions affecting v1.1 work:
 - Legal pages need legal review
 - BUG-INFRA-001: Cannot seed test data with fixed UUIDs (Supabase Auth limitation)
 
+**Resolved in Phase 10:**
+- Job Post Images feature complete - employers and admins can upload images for job posts
+
 **Resolved in Phase 9:**
 - ✅ BUG-SEEK-002: No explicit logout functionality - RESOLVED with navigation dropdown
 - ✅ GAP-09-01: Design Quality Below Professional Standards - RESOLVED with editorial design overhaul (all 5 criteria met)
@@ -122,7 +127,7 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-01-22
-Stopped at: Completed 10-02-PLAN.md (Upload Infrastructure)
+Stopped at: Completed 10-04-PLAN.md (Admin Form Integration) - Phase 10 complete
 Resume file: None
 
 ---
