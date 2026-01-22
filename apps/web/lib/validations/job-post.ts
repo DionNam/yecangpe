@@ -20,6 +20,7 @@ export const jobPostSchema = z.object({
   target_nationality: z.enum(nationalityCodes, {
     message: '대상 국적을 선택해주세요',
   }),
+  image_url: z.string().url().nullable().optional(),
 })
 
 export const jobPostUpdateSchema = z.object({
@@ -31,6 +32,10 @@ export const jobPostUpdateSchema = z.object({
     .string()
     .min(10, '내용을 10자 이상 입력해주세요')
     .max(5000, '내용은 5000자 이내로 입력해주세요'),
+  hiring_status: z.enum(['hiring', 'closed'], {
+    message: '채용 상태를 선택해주세요',
+  }),
+  image_url: z.string().url().nullable().optional(),
 })
 
 export type JobPostInput = z.infer<typeof jobPostSchema>

@@ -25,11 +25,13 @@ export async function createJobPost(formData: FormData) {
   }
 
   // Parse form data
+  const imageUrlRaw = formData.get('image_url')
   const rawData = {
     title: formData.get('title'),
     content: formData.get('content'),
     company_name: formData.get('company_name'),
     target_nationality: formData.get('target_nationality'),
+    image_url: imageUrlRaw ? String(imageUrlRaw) : null,
   }
 
   // Validate with Zod schema
@@ -73,6 +75,7 @@ export async function createJobPost(formData: FormData) {
       hiring_status: 'hiring',
       view_target: viewTarget,
       like_target: likeTarget,
+      image_url: result.data.image_url || null,
     } as any)
 
   if (insertError) {
@@ -94,9 +97,15 @@ export async function updateJobPost(formData: FormData) {
 
   // Parse form data
   const postId = formData.get('id') as string
+  const imageUrlFormValue = formData.get('image_url')
   const rawData = {
     title: formData.get('title'),
     content: formData.get('content'),
+    hiring_status: formData.get('hiring_status'),
+    // Handle image_url: only include in validation if explicitly provided
+    ...(imageUrlFormValue !== null && {
+      image_url: imageUrlFormValue === '' ? null : String(imageUrlFormValue),
+    }),
   }
 
   // Validate with Zod schema
@@ -105,26 +114,41 @@ export async function updateJobPost(formData: FormData) {
     return { error: result.error.flatten().fieldErrors }
   }
 
-  // Verify ownership - must be author of this post
+  // Verify ownership and get post status
   const { data: postData } = await (supabase as any)
     .from('job_posts')
-    .select('author_id')
+    .select('author_id, review_status')
     .eq('id', postId)
     .single()
 
-  const post = postData as { author_id: string } | null
+  const post = postData as { author_id: string; review_status: string } | null
   if (!post || post.author_id !== user.id) {
     return { error: { _form: ['자신이 작성한 공고만 수정할 수 있습니다.'] } }
+  }
+
+  // Business rule: Only published posts can change hiring_status
+  if (post.review_status !== 'published') {
+    return { error: { _form: ['게시된 공고만 채용 상태를 변경할 수 있습니다.'] } }
+  }
+
+  // Build update object
+  const updateData: Record<string, unknown> = {
+    title: result.data.title,
+    content: result.data.content,
+    hiring_status: result.data.hiring_status,
+    updated_at: new Date().toISOString(),
+  }
+
+  // Handle image_url - check if it was explicitly set in formData
+  if (imageUrlFormValue !== null) {
+    // Explicitly set (could be URL or empty string to remove)
+    updateData.image_url = imageUrlFormValue === '' ? null : imageUrlFormValue
   }
 
   // Update job post
   const { error: updateError } = await (supabase as any)
     .from('job_posts')
-    .update({
-      title: result.data.title,
-      content: result.data.content,
-      updated_at: new Date().toISOString(),
-    })
+    .update(updateData)
     .eq('id', postId)
 
   if (updateError) {
@@ -136,6 +160,10 @@ export async function updateJobPost(formData: FormData) {
   return { success: true }
 }
 
+/**
+ * @deprecated This function is kept for potential admin panel use.
+ * Use updateJobPost instead for regular updates.
+ */
 export async function updateHiringStatus(
   postId: string,
   newStatus: 'hiring' | 'closed'
