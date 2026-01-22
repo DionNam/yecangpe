@@ -93,6 +93,8 @@ export async function updatePost(postId: string, formData: FormData) {
     content: formData.get('content'),
     company_name: formData.get('company_name'),
     target_nationality: formData.get('target_nationality'),
+    work_location_type: formData.get('work_location_type'),
+    work_location_country: formData.get('work_location_country') || undefined,
   }
 
   const result = postEditSchema.safeParse(rawData)
@@ -106,6 +108,8 @@ export async function updatePost(postId: string, formData: FormData) {
     content: result.data.content,
     company_name: result.data.company_name,
     target_nationality: result.data.target_nationality,
+    work_location_type: result.data.work_location_type,
+    work_location_country: result.data.work_location_country || null,
     updated_at: new Date().toISOString(),
   }
 
@@ -143,6 +147,8 @@ export async function createAdminPost(formData: FormData) {
     content: formData.get('content'),
     company_name: formData.get('company_name'),
     target_nationality: formData.get('target_nationality'),
+    work_location_type: formData.get('work_location_type'),
+    work_location_country: formData.get('work_location_country') || undefined,
     created_at: formData.get('created_at') || undefined,
     image_url: imageUrlRaw ? String(imageUrlRaw) : null,
   }
@@ -185,6 +191,8 @@ export async function createAdminPost(formData: FormData) {
       content: result.data.content,
       company_name: result.data.company_name,
       target_nationality: result.data.target_nationality,
+      work_location_type: result.data.work_location_type,
+      work_location_country: result.data.work_location_country || null,
       review_status: 'published',
       published_at: createdAt,
       created_at: createdAt,

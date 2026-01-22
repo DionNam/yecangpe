@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation'
 import { postEditSchema, type PostEditInput } from '@/lib/validations/post'
 import { updatePost } from '@/app/actions/posts'
 import { getSignedUploadUrl } from '@/app/actions/storage'
-import { NATIONALITIES } from '@repo/lib'
+import { NATIONALITIES, COUNTRIES } from '@repo/lib'
 import {
   Form,
   FormControl,
@@ -49,6 +49,8 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
     resolver: zodResolver(postEditSchema),
     defaultValues,
   })
+
+  const workLocationType = form.watch('work_location_type')
 
   const handleImageChange = (file: File | null, previewUrl: string | null) => {
     setImageFile(file)
@@ -102,6 +104,10 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
       formData.append('content', data.content)
       formData.append('company_name', data.company_name)
       formData.append('target_nationality', data.target_nationality)
+      formData.append('work_location_type', data.work_location_type)
+      if (data.work_location_country) {
+        formData.append('work_location_country', data.work_location_country)
+      }
       if (imageUrl !== undefined) {
         formData.append('image_url', imageUrl)
       }
@@ -198,6 +204,64 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
             </FormItem>
           )}
         />
+
+        <FormField
+          control={form.control}
+          name="work_location_type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>근무 형태 *</FormLabel>
+              <Select
+                onValueChange={(value) => {
+                  field.onChange(value)
+                  if (value !== 'on_site') {
+                    form.setValue('work_location_country', undefined)
+                  }
+                }}
+                defaultValue={field.value}
+              >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="근무 형태를 선택해주세요" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="remote">원격근무</SelectItem>
+                  <SelectItem value="hybrid">하이브리드</SelectItem>
+                  <SelectItem value="on_site">대면근무</SelectItem>
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {workLocationType === 'on_site' && (
+          <FormField
+            control={form.control}
+            name="work_location_country"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>근무 국가 *</FormLabel>
+                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                  <FormControl>
+                    <SelectTrigger>
+                      <SelectValue placeholder="근무 국가를 선택해주세요" />
+                    </SelectTrigger>
+                  </FormControl>
+                  <SelectContent>
+                    {COUNTRIES.map((country) => (
+                      <SelectItem key={country.code} value={country.code}>
+                        {country.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
 
         <FormItem>
           <FormLabel>이미지 (선택사항)</FormLabel>
