@@ -7,7 +7,7 @@
 - ✅ **v1.2 User Flow Verification** - Phase 8 (complete 2026-01-21)
 - ✅ **v1.3 UI Polish & Core UX** - Phase 9 (complete 2026-01-21)
 - ✅ **v1.4 Job Post Images** - Phase 10 (complete 2026-01-22)
-- 🔄 **v1.5 Work Location & Country** - Phase 11 (in progress)
+- ✅ **v1.5 Work Location & Country** - Phase 11 (complete 2026-01-23)
 
 ## Phases
 
@@ -166,14 +166,14 @@ Plans:
   6. Seekers can filter jobs by work location type
   7. On-site jobs without country are rejected by validation
 
-**Plans**: 5 plans
+**Plans**: 5/5 complete
 
 Plans:
-- [ ] 11-01-PLAN.md — Database foundation (migration + types + constants, Wave 1)
-- [ ] 11-02-PLAN.md — Validation schemas (web + admin conditional validation, Wave 2)
-- [ ] 11-03-PLAN.md — Employer forms (new post + edit integration, Wave 3)
-- [ ] 11-04-PLAN.md — Admin forms (create + edit integration, Wave 3 parallel)
-- [ ] 11-05-PLAN.md — Display + filter (job list/detail display + location filter, Wave 4)
+- [x] 11-01-PLAN.md — Database foundation (migration + types + constants, Wave 1)
+- [x] 11-02-PLAN.md — Validation schemas (web + admin conditional validation, Wave 2)
+- [x] 11-03-PLAN.md — Employer forms (new post + edit integration, Wave 3)
+- [x] 11-04-PLAN.md — Admin forms (create + edit integration, Wave 3 parallel)
+- [x] 11-05-PLAN.md — Display + filter (job list/detail display + location filter, Wave 4)
 
 **Details:**
 - PostgreSQL ENUM for work_location_type (remote, hybrid, on_site)
@@ -193,7 +193,7 @@ Plans:
 
 ## Project Status
 
-**Current State:** v1.5 in progress - Adding work location type and country selection
+**Current State:** v1.5 complete - Work location type and country selection feature shipped
 
 **Shipped:**
 - v1.0 MVP (Phases 1-6): Full platform with auth, job listings, employer/admin features
@@ -201,15 +201,16 @@ Plans:
 - v1.2 User Flow Verification (Phase 8): Core seeker journey validated, critical onboarding bug fixed
 - v1.3 UI Polish & Core UX (Phase 9): Production-grade editorial design, navigation header, logout functionality
 - v1.4 Job Post Images (Phase 10): Employers and admins can upload images for job posts
-
-**In Progress:**
-- v1.5 Work Location & Country (Phase 11): Remote/hybrid/on-site selection with country picker
+- v1.5 Work Location & Country (Phase 11): Remote/hybrid/on-site selection with country picker for on-site positions
 
 **Known Tech Debt:**
 - Job list missing real like counts (displays fake metrics only)
 - Employer onboarding redirects to / instead of /employer/new-post
 - KakaoTalk link is placeholder
 - Legal pages need legal review
+
+**Resolved in Phase 11:**
+- ✅ Work location type and country selection - employers/admins can specify remote/hybrid/on-site with country for on-site positions
 
 **Resolved in Phase 10:**
 - ✅ Job post image upload feature - employers and admins can attach/edit/remove images
@@ -237,9 +238,9 @@ Plans:
 | 8. User Flow Verification | v1.2 | 1/1 | ✅ Complete | 2026-01-21 |
 | 9. UI Polish & Core UX | v1.3 | 3/3 | ✅ Complete | 2026-01-21 |
 | 10. Job Post Image Upload | v1.4 | 4/4 | ✅ Complete | 2026-01-22 |
-| 11. Work Location & Country | v1.5 | 5 | 🔄 Planning | — |
+| 11. Work Location & Country | v1.5 | 5/5 | ✅ Complete | 2026-01-23 |
 
-**Total:** 11 phases, 28 plans complete, 5 plans pending
+**Total:** 11 phases, 33 plans complete
 
 ---
-*Last updated: 2026-01-23 (Phase 11 planned)*
+*Last updated: 2026-01-23 (Phase 11 complete)*
