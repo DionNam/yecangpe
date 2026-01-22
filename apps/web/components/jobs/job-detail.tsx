@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowLeft, Mail } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 import { JobDetailHeader } from './job-detail-header'
 import { LikeButton } from './like-button'
 import type { Database } from '@repo/supabase/types'
@@ -50,42 +50,6 @@ export function JobDetail({
           </div>
         </section>
 
-        {/* Requirements section if exists */}
-        {job.requirements && (
-          <section className="space-y-4 pt-8 border-t border-slate-200">
-            <h2 className="text-2xl font-bold text-gray-900">
-              자격 요건
-            </h2>
-            <div className="prose prose-slate max-w-none">
-              <p className="text-base leading-relaxed text-slate-700 whitespace-pre-wrap">
-                {job.requirements}
-              </p>
-            </div>
-          </section>
-        )}
-
-        {/* Application info section */}
-        <section className="space-y-4 pt-8 border-t border-slate-200">
-          <h2 className="text-2xl font-bold text-gray-900">
-            지원 방법
-          </h2>
-          <div className="bg-slate-50 rounded-xl p-6 space-y-3 border border-slate-200">
-            <p className="text-sm text-slate-600">
-              이 공고에 관심이 있으시면 하트 버튼을 눌러주세요.
-              구인자가 관심 표시를 확인하고 연락 드릴 예정입니다.
-            </p>
-            {job.contact_info && (
-              <div className="flex items-start gap-2 text-sm">
-                <Mail className="w-4 h-4 mt-0.5 text-slate-900" />
-                <div>
-                  <p className="font-medium text-gray-900">문의 연락처</p>
-                  <p className="text-slate-600">{job.contact_info}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </section>
-
         {/* Like button with prominent placement */}
         {canLike && (
           <div className="flex justify-center pt-4">
@@ -99,7 +63,7 @@ export function JobDetail({
         )}
 
         {/* Published date footer */}
-        <div className="pt-8 border-t border-slate-200 text-sm text-slate-600 text-center">
+        <div className="pt-8 border-t border-slate-200 text-sm text-slate-600 text-left">
           게시일: {new Date(job.published_at || job.created_at).toLocaleDateString('ko-KR')}
         </div>
       </div>

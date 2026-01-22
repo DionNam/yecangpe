@@ -1,7 +1,13 @@
+'use client'
+
 import { LoginButton } from '@/components/auth/login-button'
+import { AdminLoginForm } from '@/components/auth/admin-login-form'
 import { Sparkles, Shield, Globe } from 'lucide-react'
+import { useState } from 'react'
 
 export default function LoginPage() {
+  const [isAdminMode, setIsAdminMode] = useState(false)
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-slate-50">
       {/* Back button */}
@@ -57,7 +63,32 @@ export default function LoginPage() {
 
             {/* Login section */}
             <div className="p-8 pt-6">
-              <LoginButton />
+              {/* Tab switcher */}
+              <div className="flex gap-2 mb-6 p-1 bg-slate-100 rounded-lg">
+                <button
+                  onClick={() => setIsAdminMode(false)}
+                  className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-all ${
+                    !isAdminMode
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  일반 로그인
+                </button>
+                <button
+                  onClick={() => setIsAdminMode(true)}
+                  className={`flex-1 py-2 px-4 text-sm font-medium rounded-md transition-all ${
+                    isAdminMode
+                      ? 'bg-white text-slate-900 shadow-sm'
+                      : 'text-slate-600 hover:text-slate-900'
+                  }`}
+                >
+                  관리자 로그인
+                </button>
+              </div>
+
+              {/* Login forms */}
+              {isAdminMode ? <AdminLoginForm /> : <LoginButton />}
 
               {/* Trust indicators */}
               <div className="mt-8 pt-8 border-t border-slate-200">
