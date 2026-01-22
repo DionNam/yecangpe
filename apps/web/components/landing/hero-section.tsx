@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { ArrowRight, Users } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -77,15 +77,6 @@ export function HeroSection({ memberCount }: HeroSectionProps) {
               transition={{ duration: 0.5, delay: 0.4 }}
               className="space-y-4"
             >
-              {/* Member count badge */}
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-slate-100 rounded-full">
-                <Users className="w-4 h-4 text-slate-700" />
-                <span className="text-sm font-semibold text-slate-900">
-                  {memberCount.toLocaleString()}명
-                </span>
-                <span className="text-xs text-slate-600">의 멤버</span>
-              </div>
-
               {/* Features */}
               <div className="flex flex-wrap items-center gap-6 text-xs text-gray-600">
                 <div className="flex items-center gap-2">

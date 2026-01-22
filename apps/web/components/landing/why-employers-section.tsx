@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
+import { AnimatedCounter } from './animated-counter'
 
 const benefits = [
   {
@@ -23,28 +24,66 @@ interface WhyEmployersSectionProps {
 
 export function WhyEmployersSection({ employerCount }: WhyEmployersSectionProps) {
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="relative py-24 bg-white overflow-hidden">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 opacity-[0.02]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `radial-gradient(circle at 2px 2px, rgb(15 23 42) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px'
+        }} />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center mb-12"
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <p className="text-slate-600 font-medium mb-3 text-xs tracking-widest uppercase">구인자를 위한 혜택</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+          <p className="text-slate-600 font-medium mb-4 text-xs tracking-widest uppercase">
+            구인자를 위한 혜택
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 tracking-tight">
             우수한 외국인 인재를
             <br />
             쉽게 찾으세요
           </h2>
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <span className="text-lg text-gray-600">현재</span>
-            <span className="text-4xl md:text-5xl font-bold text-slate-900">
-              {employerCount.toLocaleString()}개
-            </span>
-            <span className="text-lg text-gray-600">기업이 채용 중</span>
-          </div>
+
+          {/* Live Stats Display */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="inline-flex items-center gap-4 px-8 py-5 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-200 shadow-lg shadow-slate-200/50 mb-6"
+          >
+            {/* Live Indicator */}
+            <div className="flex items-center gap-2">
+              <div className="relative">
+                <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+                <div className="absolute inset-0 w-2 h-2 bg-blue-500 rounded-full animate-ping opacity-75" />
+              </div>
+              <span className="text-xs font-medium text-blue-600 tracking-wide">
+                LIVE
+              </span>
+            </div>
+
+            <div className="h-6 w-px bg-slate-200" />
+
+            {/* Animated Counter */}
+            <div className="flex items-baseline gap-2">
+              <AnimatedCounter
+                value={employerCount}
+                duration={2500}
+                className="text-2xl md:text-3xl font-bold text-slate-900 tabular-nums"
+              />
+              <span className="text-sm font-medium text-slate-600">
+                개 기업이 채용 중
+              </span>
+            </div>
+          </motion.div>
+
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
             PotenHire는 한국어 가능한 글로벌 인재와 기업을 연결하는 신뢰할 수 있는 플랫폼입니다
           </p>
