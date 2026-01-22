@@ -104,6 +104,9 @@ Recent decisions affecting v1.1 work:
 - **11-01**: COUNTRIES constant following NATIONALITIES pattern for consistency
 - **11-02**: Zod superRefine for conditional country validation (required for on_site, cleared for remote/hybrid)
 - **11-02**: Identical validation logic in web and admin schemas for consistency
+- **11-03**: React Hook Form watch() for conditional field rendering (not useEffect)
+- **11-03**: form.setValue() to clear dependent fields when parent changes
+- **11-03**: superRefine added to jobPostUpdateSchema for consistent validation across create/update
 - **11-04**: Admin forms mirror employer form conditional logic for consistency
 - **11-04**: Admin posts bypass review and publish immediately with location data
 
