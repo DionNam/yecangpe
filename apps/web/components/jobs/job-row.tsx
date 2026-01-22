@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { TableCell, TableRow } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { LoginModal } from './login-modal'
+import { getCountryName } from '@repo/lib'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -46,6 +47,21 @@ export function JobRow({
     })
   }
 
+  const getLocationBadgeText = () => {
+    switch (job.work_location_type) {
+      case 'remote':
+        return '원격근무'
+      case 'hybrid':
+        return '하이브리드'
+      case 'on_site':
+        return job.work_location_country
+          ? getCountryName(job.work_location_country)
+          : '대면근무'
+      default:
+        return '대면근무'
+    }
+  }
+
   return (
     <>
       <TableRow
@@ -84,11 +100,16 @@ export function JobRow({
               <p className="text-sm text-slate-600">
                 {job.company_name}
               </p>
-              <Badge
-                variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
-              >
-                {job.hiring_status === 'hiring' ? '채용중' : '마감'}
-              </Badge>
+              <div className="flex gap-2">
+                <Badge
+                  variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}
+                >
+                  {job.hiring_status === 'hiring' ? '채용중' : '마감'}
+                </Badge>
+                <Badge variant="outline">
+                  {getLocationBadgeText()}
+                </Badge>
+              </div>
             </div>
           </div>
         </TableCell>

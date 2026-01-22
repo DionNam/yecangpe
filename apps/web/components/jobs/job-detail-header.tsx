@@ -1,9 +1,10 @@
-import { NATIONALITIES } from '@repo/lib/constants'
+import { NATIONALITIES, getCountryName } from '@repo/lib'
 import { Building2, Eye, Heart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import type { Database } from '@repo/supabase/types'
 
 type HiringStatus = Database['public']['Enums']['hiring_status']
+type WorkLocationType = Database['public']['Enums']['work_location_type']
 
 interface JobDetailHeaderProps {
   title: string
@@ -13,6 +14,8 @@ interface JobDetailHeaderProps {
   publishedAt: string | null
   displayViews: number
   displayLikes: number
+  workLocationType: WorkLocationType
+  workLocationCountry: string | null
 }
 
 export function JobDetailHeader({
@@ -23,10 +26,28 @@ export function JobDetailHeader({
   publishedAt,
   displayViews,
   displayLikes,
+  workLocationType,
+  workLocationCountry,
 }: JobDetailHeaderProps) {
   // Get Korean name for nationality
   const nationalityInfo = NATIONALITIES.find(n => n.code === nationality)
   const nationalityName = nationalityInfo?.name || nationality
+
+  // Format work location text
+  const getLocationText = () => {
+    switch (workLocationType) {
+      case 'remote':
+        return '원격근무'
+      case 'hybrid':
+        return '하이브리드'
+      case 'on_site':
+        return workLocationCountry
+          ? `대면근무 · ${getCountryName(workLocationCountry)}`
+          : '대면근무'
+      default:
+        return '대면근무'
+    }
+  }
 
   return (
     <div className="relative space-y-6 p-8 md:p-12 pb-8 border-b border-slate-200">
@@ -60,6 +81,12 @@ export function JobDetailHeader({
           <Badge variant="outline" className="text-sm px-4 py-1.5">
             {nationalityName}
           </Badge>
+
+          {/* Work location metadata */}
+          <div className="flex items-center gap-2 text-sm text-slate-600">
+            <span>📍</span>
+            <span>{getLocationText()}</span>
+          </div>
 
           {/* Metrics with icons */}
           <div className="flex items-center gap-4 text-sm text-slate-600 ml-auto">

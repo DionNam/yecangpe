@@ -33,6 +33,8 @@ export function JobDetail({
         publishedAt={job.published_at}
         displayViews={displayViews}
         displayLikes={displayLikes}
+        workLocationType={job.work_location_type}
+        workLocationCountry={job.work_location_country}
       />
 
       {/* Job image (if exists) */}
