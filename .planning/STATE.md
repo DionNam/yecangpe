@@ -6,22 +6,22 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
 
-**Current focus:** Phase 9 - UI Polish & Core UX
+**Current focus:** Phase 10 - Job Post Images
 
 ## Current Position
 
-Phase: 9 of 9 (UI Polish & Core UX)
-Plan: 3 of 3 complete
-Status: Phase complete
-Last activity: 2026-01-21 — Completed 09-03-PLAN.md (Design Quality Overhaul)
+Phase: 10 of 10 (Job Post Images)
+Plan: 1 of 4 complete
+Status: In progress
+Last activity: 2026-01-22 — Completed 10-01-PLAN.md (Database Schema and Storage Infrastructure)
 
-Progress: [████████████] 100% (24/24 plans complete)
+Progress: [█████████████░░░] 89% (25/28 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 24 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3)
-- Average duration: 4.8min
+- Total plans completed: 25 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 1)
+- Average duration: 4.7min
 - Total execution time: 2.0 hours
 
 **By Phase:**
@@ -37,12 +37,14 @@ Progress: [████████████] 100% (24/24 plans complete)
 | 07-uat-test-case-design | 2 | 15min | 7.5min |
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
+| 10-job-post-images | 1 | 2min | 2min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
 - v1.1 completed in 15 minutes (2 plans)
 - v1.2 completed in ~10 minutes (1 plan)
 - v1.3 completed in 10.5 minutes (3 plans)
+- v1.4 in progress: Job Post Images feature
 - Trend: Fast iteration on targeted UI improvements and production-grade visual polish
 
 ## Accumulated Context
@@ -82,11 +84,15 @@ Recent decisions affecting v1.1 work:
 - **09-03**: Staggered animation delays (50-100ms) create orchestrated page load experience
 - **09-03**: Backdrop-blur layering creates sophisticated visual depth on cards
 - **09-03**: Frontend-design skill principles applied (atmospheric depth, editorial typography, generous whitespace, orchestrated animations)
+- **10-01**: Public bucket for job images - allows anonymous viewing without signed URLs
+- **10-01**: Wildcard hostname pattern (*.supabase.co) for flexibility across environments
+- **10-01**: Storage RLS policies use existing is_employer() and is_admin() helper functions
 
 ### Roadmap Evolution
 
 - Phase 9 added (2026-01-21): UI Polish & Core UX - Improve seeker-facing UI design quality and add essential features like logout
 - Plan 09-03 added (2026-01-21): Design Quality Overhaul - Close GAP-09-01 with production-grade editorial design transformation
+- Phase 10 added (2026-01-22): Job Post Images - Allow employers/admins to upload images for job posts
 
 ### Pending Todos
 
@@ -112,9 +118,9 @@ Recent decisions affecting v1.1 work:
 
 ## Session Continuity
 
-Last session: 2026-01-21
-Stopped at: ✅ Phase 9 complete - Design quality overhaul shipped (v1.3 complete, GAP-09-01 closed)
+Last session: 2026-01-22
+Stopped at: Completed 10-01-PLAN.md (Database Schema and Storage Infrastructure)
 Resume file: None
 
 ---
-*Last updated: 2026-01-21*
+*Last updated: 2026-01-22*
