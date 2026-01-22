@@ -11,17 +11,17 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 11 of 11 (Work Location & Country)
-Plan: 1 of 3 in current phase
+Plan: 2 of 3 in current phase
 Status: In progress
-Last activity: 2026-01-22 — Completed 11-01-PLAN.md
+Last activity: 2026-01-23 — Completed 11-02-PLAN.md
 
-Progress: [████████████████░] 97% (29/30 plans complete)
+Progress: [████████████████░] 97% (30/31 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 29 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 1)
-- Average duration: 4.3min
+- Total plans completed: 30 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 2)
+- Average duration: 4.2min
 - Total execution time: 2.1 hours
 
 **By Phase:**
@@ -38,7 +38,7 @@ Progress: [████████████████░] 97% (29/30 plans
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
-| 11-work-location | 1 | 2min | 2.0min |
+| 11-work-location | 2 | 4min | 2.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -46,8 +46,8 @@ Progress: [████████████████░] 97% (29/30 plans
 - v1.2 completed in ~10 minutes (1 plan)
 - v1.3 completed in 10.5 minutes (3 plans)
 - v1.4 completed in 11 minutes (4 plans)
-- v1.5 in progress: 2 minutes (1 plan complete)
-- Trend: Fast iteration on database foundation and form enhancements
+- v1.5 in progress: 4 minutes (2 plans complete)
+- Trend: Fast iteration on database foundation and validation layer
 
 ## Accumulated Context
 
@@ -102,6 +102,8 @@ Recent decisions affecting v1.1 work:
 - **11-01**: Nullable work_location_country for conditional requirement (on_site only)
 - **11-01**: 26 countries covering Asia and major Western work locations
 - **11-01**: COUNTRIES constant following NATIONALITIES pattern for consistency
+- **11-02**: Zod superRefine for conditional country validation (required for on_site, cleared for remote/hybrid)
+- **11-02**: Identical validation logic in web and admin schemas for consistency
 
 ### Roadmap Evolution
 
@@ -137,9 +139,9 @@ Recent decisions affecting v1.1 work:
 
 ## Session Continuity
 
-Last session: 2026-01-22
-Stopped at: Completed 11-01-PLAN.md - work location database foundation
+Last session: 2026-01-23
+Stopped at: Completed 11-02-PLAN.md - work location validation schemas
 Resume file: None
 
 ---
-*Last updated: 2026-01-22 (Phase 11 plan 01 complete)*
+*Last updated: 2026-01-23 (Phase 11 plan 02 complete)*
