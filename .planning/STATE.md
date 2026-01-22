@@ -90,6 +90,9 @@ Recent decisions affecting v1.1 work:
 - **10-02**: Signed URL upload pattern for bypassing server action 1MB body limit
 - **10-02**: ImageUpload component uses controlled pattern with onImageChange callback
 - **10-02**: 5MB max file size, JPG/PNG/WebP formats for image validation
+- **10-03**: Three-state image handling in forms (new/remove/unchanged)
+- **10-03**: Empty string in formData signals image removal to server action
+- **10-03**: 64px thumbnail in job list, full-width in job detail
 - **10-04**: Component mirroring to admin app for simple UI components with app-specific imports
 - **10-04**: Dynamic update object building for optional field changes (image_url)
 
