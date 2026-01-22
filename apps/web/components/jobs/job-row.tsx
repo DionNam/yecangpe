@@ -101,20 +101,6 @@ export function JobRow({
           </div>
         </TableCell>
 
-        {/* Views */}
-        <TableCell className="text-center py-8 px-6">
-          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
-            {displayViews.toLocaleString()}
-          </span>
-        </TableCell>
-
-        {/* Likes */}
-        <TableCell className="text-center py-8 px-6">
-          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
-            {displayLikes.toLocaleString()}
-          </span>
-        </TableCell>
-
         {/* Thumbnail */}
         <TableCell className="py-8 px-6">
           <div className="flex justify-center">
@@ -132,6 +118,20 @@ export function JobRow({
               <div className="w-20 h-20 rounded-lg bg-slate-100/50" />
             )}
           </div>
+        </TableCell>
+
+        {/* Views */}
+        <TableCell className="text-center py-8 px-6">
+          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
+            {displayViews.toLocaleString()}
+          </span>
+        </TableCell>
+
+        {/* Likes */}
+        <TableCell className="text-center py-8 px-6">
+          <span className="text-sm font-medium text-slate-600 group-hover:text-gray-900 transition-colors">
+            {displayLikes.toLocaleString()}
+          </span>
         </TableCell>
       </TableRow>
 
