@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 11 of 11 (Work Location & Country)
-Plan: 2 of 3 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-01-23 — Completed 11-02-PLAN.md
+Last activity: 2026-01-23 — Completed 11-04-PLAN.md
 
-Progress: [████████████████░] 97% (30/31 plans complete)
+Progress: [█████████████████] 97% (32/33 plans complete)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 30 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 2)
-- Average duration: 4.2min
-- Total execution time: 2.1 hours
+- Total plans completed: 32 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 4)
+- Average duration: 4.1min
+- Total execution time: 2.2 hours
 
 **By Phase:**
 
@@ -38,7 +38,7 @@ Progress: [████████████████░] 97% (30/31 plans
 | 08-user-flow-verification | 1 | ~10min | 10min |
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
-| 11-work-location | 2 | 4min | 2.0min |
+| 11-work-location | 3 | 9min | 3.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -46,8 +46,8 @@ Progress: [████████████████░] 97% (30/31 plans
 - v1.2 completed in ~10 minutes (1 plan)
 - v1.3 completed in 10.5 minutes (3 plans)
 - v1.4 completed in 11 minutes (4 plans)
-- v1.5 in progress: 4 minutes (2 plans complete)
-- Trend: Fast iteration on database foundation and validation layer
+- v1.5 in progress: 9 minutes (3 plans complete)
+- Trend: Fast iteration on database foundation, validation, and form integration
 
 ## Accumulated Context
 
@@ -104,6 +104,8 @@ Recent decisions affecting v1.1 work:
 - **11-01**: COUNTRIES constant following NATIONALITIES pattern for consistency
 - **11-02**: Zod superRefine for conditional country validation (required for on_site, cleared for remote/hybrid)
 - **11-02**: Identical validation logic in web and admin schemas for consistency
+- **11-04**: Admin forms mirror employer form conditional logic for consistency
+- **11-04**: Admin posts bypass review and publish immediately with location data
 
 ### Roadmap Evolution
 
@@ -140,8 +142,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-01-23
-Stopped at: Completed 11-02-PLAN.md - work location validation schemas
+Stopped at: Completed 11-04-PLAN.md - admin work location integration
 Resume file: None
 
 ---
-*Last updated: 2026-01-23 (Phase 11 plan 02 complete)*
+*Last updated: 2026-01-23 (Phase 11 plan 04 complete)*
