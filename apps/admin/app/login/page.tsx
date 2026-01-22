@@ -1,9 +1,7 @@
-import Link from 'next/link'
-import { Shield, ArrowRight, Lock, UserCheck } from 'lucide-react'
+import { AdminLoginForm } from '@/components/auth/login-form'
+import { Shield, Lock, UserCheck } from 'lucide-react'
 
 export default function AdminLoginPage() {
-  const webUrl = process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'
-
   return (
     <main className="flex min-h-screen items-center justify-center p-8 bg-background relative overflow-hidden">
       {/* Professional background with subtle pattern */}
@@ -57,20 +55,14 @@ export default function AdminLoginPage() {
                   <div className="flex-1">
                     <h3 className="font-semibold mb-2 text-base">보안 인증 필요</h3>
                     <p className="text-sm text-muted-foreground leading-relaxed">
-                      관리자 패널 접근을 위해 메인 웹 앱에서 관리자 권한이 부여된 계정으로 로그인해주세요.
+                      관리자 계정으로 로그인해주세요.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* CTA Button */}
-              <Link
-                href={`${webUrl}/login`}
-                className="group flex items-center justify-center gap-3 w-full h-14 rounded-xl bg-primary text-primary-foreground font-semibold text-base shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30 transition-all hover:scale-[1.02]"
-              >
-                웹 앱 로그인으로 이동
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+              {/* Login Form */}
+              <AdminLoginForm />
 
               {/* Security features */}
               <div className="mt-8 pt-8 border-t border-border">

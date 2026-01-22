@@ -17,8 +17,7 @@ export async function middleware(request: NextRequest) {
 
   // Redirect unauthenticated users to web app login
   if (!user) {
-    const webUrl = process.env.NEXT_PUBLIC_WEB_URL || 'http://localhost:3000'
-    return NextResponse.redirect(new URL('/login', webUrl))
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
   // Verify admin role
