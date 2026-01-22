@@ -64,16 +64,14 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   if (error) {
     console.error('Error fetching job posts:', error)
     return (
-      <div className="grain-texture gradient-mesh min-h-screen">
-        <div className="container-generous section-spacious">
-          <div className="mb-12 space-y-6 relative">
-            <div className="decorative-line fade-in-up">
-              <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-display">
-                채용 공고
-              </h1>
-            </div>
+      <div className="min-h-screen bg-slate-50">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">
+              채용 공고
+            </h1>
           </div>
-          <p className="text-red-500 text-lg">
+          <p className="text-red-500 text-lg text-center">
             공고를 불러오는 중 오류가 발생했습니다.
           </p>
         </div>
@@ -95,22 +93,27 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const totalPages = count ? Math.ceil(count / pageSize) : 0
 
   return (
-    <div className="grain-texture gradient-mesh min-h-screen">
-      <div className="container-generous section-spacious">
+    <div className="min-h-screen bg-slate-50 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+      
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-20 pb-24">
         {/* Header section with descriptive content */}
-        <div className="mb-12 space-y-6 relative">
-          <div className="decorative-line fade-in-up">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-display">
-              채용 공고
+        <div className="text-center mb-16 space-y-4">
+          <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-3">채용 공고</p>
+          <div className="inline-block relative">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 relative z-10">
+              맞춤형 채용 공고
             </h1>
+            <div className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/10 -rotate-1 -z-10 rounded-full"></div>
           </div>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl fade-in-up delay-100">
-            한국어 가능한 외국인을 위한 채용 공고를 확인하세요
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mt-6">
+            한국어 가능한 외국인을 위한 다양한 직무의 채용 공고를 확인하세요
           </p>
         </div>
 
         {/* Filters section */}
-        <div className="mb-8">
+        <div className="mb-10">
           <JobListFilters
             currentNationality={nationality}
             currentSort={sortBy}
@@ -118,7 +121,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
         </div>
 
         {/* Table with card-like container */}
-        <div className="bg-card/80 backdrop-blur-sm rounded-xl border shadow-soft overflow-hidden fade-in-up delay-200">
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
           <JobListTable
             posts={posts || []}
             isAuthenticated={isAuthenticated}
@@ -128,7 +131,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <div className="mt-8">
+          <div className="flex justify-center mt-12">
             <JobListPagination
               currentPage={page}
               totalPages={totalPages}
@@ -140,8 +143,14 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
         {/* Empty state */}
         {(!posts || posts.length === 0) && (
-          <div className="text-center py-20 text-muted-foreground text-lg">
-            등록된 공고가 없습니다.
+          <div className="text-center py-32">
+            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <span className="text-2xl">🔍</span>
+            </div>
+            <h3 className="text-lg font-bold text-gray-900 mb-2">등록된 공고가 없습니다</h3>
+            <p className="text-slate-500">
+              조건을 변경하거나 나중에 다시 확인해주세요
+            </p>
           </div>
         )}
       </div>

@@ -69,23 +69,46 @@ export default async function MyPage() {
   }
 
   return (
-    <div className="container py-8">
-      <h1 className="text-2xl font-bold mb-6">마이페이지</h1>
+    <div className="min-h-screen bg-slate-50 py-12">
+      <div className="max-w-5xl mx-auto px-6 lg:px-8">
+        <div className="mb-10">
+          <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">마이페이지</p>
+          <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+            내 정보 및 활동
+          </h1>
+        </div>
 
-      <Tabs defaultValue="profile" className="w-full">
-        <TabsList>
-          <TabsTrigger value="profile">프로필</TabsTrigger>
-          <TabsTrigger value="liked">관심 공고</TabsTrigger>
-        </TabsList>
+        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden min-h-[600px]">
+          <Tabs defaultValue="profile" className="w-full">
+            <div className="border-b border-slate-200 bg-slate-50/50 px-6 pt-2">
+              <TabsList className="bg-transparent h-12 p-0 space-x-8">
+                <TabsTrigger 
+                  value="profile" 
+                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-slate-900 data-[state=active]:text-slate-900 rounded-none h-12 px-2 text-slate-500 font-medium"
+                >
+                  프로필
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="liked" 
+                  className="data-[state=active]:bg-transparent data-[state=active]:shadow-none data-[state=active]:border-b-2 data-[state=active]:border-slate-900 data-[state=active]:text-slate-900 rounded-none h-12 px-2 text-slate-500 font-medium"
+                >
+                  관심 공고
+                </TabsTrigger>
+              </TabsList>
+            </div>
 
-        <TabsContent value="profile" className="mt-6">
-          <ProfileTab profile={profile} />
-        </TabsContent>
+            <div className="p-6 md:p-8">
+              <TabsContent value="profile" className="mt-0 focus-visible:outline-none">
+                <ProfileTab profile={profile} />
+              </TabsContent>
 
-        <TabsContent value="liked" className="mt-6">
-          <LikedJobsTab jobs={likedJobs} metricsConfig={metricsConfig} />
-        </TabsContent>
-      </Tabs>
+              <TabsContent value="liked" className="mt-0 focus-visible:outline-none">
+                <LikedJobsTab jobs={likedJobs} metricsConfig={metricsConfig} />
+              </TabsContent>
+            </div>
+          </Tabs>
+        </div>
+      </div>
     </div>
   )
 }
