@@ -46,6 +46,7 @@ export function JobDetail({
         displayLikes={displayLikes}
         workLocationType={job.work_location_type}
         workLocationCountry={job.work_location_country}
+        jobId={job.id}
       />
 
       {/* Job image (if exists) */}

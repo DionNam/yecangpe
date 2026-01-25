@@ -17,16 +17,12 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   const supabase = await createClient()
 
-  // Check authentication
+  // Check authentication (optional - for like functionality)
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect('/login')
-  }
-
-  // Fetch the job post
+  // Fetch the job post (public access)
   const { data: job, error: jobError } = await supabase
     .from('job_posts')
     .select('*')
@@ -58,20 +54,25 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   })
   const realLikes = (likeCountData as number) || 0
 
-  // Check if current user liked the post
-  const { data: isLikedData } = await (supabase as any).rpc('user_liked_post', {
-    post_id: id,
-  })
-  const isLiked = (isLikedData as boolean) || false
+  // Check if current user liked the post (only if logged in)
+  let isLiked = false
+  let canLike = false
 
-  // Check if user can like (seeker only)
-  const { data: seekerProfile } = await supabase
-    .from('seeker_profiles')
-    .select('id')
-    .eq('user_id', user.id)
-    .single()
+  if (user) {
+    const { data: isLikedData } = await (supabase as any).rpc('user_liked_post', {
+      post_id: id,
+    })
+    isLiked = (isLikedData as boolean) || false
 
-  const canLike = !!seekerProfile
+    // Check if user can like (seeker only)
+    const { data: seekerProfile } = await supabase
+      .from('seeker_profiles')
+      .select('id')
+      .eq('user_id', user.id)
+      .single()
+
+    canLike = !!seekerProfile
+  }
 
   // Calculate display metrics
   const publishedAt = new Date(job.published_at || job.created_at)

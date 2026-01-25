@@ -17,6 +17,7 @@ interface JobDetailHeaderProps {
   displayLikes: number
   workLocationType: WorkLocationType
   workLocationCountry: string | null
+  jobId: string
 }
 
 export function JobDetailHeader({
@@ -29,6 +30,7 @@ export function JobDetailHeader({
   displayLikes,
   workLocationType,
   workLocationCountry,
+  jobId,
 }: JobDetailHeaderProps) {
   // Get Korean name for nationality
   const nationalityInfo = NATIONALITIES.find(n => n.code === nationality)
@@ -99,7 +101,7 @@ export function JobDetailHeader({
               <Heart className="w-4 h-4" />
               {displayLikes.toLocaleString()}
             </span>
-            <ShareButton title={title} />
+            <ShareButton title={title} url={`https://potenhire.com/jobs/${jobId}`} />
           </div>
         </div>
       </div>
