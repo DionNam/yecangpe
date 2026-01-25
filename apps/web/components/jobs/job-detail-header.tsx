@@ -1,6 +1,7 @@
 import { NATIONALITIES, getCountryName } from '@repo/lib'
 import { Building2, Eye, Heart } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
+import { ShareButton } from '@/components/jobs/share-button'
 import type { Database } from '@repo/supabase/types'
 
 type HiringStatus = Database['public']['Enums']['hiring_status']
@@ -98,6 +99,7 @@ export function JobDetailHeader({
               <Heart className="w-4 h-4" />
               {displayLikes.toLocaleString()}
             </span>
+            <ShareButton title={title} />
           </div>
         </div>
       </div>
