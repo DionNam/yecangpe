@@ -1,6 +1,0 @@
-{
-  "buildCommand": "cd ../.. && pnpm install --filter=@repo/web... && cd apps/web && pnpm build",
-  "installCommand": "pnpm install --shamefully-hoist",
-  "framework": "nextjs",
-  "outputDirectory": ".next"
-}
