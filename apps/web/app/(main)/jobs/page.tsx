@@ -106,7 +106,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const end = start + pageSize - 1
   query = query.range(start, end)
 
-  const { data: posts, count, error } = await query
+  const { data: posts, count, error } = await query as { data: JobPost[] | null, count: number | null, error: any }
 
   if (error) {
     console.error('Error fetching job posts:', error)
@@ -155,7 +155,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           name: job.company_name,
         },
         datePosted: job.created_at,
-        employmentType: job.employment_type?.toUpperCase(),
+        jobLocationType: job.work_location_type?.toUpperCase(),
       },
     })),
   }
