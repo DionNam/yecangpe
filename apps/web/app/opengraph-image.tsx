@@ -21,99 +21,63 @@ export default function OGImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          background: 'linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%)',
-          position: 'relative',
+          backgroundColor: '#0f172a',
         }}
       >
-        {/* Decorative circles */}
-        <div
-          style={{
-            position: 'absolute',
-            left: -100,
-            bottom: -100,
-            width: 400,
-            height: 400,
-            borderRadius: '50%',
-            background: 'rgba(59, 130, 246, 0.1)',
-          }}
-        />
-        <div
-          style={{
-            position: 'absolute',
-            right: -50,
-            top: -50,
-            width: 300,
-            height: 300,
-            borderRadius: '50%',
-            background: 'rgba(59, 130, 246, 0.1)',
-          }}
-        />
-
         {/* Logo */}
         <div
           style={{
-            position: 'absolute',
-            top: 60,
-            left: 60,
             display: 'flex',
             alignItems: 'center',
-            gap: 16,
+            gap: 24,
+            marginBottom: 40,
           }}
         >
           <div
             style={{
-              width: 64,
-              height: 64,
-              background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-              borderRadius: 12,
+              width: 80,
+              height: 80,
+              backgroundColor: '#0f172a',
+              border: '2px solid #334155',
+              borderRadius: 16,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 40,
+              fontSize: 48,
               fontWeight: 700,
+              fontStyle: 'italic',
               color: 'white',
             }}
           >
             P
           </div>
-        </div>
-
-        {/* Main content */}
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
           <div
             style={{
-              fontSize: 96,
-              fontWeight: 800,
+              fontSize: 72,
+              fontWeight: 700,
               color: 'white',
-              letterSpacing: -2,
             }}
           >
             PotenHire
           </div>
-          <div
-            style={{
-              fontSize: 36,
-              color: '#94a3b8',
-              marginTop: 20,
-            }}
-          >
-            한국어 가능한 외국인을 위한 구인구직 플랫폼
-          </div>
+        </div>
+
+        {/* Tagline */}
+        <div
+          style={{
+            fontSize: 32,
+            color: '#94a3b8',
+          }}
+        >
+          한국어 가능한 외국인을 위한 구인구직 플랫폼
         </div>
 
         {/* URL */}
         <div
           style={{
             position: 'absolute',
-            bottom: 60,
-            fontSize: 28,
+            bottom: 50,
+            fontSize: 24,
             color: '#64748b',
           }}
         >

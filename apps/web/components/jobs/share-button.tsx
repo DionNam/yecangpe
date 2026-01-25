@@ -57,12 +57,6 @@ export function ShareButton({ title, url }: ShareButtonProps) {
     window.open(`mailto:?subject=${subject}&body=${body}`)
   }
 
-  const handleKakaoShare = () => {
-    // Kakao SDK share - opens Kakao share page
-    const kakaoUrl = `https://story.kakao.com/share?url=${encodeURIComponent(shareUrl)}`
-    window.open(kakaoUrl, '_blank', 'width=600,height=400')
-  }
-
   // Check if Web Share API is available
   const canShare = typeof navigator !== 'undefined' && navigator.share
 
@@ -90,13 +84,6 @@ export function ShareButton({ title, url }: ShareButtonProps) {
             <span>공유하기</span>
           </DropdownMenuItem>
         )}
-
-        <DropdownMenuItem onClick={handleKakaoShare} className="cursor-pointer">
-          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 3C6.477 3 2 6.463 2 10.691c0 2.667 1.737 5.015 4.388 6.374-.175.635-.637 2.3-.73 2.66-.116.448.164.44.344.32.142-.094 2.251-1.53 3.163-2.145.273.038.555.057.835.057 5.523 0 10-3.463 10-7.691S17.523 3 12 3z"/>
-          </svg>
-          <span>카카오톡</span>
-        </DropdownMenuItem>
 
         <DropdownMenuItem onClick={handleEmailShare} className="cursor-pointer">
           <Mail className="w-4 h-4" />
