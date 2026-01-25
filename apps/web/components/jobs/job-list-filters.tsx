@@ -76,14 +76,14 @@ export function JobListFilters({
   }
 
   return (
-    <div className="flex gap-4 flex-wrap">
-      <div className="flex items-center gap-2">
-        <label className="text-sm font-medium">국적</label>
+    <div className="grid grid-cols-2 md:flex gap-2 md:gap-4 md:flex-wrap">
+      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+        <label className="text-xs md:text-sm font-medium text-slate-600">국적</label>
         <Select
           value={currentNationality || 'all'}
           onValueChange={handleNationalityChange}
         >
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-full md:w-[180px] h-9 text-sm">
             <SelectValue placeholder="전체" />
           </SelectTrigger>
           <SelectContent>
@@ -97,13 +97,13 @@ export function JobListFilters({
         </Select>
       </div>
 
-      <div className="flex items-center gap-2">
-        <label className="text-sm font-medium">근무 형태</label>
+      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+        <label className="text-xs md:text-sm font-medium text-slate-600">근무 형태</label>
         <Select
           value={currentLocationType || 'all'}
           onValueChange={handleLocationTypeChange}
         >
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-full md:w-[140px] h-9 text-sm">
             <SelectValue placeholder="전체" />
           </SelectTrigger>
           <SelectContent>
@@ -117,13 +117,13 @@ export function JobListFilters({
 
       {/* Country filter - only show when on_site is selected */}
       {currentLocationType === 'on_site' && (
-        <div className="flex items-center gap-2">
-          <label className="text-sm font-medium">근무 국가</label>
+        <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+          <label className="text-xs md:text-sm font-medium text-slate-600">근무 국가</label>
           <Select
             value={currentLocationCountry || 'all'}
             onValueChange={handleLocationCountryChange}
           >
-            <SelectTrigger className="w-[180px]">
+            <SelectTrigger className="w-full md:w-[180px] h-9 text-sm">
               <SelectValue placeholder="전체" />
             </SelectTrigger>
             <SelectContent>
@@ -138,13 +138,13 @@ export function JobListFilters({
         </div>
       )}
 
-      <div className="flex items-center gap-2">
-        <label className="text-sm font-medium">정렬</label>
+      <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-2">
+        <label className="text-xs md:text-sm font-medium text-slate-600">정렬</label>
         <Select
           value={currentSort || 'latest'}
           onValueChange={handleSortChange}
         >
-          <SelectTrigger className="w-[140px]">
+          <SelectTrigger className="w-full md:w-[140px] h-9 text-sm">
             <SelectValue placeholder="최신순" />
           </SelectTrigger>
           <SelectContent>

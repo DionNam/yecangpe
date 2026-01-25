@@ -53,56 +53,58 @@ export function JobDetailHeader({
   }
 
   return (
-    <div className="relative space-y-6 p-8 md:p-12 pb-8 border-b border-slate-200">
+    <div className="relative space-y-4 md:space-y-6 p-4 md:p-8 lg:p-12 pb-6 md:pb-8 border-b border-slate-200">
       {/* Title */}
-      <div className="space-y-4 relative">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
+      <div className="space-y-3 md:space-y-4 relative">
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 leading-tight">
           {title}
         </h1>
 
         {/* Company name */}
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center">
-            <Building2 className="w-6 h-6 text-slate-900" />
+        <div className="flex items-center gap-2 md:gap-3">
+          <div className="w-10 h-10 md:w-12 md:h-12 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0">
+            <Building2 className="w-5 h-5 md:w-6 md:h-6 text-slate-900" />
           </div>
           <div>
-            <p className="text-lg font-medium text-gray-900">
+            <p className="text-base md:text-lg font-medium text-gray-900">
               {companyName}
             </p>
           </div>
         </div>
 
-        {/* Badges and metadata */}
-        <div className="flex flex-wrap items-center gap-3">
+        {/* Badges */}
+        <div className="flex flex-wrap items-center gap-2">
           <Badge
             variant={hiringStatus === 'hiring' ? 'default' : 'secondary'}
-            className="text-sm px-4 py-1.5"
+            className="text-xs md:text-sm px-2.5 md:px-4 py-1 md:py-1.5"
           >
             {hiringStatus === 'hiring' ? '채용중' : '마감'}
           </Badge>
 
-          <Badge variant="outline" className="text-sm px-4 py-1.5">
+          <Badge variant="outline" className="text-xs md:text-sm px-2.5 md:px-4 py-1 md:py-1.5">
             {nationalityName}
           </Badge>
 
           {/* Work location metadata */}
-          <div className="flex items-center gap-2 text-sm text-slate-600">
+          <div className="flex items-center gap-1.5 text-xs md:text-sm text-slate-600">
             <span>📍</span>
             <span>{getLocationText()}</span>
           </div>
+        </div>
 
-          {/* Metrics with icons */}
-          <div className="flex items-center gap-4 text-sm text-slate-600 ml-auto">
-            <span className="flex items-center gap-1.5">
-              <Eye className="w-4 h-4" />
+        {/* Metrics and Share - separate row on mobile */}
+        <div className="flex items-center justify-between pt-2 border-t border-slate-100 md:border-0 md:pt-0">
+          <div className="flex items-center gap-3 md:gap-4 text-xs md:text-sm text-slate-600">
+            <span className="flex items-center gap-1 md:gap-1.5">
+              <Eye className="w-3.5 h-3.5 md:w-4 md:h-4" />
               {displayViews.toLocaleString()}
             </span>
-            <span className="flex items-center gap-1.5">
-              <Heart className="w-4 h-4" />
+            <span className="flex items-center gap-1 md:gap-1.5">
+              <Heart className="w-3.5 h-3.5 md:w-4 md:h-4" />
               {displayLikes.toLocaleString()}
             </span>
-            <ShareButton title={title} url={`https://potenhire.com/jobs/${jobId}`} />
           </div>
+          <ShareButton title={title} url={`https://potenhire.com/jobs/${jobId}`} />
         </div>
       </div>
     </div>
