@@ -17,12 +17,16 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   const supabase = await createClient()
 
-  // Check authentication (optional - for like functionality)
+  // Check authentication - required to view job posts
   const {
     data: { user },
   } = await supabase.auth.getUser()
 
-  // Fetch the job post (public access)
+  if (!user) {
+    redirect('/login')
+  }
+
+  // Fetch the job post
   const { data: job, error: jobError } = await supabase
     .from('job_posts')
     .select('*')
