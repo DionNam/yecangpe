@@ -25,7 +25,7 @@ export async function adminLogin(formData: FormData) {
     .from('users')
     .select('role')
     .eq('id', authData.user.id)
-    .single()
+    .single<{ role: string }>()
 
   if (!profile || profile.role !== 'admin') {
     await supabase.auth.signOut()
