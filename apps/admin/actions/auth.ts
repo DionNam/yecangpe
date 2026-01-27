@@ -3,31 +3,33 @@
 import { createClient } from '@repo/supabase/server'
 import { redirect } from 'next/navigation'
 
-const ADMIN_CREDENTIALS = {
-  username: 'admin',
-  password: 'Nasig0reng!',
-  email: 'admin@potenhire.com'
-}
-
 export async function adminLogin(formData: FormData) {
-  const username = formData.get('username') as string
+  const email = formData.get('username') as string
   const password = formData.get('password') as string
 
-  // Validate hardcoded credentials
-  if (username !== ADMIN_CREDENTIALS.username || password !== ADMIN_CREDENTIALS.password) {
-    return { error: '아이디 또는 비밀번호가 올바르지 않습니다.' }
-  }
+  const supabase = await createClient()
 
   // Sign in with Supabase
-  const supabase = await createClient()
-  const { error } = await supabase.auth.signInWithPassword({
-    email: ADMIN_CREDENTIALS.email,
+  const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
+    email,
     password,
   })
 
-  if (error) {
-    console.error('Admin login error:', error)
-    return { error: '로그인 처리 중 오류가 발생했습니다.' }
+  if (authError) {
+    console.error('Admin login error:', authError)
+    return { error: '이메일 또는 비밀번호가 올바르지 않습니다.' }
+  }
+
+  // Check if user has admin role
+  const { data: profile } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', authData.user.id)
+    .single()
+
+  if (!profile || profile.role !== 'admin') {
+    await supabase.auth.signOut()
+    return { error: '관리자 권한이 없습니다.' }
   }
 
   redirect('/')

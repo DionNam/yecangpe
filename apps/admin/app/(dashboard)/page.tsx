@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { createClient } from '@repo/supabase/server'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Clock, Users, FileText, TrendingUp, AlertCircle, CheckCircle } from 'lucide-react'
+import ClientMarker from './ClientMarker'
 
 export default async function DashboardHome() {
   const supabase = await createClient()
@@ -25,6 +26,7 @@ export default async function DashboardHome() {
 
   return (
     <div className="space-y-8">
+      <ClientMarker />
       {/* Header */}
       <div>
         <h1 className="text-4xl font-bold tracking-tight">대시보드</h1>

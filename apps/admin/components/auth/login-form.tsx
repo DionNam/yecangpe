@@ -28,12 +28,12 @@ export function AdminLoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="space-y-2">
-        <Label htmlFor="username">아이디</Label>
+        <Label htmlFor="username">이메일</Label>
         <Input
           id="username"
           name="username"
-          type="text"
-          placeholder="admin"
+          type="email"
+          placeholder="admin@example.com"
           required
           disabled={isLoading}
           className="h-11"
