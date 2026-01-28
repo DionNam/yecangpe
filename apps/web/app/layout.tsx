@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
+import Script from 'next/script'
 import './globals.css'
 import { ScrollFix } from '@/components/scroll-fix'
 import { SiteHeaderWrapper } from '@/components/layout/site-header-wrapper'
@@ -37,6 +38,20 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0KQMG6KP4T"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0KQMG6KP4T');
+          `}
+        </Script>
+      </head>
       <body>
         <Suspense fallback={<HeaderSkeleton />}>
           <SiteHeaderWrapper />
