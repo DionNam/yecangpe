@@ -52,8 +52,9 @@ export const config = {
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - icon, apple-icon, opengraph-image (dynamic image routes)
+     * - sitemap.xml, robots.txt (SEO files)
      * - public files (images, etc.)
      */
-    '/((?!_next/static|_next/image|favicon\\.ico|icon|apple-icon|opengraph-image|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    '/((?!_next/static|_next/image|favicon\\.ico|icon|apple-icon|opengraph-image|sitemap\\.xml|robots\\.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
