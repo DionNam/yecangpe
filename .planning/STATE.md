@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 13 of 18 (Landing Page Redesign)
-Plan: 2 of 9 in current phase
+Plan: 3 of 9 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 13-02-PLAN.md (Middle Sections: Search, Service Intro, Filter Cards)
+Last activity: 2026-02-07 — Completed 13-03-PLAN.md (Bottom Sections: FAQ, Newsletter, Footer)
 
-Progress: [████████████████████░░] 77% (41 plans complete across all phases)
+Progress: [████████████████████░░] 79% (42 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 41 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 6, v2.0 Phase 13: 2)
-- Average duration: 3.5min
-- Total execution time: 2.71 hours
+- Total plans completed: 42 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 6, v2.0 Phase 13: 3)
+- Average duration: 3.48min
+- Total execution time: 2.73 hours
 
 **By Phase:**
 
@@ -40,7 +40,7 @@ Progress: [████████████████████░░] 7
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 6 | 20.3min | 3.4min |
-| 13-landing-page-redesign | 2 | 3.1min | 1.55min |
+| 13-landing-page-redesign | 3 | 5.85min | 1.95min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -147,6 +147,10 @@ Recent decisions affecting v1.1 work:
 - **13-01**: AnimatedCounter reused from existing codebase for consistency
 - **13-02**: Search navigates to /jobs with URLSearchParams (not filter state)
 - **13-02**: Popular tags are hardcoded array (strategic content, not dynamic data)
+- **13-03**: Newsletter type toggle uses client-side state (job_seeker/employer)
+- **13-03**: Server action returns friendly error for duplicate email (code 23505)
+- **13-03**: Footer uses text social links instead of brand icons (lucide doesn't have Twitter/LinkedIn icons)
+- **13-03**: Type assertion (supabase as any) for newsletter_subscribers table (not in generated types yet)
 - **13-02**: Service intro CTAs link to /jobs and /employers (update to info pages in Phase 14)
 - **13-02**: Filter category cards use generic filter params (implementation in Phase 15)
 
@@ -200,8 +204,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 13-02-PLAN.md (Middle Sections) - Phase 13 plan 2 of 9
+Stopped at: Completed 13-03-PLAN.md (Bottom Sections: FAQ, Newsletter, Footer) - Phase 13 plan 3 of 9
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 13-02: job search, service intro cards, filter category cards - Phase 13 plan 2)*
+*Last updated: 2026-02-07 (completed 13-03: FAQ accordion, newsletter subscription, extended footer - Phase 13 plan 3)*
