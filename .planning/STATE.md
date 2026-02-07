@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 12 of 18 (Branding & DB Schema Overhaul)
-Plan: 2 of TBD in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 12-02-PLAN.md (Shared Constants & Slug Utility)
+Last activity: 2026-02-07 — Completed 12-04-PLAN.md (Typography & Color System)
 
-Progress: [█████████████████░░░░░] 68% (35 plans complete across all phases)
+Progress: [█████████████████░░░░░] 70% (36 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 35 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 2)
-- Average duration: 3.8min
-- Total execution time: 2.4 hours
+- Total plans completed: 36 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 3)
+- Average duration: 3.7min
+- Total execution time: 2.45 hours
 
 **By Phase:**
 
@@ -39,7 +39,7 @@ Progress: [█████████████████░░░░░] 6
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
-| 12-branding-db-schema | 2 | 6min | 3.0min |
+| 12-branding-db-schema | 3 | 8.7min | 2.9min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -50,7 +50,8 @@ Progress: [█████████████████░░░░░] 6
 - v1.5 completed in 14 minutes (5 plans)
 - v2.0 Phase 12 plan 1: 3 minutes (database schema expansion)
 - v2.0 Phase 12 plan 2: 3 minutes (shared constants & slug utility)
-- Trend: Maintaining fast iteration velocity (consistent 3min/plan for Phase 12)
+- v2.0 Phase 12 plan 4: 2.7 minutes (typography & color system)
+- Trend: Maintaining fast iteration velocity (sub-3-minute plans in Phase 12)
 
 ## Accumulated Context
 
@@ -123,6 +124,10 @@ Recent decisions affecting v1.1 work:
 - **12-02**: Type exports for all constants enable type-safe code validation
 - **12-02**: Slug generation uses 8-char UUID suffix for uniqueness with readable URLs
 - **12-02**: transliteration package for robust Korean romanization in slugs
+- **12-04**: Pretendard variable font for Korean-optimized typography (weights 100-900)
+- **12-04**: OKLCH color space for brand colors (perceptually uniform, wide gamut)
+- **12-04**: Three-color palette (Blue/Amber/Emerald) with 10 shades each for flexibility
+- **12-04**: Font mapping in web app only; admin keeps Inter font
 
 ### Roadmap Evolution
 
@@ -174,8 +179,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 12-02-PLAN.md (Shared Constants & Slug Utility)
+Stopped at: Completed 12-04-PLAN.md (Typography & Color System)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 12-02: shared constants and slug generation for v2.0 features)*
+*Last updated: 2026-02-07 (completed 12-04: typography & color system with Pretendard font and brand colors)*
