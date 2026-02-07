@@ -163,13 +163,13 @@ Plans:
   5. 모든 페이지에서 랜딩 및 잡보드로의 크로스 링크 동작
   6. 반응형 디자인 (모바일 최적화)
 
-**Plans**: 4 plans
+**Plans**: 4/4 complete ✅
 
 Plans:
-- [ ] 14-01-PLAN.md -- Shared info-page section components + metadata helper (Wave 1)
-- [ ] 14-02-PLAN.md -- Job Seekers page (/job-seekers) with 8 sections (Wave 2)
-- [ ] 14-03-PLAN.md -- Employers page (/employers) with 7 sections (Wave 2)
-- [ ] 14-04-PLAN.md -- About + FAQ pages + visual verification (Wave 2)
+- [x] 14-01-PLAN.md -- Shared info-page section components + metadata helper (Wave 1)
+- [x] 14-02-PLAN.md -- Job Seekers page (/job-seekers) with 8 sections (Wave 2)
+- [x] 14-03-PLAN.md -- Employers page (/employers) with 7 sections (Wave 2)
+- [x] 14-04-PLAN.md -- About + FAQ pages + visual verification (Wave 2)
 
 **Details:**
 - 4개 신규 라우트 생성 via (marketing) route group
@@ -355,13 +355,13 @@ Plans:
 | 11. Work Location & Country | v1.5 | 5/5 | ✅ Complete | 2026-01-23 |
 | 12. Branding & DB Schema Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 13. Landing Page Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
-| 14. Info Pages | v2.0 | 0/4 | 🔲 Planned | - |
+| 14. Info Pages | v2.0 | 4/4 | ✅ Complete | 2026-02-07 |
 | 15. Job Board Overhaul | v2.0 | 0 | 🔲 Not planned | - |
 | 16. Job Detail Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 17. Dashboard Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 18. SEO Filter Pages | v2.0 | 0 | 🔲 Not planned | - |
 
-**Total:** 18 phases (13 complete, 5 not planned)
+**Total:** 18 phases (14 complete, 4 not planned)
 
 ---
-*Last updated: 2026-02-07 (Phase 13 complete - landing page redesign with 9 new sections)*
+*Last updated: 2026-02-07 (Phase 14 complete - 4 info pages: /job-seekers, /employers, /about, /faq)*
