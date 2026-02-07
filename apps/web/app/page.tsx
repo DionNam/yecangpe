@@ -37,7 +37,7 @@ export default async function Home() {
   // Fetch latest 8 published, hiring jobs with new fields
   const { data: previewJobs } = await supabase
     .from('job_posts')
-    .select('id, title, company_name, job_type, work_location_type, work_location_country, published_at')
+    .select('id, slug, title, company_name, job_type, work_location_type, work_location_country, published_at')
     .eq('review_status', 'published')
     .eq('hiring_status', 'hiring')
     .order('published_at', { ascending: false })

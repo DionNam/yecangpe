@@ -6,6 +6,7 @@ import { ArrowRight, Calendar } from 'lucide-react'
 
 interface JobPreview {
   id: string
+  slug: string | null
   title: string
   company_name: string
   job_type: string | null
@@ -78,7 +79,7 @@ export function PreviewSection({ initialJobs }: PreviewSectionProps) {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="group cursor-pointer"
             >
-              <Link href={`/jobs/${job.id}`} className="block h-full">
+              <Link href={`/jobs/${job.slug || job.id}`} className="block h-full">
                 <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-slate-200 p-6 h-full flex flex-col">
                   <h3 className="text-base font-bold text-gray-900 mb-2 line-clamp-2">
                     {job.title}

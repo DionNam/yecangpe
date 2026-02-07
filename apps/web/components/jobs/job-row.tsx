@@ -35,7 +35,7 @@ export function JobRow({
 
   const handleClick = () => {
     if (isAuthenticated) {
-      router.push(`/jobs/${job.id}`)
+      router.push(`/jobs/${job.slug || job.id}`)
     } else {
       setShowLoginModal(true)
     }
@@ -256,7 +256,7 @@ export function JobRow({
           <div onClick={(e) => e.stopPropagation()}>
             <ShareButton
               title={job.title || ''}
-              url={`${typeof window !== 'undefined' ? window.location.origin : ''}/jobs/${job.id}`}
+              url={`${typeof window !== 'undefined' ? window.location.origin : ''}/jobs/${job.slug || job.id}`}
             />
           </div>
         </div>

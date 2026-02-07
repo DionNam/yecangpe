@@ -97,7 +97,7 @@ export function LikedJobsTab({ jobs, metricsConfig }: LikedJobsTabProps) {
               </TableCell>
               <TableCell>
                 <Link
-                  href={`/jobs/${post.id}`}
+                  href={`/jobs/${post.slug || post.id}`}
                   className="hover:underline flex items-center"
                 >
                   {getStatusBadge(post.hiring_status)}

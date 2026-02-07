@@ -157,7 +157,7 @@ export function MyPostsTable({
                   <div className="flex flex-col gap-1">
                     {isPublished ? (
                       <Link
-                        href={`/jobs/${post.id}`}
+                        href={`/jobs/${post.slug || post.id}`}
                         className="hover:underline font-medium"
                       >
                         {post.title}
