@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 18 of 18 (SEO Filter Pages)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 18-03-PLAN.md (By-Category and By-Language-Level Filter Pages)
+Last activity: 2026-02-07 — Completed 18-04-PLAN.md (By-Country Filter Pages)
 
-Progress: [█████████████████████░] 100% (61 plans complete across all phases)
+Progress: [█████████████████████░] 100% (62 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 61 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 5, v2.0 Phase 18: 3)
-- Average duration: 3.10min
-- Total execution time: 3.15 hours
+- Total plans completed: 62 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 5, v2.0 Phase 18: 4)
+- Average duration: 3.08min
+- Total execution time: 3.17 hours
 
 **By Phase:**
 
@@ -45,7 +45,7 @@ Progress: [█████████████████████░] 1
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
 | 16-job-detail-redesign | 3 | 14.5min | 4.83min |
 | 17-dashboard-redesign | 5 | 20min | 4.0min |
-| 18-seo-filter-pages | 3 | 7.88min | 2.63min |
+| 18-seo-filter-pages | 4 | 8.88min | 2.22min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -84,7 +84,8 @@ Progress: [█████████████████████░] 1
 - v2.0 Phase 18 plan 1: 4.88 minutes (shared filter components and data configuration)
 - v2.0 Phase 18 plan 2: 1.7 minutes (by-type and by-location-type filter pages)
 - v2.0 Phase 18 plan 3: 1.3 minutes (by-category and by-language-level filter pages)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 complete in 20 minutes (average 4.0min/plan - all 5 plans shipped: unified dashboard routing + employer/seeker dashboards + rich text editor + job alerts). Phase 18 in progress: 3 of 5 plans complete.
+- v2.0 Phase 18 plan 4: 1.0 minutes (by-country filter pages - 26 country pages)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 complete in 20 minutes (average 4.0min/plan - all 5 plans shipped: unified dashboard routing + employer/seeker dashboards + rich text editor + job alerts). Phase 18 in progress: 4 of 5 plans complete.
 
 ## Accumulated Context
 
@@ -275,6 +276,9 @@ Recent decisions affecting v1.1 work:
 - **18-03**: Filter out 'not_specified' from language level static generation (5 pages: native, advanced, intermediate, basic, not_required)
 - **18-03**: Category pages use CATEGORIES constant for 20 static pages
 - **18-03**: Language level validation excludes not_specified in both generateStaticParams and page validation
+- **18-04**: COUNTRIES constant has different field structure (name=Korean, nameEn=English) compared to other constants
+- **18-04**: Country filter uses work_location_country column for DB query
+- **18-04**: Remote jobs (work_location_country=null) won't appear in country pages - correct behavior
 - **17-02**: Real metrics in employer dashboard (view_count, apply_click_count) - no fake metrics
 - **17-02**: window.confirm() for delete confirmation (simpler than modal)
 - **17-02**: PostEditModal reused for consistency with existing edit flows
@@ -343,8 +347,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 18-03-PLAN.md (By-Category and By-Language-Level Filter Pages)
+Stopped at: Completed 18-04-PLAN.md (By-Country Filter Pages)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 18 in progress — SEO Filter Pages: Plan 03 complete - 34 static filter pages (6 job types + 3 location types + 20 categories + 5 language levels) with ISR and structured data)*
+*Last updated: 2026-02-07 (Phase 18 in progress — SEO Filter Pages: Plan 04 complete - 60 static filter pages (6 job types + 3 location types + 20 categories + 5 language levels + 26 countries) with ISR and structured data)*
