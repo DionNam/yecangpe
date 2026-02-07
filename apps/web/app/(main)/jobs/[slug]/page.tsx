@@ -3,6 +3,7 @@ import { redirect, notFound } from 'next/navigation'
 import { JobDetailPage as JobDetailPageComponent } from '@/components/jobs/job-detail-page'
 import { getDisplayMetrics } from '@/lib/utils/metrics'
 import type { Database } from '@repo/supabase/types'
+import type { Metadata } from 'next'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
@@ -14,6 +15,93 @@ interface JobDetailPageProps {
 
 // UUID regex pattern for checking if slug is actually a UUID
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
+
+// Generate metadata for SEO
+export async function generateMetadata({ params }: JobDetailPageProps): Promise<Metadata> {
+  const { slug } = await params
+  const supabase = await createClient()
+
+  const { data: job } = await supabase
+    .from('job_posts')
+    .select('title, company_name, content, company_logo_url')
+    .eq('slug', slug)
+    .eq('review_status', 'published')
+    .single()
+
+  if (!job) return {}
+
+  // Type assertion for job
+  const jobData = job as any
+  const description = jobData.content?.substring(0, 160) || ''
+
+  return {
+    title: `${jobData.title} | ${jobData.company_name}`,
+    description,
+    openGraph: {
+      title: `${jobData.title} - ${jobData.company_name}`,
+      description,
+      type: 'article',
+      locale: 'ko_KR',
+      siteName: 'HangulJobs',
+      ...(jobData.company_logo_url && { images: [{ url: jobData.company_logo_url }] }),
+    },
+    twitter: {
+      card: 'summary',
+      title: `${jobData.title} - ${jobData.company_name}`,
+      description,
+    },
+  }
+}
+
+// Helper function to build schema.org JobPosting JSON-LD
+function buildJobPostingSchema(job: JobPost) {
+  // Map job_type to schema.org employmentType
+  const employmentTypeMap: Record<string, string> = {
+    full_time: 'FULL_TIME',
+    part_time: 'PART_TIME',
+    contract: 'CONTRACTOR',
+    freelance: 'CONTRACTOR',
+    internship: 'INTERN',
+    temporary: 'TEMPORARY',
+  }
+
+  // Map salary_period to schema.org unitText
+  const salaryPeriodMap: Record<string, string> = {
+    hourly: 'HOUR',
+    daily: 'DAY',
+    weekly: 'WEEK',
+    monthly: 'MONTH',
+    yearly: 'YEAR',
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title: job.title,
+    description: job.content,
+    datePosted: job.published_at || job.created_at,
+    ...(job.expires_at && { validThrough: job.expires_at }),
+    hiringOrganization: {
+      '@type': 'Organization',
+      name: job.company_name,
+      ...(job.company_logo_url && { logo: job.company_logo_url }),
+    },
+    ...(job.job_type && { employmentType: employmentTypeMap[job.job_type] }),
+    ...(job.work_location_type === 'remote' && { jobLocationType: 'TELECOMMUTE' }),
+    ...(job.salary_min && {
+      baseSalary: {
+        '@type': 'MonetaryAmount',
+        currency: job.salary_currency || 'KRW',
+        value: {
+          '@type': 'QuantitativeValue',
+          minValue: job.salary_min,
+          ...(job.salary_max && { maxValue: job.salary_max }),
+          ...(job.salary_period && { unitText: salaryPeriodMap[job.salary_period] }),
+        },
+      },
+    }),
+  }
+}
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const { slug } = await params
@@ -116,16 +204,22 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const companyWebsite = (job as any).author?.employer_profile?.company_website || null
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <JobDetailPageComponent
-        job={jobData}
-        isLiked={isLiked}
-        canLike={canLike}
-        displayLikes={displayLikes}
-        displayViews={displayViews}
-        user={user}
-        companyWebsite={companyWebsite}
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJobPostingSchema(jobData)) }}
       />
-    </div>
+      <div className="min-h-screen bg-slate-50">
+        <JobDetailPageComponent
+          job={jobData}
+          isLiked={isLiked}
+          canLike={canLike}
+          displayLikes={displayLikes}
+          displayViews={displayViews}
+          user={user}
+          companyWebsite={companyWebsite}
+        />
+      </div>
+    </>
   )
 }
