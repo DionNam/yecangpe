@@ -3,6 +3,7 @@ import { Badge } from '@/components/ui/badge'
 import { JobDetailCompanyCard } from './job-detail-company-card'
 import { JobDetailSidebar } from './job-detail-sidebar'
 import { JobDetailActionBar } from './job-detail-action-bar'
+import { RelatedJobsCarousel } from './related-jobs-carousel'
 import Image from 'next/image'
 import { JOB_TYPES } from '@repo/lib'
 import type { Database } from '@repo/supabase/types'
@@ -160,6 +161,13 @@ export function JobDetailPage({
           />
         </div>
       </div>
+
+      {/* Full width: Related Jobs Carousel */}
+      <RelatedJobsCarousel
+        currentJobId={job.id}
+        category={job.category}
+        country={job.work_location_country}
+      />
     </div>
   )
 }
