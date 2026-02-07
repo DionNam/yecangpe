@@ -26,6 +26,8 @@ export async function createJobPost(formData: FormData) {
 
   // Parse form data
   const imageUrlRaw = formData.get('image_url')
+  const salaryMinRaw = formData.get('salary_min')
+  const salaryMaxRaw = formData.get('salary_max')
   const rawData = {
     title: formData.get('title'),
     content: formData.get('content'),
@@ -34,6 +36,18 @@ export async function createJobPost(formData: FormData) {
     work_location_type: formData.get('work_location_type'),
     work_location_country: formData.get('work_location_country') || undefined,
     image_url: imageUrlRaw ? String(imageUrlRaw) : null,
+    // New PRD fields
+    job_type: formData.get('job_type'),
+    category: formData.get('category'),
+    korean_level: formData.get('korean_level'),
+    english_level: formData.get('english_level') || undefined,
+    salary_min: salaryMinRaw ? Number(salaryMinRaw) : undefined,
+    salary_max: salaryMaxRaw ? Number(salaryMaxRaw) : undefined,
+    salary_currency: formData.get('salary_currency') || 'KRW',
+    salary_period: formData.get('salary_period') || undefined,
+    career_level: formData.get('career_level') || undefined,
+    apply_url: formData.get('apply_url') || undefined,
+    apply_email: formData.get('apply_email') || undefined,
   }
 
   // Validate with Zod schema
@@ -80,6 +94,18 @@ export async function createJobPost(formData: FormData) {
       view_target: viewTarget,
       like_target: likeTarget,
       image_url: result.data.image_url || null,
+      // New PRD fields
+      job_type: result.data.job_type,
+      category: result.data.category,
+      korean_level: result.data.korean_level,
+      english_level: result.data.english_level || null,
+      salary_min: result.data.salary_min ?? null,
+      salary_max: result.data.salary_max ?? null,
+      salary_currency: result.data.salary_currency,
+      salary_period: result.data.salary_period || null,
+      career_level: result.data.career_level || null,
+      apply_url: result.data.apply_url || null,
+      apply_email: result.data.apply_email || null,
     } as any)
 
   if (insertError) {
@@ -102,6 +128,8 @@ export async function updateJobPost(formData: FormData) {
   // Parse form data
   const postId = formData.get('id') as string
   const imageUrlFormValue = formData.get('image_url')
+  const salaryMinRaw = formData.get('salary_min')
+  const salaryMaxRaw = formData.get('salary_max')
   const rawData = {
     title: formData.get('title'),
     content: formData.get('content'),
@@ -112,6 +140,18 @@ export async function updateJobPost(formData: FormData) {
     ...(imageUrlFormValue !== null && {
       image_url: imageUrlFormValue === '' ? null : String(imageUrlFormValue),
     }),
+    // New PRD fields
+    job_type: formData.get('job_type') || undefined,
+    category: formData.get('category') || undefined,
+    korean_level: formData.get('korean_level') || undefined,
+    english_level: formData.get('english_level') || undefined,
+    salary_min: salaryMinRaw ? Number(salaryMinRaw) : undefined,
+    salary_max: salaryMaxRaw ? Number(salaryMaxRaw) : undefined,
+    salary_currency: formData.get('salary_currency') || undefined,
+    salary_period: formData.get('salary_period') || undefined,
+    career_level: formData.get('career_level') || undefined,
+    apply_url: formData.get('apply_url') || undefined,
+    apply_email: formData.get('apply_email') || undefined,
   }
 
   // Validate with Zod schema
@@ -151,6 +191,41 @@ export async function updateJobPost(formData: FormData) {
   if (imageUrlFormValue !== null) {
     // Explicitly set (could be URL or empty string to remove)
     updateData.image_url = imageUrlFormValue === '' ? null : imageUrlFormValue
+  }
+
+  // New PRD fields - only update if provided (for backward compat)
+  if (result.data.job_type !== undefined) {
+    updateData.job_type = result.data.job_type
+  }
+  if (result.data.category !== undefined) {
+    updateData.category = result.data.category
+  }
+  if (result.data.korean_level !== undefined) {
+    updateData.korean_level = result.data.korean_level
+  }
+  if (result.data.english_level !== undefined) {
+    updateData.english_level = result.data.english_level
+  }
+  if (result.data.salary_min !== undefined) {
+    updateData.salary_min = result.data.salary_min
+  }
+  if (result.data.salary_max !== undefined) {
+    updateData.salary_max = result.data.salary_max
+  }
+  if (result.data.salary_currency !== undefined) {
+    updateData.salary_currency = result.data.salary_currency
+  }
+  if (result.data.salary_period !== undefined) {
+    updateData.salary_period = result.data.salary_period
+  }
+  if (result.data.career_level !== undefined) {
+    updateData.career_level = result.data.career_level
+  }
+  if (result.data.apply_url !== undefined) {
+    updateData.apply_url = result.data.apply_url
+  }
+  if (result.data.apply_email !== undefined) {
+    updateData.apply_email = result.data.apply_email
   }
 
   // Update job post
