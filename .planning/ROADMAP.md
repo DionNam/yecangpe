@@ -89,14 +89,14 @@
   8. employer_profiles에 company_website, company_logo_url, company_description 필드 추가
   9. seeker_profiles에 english_level, city 필드 추가
 
-**Plans**: 5 plans
+**Plans**: 5/5 complete
 
 Plans:
-- [ ] 12-01-PLAN.md -- DB Schema: ENUMs, column additions, new tables (job_alerts, newsletter_subscribers)
-- [ ] 12-02-PLAN.md -- Constants & Slug Utility: job types, categories, language levels, slug generation
-- [ ] 12-03-PLAN.md -- Branding & Terminology: PotenHire -> HangulJobs, 구인자 -> 고용주
-- [ ] 12-04-PLAN.md -- Design System: Pretendard font, Blue/Amber/Emerald color palette
-- [ ] 12-05-PLAN.md -- Zod Schema Updates: web + admin validation with new PRD fields
+- [x] 12-01-PLAN.md -- DB Schema: ENUMs, column additions, new tables (job_alerts, newsletter_subscribers)
+- [x] 12-02-PLAN.md -- Constants & Slug Utility: job types, categories, language levels, slug generation
+- [x] 12-03-PLAN.md -- Branding & Terminology: PotenHire -> HangulJobs, 구인자 -> 고용주
+- [x] 12-04-PLAN.md -- Design System: Pretendard font, Blue/Amber/Emerald color palette
+- [x] 12-05-PLAN.md -- Zod Schema Updates: web + admin validation with new PRD fields
 
 **Details:**
 - DB migration: job_type ENUM (full_time, part_time, contract, freelance, internship, temporary)
@@ -346,7 +346,7 @@ Plans:
 | 9. UI Polish & Core UX | v1.3 | 3/3 | ✅ Complete | 2026-01-21 |
 | 10. Job Post Image Upload | v1.4 | 4/4 | ✅ Complete | 2026-01-22 |
 | 11. Work Location & Country | v1.5 | 5/5 | ✅ Complete | 2026-01-23 |
-| 12. Branding & DB Schema Overhaul | v2.0 | 0/5 | 🔲 Planned | - |
+| 12. Branding & DB Schema Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 13. Landing Page Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 14. Info Pages | v2.0 | 0 | 🔲 Not planned | - |
 | 15. Job Board Overhaul | v2.0 | 0 | 🔲 Not planned | - |
