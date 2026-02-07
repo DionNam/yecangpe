@@ -38,15 +38,15 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [isUploading, setIsUploading] = useState(false)
 
-  const form = useForm<JobPostInput>({
+  const form = useForm({
     resolver: zodResolver(jobPostSchema),
     defaultValues: {
       title: '',
       content: '',
       company_name: defaultCompanyName,
-      target_nationality: undefined,
-      work_location_type: 'on_site',
-      work_location_country: undefined,
+      target_nationality: undefined as string | undefined,
+      work_location_type: 'on_site' as const,
+      work_location_country: undefined as string | undefined,
     },
   })
 

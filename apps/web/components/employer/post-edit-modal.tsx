@@ -65,14 +65,14 @@ export function PostEditModal({
   const [imageRemoved, setImageRemoved] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
 
-  const form = useForm<JobPostUpdateInput>({
+  const form = useForm({
     resolver: zodResolver(jobPostUpdateSchema),
     defaultValues: {
       title: defaultValues.title,
       content: defaultValues.content,
-      hiring_status: defaultValues.hiring_status,
-      work_location_type: defaultValues.work_location_type,
-      work_location_country: defaultValues.work_location_country || undefined,
+      hiring_status: defaultValues.hiring_status as 'hiring' | 'closed',
+      work_location_type: defaultValues.work_location_type as 'remote' | 'hybrid' | 'on_site',
+      work_location_country: (defaultValues.work_location_country || undefined) as string | undefined,
     },
   })
 
