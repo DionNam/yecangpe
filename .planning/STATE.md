@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 12 of 18 (Branding & DB Schema Overhaul)
-Plan: 3 of 5 in current phase
-Status: In progress
-Last activity: 2026-02-07 — Completed 12-03-PLAN.md (Branding Overhaul)
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-02-07 — Completed 12-05-PLAN.md (Validation Schema Update)
 
-Progress: [█████████████████░░░░░] 71% (37 plans complete across all phases)
+Progress: [████████████████████░░] 75% (39 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 37 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 4)
-- Average duration: 3.7min
-- Total execution time: 2.56 hours
+- Total plans completed: 39 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 6)
+- Average duration: 3.6min
+- Total execution time: 2.67 hours
 
 **By Phase:**
 
@@ -39,7 +39,7 @@ Progress: [█████████████████░░░░░] 7
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
-| 12-branding-db-schema | 4 | 15.1min | 3.8min |
+| 12-branding-db-schema | 6 | 20.3min | 3.4min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -52,7 +52,8 @@ Progress: [█████████████████░░░░░] 7
 - v2.0 Phase 12 plan 2: 3 minutes (shared constants & slug utility)
 - v2.0 Phase 12 plan 3: 6.4 minutes (branding overhaul)
 - v2.0 Phase 12 plan 4: 2.7 minutes (typography & color system)
-- Trend: Fast iteration velocity with larger plan (12-03) completed in 6.4 minutes
+- v2.0 Phase 12 plan 5: 2.1 minutes (validation schema update)
+- Trend: Phase 12 complete in 20.3 minutes (average 3.4min/plan) - consistent fast iteration
 
 ## Accumulated Context
 
@@ -133,6 +134,10 @@ Recent decisions affecting v1.1 work:
 - **12-04**: OKLCH color space for brand colors (perceptually uniform, wide gamut)
 - **12-04**: Three-color palette (Blue/Amber/Emerald) with 10 shades each for flexibility
 - **12-04**: Font mapping in web app only; admin keeps Inter font
+- **12-05**: Required fields in job post create: job_type, category, korean_level, at least one application method
+- **12-05**: Optional fields in job post create: english_level, salary fields, career_level
+- **12-05**: All new PRD fields optional in update schemas for backward compatibility
+- **12-05**: salary_currency defaults to 'KRW' in create schema
 
 ### Roadmap Evolution
 
@@ -184,8 +189,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 12-03-PLAN.md (Branding Overhaul)
+Stopped at: Completed 12-05-PLAN.md (Validation Schema Update) - Phase 12 complete
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 12-03: complete rebrand from PotenHire to HangulJobs with Korean terminology standardization)*
+*Last updated: 2026-02-07 (completed 12-05: validation schemas updated with PRD fields - Phase 12 complete)*
