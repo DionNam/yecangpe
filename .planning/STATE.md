@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 ## Current Position
 
-Phase: 13 of 18 (Landing Page Redesign)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-07 — Completed 13-05-PLAN.md (Cleanup & Visual Verification)
+Phase: 14 of 18 (Info Pages)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-02-07 — Completed 14-01-PLAN.md (Info Pages Foundation Components)
 
-Progress: [████████████████████░░] 83% (44 plans complete across all phases)
+Progress: [████████████████████░░] 85% (45 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 44 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5)
-- Average duration: 3.36min
-- Total execution time: 2.47 hours
+- Total plans completed: 45 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 1)
+- Average duration: 3.31min
+- Total execution time: 2.49 hours
 
 **By Phase:**
 
@@ -41,6 +41,7 @@ Progress: [████████████████████░░] 8
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
+| 14-info-pages | 1 | 2min | 2.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -59,7 +60,8 @@ Progress: [████████████████████░░] 8
 - v2.0 Phase 13 plan 3: 1.75 minutes (FAQ, newsletter, footer)
 - v2.0 Phase 13 plan 4: 1 minute (integration & preview update)
 - v2.0 Phase 13 plan 5: 2 minutes (cleanup & visual verification)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution).
+- v2.0 Phase 14 plan 1: 2 minutes (info pages foundation components)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 in progress.
 
 ## Accumulated Context
 
@@ -161,6 +163,9 @@ Recent decisions affecting v1.1 work:
 - **13-04**: Badge colors: job_type (blue), work_location_type (emerald), country (slate)
 - **13-05**: Deleted 4 old landing components after verifying no external dependencies
 - **13-05**: Visual verification completed - all 9 sections functioning correctly
+- **14-01**: Variant prop pattern ('seeker' | 'employer') for StepGuideSection and FinalCTASection
+- **14-01**: generateInfoPageMetadata uses template from root layout (title only, no 'HangulJobs' suffix)
+- **14-01**: Components follow Phase 13 patterns (motion/react, Lucide icons, Tailwind)
 
 ### Roadmap Evolution
 
@@ -212,8 +217,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 13-05-PLAN.md (Cleanup & Visual Verification) - Phase 13 COMPLETE
+Stopped at: Completed 14-01-PLAN.md (Info Pages Foundation Components)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 13-05: deleted 4 old landing components, verified complete Phase 13 redesign - Phase 13 COMPLETE)*
+*Last updated: 2026-02-07 (completed 14-01: created 5 info-page section components and metadata helper - Phase 14 started)*
