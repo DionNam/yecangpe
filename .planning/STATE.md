@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 14 of 18 (Info Pages)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 14-01-PLAN.md (Info Pages Foundation Components)
+Last activity: 2026-02-07 — Completed 14-02-PLAN.md (Job Seekers Info Page)
 
-Progress: [████████████████████░░] 85% (45 plans complete across all phases)
+Progress: [████████████████████░░] 86% (46 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 45 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 1)
-- Average duration: 3.31min
-- Total execution time: 2.49 hours
+- Total plans completed: 46 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 2)
+- Average duration: 3.28min
+- Total execution time: 2.52 hours
 
 **By Phase:**
 
@@ -41,7 +41,7 @@ Progress: [████████████████████░░] 8
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
-| 14-info-pages | 1 | 2min | 2.0min |
+| 14-info-pages | 2 | 4min | 2.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -61,7 +61,8 @@ Progress: [████████████████████░░] 8
 - v2.0 Phase 13 plan 4: 1 minute (integration & preview update)
 - v2.0 Phase 13 plan 5: 2 minutes (cleanup & visual verification)
 - v2.0 Phase 14 plan 1: 2 minutes (info pages foundation components)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 in progress.
+- v2.0 Phase 14 plan 2: 2 minutes (job seekers info page)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 in progress (2/4 plans, maintaining 2.0min/plan average).
 
 ## Accumulated Context
 
@@ -166,6 +167,9 @@ Recent decisions affecting v1.1 work:
 - **14-01**: Variant prop pattern ('seeker' | 'employer') for StepGuideSection and FinalCTASection
 - **14-01**: generateInfoPageMetadata uses template from root layout (title only, no 'HangulJobs' suffix)
 - **14-01**: Components follow Phase 13 patterns (motion/react, Lucide icons, Tailwind)
+- **14-02**: Hero section built inline (not as component) for page-specific content
+- **14-02**: ISR revalidation 7200s (2 hours) for job data freshness balance
+- **14-02**: (marketing) route group for organizational structure without URL impact
 
 ### Roadmap Evolution
 
@@ -217,8 +221,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 14-01-PLAN.md (Info Pages Foundation Components)
+Stopped at: Completed 14-02-PLAN.md (Job Seekers Info Page)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 14-01: created 5 info-page section components and metadata helper - Phase 14 started)*
+*Last updated: 2026-02-07 (completed 14-02: /job-seekers page with 8 sections and SeekerFAQSection component - Phase 14 50% complete)*
