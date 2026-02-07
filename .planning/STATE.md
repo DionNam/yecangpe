@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 17 of 18 (Dashboard Redesign)
-Plan: 3 of 5 in current phase
+Plan: 4 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 17-03-PLAN.md (Job Post Rich Text Editor)
+Last activity: 2026-02-07 — Completed 17-04-PLAN.md (Seeker Dashboard with Liked Jobs and Profile Management)
 
-Progress: [█████████████████████░] 99% (56 plans complete across all phases)
+Progress: [█████████████████████░] 99% (57 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 56 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 2)
-- Average duration: 3.13min
-- Total execution time: 2.98 hours
+- Total plans completed: 57 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 4)
+- Average duration: 3.17min
+- Total execution time: 3.01 hours
 
 **By Phase:**
 
@@ -44,7 +44,7 @@ Progress: [█████████████████████░] 9
 | 14-info-pages | 4 | 8min | 2.0min |
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
 | 16-job-detail-redesign | 3 | 14.5min | 4.83min |
-| 17-dashboard-redesign | 2 | 10min | 5.0min |
+| 17-dashboard-redesign | 4 | 14min | 3.5min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -78,7 +78,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 17 plan 1: 4 minutes (dashboard routing foundation)
 - v2.0 Phase 17 plan 2: 6 minutes (employer dashboard implementation)
 - v2.0 Phase 17 plan 3: 6 minutes (job post rich text editor)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 in progress (3/5 plans).
+- v2.0 Phase 17 plan 4: 4 minutes (seeker dashboard with liked jobs and profile)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 in progress (4/5 plans).
 
 ## Accumulated Context
 
@@ -248,6 +249,11 @@ Recent decisions affecting v1.1 work:
 - **17-03**: 30-day expires_at calculation in createJobPost server action (not client-side)
 - **17-03**: RichTextEditor controlled component with content prop and onChange callback
 - **17-03**: Success redirect changed from /employer/posts to /dashboard for unified UX
+- **17-04**: Card-based liked jobs display for seekers (not table) for better mobile UX
+- **17-04**: Removed fake metrics from seeker dashboard - only show real data
+- **17-04**: Reused ProfileEditModal for consistency with legacy /my-page
+- **17-04**: Profile action revalidates /dashboard instead of /my-page
+- **17-04**: Job alerts tab placeholder in seeker dashboard (implementation in Plan 17-05)
 
 ### Roadmap Evolution
 
@@ -299,8 +305,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 17-03-PLAN.md (Job Post Rich Text Editor)
+Stopped at: Completed 17-04-PLAN.md (Seeker Dashboard with Liked Jobs and Profile Management)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 17 in progress — 3/5 plans complete: dashboard routing + employer dashboard + rich text editor for job posts)*
+*Last updated: 2026-02-07 (Phase 17 in progress — 4/5 plans complete: dashboard routing + employer dashboard + rich text editor + seeker dashboard)*
