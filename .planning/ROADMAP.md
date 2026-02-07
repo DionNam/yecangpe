@@ -89,7 +89,7 @@
   8. employer_profiles에 company_website, company_logo_url, company_description 필드 추가
   9. seeker_profiles에 english_level, city 필드 추가
 
-**Plans**: 5/5 complete
+**Plans**: 5/5 complete ✅
 
 Plans:
 - [x] 12-01-PLAN.md -- DB Schema: ENUMs, column additions, new tables (job_alerts, newsletter_subscribers)
@@ -130,14 +130,14 @@ Plans:
   9. 뉴스레터 구독 섹션 (구직자용/고용주용 분리)
   10. 기존 조작 카운터 로직(getDisplayMetrics) 유지하여 Social Proof에 활용
 
-**Plans**: 5 plans
+**Plans**: 5/5 complete ✅
 
 Plans:
-- [ ] 13-01-PLAN.md -- Hero Section (dual CTA) + Social Proof Section (animated counters)
-- [ ] 13-02-PLAN.md -- Job Search Section + Service Intro Cards + Filter Category Cards
-- [ ] 13-03-PLAN.md -- FAQ Accordion + Newsletter Subscription + Extended Footer
-- [ ] 13-04-PLAN.md -- Preview Section Update + page.tsx Wiring (all sections)
-- [ ] 13-05-PLAN.md -- Cleanup old components + Visual Verification
+- [x] 13-01-PLAN.md -- Hero Section (dual CTA) + Social Proof Section (animated counters)
+- [x] 13-02-PLAN.md -- Job Search Section + Service Intro Cards + Filter Category Cards
+- [x] 13-03-PLAN.md -- FAQ Accordion + Newsletter Subscription + Extended Footer
+- [x] 13-04-PLAN.md -- Preview Section Update + page.tsx Wiring (all sections)
+- [x] 13-05-PLAN.md -- Cleanup old components + Visual Verification
 
 **Details:**
 - 현재 랜딩 페이지 컴포넌트 전면 교체 (HeroSection, WhyEmployersSection 등 → 새 구조)
@@ -351,14 +351,14 @@ Plans:
 | 10. Job Post Image Upload | v1.4 | 4/4 | ✅ Complete | 2026-01-22 |
 | 11. Work Location & Country | v1.5 | 5/5 | ✅ Complete | 2026-01-23 |
 | 12. Branding & DB Schema Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
-| 13. Landing Page Redesign | v2.0 | 0/5 | 🔲 Planned | - |
+| 13. Landing Page Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 14. Info Pages | v2.0 | 0 | 🔲 Not planned | - |
 | 15. Job Board Overhaul | v2.0 | 0 | 🔲 Not planned | - |
 | 16. Job Detail Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 17. Dashboard Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 18. SEO Filter Pages | v2.0 | 0 | 🔲 Not planned | - |
 
-**Total:** 18 phases (11 complete, 7 not planned)
+**Total:** 18 phases (12 complete, 6 not planned)
 
 ---
-*Last updated: 2026-02-07 (v2.0 phases 12-18 added based on PRD.md)*
+*Last updated: 2026-02-07 (Phase 13 complete - landing page redesign with 9 new sections)*
