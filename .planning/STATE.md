@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 15 of 18 (Job Board Overhaul)
-Plan: 1 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 15-01-PLAN.md (FTS Foundation)
+Last activity: 2026-02-07 — Completed 15-03-PLAN.md (Admin Form PRD Field Expansion)
 
-Progress: [█████████████████████░] 90% (49 plans complete across all phases)
+Progress: [█████████████████████░] 92% (50 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 49 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 1)
-- Average duration: 3.18min
-- Total execution time: 2.60 hours
+- Total plans completed: 50 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 3)
+- Average duration: 3.16min
+- Total execution time: 2.63 hours
 
 **By Phase:**
 
@@ -42,7 +42,7 @@ Progress: [█████████████████████░] 9
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
-| 15-job-board-overhaul | 1 | 2.4min | 2.4min |
+| 15-job-board-overhaul | 3 | 7.4min | 2.47min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -66,7 +66,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 14 plan 3: 2 minutes (employers info page)
 - v2.0 Phase 14 plan 4: 2 minutes (about and faq pages)
 - v2.0 Phase 15 plan 1: 2.4 minutes (FTS foundation - PostgreSQL full-text search)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 in progress.
+- v2.0 Phase 15 plan 3: 5 minutes (admin form PRD field expansion)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 in progress (3 of 4 plans complete, average 2.47min/plan).
 
 ## Accumulated Context
 
@@ -188,6 +189,10 @@ Recent decisions affecting v1.1 work:
 - **15-01**: COALESCE used for null-safe field concatenation in tsvector generation
 - **15-01**: English language config chosen for to_tsvector (appropriate for international job board)
 - **15-01**: GIN index for production-ready full-text search performance
+- **15-03**: All new PRD fields optional in admin forms (backward compatibility for legacy posts without these fields)
+- **15-03**: Filter 'not_specified' from language level dropdowns (not a valid selection for admin/employer)
+- **15-03**: Section grouping with <h3> headings for complex field groups (salary info, apply methods)
+- **15-03**: Nullable type coercion: field.value || undefined for Select components expecting string | undefined
 
 ### Roadmap Evolution
 
@@ -239,8 +244,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 15-01-PLAN.md (FTS Foundation)
+Stopped at: Completed 15-03-PLAN.md (Admin Form PRD Field Expansion)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 15 in progress - Plan 15-01 complete: PostgreSQL FTS foundation with use-debounce)*
+*Last updated: 2026-02-07 (Phase 15 in progress - 3 of 4 plans complete: FTS foundation, admin form expansion with 7 PRD field groups)*
