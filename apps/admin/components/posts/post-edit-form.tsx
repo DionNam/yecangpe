@@ -8,7 +8,17 @@ import { useRouter } from 'next/navigation'
 import { postEditSchema, type PostEditInput } from '@/lib/validations/post'
 import { updatePost } from '@/app/actions/posts'
 import { getSignedUploadUrl } from '@/app/actions/storage'
-import { NATIONALITIES, COUNTRIES } from '@repo/lib'
+import {
+  NATIONALITIES,
+  COUNTRIES,
+  JOB_TYPES,
+  CATEGORIES,
+  KOREAN_LEVELS,
+  ENGLISH_LEVELS,
+  CAREER_LEVELS,
+  SALARY_CURRENCIES,
+  SALARY_PERIODS,
+} from '@repo/lib'
 import {
   Form,
   FormControl,
@@ -207,6 +217,56 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
 
         <FormField
           control={form.control}
+          name="job_type"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>고용 형태 (선택사항)</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="고용 형태를 선택해주세요" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {JOB_TYPES.map((type) => (
+                    <SelectItem key={type.code} value={type.code}>
+                      {type.nameKo}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="category"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>카테고리 (선택사항)</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="카테고리를 선택해주세요" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {CATEGORIES.map((cat) => (
+                    <SelectItem key={cat.code} value={cat.code}>
+                      {cat.nameKo}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
           name="work_location_type"
           render={({ field }) => (
             <FormItem>
@@ -262,6 +322,243 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
             )}
           />
         )}
+
+        <FormField
+          control={form.control}
+          name="korean_level"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>한국어 레벨 (선택사항)</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="한국어 레벨을 선택해주세요" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {KOREAN_LEVELS.filter((lvl) => lvl.code !== 'not_specified').map(
+                    (lvl) => (
+                      <SelectItem key={lvl.code} value={lvl.code}>
+                        {lvl.nameKo}
+                      </SelectItem>
+                    )
+                  )}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="english_level"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>영어 레벨 (선택사항)</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="영어 레벨을 선택해주세요" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {ENGLISH_LEVELS.filter((lvl) => lvl.code !== 'not_specified').map(
+                    (lvl) => (
+                      <SelectItem key={lvl.code} value={lvl.code}>
+                        {lvl.nameKo}
+                      </SelectItem>
+                    )
+                  )}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="career_level"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>경력 수준 (선택사항)</FormLabel>
+              <Select
+                onValueChange={field.onChange}
+                defaultValue={field.value || undefined}
+              >
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder="경력 수준을 선택해주세요" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {CAREER_LEVELS.map((lvl) => (
+                    <SelectItem key={lvl.code} value={lvl.code}>
+                      {lvl.nameKo}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <div className="space-y-4">
+          <h3 className="text-sm font-medium">급여 정보 (선택사항)</h3>
+
+          <div className="grid grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="salary_min"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>최소 급여</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="예: 3000000"
+                      {...field}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value ? Number(e.target.value) : undefined
+                        )
+                      }
+                      value={field.value ?? ''}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="salary_max"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>최대 급여</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="예: 5000000"
+                      {...field}
+                      onChange={(e) =>
+                        field.onChange(
+                          e.target.value ? Number(e.target.value) : undefined
+                        )
+                      }
+                      value={field.value ?? ''}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <FormField
+              control={form.control}
+              name="salary_currency"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>통화</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="통화 선택" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {SALARY_CURRENCIES.map((curr) => (
+                        <SelectItem key={curr.code} value={curr.code}>
+                          {curr.name} ({curr.code})
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="salary_period"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>급여 기간</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value || undefined}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="급여 기간 선택" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {SALARY_PERIODS.map((period) => (
+                        <SelectItem key={period.code} value={period.code}>
+                          {period.nameKo}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-sm font-medium">지원 방법 (선택사항)</h3>
+
+          <FormField
+            control={form.control}
+            name="apply_url"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>지원 URL</FormLabel>
+                <FormControl>
+                  <Input
+                    type="url"
+                    placeholder="https://example.com/apply"
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="apply_email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>지원 이메일</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    placeholder="recruit@example.com"
+                    value={field.value || ''}
+                    onChange={field.onChange}
+                    onBlur={field.onBlur}
+                    name={field.name}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormItem>
           <FormLabel>이미지 (선택사항)</FormLabel>
