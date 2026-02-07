@@ -1,117 +1,90 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { ArrowRight } from 'lucide-react'
-import Image from 'next/image'
+import { ArrowRight, Briefcase, CheckCircle, Globe, Languages } from 'lucide-react'
 import Link from 'next/link'
 
-interface HeroSectionProps {
-  memberCount: number
-}
-
-export function HeroSection({ memberCount }: HeroSectionProps) {
+export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-50 pt-20 pb-10">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 py-20">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
-          {/* Left Content */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-block mb-3"
-            >
-              <span className="inline-flex items-center px-3 py-1.5 rounded-full bg-slate-100 text-slate-700 text-xs font-medium tracking-wide">
-                한국어 가능한 외국인 채용 플랫폼
-              </span>
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 leading-tight tracking-tight"
-            >
-              한국인 같은 외국인을
-              <br />
-              찾고 계신가요?
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="text-sm md:text-base text-gray-600 mb-5 leading-relaxed"
-            >
-              한국어를 구사하고 한국 문화를 이해하는 외국인 인재와
-              <br />
-              신뢰할 수 있는 채용 공고를 연결합니다
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-3 mb-5"
-            >
-              <Link
-                href="/jobs"
-                className="group px-6 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-all flex items-center justify-center gap-2 text-sm font-medium"
-              >
-                공고 둘러보기
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-              <Link
-                href="/employer/new-post"
-                className="group px-6 py-3 bg-white text-slate-900 rounded-lg hover:bg-slate-50 transition-all border border-slate-200 flex items-center justify-center gap-2 text-sm font-medium"
-              >
-                구인글 올리기
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="space-y-4"
-            >
-              {/* Features */}
-              <div className="flex flex-wrap items-center gap-6 text-xs text-gray-600">
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span>관리자 승인형 공고</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span>국적별 맞춤 검색</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
-                  <span>한국어 소통 가능</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Right Image */}
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative flex justify-center lg:justify-end"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="inline-block mb-6"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-md">
-              <Image
-                src="/landing-hero.png"
-                alt="한복을 입은 외국인"
-                width={500}
-                height={600}
-                className="w-full h-auto object-cover"
-                priority
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/10 to-transparent"></div>
+            <span className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium tracking-wide">
+              전 세계 한국어 일자리 플랫폼
+            </span>
+          </motion.div>
+
+          {/* Main Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 leading-tight tracking-tight"
+          >
+            Find Korean-Speaking Jobs Worldwide
+          </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-lg text-gray-600 mb-8 leading-relaxed"
+          >
+            전 세계 한국어 일자리를 한곳에서
+          </motion.p>
+
+          {/* Dual CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
+          >
+            {/* Primary CTA - Job Seeker */}
+            <Link
+              href="/job-seekers"
+              className="group px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all shadow-lg flex items-center justify-center gap-2 text-lg font-semibold"
+            >
+              I'm a Job Seeker
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            {/* Secondary CTA - Employer */}
+            <Link
+              href="/employers"
+              className="group px-8 py-4 bg-white text-blue-600 rounded-lg hover:bg-slate-50 transition-all border-2 border-blue-600 flex items-center justify-center gap-2 text-lg font-semibold"
+            >
+              I'm an Employer
+              <Briefcase className="w-5 h-5" />
+            </Link>
+          </motion.div>
+
+          {/* Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600"
+          >
+            <div className="flex items-center gap-2">
+              <CheckCircle className="w-5 h-5 text-emerald-500" />
+              <span>Verified Job Posts</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Globe className="w-5 h-5 text-blue-500" />
+              <span>Global Opportunities</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <Languages className="w-5 h-5 text-amber-500" />
+              <span>Korean Language Focus</span>
             </div>
           </motion.div>
         </div>
