@@ -101,8 +101,14 @@ export default async function DashboardPage() {
         post: Array.isArray(like.post) ? like.post[0] : like.post,
       })) || []
 
-    // Fetch job alerts (will be implemented in Plan 17-05)
-    const alerts: any[] = []
+    // Fetch job alerts
+    const { data: jobAlerts } = await (supabase as any)
+      .from('job_alerts')
+      .select('*')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+
+    const alerts = jobAlerts || []
 
     // Render seeker dashboard
     return <SeekerDashboard profile={profile} likedJobs={likedJobs} alerts={alerts} />

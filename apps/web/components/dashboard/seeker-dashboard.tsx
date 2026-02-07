@@ -4,6 +4,8 @@ import { Heart, User, Bell } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { SeekerLikedJobs } from './seeker-liked-jobs'
 import { SeekerProfileSection } from './seeker-profile-section'
+import { JobAlertForm } from './job-alert-form'
+import { JobAlertList } from './job-alert-list'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -86,11 +88,16 @@ export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardP
             </div>
           </TabsContent>
 
-          <TabsContent value="alerts">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-              <p className="text-center py-12 text-slate-600">
-                잡 알림 기능 준비 중
-              </p>
+          <TabsContent value="alerts" className="mt-0 focus-visible:outline-none">
+            <div className="space-y-8">
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                <h3 className="text-lg font-semibold mb-4">새 알림 설정</h3>
+                <JobAlertForm />
+              </div>
+              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                <h3 className="text-lg font-semibold mb-4">내 알림 ({alerts.length})</h3>
+                <JobAlertList alerts={alerts} />
+              </div>
             </div>
           </TabsContent>
         </Tabs>
