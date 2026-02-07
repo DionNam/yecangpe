@@ -53,8 +53,8 @@ export default async function EmployerDetailPage({ params }: EmployerDetailPageP
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-bold">구인자 상세</h1>
-          <p className="text-muted-foreground">구인자 정보를 확인하고 관리합니다.</p>
+          <h1 className="text-2xl font-bold">고용주 상세</h1>
+          <p className="text-muted-foreground">고용주 정보를 확인하고 관리합니다.</p>
         </div>
       </div>
 

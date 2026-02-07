@@ -33,7 +33,7 @@ const menuItems = [
     title: '사용자 관리',
     items: [
       { title: '구직자 목록', url: '/users/seekers', icon: Users },
-      { title: '구인자 목록', url: '/users/employers', icon: Briefcase },
+      { title: '고용주 목록', url: '/users/employers', icon: Briefcase },
     ],
   },
   {

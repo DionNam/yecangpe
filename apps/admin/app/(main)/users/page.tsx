@@ -24,7 +24,7 @@ export default async function UsersPage() {
       <div>
         <h1 className="text-3xl font-bold">사용자 관리</h1>
         <p className="text-muted-foreground">
-          구직자와 구인자 계정을 조회하고 관리합니다.
+          구직자와 고용주 계정을 조회하고 관리합니다.
         </p>
       </div>
 
@@ -53,17 +53,17 @@ export default async function UsersPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Briefcase className="h-5 w-5" />
-              구인자
+              고용주
             </CardTitle>
             <CardDescription>
-              등록된 구인자 목록을 확인하고 관리합니다.
+              등록된 고용주 목록을 확인하고 관리합니다.
             </CardDescription>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               <div className="text-3xl font-bold">{employerCount || 0}명</div>
               <Button asChild className="w-full">
-                <Link href="/users/employers">구인자 목록 보기</Link>
+                <Link href="/users/employers">고용주 목록 보기</Link>
               </Button>
             </div>
           </CardContent>

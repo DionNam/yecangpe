@@ -94,7 +94,7 @@ export default async function EmployerPostsPage() {
         {/* Header section with three-tier typography */}
         <div className="text-center mb-16 space-y-4">
           <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-3">
-            구인자 대시보드
+            고용주 대시보드
           </p>
           <div className="inline-block relative">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900">

@@ -45,7 +45,7 @@ export function UserMenu({ user, role }: UserMenuProps) {
         {/* Show dashboard link for employer, hide profile for seeker */}
         {role === 'employer' && (
           <DropdownMenuItem asChild>
-            <Link href="/employer/posts">구인자 대시보드</Link>
+            <Link href="/employer/posts">고용주 대시보드</Link>
           </DropdownMenuItem>
         )}
 

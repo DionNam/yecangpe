@@ -36,7 +36,7 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
               공고 보기
             </Link>
             <Link href="/employer" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
-              구인자
+              고용주
             </Link>
             <Link href="/jobs" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
               구직자
@@ -70,7 +70,7 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
               공고 보기
             </Link>
             <Link href="/employer" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
-              구인자
+              고용주
             </Link>
             <Link href="/jobs" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
               구직자

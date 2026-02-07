@@ -66,7 +66,7 @@ export default function OnboardingPage() {
                     <div className="font-semibold text-lg">인재를 찾고 있어요</div>
                   </div>
                   <div className="text-sm text-muted-foreground pl-11">
-                    구인자로 가입합니다
+                    고용주로 가입합니다
                   </div>
                 </div>
               </Link>

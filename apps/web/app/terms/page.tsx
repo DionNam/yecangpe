@@ -68,7 +68,7 @@ export default function TermsPage() {
                 말합니다.
               </li>
               <li>
-                "구인자"란 채용 공고를 게시하는 기업 회원을 말합니다.
+                "고용주"란 채용 공고를 게시하는 기업 회원을 말합니다.
               </li>
             </ol>
           </section>
@@ -98,7 +98,7 @@ export default function TermsPage() {
             </p>
             <ol className="list-decimal list-inside space-y-2 text-muted-foreground">
               <li>채용 공고 게시 및 검색 서비스</li>
-              <li>구직자와 구인자 간의 매칭 서비스</li>
+              <li>구직자와 고용주 간의 매칭 서비스</li>
               <li>채용 공고에 대한 댓글 및 문의 기능</li>
               <li>회원 프로필 관리 기능</li>
               <li>기타 회사가 정하는 서비스</li>

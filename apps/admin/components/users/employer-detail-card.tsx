@@ -67,7 +67,7 @@ export function EmployerDetailCard({ employer, posts }: EmployerDetailCardProps)
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center justify-between">
-            <span>구인자 정보</span>
+            <span>고용주 정보</span>
             {employer.is_active ? (
               <Badge variant="outline" className="bg-green-50 text-green-700">
                 활성

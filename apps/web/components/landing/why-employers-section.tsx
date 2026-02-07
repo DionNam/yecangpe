@@ -42,7 +42,7 @@ export function WhyEmployersSection({ talentCount }: WhyEmployersSectionProps) {
           className="text-center mb-16"
         >
           <p className="text-slate-600 font-medium mb-4 text-xs tracking-widest uppercase">
-            구인자를 위한 혜택
+            고용주를 위한 혜택
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 tracking-tight">
             우수한 외국인 인재를

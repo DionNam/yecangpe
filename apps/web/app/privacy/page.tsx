@@ -65,7 +65,7 @@ export default function PrivacyPage() {
             </div>
             <div className="mb-4">
               <h3 className="text-base font-medium mb-2">
-                3. 구인자 기업 정보 작성 시 수집 항목
+                3. 고용주 기업 정보 작성 시 수집 항목
               </h3>
               <ul className="list-disc list-inside space-y-1 text-muted-foreground">
                 <li>필수: 기업명, 사업자등록번호, 담당자 이름</li>
@@ -163,7 +163,7 @@ export default function PrivacyPage() {
                 방법에 따라 수사기관의 요구가 있는 경우
               </li>
               <li>
-                채용 공고 지원 시 구인자에게 구직자의 프로필 정보가 제공됩니다
+                채용 공고 지원 시 고용주에게 구직자의 프로필 정보가 제공됩니다
                 (이용자가 지원 버튼 클릭 시 동의한 것으로 간주)
               </li>
             </ol>

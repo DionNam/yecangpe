@@ -56,7 +56,7 @@ export function EmployersTable({ employers }: EmployersTableProps) {
         {employers.length === 0 ? (
           <TableRow>
             <TableCell colSpan={6} className="text-center text-muted-foreground">
-              등록된 구인자가 없습니다.
+              등록된 고용주가 없습니다.
             </TableCell>
           </TableRow>
         ) : (

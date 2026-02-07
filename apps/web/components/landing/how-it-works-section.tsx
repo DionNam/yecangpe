@@ -20,7 +20,7 @@ const jobSeekerSteps = [
 const employerSteps = [
   {
     title: '로그인',
-    description: '구인자로 회원가입하고 기업 정보를 등록하세요',
+    description: '고용주로 회원가입하고 기업 정보를 등록하세요',
   },
   {
     title: '공고 작성',
@@ -48,7 +48,7 @@ export function HowItWorksSection() {
             간단한 3단계로 시작하세요
           </h2>
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-            구직자든 구인자든, 누구나 쉽게 시작할 수 있습니다
+            구직자든 고용주든, 누구나 쉽게 시작할 수 있습니다
           </p>
         </motion.div>
 
@@ -88,7 +88,7 @@ export function HowItWorksSection() {
             transition={{ duration: 0.5 }}
           >
             <div className="bg-slate-50 rounded-2xl p-6 h-full border border-slate-100">
-              <h3 className="text-lg font-bold text-gray-900 mb-6">구인자</h3>
+              <h3 className="text-lg font-bold text-gray-900 mb-6">고용주</h3>
               <div className="space-y-4">
                 {employerSteps.map((step, index) => (
                   <div key={index} className="flex gap-3">

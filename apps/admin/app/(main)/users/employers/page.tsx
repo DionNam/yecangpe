@@ -46,9 +46,9 @@ export default async function EmployersPage() {
           </Link>
         </Button>
         <div>
-          <h1 className="text-2xl font-bold">구인자 목록</h1>
+          <h1 className="text-2xl font-bold">고용주 목록</h1>
           <p className="text-muted-foreground">
-            등록된 구인자 계정을 조회하고 관리합니다.
+            등록된 고용주 계정을 조회하고 관리합니다.
           </p>
         </div>
       </div>
