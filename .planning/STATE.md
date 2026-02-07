@@ -6,7 +6,7 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 전 세계 Korean Speaker들과 한국어 능력을 필요로 하는 고용주를 연결하는 글로벌 잡보드 플랫폼 (HangulJobs - hanguljobs.com)
 
-**Current focus:** v2.0 HangulJobs Overhaul - Phase 16 in progress
+**Current focus:** v2.0 HangulJobs Overhaul - Phase 16 complete, Phase 17 next
 
 ## Current Position
 
@@ -281,8 +281,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 16-03-PLAN.md (Related Jobs Carousel + SEO Metadata)
+Stopped at: Phase 16 complete and verified (7/7 must-haves passed)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 16 plan 3 complete — Related jobs carousel with embla-carousel + generateMetadata SEO + schema.org JobPosting JSON-LD)*
+*Last updated: 2026-02-07 (Phase 16 complete and verified — Job Detail Redesign: slug routing, 2-column layout, Apply sidebar, share menu, related jobs carousel, schema.org SEO)*

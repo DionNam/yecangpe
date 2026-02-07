@@ -234,12 +234,12 @@ Plans:
   6. 반응형: 모바일에서 1컬럼으로 전환
   7. SEO-friendly slug URL (/jobs/{slug})
 
-**Plans**: 3 plans
+**Plans**: 3/3 complete ✅
 
 Plans:
-- [ ] 16-01-PLAN.md -- Slug backfill migration + slug routing + UUID redirect + link updates
-- [ ] 16-02-PLAN.md -- 2-column layout redesign (sidebar, company card, action bar, share menu)
-- [ ] 16-03-PLAN.md -- Related jobs carousel + schema.org JobPosting SEO metadata
+- [x] 16-01-PLAN.md -- Slug backfill migration + slug routing + UUID redirect + link updates
+- [x] 16-02-PLAN.md -- 2-column layout redesign (sidebar, company card, action bar, share menu)
+- [x] 16-03-PLAN.md -- Related jobs carousel + schema.org JobPosting SEO metadata
 
 **Details:**
 - 기존 JobDetail 컴포넌트 전면 재설계
@@ -363,11 +363,11 @@ Plans:
 | 13. Landing Page Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 14. Info Pages | v2.0 | 4/4 | ✅ Complete | 2026-02-07 |
 | 15. Job Board Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
-| 16. Job Detail Redesign | v2.0 | 0 | 🔲 Not planned | - |
+| 16. Job Detail Redesign | v2.0 | 3/3 | ✅ Complete | 2026-02-07 |
 | 17. Dashboard Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 18. SEO Filter Pages | v2.0 | 0 | 🔲 Not planned | - |
 
-**Total:** 18 phases (15 complete, 3 not planned)
+**Total:** 18 phases (16 complete, 2 not planned)
 
 ---
-*Last updated: 2026-02-07 (Phase 15 complete - Job Board Overhaul: FTS search, 6 filter types, job card redesign, employer/admin form expansion)*
+*Last updated: 2026-02-07 (Phase 16 complete - Job Detail Redesign: slug routing, 2-column layout, Apply sidebar, share menu, related jobs carousel, schema.org SEO)*
