@@ -6,8 +6,6 @@ import { JobListPagination } from '@/components/jobs/job-list-pagination'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
-type GlobalMetricsConfig =
-  Database['public']['Tables']['global_metrics_config']['Row']
 
 interface SearchParams {
   q?: string
@@ -162,17 +160,6 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     )
   }
 
-  // Fetch global metrics config
-  const { data: configData } = await supabase
-    .from('global_metrics_config')
-    .select('ramp_days, curve_strength')
-    .single()
-
-  const metricsConfig = configData || {
-    ramp_days: 14,
-    curve_strength: 2.0,
-  }
-
   const totalPages = count ? Math.ceil(count / pageSize) : 0
 
   // Create ItemList structured data for SEO
@@ -230,7 +217,6 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           <JobListTable
             posts={posts || []}
             isAuthenticated={isAuthenticated}
-            metricsConfig={metricsConfig}
           />
         </div>
 
