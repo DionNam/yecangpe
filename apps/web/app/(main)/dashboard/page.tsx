@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@repo/supabase/server'
 import Link from 'next/link'
 import type { Database } from '@repo/supabase/types'
+import { EmployerDashboard } from '@/components/dashboard/employer-dashboard'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 type SeekerProfile = Database['public']['Tables']['seeker_profiles']['Row']
@@ -63,33 +64,8 @@ export default async function DashboardPage() {
       })
     }
 
-    // Render employer placeholder
-    return (
-      <div className="min-h-screen bg-slate-50 pt-6 pb-12">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="mb-10">
-            <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">
-              고용주 대시보드
-            </p>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-              내 공고 관리
-            </h1>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-            <p className="text-lg text-slate-600 mb-4">
-              등록한 공고: <span className="font-semibold text-slate-900">{posts.length}개</span>
-            </p>
-            <Link
-              href="/dashboard/post-job"
-              className="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background bg-primary text-primary-foreground hover:bg-primary/90 h-10 py-2 px-4"
-            >
-              새 공고 작성
-            </Link>
-          </div>
-        </div>
-      </div>
-    )
+    // Render employer dashboard
+    return <EmployerDashboard profile={employerProfile} posts={posts} likeCounts={likeCounts} />
   }
 
   // Check for seeker profile
