@@ -104,7 +104,7 @@ export function JobDetailHeader({
               {displayLikes.toLocaleString()}
             </span>
           </div>
-          <ShareButton title={title} url={`https://potenhire.com/jobs/${jobId}`} />
+          <ShareButton title={title} url={`https://hanguljobs.com/jobs/${jobId}`} />
         </div>
       </div>
     </div>

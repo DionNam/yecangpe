@@ -42,7 +42,7 @@ export default function LoginPage() {
               <div className="flex justify-center mb-6">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white">
                   <Sparkles className="w-4 h-4" />
-                  <span className="text-sm font-medium">PotenHire</span>
+                  <span className="text-sm font-medium">HangulJobs</span>
                 </div>
               </div>
 

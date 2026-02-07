@@ -88,7 +88,7 @@ export function WhyTalentSection({ employerCount }: WhyTalentSectionProps) {
           </motion.div>
 
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-            PotenHire는 외국인 구직자에게 신뢰할 수 있는 채용 정보를 제공합니다
+            HangulJobs는 외국인 구직자에게 신뢰할 수 있는 채용 정보를 제공합니다
           </p>
         </motion.div>
 

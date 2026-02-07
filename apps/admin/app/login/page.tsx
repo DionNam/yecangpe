@@ -40,7 +40,7 @@ export default function AdminLoginPage() {
                 관리자 패널
               </h1>
               <p className="text-center text-lg text-muted-foreground">
-                PotenHire 플랫폼 관리 시스템
+                HangulJobs 플랫폼 관리 시스템
               </p>
             </div>
 

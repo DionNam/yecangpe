@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'PotenHire - 한국어 가능한 외국인을 위한 구인구직 플랫폼'
+export const alt = 'HangulJobs - Find Korean-Speaking Jobs Worldwide'
 export const size = {
   width: 1200,
   height: 630,
@@ -58,7 +58,7 @@ export default function OGImage() {
               color: 'white',
             }}
           >
-            PotenHire
+            HangulJobs
           </div>
         </div>
 
@@ -69,7 +69,7 @@ export default function OGImage() {
             color: '#94a3b8',
           }}
         >
-          한국어 가능한 외국인을 위한 구인구직 플랫폼
+          Find Korean-Speaking Jobs Worldwide
         </div>
 
         {/* URL */}
@@ -81,7 +81,7 @@ export default function OGImage() {
             color: '#64748b',
           }}
         >
-          potenhire.com
+          hanguljobs.com
         </div>
       </div>
     ),

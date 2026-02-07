@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
     .eq('review_status', 'published')
     .eq('hiring_status', 'hiring')
 
-  const title = '한국어 가능한 외국인 채용 공고 | PotenHire'
+  const title = '한국어 가능한 외국인 채용 공고 | HangulJobs'
   const description = `${count || '수많은'}개의 검증된 외국인 채용 공고를 확인하세요. 한국어를 구사하는 글로벌 인재를 위한 신뢰할 수 있는 구인구직 플랫폼입니다.`
 
   return {
@@ -140,7 +140,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const totalPages = count ? Math.ceil(count / pageSize) : 0
 
   // Create ItemList structured data for SEO
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://potenhire.com'
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',

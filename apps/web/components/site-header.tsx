@@ -26,9 +26,9 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-              <span className="text-lg font-bold text-white italic">P</span>
+              <span className="text-lg font-bold text-white italic">H</span>
             </div>
-            <span className="text-xl font-bold text-gray-900">PotenHire</span>
+            <span className="text-xl font-bold text-gray-900">HangulJobs</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">

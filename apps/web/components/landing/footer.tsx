@@ -7,9 +7,9 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center border border-slate-700">
-              <span className="text-lg font-bold text-white italic">P</span>
+              <span className="text-lg font-bold text-white italic">H</span>
             </div>
-            <span className="text-xl font-bold text-white">PotenHire</span>
+            <span className="text-xl font-bold text-white">HangulJobs</span>
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-xs">
@@ -26,7 +26,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-8 border-t border-slate-800 text-center text-xs">
-          <p>© 2026 PotenHire. All rights reserved.</p>
+          <p>© 2026 HangulJobs. All rights reserved.</p>
         </div>
       </div>
     </footer>

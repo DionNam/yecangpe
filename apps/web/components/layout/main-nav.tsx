@@ -28,7 +28,7 @@ export async function MainNav({ user }: MainNavProps) {
         <div className="flex flex-1 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <span className="font-bold text-lg">PotenHire</span>
+            <span className="font-bold text-lg">HangulJobs</span>
           </Link>
 
           {/* Navigation */}

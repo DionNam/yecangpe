@@ -2,9 +2,9 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '개인정보처리방침 | PotenHire',
+  title: '개인정보처리방침 | HangulJobs',
   description:
-    'PotenHire 개인정보처리방침 - 한국어 가능한 외국인 구인구직 플랫폼',
+    'HangulJobs 개인정보처리방침 - 한국어 가능한 외국인 구인구직 플랫폼',
 }
 
 export default function PrivacyPage() {
@@ -250,7 +250,7 @@ export default function PrivacyPage() {
                 연락처: (추후 업데이트 예정)
               </p>
               <p className="text-sm text-muted-foreground">
-                이메일: privacy@potenhire.com (가칭)
+                이메일: privacy@hanguljobs.com (가칭)
               </p>
             </div>
           </section>

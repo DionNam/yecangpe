@@ -216,6 +216,43 @@
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
+
+  /* HangulJobs brand colors */
+  --color-brand-blue-50: oklch(0.97 0.01 240);
+  --color-brand-blue-100: oklch(0.93 0.02 240);
+  --color-brand-blue-200: oklch(0.86 0.04 240);
+  --color-brand-blue-300: oklch(0.77 0.08 240);
+  --color-brand-blue-400: oklch(0.67 0.14 240);
+  --color-brand-blue-500: oklch(0.59 0.18 240);
+  --color-brand-blue-600: oklch(0.51 0.19 240);
+  --color-brand-blue-700: oklch(0.43 0.17 240);
+  --color-brand-blue-800: oklch(0.36 0.14 240);
+  --color-brand-blue-900: oklch(0.29 0.11 240);
+
+  --color-brand-amber-50: oklch(0.98 0.02 90);
+  --color-brand-amber-100: oklch(0.95 0.05 90);
+  --color-brand-amber-200: oklch(0.91 0.10 90);
+  --color-brand-amber-300: oklch(0.86 0.15 90);
+  --color-brand-amber-400: oklch(0.80 0.19 90);
+  --color-brand-amber-500: oklch(0.75 0.19 85);
+  --color-brand-amber-600: oklch(0.66 0.18 75);
+  --color-brand-amber-700: oklch(0.54 0.16 70);
+  --color-brand-amber-800: oklch(0.45 0.13 65);
+  --color-brand-amber-900: oklch(0.37 0.10 60);
+
+  --color-brand-emerald-50: oklch(0.97 0.02 160);
+  --color-brand-emerald-100: oklch(0.94 0.04 160);
+  --color-brand-emerald-200: oklch(0.88 0.08 160);
+  --color-brand-emerald-300: oklch(0.80 0.13 160);
+  --color-brand-emerald-400: oklch(0.71 0.16 160);
+  --color-brand-emerald-500: oklch(0.64 0.17 165);
+  --color-brand-emerald-600: oklch(0.55 0.16 165);
+  --color-brand-emerald-700: oklch(0.47 0.14 165);
+  --color-brand-emerald-800: oklch(0.39 0.11 165);
+  --color-brand-emerald-900: oklch(0.32 0.09 165);
+
+  /* Map Pretendard to sans-serif utility */
+  --font-sans: var(--font-pretendard), 'Pretendard', system-ui, -apple-system, sans-serif;
 }
 
 @layer base {

@@ -2,8 +2,8 @@ import Link from 'next/link'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: '이용약관 | PotenHire',
-  description: 'PotenHire 서비스 이용약관 - 한국어 가능한 외국인 구인구직 플랫폼',
+  title: '이용약관 | HangulJobs',
+  description: 'HangulJobs 서비스 이용약관 - 한국어 가능한 외국인 구인구직 플랫폼',
 }
 
 export default function TermsPage() {
@@ -40,7 +40,7 @@ export default function TermsPage() {
           <section className="mb-8">
             <h2 className="text-xl font-semibold mb-3">제1조 (목적)</h2>
             <p className="text-muted-foreground leading-relaxed">
-              본 약관은 PotenHire(이하 "회사")가 제공하는 외국인 구인구직 플랫폼
+              본 약관은 HangulJobs(이하 "회사")가 제공하는 외국인 구인구직 플랫폼
               서비스(이하 "서비스")의 이용과 관련하여 회사와 이용자 간의 권리,
               의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.
             </p>

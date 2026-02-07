@@ -85,7 +85,7 @@ export function WhyEmployersSection({ talentCount }: WhyEmployersSectionProps) {
           </motion.div>
 
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">
-            PotenHire는 한국어 가능한 글로벌 인재와 기업을 연결하는 신뢰할 수 있는 플랫폼입니다
+            HangulJobs는 한국어 가능한 글로벌 인재와 기업을 연결하는 신뢰할 수 있는 플랫폼입니다
           </p>
         </motion.div>
 

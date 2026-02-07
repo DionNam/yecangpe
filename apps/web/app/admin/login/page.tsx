@@ -51,7 +51,7 @@ export default function AdminLoginPage() {
                 관리자 로그인
               </h1>
               <p className="text-center text-lg text-slate-600">
-                PotenHire 관리자 전용 페이지
+                HangulJobs 관리자 전용 페이지
               </p>
             </div>
 
