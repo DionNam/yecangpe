@@ -234,10 +234,12 @@ Plans:
   6. 반응형: 모바일에서 1컬럼으로 전환
   7. SEO-friendly slug URL (/jobs/{slug})
 
-**Plans**: 0 plans
+**Plans**: 3 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 16 to break down)
+- [ ] 16-01-PLAN.md -- Slug backfill migration + slug routing + UUID redirect + link updates
+- [ ] 16-02-PLAN.md -- 2-column layout redesign (sidebar, company card, action bar, share menu)
+- [ ] 16-03-PLAN.md -- Related jobs carousel + schema.org JobPosting SEO metadata
 
 **Details:**
 - 기존 JobDetail 컴포넌트 전면 재설계
