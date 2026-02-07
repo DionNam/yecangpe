@@ -1,11 +1,13 @@
 import { Metadata } from 'next'
 import { createClient } from '@repo/supabase/server'
 import { HeroSection } from '@/components/landing/hero-section'
-import { WhyEmployersSection } from '@/components/landing/why-employers-section'
-import { WhyTalentSection } from '@/components/landing/why-talent-section'
-import { HowItWorksSection } from '@/components/landing/how-it-works-section'
+import { SocialProofSection } from '@/components/landing/social-proof-section'
+import { JobSearchSection } from '@/components/landing/job-search-section'
+import { ServiceIntroCards } from '@/components/landing/service-intro-cards'
 import { PreviewSection } from '@/components/landing/preview-section'
-import { TrustCtaSection } from '@/components/landing/trust-cta-section'
+import { FilterCategoryCards } from '@/components/landing/filter-category-cards'
+import { NewsletterSection } from '@/components/landing/newsletter-section'
+import { FAQSection } from '@/components/landing/faq-section'
 import { Footer } from '@/components/landing/footer'
 
 export const metadata: Metadata = {
@@ -32,14 +34,21 @@ export const revalidate = 3600
 export default async function Home() {
   const supabase = await createClient()
 
-  // Fetch latest 6 published, hiring jobs
+  // Fetch latest 8 published, hiring jobs with new fields
   const { data: previewJobs } = await supabase
     .from('job_posts')
-    .select('id, title, company_name, target_nationality, hiring_status, published_at')
+    .select('id, title, company_name, job_type, work_location_type, work_location_country, published_at')
     .eq('review_status', 'published')
     .eq('hiring_status', 'hiring')
     .order('published_at', { ascending: false })
-    .limit(6)
+    .limit(8)
+
+  // Get job count for social proof
+  const { count: jobCount } = await supabase
+    .from('job_posts')
+    .select('*', { count: 'exact', head: true })
+    .eq('review_status', 'published')
+    .eq('hiring_status', 'hiring')
 
   // Get member count with offset
   const { count: actualMemberCount } = await supabase
@@ -103,11 +112,17 @@ export default async function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
       />
       <HeroSection />
-      <WhyEmployersSection talentCount={totalMemberCount} />
-      <WhyTalentSection employerCount={totalEmployerCount} />
-      <HowItWorksSection />
+      <SocialProofSection
+        jobCount={jobCount || 0}
+        companyCount={totalEmployerCount}
+        memberCount={totalMemberCount}
+      />
+      <JobSearchSection />
+      <ServiceIntroCards />
       <PreviewSection initialJobs={previewJobs || []} />
-      <TrustCtaSection />
+      <FilterCategoryCards />
+      <NewsletterSection />
+      <FAQSection />
       <Footer />
     </main>
   )
