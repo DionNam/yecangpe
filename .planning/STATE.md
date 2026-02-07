@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 15 of 18 (Job Board Overhaul)
-Plan: 3 of 4 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 15-03-PLAN.md (Admin Form PRD Field Expansion)
+Last activity: 2026-02-07 — Completed 15-02-PLAN.md (Employer Form PRD Fields)
 
-Progress: [█████████████████████░] 92% (50 plans complete across all phases)
+Progress: [█████████████████████░] 90% (49 plans complete across all phases)
 
 ## Performance Metrics
 
@@ -42,7 +42,7 @@ Progress: [█████████████████████░] 9
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
-| 15-job-board-overhaul | 3 | 7.4min | 2.47min |
+| 15-job-board-overhaul | 3 | 13.4min | 4.47min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -66,8 +66,9 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 14 plan 3: 2 minutes (employers info page)
 - v2.0 Phase 14 plan 4: 2 minutes (about and faq pages)
 - v2.0 Phase 15 plan 1: 2.4 minutes (FTS foundation - PostgreSQL full-text search)
+- v2.0 Phase 15 plan 2: 6 minutes (employer form PRD field expansion)
 - v2.0 Phase 15 plan 3: 5 minutes (admin form PRD field expansion)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 in progress (3 of 4 plans complete, average 2.47min/plan).
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 in progress (3 of 5 plans complete, average 4.47min/plan).
 
 ## Accumulated Context
 
@@ -189,6 +190,10 @@ Recent decisions affecting v1.1 work:
 - **15-01**: COALESCE used for null-safe field concatenation in tsvector generation
 - **15-01**: English language config chosen for to_tsvector (appropriate for international job board)
 - **15-01**: GIN index for production-ready full-text search performance
+- **15-02**: Filter 'not_specified' from language level dropdowns (employers must make explicit choice, not_specified is for display/filtering only)
+- **15-02**: Section dividers (border-t pt-6) for logically grouped fields in long forms (salary, application method)
+- **15-02**: Grid layout (grid-cols-2 gap-4) for related field pairs (min/max, currency/period)
+- **15-02**: Update schema allows all new PRD fields as optional for backward compatibility with legacy posts
 - **15-03**: All new PRD fields optional in admin forms (backward compatibility for legacy posts without these fields)
 - **15-03**: Filter 'not_specified' from language level dropdowns (not a valid selection for admin/employer)
 - **15-03**: Section grouping with <h3> headings for complex field groups (salary info, apply methods)
@@ -244,8 +249,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 15-03-PLAN.md (Admin Form PRD Field Expansion)
+Stopped at: Completed 15-02-PLAN.md (Employer Form PRD Fields)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 15 in progress - 3 of 4 plans complete: FTS foundation, admin form expansion with 7 PRD field groups)*
+*Last updated: 2026-02-07 (Phase 15 in progress - 3 of 5 plans complete: FTS foundation, employer form PRD fields, admin form PRD fields)*
