@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 14 of 18 (Info Pages)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 14-02-PLAN.md (Job Seekers Info Page)
+Last activity: 2026-02-07 — Completed 14-03-PLAN.md (Employers Info Page)
 
-Progress: [████████████████████░░] 86% (46 plans complete across all phases)
+Progress: [████████████████████░░] 87% (47 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 46 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 2)
-- Average duration: 3.28min
-- Total execution time: 2.52 hours
+- Total plans completed: 47 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 3)
+- Average duration: 3.24min
+- Total execution time: 2.54 hours
 
 **By Phase:**
 
@@ -41,7 +41,7 @@ Progress: [████████████████████░░] 8
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
-| 14-info-pages | 2 | 4min | 2.0min |
+| 14-info-pages | 3 | 6min | 2.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -62,7 +62,8 @@ Progress: [████████████████████░░] 8
 - v2.0 Phase 13 plan 5: 2 minutes (cleanup & visual verification)
 - v2.0 Phase 14 plan 1: 2 minutes (info pages foundation components)
 - v2.0 Phase 14 plan 2: 2 minutes (job seekers info page)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 in progress (2/4 plans, maintaining 2.0min/plan average).
+- v2.0 Phase 14 plan 3: 2 minutes (employers info page)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 in progress (3/4 plans, maintaining 2.0min/plan average - consistent velocity).
 
 ## Accumulated Context
 
@@ -167,6 +168,12 @@ Recent decisions affecting v1.1 work:
 - **14-01**: Variant prop pattern ('seeker' | 'employer') for StepGuideSection and FinalCTASection
 - **14-01**: generateInfoPageMetadata uses template from root layout (title only, no 'HangulJobs' suffix)
 - **14-01**: Components follow Phase 13 patterns (motion/react, Lucide icons, Tailwind)
+- **14-02**: /job-seekers page uses blue branding (seeker audience), dual CTA to /jobs and /employers
+- **14-02**: Seeker FAQ has 6 items covering free access, Korean level, application, salary, remote work, employer trust
+- **14-03**: /employers page uses amber branding (employer audience differentiation from seekers)
+- **14-03**: Problem-Solution section with numbered badges (red for problems, green for solutions)
+- **14-03**: Employer FAQ covers pricing, limits, review process, talent pool, stats, work location types
+- **14-03**: Primary employer CTA links to /employer/new-post (immediate action, not just dashboard)
 - **14-02**: Hero section built inline (not as component) for page-specific content
 - **14-02**: ISR revalidation 7200s (2 hours) for job data freshness balance
 - **14-02**: (marketing) route group for organizational structure without URL impact
@@ -221,8 +228,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 14-02-PLAN.md (Job Seekers Info Page)
+Stopped at: Completed 14-03-PLAN.md (Employers Info Page)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 14-02: /job-seekers page with 8 sections and SeekerFAQSection component - Phase 14 50% complete)*
+*Last updated: 2026-02-07 (completed 14-03: /employers info page with 7 sections and employer-specific FAQ - Phase 14 75% complete)*
