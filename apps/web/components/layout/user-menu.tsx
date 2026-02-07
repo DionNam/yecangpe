@@ -42,10 +42,16 @@ export function UserMenu({ user, role }: UserMenuProps) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        {/* Show dashboard link for employer, hide profile for seeker */}
+        {/* Show dashboard link for employer and seeker */}
         {role === 'employer' && (
           <DropdownMenuItem asChild>
-            <Link href="/employer/posts">고용주 대시보드</Link>
+            <Link href="/dashboard">고용주 대시보드</Link>
+          </DropdownMenuItem>
+        )}
+
+        {role === 'seeker' && (
+          <DropdownMenuItem asChild>
+            <Link href="/dashboard">마이페이지</Link>
           </DropdownMenuItem>
         )}
 
@@ -55,7 +61,7 @@ export function UserMenu({ user, role }: UserMenuProps) {
           </DropdownMenuItem>
         )}
 
-        {(role === 'employer' || role === 'admin') && <DropdownMenuSeparator />}
+        {(role === 'employer' || role === 'seeker' || role === 'admin') && <DropdownMenuSeparator />}
 
         <DropdownMenuItem asChild>
           <form action="/auth/signout" method="POST" className="w-full">
