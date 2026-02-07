@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 ## Current Position
 
-Phase: 16 of 18 (Job Detail Redesign)
-Plan: 3 of 3 in current phase
-Status: Phase complete
-Last activity: 2026-02-07 — Completed 16-03-PLAN.md (Related Jobs Carousel + SEO)
+Phase: 17 of 18 (Dashboard Redesign)
+Plan: 1 of 5 in current phase
+Status: In progress
+Last activity: 2026-02-07 — Completed 17-01-PLAN.md (Dashboard Routing Foundation)
 
-Progress: [█████████████████████░] 99% (54 plans complete across all phases)
+Progress: [█████████████████████░] 99% (55 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 53 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 2)
-- Average duration: 3.12min
-- Total execution time: 2.83 hours
+- Total plans completed: 54 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 1)
+- Average duration: 3.10min
+- Total execution time: 2.87 hours
 
 **By Phase:**
 
@@ -43,7 +43,8 @@ Progress: [█████████████████████░] 9
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
-| 16-job-detail-redesign | 2 | 10min | 5.0min |
+| 16-job-detail-redesign | 3 | 14.5min | 4.83min |
+| 17-dashboard-redesign | 1 | 4min | 4.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -74,7 +75,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 16 plan 1: 5 minutes (slug-based routing foundation)
 - v2.0 Phase 16 plan 2: 5 minutes (2-column layout redesign)
 - v2.0 Phase 16 plan 3: 4.5 minutes (related jobs carousel + SEO metadata)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO).
+- v2.0 Phase 17 plan 1: 4 minutes (dashboard routing foundation)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 started.
 
 ## Accumulated Context
 
@@ -230,6 +232,10 @@ Recent decisions affecting v1.1 work:
 - **16-03**: SEO title format: "job title | company name" for page, "job title - company name" for OG/Twitter
 - **16-03**: Schema.org JobPosting with employmentType and salary baseSalary mapping
 - **16-03**: TELECOMMUTE jobLocationType for remote jobs per schema.org spec
+- **17-01**: Unified /dashboard route with server-side role branching (not client-side)
+- **17-01**: Legacy routes redirect via server-side redirect() (not middleware)
+- **17-01**: Seeker dashboard link added to navigation menu (previously missing)
+- **17-01**: Placeholder content for dashboards (replaced in subsequent plans)
 
 ### Roadmap Evolution
 
@@ -281,8 +287,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Phase 16 complete and verified (7/7 must-haves passed)
+Stopped at: Completed 17-01-PLAN.md (Dashboard Routing Foundation)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 16 complete and verified — Job Detail Redesign: slug routing, 2-column layout, Apply sidebar, share menu, related jobs carousel, schema.org SEO)*
+*Last updated: 2026-02-07 (Phase 17 started — Dashboard Redesign: unified /dashboard route with role detection, legacy route redirects, navigation updates)*
