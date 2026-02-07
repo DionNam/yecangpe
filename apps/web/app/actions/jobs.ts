@@ -79,6 +79,10 @@ export async function createJobPost(formData: FormData) {
     Math.random() * (config.like_target_max - config.like_target_min + 1) + config.like_target_min
   )
 
+  // Calculate 30-day expiration
+  const expiresAt = new Date()
+  expiresAt.setDate(expiresAt.getDate() + 30)
+
   // Insert job post with pending review status and get the new post's ID
   const { data: newPost, error: insertError } = await (supabase as any)
     .from('job_posts')

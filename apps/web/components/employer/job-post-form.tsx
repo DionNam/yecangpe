@@ -26,7 +26,6 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
 import {
   Select,
   SelectContent,
@@ -37,6 +36,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { SubmissionDialog } from './submission-dialog'
 import { ImageUpload } from '@/components/ui/image-upload'
+import { RichTextEditor } from '@/components/dashboard/rich-text-editor'
 
 interface JobPostFormProps {
   defaultCompanyName: string
@@ -602,17 +602,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               <FormItem>
                 <FormLabel>내용 *</FormLabel>
                 <FormControl>
-                  <Textarea
-                    placeholder={`상세 내용을 입력해주세요
-
-예시:
-- 근무지: 서울시 강남구
-- 근무시간: 월~금 9:00-18:00
-- 급여: 월 250만원
-- 우대사항: 한국어 가능자
-- 담당업무: ...`}
-                    className="min-h-[300px]"
-                    {...field}
+                  <RichTextEditor
+                    content={field.value}
+                    onChange={field.onChange}
+                    placeholder="직무, 자격 요건, 복리후생 등을 작성하세요"
+                    disabled={isPending}
                   />
                 </FormControl>
                 <FormMessage />

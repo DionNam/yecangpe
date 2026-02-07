@@ -21,7 +21,7 @@ export function SubmissionDialog({ open, onOpenChange }: SubmissionDialogProps) 
 
   const handleConfirm = () => {
     onOpenChange(false)
-    router.push('/employer/posts')
+    router.push('/dashboard')
   }
 
   return (
