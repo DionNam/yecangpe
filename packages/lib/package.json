@@ -21,5 +21,8 @@
   "devDependencies": {
     "@repo/typescript-config": "workspace:*",
     "typescript": "^5.7.0"
+  },
+  "dependencies": {
+    "transliteration": "^2.6.1"
   }
 }

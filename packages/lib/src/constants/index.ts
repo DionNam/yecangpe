@@ -1,2 +1,7 @@
 export * from './nationalities'
 export * from './countries'
+export * from './job-types'
+export * from './categories'
+export * from './language-levels'
+export * from './career-levels'
+export * from './salary'
