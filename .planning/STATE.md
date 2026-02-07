@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 18 of 18 (SEO Filter Pages)
-Plan: 1 of 5 in current phase
+Plan: 2 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 18-01-PLAN.md (Shared Filter Components)
+Last activity: 2026-02-07 — Completed 18-02-PLAN.md (By-Type and By-Location-Type Filter Pages)
 
-Progress: [█████████████████████░] 100% (59 plans complete across all phases)
+Progress: [█████████████████████░] 100% (60 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 59 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 5, v2.0 Phase 18: 1)
-- Average duration: 3.15min
-- Total execution time: 3.10 hours
+- Total plans completed: 60 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 5, v2.0 Phase 18: 2)
+- Average duration: 3.12min
+- Total execution time: 3.12 hours
 
 **By Phase:**
 
@@ -45,7 +45,7 @@ Progress: [█████████████████████░] 1
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
 | 16-job-detail-redesign | 3 | 14.5min | 4.83min |
 | 17-dashboard-redesign | 5 | 20min | 4.0min |
-| 18-seo-filter-pages | 1 | 4.88min | 4.88min |
+| 18-seo-filter-pages | 2 | 6.58min | 3.29min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -82,7 +82,8 @@ Progress: [█████████████████████░] 1
 - v2.0 Phase 17 plan 4: 4 minutes (seeker dashboard with liked jobs and profile)
 - v2.0 Phase 17 plan 5: 6 minutes (job alerts CRUD system)
 - v2.0 Phase 18 plan 1: 4.88 minutes (shared filter components and data configuration)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 complete in 20 minutes (average 4.0min/plan - all 5 plans shipped: unified dashboard routing + employer/seeker dashboards + rich text editor + job alerts). Phase 18 in progress: 1 of 5 plans complete.
+- v2.0 Phase 18 plan 2: 1.7 minutes (by-type and by-location-type filter pages)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 complete in 20 minutes (average 4.0min/plan - all 5 plans shipped: unified dashboard routing + employer/seeker dashboards + rich text editor + job alerts). Phase 18 in progress: 2 of 5 plans complete.
 
 ## Accumulated Context
 
@@ -264,6 +265,12 @@ Recent decisions affecting v1.1 work:
 - **18-01**: Filter page newsletter always subscribes as 'job_seeker' type
 - **18-01**: FAQAccordion reused from info-pages (not duplicated)
 - **18-01**: FilterPageLayout composes all sections with children for job list content
+- **18-02**: ISR revalidation at 300s (5 minutes) balances freshness with server load
+- **18-02**: Limit 20 jobs per filter page for initial load performance
+- **18-02**: Company count approximated using unique company names from results
+- **18-02**: ItemList JSON-LD includes title, description, numberOfItems, and job details
+- **18-02**: Empty state shown when no jobs match filter criteria
+- **18-02**: Validation pattern: Check against constant array, call notFound() if invalid
 - **17-02**: Real metrics in employer dashboard (view_count, apply_click_count) - no fake metrics
 - **17-02**: window.confirm() for delete confirmation (simpler than modal)
 - **17-02**: PostEditModal reused for consistency with existing edit flows
@@ -332,8 +339,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 18-01-PLAN.md (Shared Filter Components)
+Stopped at: Completed 18-02-PLAN.md (By-Type and By-Location-Type Filter Pages)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 18 in progress — SEO Filter Pages: Plan 01 complete - 6 shared filter components + comprehensive data configuration for 5 filter dimensions)*
+*Last updated: 2026-02-07 (Phase 18 in progress — SEO Filter Pages: Plan 02 complete - 9 static filter pages (6 job types + 3 location types) with ISR and structured data)*
