@@ -11,17 +11,17 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 15 of 18 (Job Board Overhaul)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-02-07 — Completed 15-04-PLAN.md (Job Board Search & Filtering)
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-02-07 — Completed 15-05-PLAN.md (Job Card Redesign)
 
-Progress: [█████████████████████░] 92% (50 plans complete across all phases)
+Progress: [█████████████████████░] 94% (51 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 51 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 4)
-- Average duration: 3.13min
+- Total plans completed: 51 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5)
+- Average duration: 3.12min
 - Total execution time: 2.66 hours
 
 **By Phase:**
@@ -42,7 +42,7 @@ Progress: [█████████████████████░] 9
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
-| 15-job-board-overhaul | 4 | 15.9min | 3.98min |
+| 15-job-board-overhaul | 5 | 20.9min | 4.18min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -69,7 +69,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 15 plan 2: 6 minutes (employer form PRD field expansion)
 - v2.0 Phase 15 plan 3: 5 minutes (admin form PRD field expansion)
 - v2.0 Phase 15 plan 4: 2.5 minutes (job board search and filtering)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 in progress (4 of 5 plans complete, average 3.98min/plan).
+- v2.0 Phase 15 plan 5: 5 minutes (job card redesign - mobile + desktop with all PRD fields)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards).
 
 ## Accumulated Context
 
@@ -201,6 +202,12 @@ Recent decisions affecting v1.1 work:
 - **15-03**: Nullable type coercion: field.value || undefined for Select components expecting string | undefined
 - **15-04**: URL-based filter state via useSearchParams for deep-linking and browser history
 - **15-04**: 300ms debounce for keyword search to reduce query load
+- **15-05**: Logo fallback uses colored circles with first letter - 5 color palette rotated by charCode
+- **15-05**: New badge appears for posts within 7 days of published_at
+- **15-05**: Removed displayViews/displayLikes props - PRD card design doesn't show metrics on public board
+- **15-05**: Salary displayed only if salary_min or salary_max exists
+- **15-05**: Relative date formatting with date-fns formatDistanceToNow and Korean locale
+- **15-05**: Simplified job-list-table.tsx: removed Table components, responsive card list (mobile/desktop)
 - **15-04**: Relevance sort auto-enabled when keyword present, auto-disabled when cleared
 - **15-04**: Multi-select filters use .in() for efficient array matching
 - **15-04**: Pagination reads all searchParams to preserve filters across pages
@@ -255,8 +262,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 15-04-PLAN.md (Job Board Search & Filtering)
+Stopped at: Completed 15-05-PLAN.md (Job Card Redesign)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 15 in progress - 4 of 5 plans complete: FTS foundation, employer form PRD fields, admin form PRD fields, job board search and filtering)*
+*Last updated: 2026-02-07 (Phase 15 complete - all 5 plans shipped: FTS foundation, employer/admin forms PRD fields, search/filtering, job card redesign)*
