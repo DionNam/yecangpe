@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 17 of 18 (Dashboard Redesign)
-Plan: 4 of 5 in current phase
-Status: In progress
-Last activity: 2026-02-07 — Completed 17-04-PLAN.md (Seeker Dashboard with Liked Jobs and Profile Management)
+Plan: 5 of 5 in current phase
+Status: Phase complete
+Last activity: 2026-02-07 — Completed 17-05-PLAN.md (Job Alerts CRUD System)
 
-Progress: [█████████████████████░] 99% (57 plans complete across all phases)
+Progress: [█████████████████████░] 100% (58 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 57 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 4)
-- Average duration: 3.17min
-- Total execution time: 3.01 hours
+- Total plans completed: 58 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 3, v2.0 Phase 17: 5)
+- Average duration: 3.14min
+- Total execution time: 3.04 hours
 
 **By Phase:**
 
@@ -44,7 +44,7 @@ Progress: [█████████████████████░] 9
 | 14-info-pages | 4 | 8min | 2.0min |
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
 | 16-job-detail-redesign | 3 | 14.5min | 4.83min |
-| 17-dashboard-redesign | 4 | 14min | 3.5min |
+| 17-dashboard-redesign | 5 | 20min | 4.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -79,7 +79,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 17 plan 2: 6 minutes (employer dashboard implementation)
 - v2.0 Phase 17 plan 3: 6 minutes (job post rich text editor)
 - v2.0 Phase 17 plan 4: 4 minutes (seeker dashboard with liked jobs and profile)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 in progress (4/5 plans).
+- v2.0 Phase 17 plan 5: 6 minutes (job alerts CRUD system)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 complete in 14.5 minutes (average 4.83min/plan - all 3 plans shipped: slug routing + 2-column layout + carousel/SEO). Phase 17 complete in 20 minutes (average 4.0min/plan - all 5 plans shipped: unified dashboard routing + employer/seeker dashboards + rich text editor + job alerts).
 
 ## Accumulated Context
 
@@ -249,11 +250,29 @@ Recent decisions affecting v1.1 work:
 - **17-03**: 30-day expires_at calculation in createJobPost server action (not client-side)
 - **17-03**: RichTextEditor controlled component with content prop and onChange callback
 - **17-03**: Success redirect changed from /employer/posts to /dashboard for unified UX
+- **17-05**: Server actions use (supabase as any) for job_alerts table (not in generated types yet)
+- **17-05**: Empty string for optional select fields means "all" (country, job_type)
+- **17-05**: Alerts tab split into two sections: create form and alert list
+- **17-05**: Frequency field required with default 'daily' (instant, daily, weekly options)
+- **17-05**: Switch component for active toggle (inline UX, better than button/modal)
+- **17-05**: window.confirm() for alert delete confirmation (consistent with employer dashboard)
+- **17-02**: Real metrics in employer dashboard (view_count, apply_click_count) - no fake metrics
+- **17-02**: window.confirm() for delete confirmation (simpler than modal)
+- **17-02**: PostEditModal reused for consistency with existing edit flows
+- **17-02**: Stats summary cards: total posts, active posts, total views, total apply clicks
+- **17-02**: Tabbed layout for Posts and Settings separation
+- **17-03**: Tiptap StarterKit with limited heading levels (H2, H3 only) for content structure
+- **17-03**: Toolbar with 6 formatting options: bold, italic, bullet list, ordered list, H2, H3
+- **17-03**: 30-day expires_at calculation in createJobPost server action (not client-side)
+- **17-03**: RichTextEditor controlled component with content prop and onChange callback
+- **17-03**: Success redirect changed from /employer/posts to /dashboard for unified UX
 - **17-04**: Card-based liked jobs display for seekers (not table) for better mobile UX
 - **17-04**: Removed fake metrics from seeker dashboard - only show real data
 - **17-04**: Reused ProfileEditModal for consistency with legacy /my-page
 - **17-04**: Profile action revalidates /dashboard instead of /my-page
 - **17-04**: Job alerts tab placeholder in seeker dashboard (implementation in Plan 17-05)
+- **17-05**: Job alerts CRUD complete - seekers can create/toggle/delete alerts
+- **17-05**: Email sending for job alerts deferred to later phase (post-v2.0)
 
 ### Roadmap Evolution
 
@@ -305,8 +324,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 17-04-PLAN.md (Seeker Dashboard with Liked Jobs and Profile Management)
+Stopped at: Completed 17-05-PLAN.md (Job Alerts CRUD System)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 17 in progress — 4/5 plans complete: dashboard routing + employer dashboard + rich text editor + seeker dashboard)*
+*Last updated: 2026-02-07 (Phase 17 complete — 5/5 plans complete: dashboard routing + employer dashboard + rich text editor + seeker dashboard + job alerts)*
