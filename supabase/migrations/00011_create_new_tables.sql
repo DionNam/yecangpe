@@ -121,3 +121,4 @@ CREATE INDEX IF NOT EXISTS idx_job_alerts_active ON job_alerts(is_active) WHERE 
 CREATE INDEX IF NOT EXISTS idx_job_posts_slug ON job_posts(slug);
 CREATE INDEX IF NOT EXISTS idx_job_posts_job_type ON job_posts(job_type);
 CREATE INDEX IF NOT EXISTS idx_job_posts_status ON job_posts(status);
+CREATE INDEX IF NOT EXISTS idx_newsletter_email ON newsletter_subscribers(email);
