@@ -8,7 +8,7 @@
 - ✅ **v1.3 UI Polish & Core UX** - Phase 9 (complete 2026-01-21)
 - ✅ **v1.4 Job Post Images** - Phase 10 (complete 2026-01-22)
 - ✅ **v1.5 Work Location & Country** - Phase 11 (complete 2026-01-23)
-- 🚧 **v2.0 HangulJobs Overhaul** - Phases 12-18
+- ✅ **v2.0 HangulJobs Overhaul** - Phases 12-18 (complete 2026-02-07)
 
 ## Phases
 
@@ -66,7 +66,7 @@
 
 </details>
 
-### 🚧 v2.0 HangulJobs Overhaul (Phases 12-18)
+### ✅ v2.0 HangulJobs Overhaul (Phases 12-18) - COMPLETE 2026-02-07
 
 > PRD 기반 대대적 개편. 브랜딩을 HangulJobs로 변경하고, 글로벌 잡보드 플랫폼으로 전환.
 > 관리자 기능(멤버수/하트수/뷰수 조작 등)은 기존 그대로 유지.
@@ -299,14 +299,14 @@ Plans:
   7. 메타태그/OG태그 각 페이지별 최적화
   8. sitemap.xml에 모든 필터 페이지 포함
 
-**Plans**: 5 plans
+**Plans**: 5/5 complete ✅
 
 Plans:
-- [ ] 18-01-PLAN.md -- Shared filter page components + data configuration (Wave 1)
-- [ ] 18-02-PLAN.md -- by-type + by-location-type filter page routes (Wave 2)
-- [ ] 18-03-PLAN.md -- by-category + by-language-level filter page routes (Wave 2)
-- [ ] 18-04-PLAN.md -- by-country filter page route (Wave 2)
-- [ ] 18-05-PLAN.md -- Sitemap extension + landing page cross-link update (Wave 3)
+- [x] 18-01-PLAN.md -- Shared filter page components + data configuration (Wave 1)
+- [x] 18-02-PLAN.md -- by-type + by-location-type filter page routes (Wave 2)
+- [x] 18-03-PLAN.md -- by-category + by-language-level filter page routes (Wave 2)
+- [x] 18-04-PLAN.md -- by-country filter page route (Wave 2)
+- [x] 18-05-PLAN.md -- Sitemap extension + landing page cross-link update (Wave 3)
 
 **Details:**
 - Next.js generateStaticParams 또는 dynamic route with ISR
@@ -317,7 +317,7 @@ Plans:
 
 ## Project Status
 
-**Current State:** v2.0 HangulJobs Overhaul 진행 중 - Phase 12부터 시작
+**Current State:** v2.0 HangulJobs Overhaul 완료 - 모든 18 phases complete
 
 **Shipped:**
 - v1.0 MVP (Phases 1-6): Full platform with auth, job listings, employer/admin features
@@ -373,9 +373,9 @@ Plans:
 | 15. Job Board Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 16. Job Detail Redesign | v2.0 | 3/3 | ✅ Complete | 2026-02-07 |
 | 17. Dashboard Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
-| 18. SEO Filter Pages | v2.0 | 0/5 | 🔲 Planned | - |
+| 18. SEO Filter Pages | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 
-**Total:** 18 phases (17 complete, 1 planned)
+**Total:** 18 phases (18 complete)
 
 ---
-*Last updated: 2026-02-07 (Phase 17 complete - Dashboard Redesign: 5 plans, employer/seeker dashboards, Tiptap editor, job alerts)*
+*Last updated: 2026-02-07 (Phase 18 complete - SEO Filter Pages: 5 plans, 61 filter pages, sitemap extension, cross-links)*
