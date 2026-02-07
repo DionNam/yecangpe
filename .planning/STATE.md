@@ -6,23 +6,23 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 전 세계 Korean Speaker들과 한국어 능력을 필요로 하는 고용주를 연결하는 글로벌 잡보드 플랫폼 (HangulJobs - hanguljobs.com)
 
-**Current focus:** v2.0 HangulJobs Overhaul - Phase 15 complete, Phase 16 next
+**Current focus:** v2.0 HangulJobs Overhaul - Phase 16 in progress
 
 ## Current Position
 
-Phase: 15 of 18 (Job Board Overhaul)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-07 — Completed 15-05-PLAN.md (Job Card Redesign)
+Phase: 16 of 18 (Job Detail Redesign)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-02-07 — Completed 16-01-PLAN.md (Slug-Based Routing)
 
-Progress: [█████████████████████░] 94% (51 plans complete across all phases)
+Progress: [█████████████████████░] 96% (52 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 51 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5)
-- Average duration: 3.12min
-- Total execution time: 2.66 hours
+- Total plans completed: 52 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 1)
+- Average duration: 3.10min
+- Total execution time: 2.75 hours
 
 **By Phase:**
 
@@ -43,6 +43,7 @@ Progress: [█████████████████████░] 9
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
+| 16-job-detail-redesign | 1 | 5min | 5.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -70,7 +71,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 15 plan 3: 5 minutes (admin form PRD field expansion)
 - v2.0 Phase 15 plan 4: 2.5 minutes (job board search and filtering)
 - v2.0 Phase 15 plan 5: 5 minutes (job card redesign - mobile + desktop with all PRD fields)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards).
+- v2.0 Phase 16 plan 1: 5 minutes (slug-based routing foundation)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 in progress (1 of 4 plans - slug routing complete).
 
 ## Accumulated Context
 
@@ -211,6 +213,10 @@ Recent decisions affecting v1.1 work:
 - **15-04**: Relevance sort auto-enabled when keyword present, auto-disabled when cleared
 - **15-04**: Multi-select filters use .in() for efficient array matching
 - **15-04**: Pagination reads all searchParams to preserve filters across pages
+- **16-01**: Slug-based routing with UUID fallback for SEO-friendly URLs
+- **16-01**: Job detail pages viewable without authentication (SEO optimization)
+- **16-01**: Two-step insert pattern for slug generation (insert → select ID → update slug)
+- **16-01**: UUID redirect route does not increment view count (prevents double-counting)
 
 ### Roadmap Evolution
 
@@ -262,8 +268,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Phase 15 complete and verified (12/12 must-haves passed)
+Stopped at: Completed 16-01-PLAN.md (Slug-Based Routing)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 15 complete and verified — Job Board Overhaul: FTS search, 6 filter types, job card redesign, employer/admin form expansion)*
+*Last updated: 2026-02-07 (Phase 16 plan 1 complete — Slug-based routing foundation: SEO-friendly URLs, UUID backward compatibility, unauthenticated viewing for crawlers)*
