@@ -199,14 +199,14 @@ Plans:
   11. 고용주 잡 공고 작성 폼에 새 필드 반영 (카테고리, 언어레벨, 급여, 경력, 지원방법, 공고기간)
   12. 관리자 잡 공고 폼에도 새 필드 반영
 
-**Plans**: 5 plans
+**Plans**: 5/5 complete ✅
 
 Plans:
-- [ ] 15-01-PLAN.md -- FTS migration + use-debounce installation (Wave 1)
-- [ ] 15-02-PLAN.md -- Employer form PRD fields + server action update (Wave 1)
-- [ ] 15-03-PLAN.md -- Admin form PRD fields + server action update (Wave 1)
-- [ ] 15-04-PLAN.md -- Job board search, filters, pagination expansion (Wave 2)
-- [ ] 15-05-PLAN.md -- Job card redesign with PRD fields (Wave 2)
+- [x] 15-01-PLAN.md -- FTS migration + use-debounce installation (Wave 1)
+- [x] 15-02-PLAN.md -- Employer form PRD fields + server action update (Wave 1)
+- [x] 15-03-PLAN.md -- Admin form PRD fields + server action update (Wave 1)
+- [x] 15-04-PLAN.md -- Job board search, filters, pagination expansion (Wave 2)
+- [x] 15-05-PLAN.md -- Job card redesign with PRD fields (Wave 2)
 
 **Details:**
 - Phase 12의 DB 스키마를 활용하여 필터링 쿼리 구현
@@ -360,12 +360,12 @@ Plans:
 | 12. Branding & DB Schema Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 13. Landing Page Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 14. Info Pages | v2.0 | 4/4 | ✅ Complete | 2026-02-07 |
-| 15. Job Board Overhaul | v2.0 | 0/5 | 🚧 Planned | - |
+| 15. Job Board Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 16. Job Detail Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 17. Dashboard Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 18. SEO Filter Pages | v2.0 | 0 | 🔲 Not planned | - |
 
-**Total:** 18 phases (14 complete, 4 not planned)
+**Total:** 18 phases (15 complete, 3 not planned)
 
 ---
-*Last updated: 2026-02-07 (Phase 15 planned - 5 plans in 2 waves for Job Board Overhaul)*
+*Last updated: 2026-02-07 (Phase 15 complete - Job Board Overhaul: FTS search, 6 filter types, job card redesign, employer/admin form expansion)*

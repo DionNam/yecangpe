@@ -6,7 +6,7 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 전 세계 Korean Speaker들과 한국어 능력을 필요로 하는 고용주를 연결하는 글로벌 잡보드 플랫폼 (HangulJobs - hanguljobs.com)
 
-**Current focus:** v2.0 HangulJobs Overhaul - Phase 14 complete, Phase 15 next
+**Current focus:** v2.0 HangulJobs Overhaul - Phase 15 complete, Phase 16 next
 
 ## Current Position
 
@@ -262,8 +262,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 15-05-PLAN.md (Job Card Redesign)
+Stopped at: Phase 15 complete and verified (12/12 must-haves passed)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 15 complete - all 5 plans shipped: FTS foundation, employer/admin forms PRD fields, search/filtering, job card redesign)*
+*Last updated: 2026-02-07 (Phase 15 complete and verified — Job Board Overhaul: FTS search, 6 filter types, job card redesign, employer/admin form expansion)*
