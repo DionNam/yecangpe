@@ -4,25 +4,25 @@
 
 See: .planning/PROJECT.md (updated 2026-01-20)
 
-**Core value:** 한국어 가능한 외국인이 자신의 국적에 맞는 채용 공고를 쉽게 찾고, 관심 표시할 수 있어야 한다.
+**Core value:** 전 세계 Korean Speaker들과 한국어 능력을 필요로 하는 고용주를 연결하는 글로벌 잡보드 플랫폼 (HangulJobs - hanguljobs.com)
 
-**Current focus:** Phase 11 - Work Location Type & Country Selection (Complete)
+**Current focus:** v2.0 HangulJobs Overhaul - Phase 12 (Branding & DB Schema Overhaul) in progress
 
 ## Current Position
 
-Phase: 11 of 11 (Work Location & Country)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-01-22 — Completed 11-05-PLAN.md
+Phase: 12 of 18 (Branding & DB Schema Overhaul)
+Plan: 1 of TBD in current phase
+Status: In progress
+Last activity: 2026-02-07 — Completed 12-01-PLAN.md (Database Schema Expansion)
 
-Progress: [█████████████████] 100% (33/33 plans complete)
+Progress: [█████████████████░░░░░] 66% (34 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 33 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5)
-- Average duration: 4.0min
-- Total execution time: 2.3 hours
+- Total plans completed: 34 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 1)
+- Average duration: 3.9min
+- Total execution time: 2.35 hours
 
 **By Phase:**
 
@@ -39,6 +39,7 @@ Progress: [█████████████████] 100% (33/33 plan
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
+| 12-branding-db-schema | 1 | 3min | 3.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -47,7 +48,8 @@ Progress: [█████████████████] 100% (33/33 plan
 - v1.3 completed in 10.5 minutes (3 plans)
 - v1.4 completed in 11 minutes (4 plans)
 - v1.5 completed in 14 minutes (5 plans)
-- Trend: Consistently fast iteration with average 2.8min per plan in Phase 11
+- v2.0 Phase 12 plan 1: 3 minutes (database schema expansion)
+- Trend: Maintaining fast iteration velocity
 
 ## Accumulated Context
 
@@ -112,6 +114,10 @@ Recent decisions affecting v1.1 work:
 - **11-05**: Badge variant="outline" for location badge to distinguish from hiring status
 - **11-05**: Location filter placed after nationality, before sort for logical grouping
 - **11-05**: Country name shown directly in job list badge for on-site jobs
+- **12-01**: ENUM migration must be separate from column additions (PostgreSQL requirement)
+- **12-01**: RLS policies use DO/EXCEPTION pattern (CREATE POLICY doesn't support IF NOT EXISTS)
+- **12-01**: Status field backfilled from legacy review_status/hiring_status
+- **12-01**: Legacy admin fields preserved unchanged (review_status, hiring_status, view_count, like_target)
 
 ### Roadmap Evolution
 
@@ -119,6 +125,14 @@ Recent decisions affecting v1.1 work:
 - Plan 09-03 added (2026-01-21): Design Quality Overhaul - Close GAP-09-01 with production-grade editorial design transformation
 - Phase 10 added (2026-01-22): Job Post Images - Allow employers/admins to upload images for job posts
 - Phase 11 added (2026-01-22): Work Location Type & Country Selection - Remote/hybrid/on-site selection with country picker for on-site positions
+- **Phases 12-18 added (2026-02-07): v2.0 HangulJobs Overhaul** - PRD 기반 대대적 개편
+  - Phase 12: Branding & DB Schema Overhaul (HangulJobs 브랜딩 + DB 확장)
+  - Phase 13: Landing Page Redesign (듀얼 CTA, Social Proof, 검색, 최신 잡)
+  - Phase 14: Info Pages (/job-seekers, /employers, /about, /faq)
+  - Phase 15: Job Board Overhaul (검색/필터 확장, 카테고리, 언어레벨)
+  - Phase 16: Job Detail Redesign (2컬럼 레이아웃, 지원하기, 관련 잡)
+  - Phase 17: Dashboard Redesign (고용주/구직자 대시보드 통합, 잡 알림)
+  - Phase 18: SEO Filter Pages (고용형태/근무형태/국가/카테고리/레벨별 전용 페이지)
 
 ### Pending Todos
 
@@ -127,11 +141,15 @@ Recent decisions affecting v1.1 work:
 ### Blockers/Concerns
 
 **Known Tech Debt:**
-- Job list missing real like counts (displays fake metrics only)
-- Employer onboarding redirects to / instead of /employer/new-post
+- Job list missing real like counts (displays fake metrics only) - 의도적 유지
 - KakaoTalk link is placeholder
 - Legal pages need legal review
 - BUG-INFRA-001: Cannot seed test data with fixed UUIDs (Supabase Auth limitation)
+
+**v2.0 Key Constraints:**
+- 관리자 기능(조작 지표, 공고 승인/반려) 반드시 기존 그대로 유지
+- "구인자" → "고용주" 용어 변경 전체 적용
+- 브랜딩: HangulJobs (한글잡스) - hanguljobs.com
 
 **Resolved in Phase 11:**
 - Work Location Type & Country Selection feature complete - remote/hybrid/on-site with country picker and filtering
@@ -150,9 +168,9 @@ Recent decisions affecting v1.1 work:
 
 ## Session Continuity
 
-Last session: 2026-01-22
-Stopped at: Completed 11-05-PLAN.md - display and filter work location in job list
+Last session: 2026-02-07
+Stopped at: Completed 12-01-PLAN.md (Database Schema Expansion)
 Resume file: None
 
 ---
-*Last updated: 2026-01-22 (Phase 11 complete - all 5 plans executed)*
+*Last updated: 2026-02-07 (completed 12-01: database schema expansion for v2.0 features)*
