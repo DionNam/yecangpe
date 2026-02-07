@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 12 of 18 (Branding & DB Schema Overhaul)
-Plan: 4 of 5 in current phase
+Plan: 3 of 5 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 12-04-PLAN.md (Typography & Color System)
+Last activity: 2026-02-07 — Completed 12-03-PLAN.md (Branding Overhaul)
 
-Progress: [█████████████████░░░░░] 70% (36 plans complete across all phases)
+Progress: [█████████████████░░░░░] 71% (37 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 36 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 3)
+- Total plans completed: 37 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 4)
 - Average duration: 3.7min
-- Total execution time: 2.45 hours
+- Total execution time: 2.56 hours
 
 **By Phase:**
 
@@ -39,7 +39,7 @@ Progress: [█████████████████░░░░░] 7
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
-| 12-branding-db-schema | 3 | 8.7min | 2.9min |
+| 12-branding-db-schema | 4 | 15.1min | 3.8min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -50,8 +50,9 @@ Progress: [█████████████████░░░░░] 7
 - v1.5 completed in 14 minutes (5 plans)
 - v2.0 Phase 12 plan 1: 3 minutes (database schema expansion)
 - v2.0 Phase 12 plan 2: 3 minutes (shared constants & slug utility)
+- v2.0 Phase 12 plan 3: 6.4 minutes (branding overhaul)
 - v2.0 Phase 12 plan 4: 2.7 minutes (typography & color system)
-- Trend: Maintaining fast iteration velocity (sub-3-minute plans in Phase 12)
+- Trend: Fast iteration velocity with larger plan (12-03) completed in 6.4 minutes
 
 ## Accumulated Context
 
@@ -124,6 +125,10 @@ Recent decisions affecting v1.1 work:
 - **12-02**: Type exports for all constants enable type-safe code validation
 - **12-02**: Slug generation uses 8-char UUID suffix for uniqueness with readable URLs
 - **12-02**: transliteration package for robust Korean romanization in slugs
+- **12-03**: Complete rebrand from PotenHire to HangulJobs (한글잡스) across all apps
+- **12-03**: Bilingual tagline "Find Korean-Speaking Jobs Worldwide - 전 세계 한국어 일자리 플랫폼"
+- **12-03**: URL references changed from potenhire.com to hanguljobs.com
+- **12-03**: Korean employer terminology standardized to "고용주" (standard business term)
 - **12-04**: Pretendard variable font for Korean-optimized typography (weights 100-900)
 - **12-04**: OKLCH color space for brand colors (perceptually uniform, wide gamut)
 - **12-04**: Three-color palette (Blue/Amber/Emerald) with 10 shades each for flexibility
@@ -158,8 +163,8 @@ Recent decisions affecting v1.1 work:
 
 **v2.0 Key Constraints:**
 - 관리자 기능(조작 지표, 공고 승인/반려) 반드시 기존 그대로 유지
-- "구인자" → "고용주" 용어 변경 전체 적용
-- 브랜딩: HangulJobs (한글잡스) - hanguljobs.com
+- ✅ "구인자" → "고용주" 용어 변경 전체 적용 (완료 in 12-03)
+- ✅ 브랜딩: HangulJobs (한글잡스) - hanguljobs.com (완료 in 12-03)
 
 **Resolved in Phase 11:**
 - Work Location Type & Country Selection feature complete - remote/hybrid/on-site with country picker and filtering
@@ -179,8 +184,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 12-04-PLAN.md (Typography & Color System)
+Stopped at: Completed 12-03-PLAN.md (Branding Overhaul)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 12-04: typography & color system with Pretendard font and brand colors)*
+*Last updated: 2026-02-07 (completed 12-03: complete rebrand from PotenHire to HangulJobs with Korean terminology standardization)*
