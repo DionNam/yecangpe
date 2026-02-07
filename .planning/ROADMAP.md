@@ -163,16 +163,19 @@ Plans:
   5. 모든 페이지에서 랜딩 및 잡보드로의 크로스 링크 동작
   6. 반응형 디자인 (모바일 최적화)
 
-**Plans**: 0 plans
+**Plans**: 4 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 14 to break down)
+- [ ] 14-01-PLAN.md -- Shared info-page section components + metadata helper (Wave 1)
+- [ ] 14-02-PLAN.md -- Job Seekers page (/job-seekers) with 8 sections (Wave 2)
+- [ ] 14-03-PLAN.md -- Employers page (/employers) with 7 sections (Wave 2)
+- [ ] 14-04-PLAN.md -- About + FAQ pages + visual verification (Wave 2)
 
 **Details:**
-- 4개 신규 라우트 생성
+- 4개 신규 라우트 생성 via (marketing) route group
 - 공통 섹션 컴포넌트 재사용 (FAQ 아코디언, 최신 잡 리스트, 필터 카테고리 카드)
-- 고용주 안내 페이지에 한국어 페이지 토글 링크
-- 통계 카운터에 기존 조작 지표 활용
+- 5개 신규 컴포넌트: PainPointSection, ValuePropositionSection, StepGuideSection, BenefitsCardGrid, FinalCTASection
+- 통계 카운터에 기존 조작 지표 활용 (offset 로직 유지)
 
 ---
 
@@ -352,7 +355,7 @@ Plans:
 | 11. Work Location & Country | v1.5 | 5/5 | ✅ Complete | 2026-01-23 |
 | 12. Branding & DB Schema Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 13. Landing Page Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
-| 14. Info Pages | v2.0 | 0 | 🔲 Not planned | - |
+| 14. Info Pages | v2.0 | 0/4 | 🔲 Planned | - |
 | 15. Job Board Overhaul | v2.0 | 0 | 🔲 Not planned | - |
 | 16. Job Detail Redesign | v2.0 | 0 | 🔲 Not planned | - |
 | 17. Dashboard Redesign | v2.0 | 0 | 🔲 Not planned | - |
