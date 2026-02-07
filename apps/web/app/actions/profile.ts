@@ -39,6 +39,6 @@ export async function updateSeekerProfile(formData: FormData) {
     return { error: { _form: [updateError.message] } }
   }
 
-  revalidatePath('/my-page')
+  revalidatePath('/dashboard')
   return { success: true }
 }

@@ -3,6 +3,7 @@ import { createClient } from '@repo/supabase/server'
 import Link from 'next/link'
 import type { Database } from '@repo/supabase/types'
 import { EmployerDashboard } from '@/components/dashboard/employer-dashboard'
+import { SeekerDashboard } from '@/components/dashboard/seeker-dashboard'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 type SeekerProfile = Database['public']['Tables']['seeker_profiles']['Row']
@@ -83,8 +84,9 @@ export default async function DashboardPage() {
       .select(
         `
         id,
+        created_at,
         post:job_posts(
-          id, title, hiring_status, published_at, view_count, view_target, like_target
+          id, title, slug, company_name, hiring_status
         )
       `
       )
@@ -95,41 +97,15 @@ export default async function DashboardPage() {
     const likedJobs =
       (likedJobsData as any[])?.map((like: any) => ({
         id: like.id,
+        created_at: like.created_at,
         post: Array.isArray(like.post) ? like.post[0] : like.post,
       })) || []
 
-    // Fetch job alerts
-    const { data: jobAlerts } = await (supabase as any)
-      .from('job_alerts')
-      .select('*')
-      .eq('user_id', user.id)
+    // Fetch job alerts (will be implemented in Plan 17-05)
+    const alerts: any[] = []
 
-    const alerts = jobAlerts || []
-
-    // Render seeker placeholder
-    return (
-      <div className="min-h-screen bg-slate-50 pt-6 pb-12">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="mb-10">
-            <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">
-              구직자 대시보드
-            </p>
-            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-              마이페이지
-            </h1>
-          </div>
-
-          <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-            <p className="text-lg text-slate-600 mb-2">
-              국적: <span className="font-semibold text-slate-900">{profile.nationality}</span>
-            </p>
-            <p className="text-lg text-slate-600">
-              관심 공고: <span className="font-semibold text-slate-900">{likedJobs.length}개</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    )
+    // Render seeker dashboard
+    return <SeekerDashboard profile={profile} likedJobs={likedJobs} alerts={alerts} />
   }
 
   // Neither profile found, redirect to onboarding
