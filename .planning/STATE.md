@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 12 of 18 (Branding & DB Schema Overhaul)
-Plan: 1 of TBD in current phase
+Plan: 2 of TBD in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 12-01-PLAN.md (Database Schema Expansion)
+Last activity: 2026-02-07 — Completed 12-02-PLAN.md (Shared Constants & Slug Utility)
 
-Progress: [█████████████████░░░░░] 66% (34 plans complete across all phases)
+Progress: [█████████████████░░░░░] 68% (35 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 34 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 1)
-- Average duration: 3.9min
-- Total execution time: 2.35 hours
+- Total plans completed: 35 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 2)
+- Average duration: 3.8min
+- Total execution time: 2.4 hours
 
 **By Phase:**
 
@@ -39,7 +39,7 @@ Progress: [█████████████████░░░░░] 6
 | 09-ui-polish-core-ux | 3 | 10.5min | 3.5min |
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
-| 12-branding-db-schema | 1 | 3min | 3.0min |
+| 12-branding-db-schema | 2 | 6min | 3.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -49,7 +49,8 @@ Progress: [█████████████████░░░░░] 6
 - v1.4 completed in 11 minutes (4 plans)
 - v1.5 completed in 14 minutes (5 plans)
 - v2.0 Phase 12 plan 1: 3 minutes (database schema expansion)
-- Trend: Maintaining fast iteration velocity
+- v2.0 Phase 12 plan 2: 3 minutes (shared constants & slug utility)
+- Trend: Maintaining fast iteration velocity (consistent 3min/plan for Phase 12)
 
 ## Accumulated Context
 
@@ -118,6 +119,10 @@ Recent decisions affecting v1.1 work:
 - **12-01**: RLS policies use DO/EXCEPTION pattern (CREATE POLICY doesn't support IF NOT EXISTS)
 - **12-01**: Status field backfilled from legacy review_status/hiring_status
 - **12-01**: Legacy admin fields preserved unchanged (review_status, hiring_status, view_count, like_target)
+- **12-02**: Bilingual constant structure { code, name, nameKo } for dropdown support
+- **12-02**: Type exports for all constants enable type-safe code validation
+- **12-02**: Slug generation uses 8-char UUID suffix for uniqueness with readable URLs
+- **12-02**: transliteration package for robust Korean romanization in slugs
 
 ### Roadmap Evolution
 
@@ -169,8 +174,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 12-01-PLAN.md (Database Schema Expansion)
+Stopped at: Completed 12-02-PLAN.md (Shared Constants & Slug Utility)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 12-01: database schema expansion for v2.0 features)*
+*Last updated: 2026-02-07 (completed 12-02: shared constants and slug generation for v2.0 features)*
