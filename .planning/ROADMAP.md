@@ -265,14 +265,14 @@ Plans:
   5. 기존 관리자 조작 지표(view_count, like_target, member_count 등) 그대로 유지
   6. 기존 관리자 공고 승인/반려 워크플로우 그대로 유지
 
-**Plans**: 5 plans
+**Plans**: 5/5 complete ✅
 
 Plans:
-- [ ] 17-01-PLAN.md -- Unified /dashboard route with role detection + legacy route redirects
-- [ ] 17-02-PLAN.md -- Employer dashboard (posts table with real metrics, company settings)
-- [ ] 17-03-PLAN.md -- Employer post-job page with Tiptap rich text editor + expires_at
-- [ ] 17-04-PLAN.md -- Seeker dashboard (liked jobs, profile management)
-- [ ] 17-05-PLAN.md -- Seeker job alerts CRUD (create/toggle/delete alerts)
+- [x] 17-01-PLAN.md -- Unified /dashboard route with role detection + legacy route redirects
+- [x] 17-02-PLAN.md -- Employer dashboard (posts table with real metrics, company settings)
+- [x] 17-03-PLAN.md -- Employer post-job page with Tiptap rich text editor + expires_at
+- [x] 17-04-PLAN.md -- Seeker dashboard (liked jobs, profile management)
+- [x] 17-05-PLAN.md -- Seeker job alerts CRUD (create/toggle/delete alerts)
 
 **Details:**
 - 기존 /my-page, /employer/posts, /employer/new-post → /dashboard 통합 라우팅
@@ -368,10 +368,10 @@ Plans:
 | 14. Info Pages | v2.0 | 4/4 | ✅ Complete | 2026-02-07 |
 | 15. Job Board Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 16. Job Detail Redesign | v2.0 | 3/3 | ✅ Complete | 2026-02-07 |
-| 17. Dashboard Redesign | v2.0 | 0/5 | 🔲 Planned | - |
+| 17. Dashboard Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 18. SEO Filter Pages | v2.0 | 0 | 🔲 Not planned | - |
 
-**Total:** 18 phases (16 complete, 1 planned, 1 not planned)
+**Total:** 18 phases (17 complete, 1 not planned)
 
 ---
-*Last updated: 2026-02-07 (Phase 17 planned - Dashboard Redesign: 5 plans in 3 waves)*
+*Last updated: 2026-02-07 (Phase 17 complete - Dashboard Redesign: 5 plans, employer/seeker dashboards, Tiptap editor, job alerts)*

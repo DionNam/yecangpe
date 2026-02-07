@@ -6,7 +6,7 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 **Core value:** 전 세계 Korean Speaker들과 한국어 능력을 필요로 하는 고용주를 연결하는 글로벌 잡보드 플랫폼 (HangulJobs - hanguljobs.com)
 
-**Current focus:** v2.0 HangulJobs Overhaul - Phase 16 complete, Phase 17 next
+**Current focus:** v2.0 HangulJobs Overhaul - Phase 17 complete, Phase 18 next
 
 ## Current Position
 
@@ -324,8 +324,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 17-05-PLAN.md (Job Alerts CRUD System)
+Stopped at: Phase 17 complete and verified (6/6 must-haves passed after expires_at fix)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 17 complete — 5/5 plans complete: dashboard routing + employer dashboard + rich text editor + seeker dashboard + job alerts)*
+*Last updated: 2026-02-07 (Phase 17 complete and verified — Dashboard Redesign: unified routing, employer dashboard with real metrics, Tiptap editor, seeker dashboard, job alerts CRUD, 30-day expires_at)*
