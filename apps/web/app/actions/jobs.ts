@@ -111,6 +111,7 @@ export async function createJobPost(formData: FormData) {
       career_level: result.data.career_level || null,
       apply_url: result.data.apply_url || null,
       apply_email: result.data.apply_email || null,
+      expires_at: expiresAt.toISOString(),
     })
     .select('id')
     .single()
