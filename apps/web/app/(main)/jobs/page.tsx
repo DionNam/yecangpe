@@ -10,11 +10,16 @@ type GlobalMetricsConfig =
   Database['public']['Tables']['global_metrics_config']['Row']
 
 interface SearchParams {
+  q?: string
+  job_type?: string
+  location_type?: string
+  category?: string
+  korean_level?: string
+  english_level?: string
   nationality?: string
+  location_country?: string
   page?: string
   sort?: string
-  location_type?: string
-  location_country?: string
 }
 
 interface JobsPageProps {
@@ -55,11 +60,16 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function JobsPage({ searchParams }: JobsPageProps) {
   const params = await searchParams
+  const keyword = params.q
+  const jobTypeParam = params.job_type
+  const locationTypeParam = params.location_type
+  const category = params.category
+  const koreanLevel = params.korean_level
+  const englishLevel = params.english_level
   const nationality = params.nationality
+  const locationCountry = params.location_country
   const page = parseInt(params.page || '1', 10)
   const sortBy = params.sort || 'latest'
-  const locationType = params.location_type
-  const locationCountry = params.location_country
   const pageSize = 10
 
   const supabase = await createClient()
@@ -76,25 +86,51 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     .select('*', { count: 'exact' })
     .eq('review_status', 'published')
 
-  // Apply nationality filter
+  // Keyword search (FTS)
+  if (keyword) {
+    query = query.textSearch('fts', keyword, { type: 'websearch' })
+  }
+
+  // Multi-select filters with .in()
+  const jobTypes = jobTypeParam?.split(',').filter(Boolean)
+  if (jobTypes && jobTypes.length > 0) {
+    query = query.in('job_type', jobTypes)
+  }
+
+  const locationTypes = locationTypeParam?.split(',').filter(Boolean)
+  if (locationTypes && locationTypes.length > 0) {
+    query = query.in('work_location_type', locationTypes)
+  }
+
+  // Single-select filters with .eq()
+  if (category && category !== 'all') {
+    query = query.eq('category', category)
+  }
+
+  if (koreanLevel && koreanLevel !== 'all') {
+    query = query.eq('korean_level', koreanLevel)
+  }
+
+  if (englishLevel && englishLevel !== 'all') {
+    query = query.eq('english_level', englishLevel)
+  }
+
+  if (locationCountry && locationCountry !== 'all') {
+    query = query.eq('work_location_country', locationCountry)
+  }
+
+  // Apply nationality filter (keep existing logic with .or())
   if (nationality && nationality !== 'all') {
     query = query.or(
       `target_nationality.eq.${nationality},target_nationality.eq.ANY`
     )
   }
 
-  // Apply location type filter
-  if (locationType && locationType !== 'all') {
-    query = query.eq('work_location_type', locationType)
-  }
-
-  // Apply location country filter (only for on_site jobs)
-  if (locationCountry && locationCountry !== 'all') {
-    query = query.eq('work_location_country', locationCountry)
-  }
-
-  // Apply sorting
-  if (sortBy === 'popular') {
+  // Sort: relevance when keyword present, otherwise latest or popular
+  if (sortBy === 'relevance' && keyword) {
+    // FTS relevance sorting is default when using textSearch
+    // No explicit order needed
+  } else if (sortBy === 'popular') {
     query = query.order('view_count', { ascending: false })
   } else {
     // Default: latest
@@ -168,7 +204,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
       />
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      
+
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-24">
         {/* Header section with descriptive content */}
         <div className="text-center mb-16 space-y-4">
@@ -186,12 +222,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
         {/* Filters section */}
         <div className="mb-10">
-          <JobListFilters
-            currentNationality={nationality}
-            currentSort={sortBy}
-            currentLocationType={locationType}
-            currentLocationCountry={locationCountry}
-          />
+          <JobListFilters />
         </div>
 
         {/* Table with card-like container */}
@@ -209,8 +240,6 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
             <JobListPagination
               currentPage={page}
               totalPages={totalPages}
-              nationality={nationality}
-              sort={sortBy}
             />
           </div>
         )}

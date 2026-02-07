@@ -1,6 +1,6 @@
 'use client'
 
-import { useRouter } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import {
   Pagination,
   PaginationContent,
@@ -14,31 +14,22 @@ import {
 interface JobListPaginationProps {
   currentPage: number
   totalPages: number
-  nationality?: string
-  sort?: string
 }
 
 export function JobListPagination({
   currentPage,
   totalPages,
-  nationality,
-  sort,
 }: JobListPaginationProps) {
-  const router = useRouter()
+  const searchParams = useSearchParams()
 
   const buildUrl = (page: number) => {
-    const params = new URLSearchParams()
-    if (nationality && nationality !== 'all') {
-      params.set('nationality', nationality)
-    }
-    if (sort && sort !== 'latest') {
-      params.set('sort', sort)
-    }
+    const params = new URLSearchParams(searchParams.toString())
     if (page > 1) {
       params.set('page', page.toString())
+    } else {
+      params.delete('page')
     }
-    const queryString = params.toString()
-    return `/jobs${queryString ? `?${queryString}` : ''}`
+    return `/jobs${params.toString() ? `?${params}` : ''}`
   }
 
   const getVisiblePages = () => {
