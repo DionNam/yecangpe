@@ -9,35 +9,35 @@ const categories = [
     title: 'By Job Type',
     description: 'Full-time, Part-time, Freelance & more',
     icon: Briefcase,
-    href: '/jobs?filter=job_type',
+    href: '/jobs/by-type/full_time',
     color: 'bg-blue-600'
   },
   {
     title: 'By Work Location',
     description: 'Remote, Hybrid, On-site',
     icon: MapPin,
-    href: '/jobs?filter=work_location',
+    href: '/jobs/by-location-type/remote',
     color: 'bg-emerald-600'
   },
   {
     title: 'By Region',
     description: 'Browse jobs by country',
     icon: Globe,
-    href: '/jobs?filter=country',
+    href: '/jobs/by-country/KR',
     color: 'bg-amber-600'
   },
   {
     title: 'By Category',
     description: 'IT, Marketing, Teaching & more',
     icon: Layers,
-    href: '/jobs?filter=category',
+    href: '/jobs/by-category/it_engineering',
     color: 'bg-purple-600'
   },
   {
     title: 'By Language Level',
-    description: 'Korean & English proficiency',
+    description: 'Korean proficiency levels',
     icon: Languages,
-    href: '/jobs?filter=language',
+    href: '/jobs/by-language-level/advanced',
     color: 'bg-rose-600'
   }
 ]
