@@ -11,11 +11,11 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 16 of 18 (Job Detail Redesign)
-Plan: 2 of 4 in current phase
+Plan: 3 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 16-02-PLAN.md (2-Column Layout Redesign)
+Last activity: 2026-02-07 — Completed 16-03-PLAN.md (Related Jobs Carousel + SEO)
 
-Progress: [█████████████████████░] 98% (53 plans complete across all phases)
+Progress: [█████████████████████░] 99% (54 plans complete across all phases)
 
 ## Performance Metrics
 
@@ -73,7 +73,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 15 plan 5: 5 minutes (job card redesign - mobile + desktop with all PRD fields)
 - v2.0 Phase 16 plan 1: 5 minutes (slug-based routing foundation)
 - v2.0 Phase 16 plan 2: 5 minutes (2-column layout redesign)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 in progress (2 of 4 plans - slug routing + 2-column layout complete).
+- v2.0 Phase 16 plan 3: 4.5 minutes (related jobs carousel + SEO metadata)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 in progress (3 of 4 plans - slug routing + 2-column layout + carousel/SEO complete).
 
 ## Accumulated Context
 
@@ -224,6 +225,11 @@ Recent decisions affecting v1.1 work:
 - **16-02**: Share menu uses platform URL schemes (no SDK dependencies) for X/Twitter, Facebook, email
 - **16-02**: Print styles hide nav/footer/sidebar via @media print and .no-print class
 - **16-02**: Logo fallback uses 5-color rotation pattern (same as job-card.tsx) for consistency
+- **16-03**: Related jobs query uses .or() on category and country for flexible matching
+- **16-03**: Carousel responsive sizing (1/2/3/4 cards on mobile/tablet/desktop/wide)
+- **16-03**: SEO title format: "job title | company name" for page, "job title - company name" for OG/Twitter
+- **16-03**: Schema.org JobPosting with employmentType and salary baseSalary mapping
+- **16-03**: TELECOMMUTE jobLocationType for remote jobs per schema.org spec
 
 ### Roadmap Evolution
 
@@ -275,8 +281,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 16-02-PLAN.md (2-Column Layout Redesign)
+Stopped at: Completed 16-03-PLAN.md (Related Jobs Carousel + SEO Metadata)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 16 plan 2 complete — 2-column job detail page: Apply button sidebar, job summary panel, multi-platform share, print support)*
+*Last updated: 2026-02-07 (Phase 16 plan 3 complete — Related jobs carousel with embla-carousel + generateMetadata SEO + schema.org JobPosting JSON-LD)*
