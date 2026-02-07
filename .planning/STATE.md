@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 14 of 18 (Info Pages)
-Plan: 3 of 4 in current phase
-Status: In progress
-Last activity: 2026-02-07 — Completed 14-03-PLAN.md (Employers Info Page)
+Plan: 4 of 4 in current phase
+Status: Phase complete
+Last activity: 2026-02-07 — Completed 14-04-PLAN.md (About and FAQ Pages)
 
-Progress: [████████████████████░░] 87% (47 plans complete across all phases)
+Progress: [█████████████████████░] 89% (48 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 47 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 3)
-- Average duration: 3.24min
-- Total execution time: 2.54 hours
+- Total plans completed: 48 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4)
+- Average duration: 3.21min
+- Total execution time: 2.60 hours
 
 **By Phase:**
 
@@ -41,7 +41,7 @@ Progress: [████████████████████░░] 8
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
-| 14-info-pages | 3 | 6min | 2.0min |
+| 14-info-pages | 4 | 8min | 2.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -63,7 +63,8 @@ Progress: [████████████████████░░] 8
 - v2.0 Phase 14 plan 1: 2 minutes (info pages foundation components)
 - v2.0 Phase 14 plan 2: 2 minutes (job seekers info page)
 - v2.0 Phase 14 plan 3: 2 minutes (employers info page)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 in progress (3/4 plans, maintaining 2.0min/plan average - consistent velocity).
+- v2.0 Phase 14 plan 4: 2 minutes (about and faq pages)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped).
 
 ## Accumulated Context
 
@@ -177,6 +178,10 @@ Recent decisions affecting v1.1 work:
 - **14-02**: Hero section built inline (not as component) for page-specific content
 - **14-02**: ISR revalidation 7200s (2 hours) for job data freshness balance
 - **14-02**: (marketing) route group for organizational structure without URL impact
+- **14-04**: About page uses bilingual side-by-side layout for mission/vision (English + Korean)
+- **14-04**: FAQ page combines seeker and employer FAQs with color-coded borders (blue/amber)
+- **14-04**: FAQAccordion accepts items prop with idPrefix for reusability
+- **14-04**: All 4 info pages complete and cross-linked via Footer and About page
 
 ### Roadmap Evolution
 
@@ -228,8 +233,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 14-03-PLAN.md (Employers Info Page)
+Stopped at: Completed 14-04-PLAN.md (About and FAQ Pages)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 14-03: /employers info page with 7 sections and employer-specific FAQ - Phase 14 75% complete)*
+*Last updated: 2026-02-07 (completed 14-04: /about and /faq pages - Phase 14 complete, all 4 info pages shipped)*
