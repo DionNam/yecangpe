@@ -299,10 +299,14 @@ Plans:
   7. 메타태그/OG태그 각 페이지별 최적화
   8. sitemap.xml에 모든 필터 페이지 포함
 
-**Plans**: 0 plans
+**Plans**: 5 plans
 
 Plans:
-- [ ] TBD (run /gsd:plan-phase 18 to break down)
+- [ ] 18-01-PLAN.md -- Shared filter page components + data configuration (Wave 1)
+- [ ] 18-02-PLAN.md -- by-type + by-location-type filter page routes (Wave 2)
+- [ ] 18-03-PLAN.md -- by-category + by-language-level filter page routes (Wave 2)
+- [ ] 18-04-PLAN.md -- by-country filter page route (Wave 2)
+- [ ] 18-05-PLAN.md -- Sitemap extension + landing page cross-link update (Wave 3)
 
 **Details:**
 - Next.js generateStaticParams 또는 dynamic route with ISR
@@ -369,9 +373,9 @@ Plans:
 | 15. Job Board Overhaul | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
 | 16. Job Detail Redesign | v2.0 | 3/3 | ✅ Complete | 2026-02-07 |
 | 17. Dashboard Redesign | v2.0 | 5/5 | ✅ Complete | 2026-02-07 |
-| 18. SEO Filter Pages | v2.0 | 0 | 🔲 Not planned | - |
+| 18. SEO Filter Pages | v2.0 | 0/5 | 🔲 Planned | - |
 
-**Total:** 18 phases (17 complete, 1 not planned)
+**Total:** 18 phases (17 complete, 1 planned)
 
 ---
 *Last updated: 2026-02-07 (Phase 17 complete - Dashboard Redesign: 5 plans, employer/seeker dashboards, Tiptap editor, job alerts)*
