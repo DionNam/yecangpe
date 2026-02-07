@@ -10,18 +10,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 ## Current Position
 
-Phase: 14 of 18 (Info Pages)
-Plan: 4 of 4 in current phase
-Status: Phase complete
-Last activity: 2026-02-07 — Completed 14-04-PLAN.md (About and FAQ Pages)
+Phase: 15 of 18 (Job Board Overhaul)
+Plan: 1 of 4 in current phase
+Status: In progress
+Last activity: 2026-02-07 — Completed 15-01-PLAN.md (FTS Foundation)
 
-Progress: [█████████████████████░] 89% (48 plans complete across all phases)
+Progress: [█████████████████████░] 90% (49 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 48 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4)
-- Average duration: 3.21min
+- Total plans completed: 49 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 1)
+- Average duration: 3.18min
 - Total execution time: 2.60 hours
 
 **By Phase:**
@@ -42,6 +42,7 @@ Progress: [█████████████████████░] 8
 | 12-branding-db-schema | 5 | 17.2min | 3.4min |
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
+| 15-job-board-overhaul | 1 | 2.4min | 2.4min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -64,7 +65,8 @@ Progress: [█████████████████████░] 8
 - v2.0 Phase 14 plan 2: 2 minutes (job seekers info page)
 - v2.0 Phase 14 plan 3: 2 minutes (employers info page)
 - v2.0 Phase 14 plan 4: 2 minutes (about and faq pages)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped).
+- v2.0 Phase 15 plan 1: 2.4 minutes (FTS foundation - PostgreSQL full-text search)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 in progress.
 
 ## Accumulated Context
 
@@ -182,6 +184,10 @@ Recent decisions affecting v1.1 work:
 - **14-04**: FAQ page combines seeker and employer FAQs with color-coded borders (blue/amber)
 - **14-04**: FAQAccordion accepts items prop with idPrefix for reusability
 - **14-04**: All 4 info pages complete and cross-linked via Footer and About page
+- **15-01**: Generated ALWAYS AS column for fts ensures automatic updates when title/content changes
+- **15-01**: COALESCE used for null-safe field concatenation in tsvector generation
+- **15-01**: English language config chosen for to_tsvector (appropriate for international job board)
+- **15-01**: GIN index for production-ready full-text search performance
 
 ### Roadmap Evolution
 
@@ -233,8 +239,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Phase 14 complete and verified (6/6 must-haves passed)
+Stopped at: Completed 15-01-PLAN.md (FTS Foundation)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 14 complete and verified - 4 info pages: /job-seekers, /employers, /about, /faq)*
+*Last updated: 2026-02-07 (Phase 15 in progress - Plan 15-01 complete: PostgreSQL FTS foundation with use-debounce)*
