@@ -71,6 +71,17 @@ export default async function PostDetailPage({ params }: PostDetailPageProps) {
               target_nationality: post.target_nationality,
               work_location_type: post.work_location_type,
               work_location_country: post.work_location_country || undefined,
+              job_type: post.job_type || undefined,
+              category: post.category || undefined,
+              korean_level: post.korean_level || undefined,
+              english_level: post.english_level || undefined,
+              salary_min: post.salary_min ?? undefined,
+              salary_max: post.salary_max ?? undefined,
+              salary_currency: post.salary_currency || undefined,
+              salary_period: post.salary_period ?? undefined,
+              career_level: post.career_level ?? undefined,
+              apply_url: post.apply_url ?? undefined,
+              apply_email: post.apply_email ?? undefined,
               image_url: post.image_url,
             }}
           />
