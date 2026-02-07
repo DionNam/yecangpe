@@ -10,19 +10,19 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 
 ## Current Position
 
-Phase: 12 of 18 (Branding & DB Schema Overhaul)
-Plan: 5 of 5 in current phase
-Status: Phase complete
-Last activity: 2026-02-07 — Completed 12-05-PLAN.md (Validation Schema Update)
+Phase: 13 of 18 (Landing Page Redesign)
+Plan: 1 of 9 in current phase
+Status: In progress
+Last activity: 2026-02-07 — Completed 13-01-PLAN.md (Hero & Social Proof)
 
-Progress: [████████████████████░░] 75% (39 plans complete across all phases)
+Progress: [████████████████████░░] 76% (40 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 39 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0: 6)
-- Average duration: 3.6min
-- Total execution time: 2.67 hours
+- Total plans completed: 40 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 6, v2.0 Phase 13: 1)
+- Average duration: 3.5min
+- Total execution time: 2.69 hours
 
 **By Phase:**
 
@@ -40,6 +40,7 @@ Progress: [████████████████████░░] 7
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 6 | 20.3min | 3.4min |
+| 13-landing-page-redesign | 1 | 1.6min | 1.6min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -53,7 +54,8 @@ Progress: [████████████████████░░] 7
 - v2.0 Phase 12 plan 3: 6.4 minutes (branding overhaul)
 - v2.0 Phase 12 plan 4: 2.7 minutes (typography & color system)
 - v2.0 Phase 12 plan 5: 2.1 minutes (validation schema update)
-- Trend: Phase 12 complete in 20.3 minutes (average 3.4min/plan) - consistent fast iteration
+- v2.0 Phase 13 plan 1: 1.6 minutes (hero & social proof sections)
+- Trend: Phase 12 complete in 20.3 minutes (average 3.4min/plan). Phase 13 started with ultra-fast 1.6min plan.
 
 ## Accumulated Context
 
@@ -138,6 +140,10 @@ Recent decisions affecting v1.1 work:
 - **12-05**: Optional fields in job post create: english_level, salary fields, career_level
 - **12-05**: All new PRD fields optional in update schemas for backward compatibility
 - **12-05**: salary_currency defaults to 'KRW' in create schema
+- **13-01**: Hero section no longer accepts props (removed memberCount dependency)
+- **13-01**: Dual CTA buttons link to /job-seekers and /employers (forward references to Phase 14 info pages)
+- **13-01**: Social proof counters color-coded by brand palette (blue/amber/emerald)
+- **13-01**: AnimatedCounter reused from existing codebase for consistency
 
 ### Roadmap Evolution
 
@@ -189,8 +195,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 12-05-PLAN.md (Validation Schema Update) - Phase 12 complete
+Stopped at: Completed 13-01-PLAN.md (Hero & Social Proof) - Phase 13 plan 1 of 9
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 12-05: validation schemas updated with PRD fields - Phase 12 complete)*
+*Last updated: 2026-02-07 (completed 13-01: dual CTA hero & social proof sections - Phase 13 plan 1)*
