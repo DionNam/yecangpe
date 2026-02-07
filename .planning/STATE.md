@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 16 of 18 (Job Detail Redesign)
-Plan: 1 of 4 in current phase
+Plan: 2 of 4 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 16-01-PLAN.md (Slug-Based Routing)
+Last activity: 2026-02-07 — Completed 16-02-PLAN.md (2-Column Layout Redesign)
 
-Progress: [█████████████████████░] 96% (52 plans complete across all phases)
+Progress: [█████████████████████░] 98% (53 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 52 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 1)
-- Average duration: 3.10min
-- Total execution time: 2.75 hours
+- Total plans completed: 53 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 5, v2.0 Phase 13: 5, v2.0 Phase 14: 4, v2.0 Phase 15: 5, v2.0 Phase 16: 2)
+- Average duration: 3.12min
+- Total execution time: 2.83 hours
 
 **By Phase:**
 
@@ -43,7 +43,7 @@ Progress: [█████████████████████░] 9
 | 13-landing-page-redesign | 5 | 8.85min | 1.77min |
 | 14-info-pages | 4 | 8min | 2.0min |
 | 15-job-board-overhaul | 5 | 20.9min | 4.18min |
-| 16-job-detail-redesign | 1 | 5min | 5.0min |
+| 16-job-detail-redesign | 2 | 10min | 5.0min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -72,7 +72,8 @@ Progress: [█████████████████████░] 9
 - v2.0 Phase 15 plan 4: 2.5 minutes (job board search and filtering)
 - v2.0 Phase 15 plan 5: 5 minutes (job card redesign - mobile + desktop with all PRD fields)
 - v2.0 Phase 16 plan 1: 5 minutes (slug-based routing foundation)
-- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 in progress (1 of 4 plans - slug routing complete).
+- v2.0 Phase 16 plan 2: 5 minutes (2-column layout redesign)
+- Trend: Phase 12 complete in 17.2 minutes (average 3.4min/plan). Phase 13 complete in 8.85 minutes (average 1.77min/plan - ultra-fast execution). Phase 14 complete in 8 minutes (average 2.0min/plan - consistent velocity, all 4 info pages shipped). Phase 15 complete in 20.9 minutes (average 4.18min/plan - all 5 plans shipped: FTS, employer/admin forms, search/filters, job cards). Phase 16 in progress (2 of 4 plans - slug routing + 2-column layout complete).
 
 ## Accumulated Context
 
@@ -217,6 +218,12 @@ Recent decisions affecting v1.1 work:
 - **16-01**: Job detail pages viewable without authentication (SEO optimization)
 - **16-01**: Two-step insert pattern for slug generation (insert → select ID → update slug)
 - **16-01**: UUID redirect route does not increment view count (prevents double-counting)
+- **16-02**: 2-column grid layout (grid-cols-[1fr_360px]) for explicit sidebar width control
+- **16-02**: Sticky sidebar (lg:sticky lg:top-24) on desktop for persistent Apply button visibility
+- **16-02**: Apply button opens new tab for apply_url, opens mailto for apply_email
+- **16-02**: Share menu uses platform URL schemes (no SDK dependencies) for X/Twitter, Facebook, email
+- **16-02**: Print styles hide nav/footer/sidebar via @media print and .no-print class
+- **16-02**: Logo fallback uses 5-color rotation pattern (same as job-card.tsx) for consistency
 
 ### Roadmap Evolution
 
@@ -268,8 +275,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 16-01-PLAN.md (Slug-Based Routing)
+Stopped at: Completed 16-02-PLAN.md (2-Column Layout Redesign)
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (Phase 16 plan 1 complete — Slug-based routing foundation: SEO-friendly URLs, UUID backward compatibility, unauthenticated viewing for crawlers)*
+*Last updated: 2026-02-07 (Phase 16 plan 2 complete — 2-column job detail page: Apply button sidebar, job summary panel, multi-platform share, print support)*
