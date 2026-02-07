@@ -1,6 +1,6 @@
 import { createClient } from '@repo/supabase/server'
 import { redirect, notFound } from 'next/navigation'
-import { JobDetail } from '@/components/jobs/job-detail'
+import { JobDetailPage as JobDetailPageComponent } from '@/components/jobs/job-detail-page'
 import { getDisplayMetrics } from '@/lib/utils/metrics'
 import type { Database } from '@repo/supabase/types'
 
@@ -20,13 +20,20 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   const supabase = await createClient()
 
-  // Fetch the job post by slug
+  // Fetch the job post by slug with employer profile join for company_website
   const { data: job, error: jobError } = await supabase
     .from('job_posts')
-    .select('*')
+    .select(`
+      *,
+      author:users!job_posts_author_id_fkey (
+        employer_profile:employer_profiles (
+          company_website
+        )
+      )
+    `)
     .eq('slug', slug)
     .eq('review_status', 'published')
-    .single<JobPost>()
+    .single()
 
   // If not found by slug, check if slug is a UUID and try redirect
   if (jobError || !job) {
@@ -37,14 +44,17 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
         .select('slug')
         .eq('id', slug)
         .eq('review_status', 'published')
-        .single<JobPost>()
+        .single()
 
-      if (jobById && jobById.slug) {
-        redirect(`/jobs/${jobById.slug}`)
+      if (jobById && (jobById as any).slug) {
+        redirect(`/jobs/${(jobById as any).slug}`)
       }
     }
     notFound()
   }
+
+  // Type assertion for job with nested relations
+  const jobData = job as any as JobPost
 
   // Get authenticated user (optional for viewing - required for like/apply actions)
   const {
@@ -52,7 +62,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   } = await supabase.auth.getUser()
 
   // Increment view count (SECURITY DEFINER function bypasses RLS)
-  await (supabase as any).rpc('increment_view_count', { post_id: job.id })
+  await (supabase as any).rpc('increment_view_count', { post_id: jobData.id })
 
   // Fetch global metrics config
   const { data: configData } = await supabase
@@ -67,7 +77,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   // Get like count
   const { data: likeCountData } = await (supabase as any).rpc('get_like_count', {
-    post_id: job.id,
+    post_id: jobData.id,
   })
   const realLikes = (likeCountData as number) || 0
 
@@ -77,7 +87,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   if (user) {
     const { data: isLikedData } = await (supabase as any).rpc('user_liked_post', {
-      post_id: job.id,
+      post_id: jobData.id,
     })
     isLiked = (isLikedData as boolean) || false
 
@@ -92,52 +102,30 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   }
 
   // Calculate display metrics
-  const publishedAt = new Date(job.published_at || job.created_at)
+  const publishedAt = new Date(jobData.published_at || jobData.created_at)
   const { displayViews, displayLikes } = getDisplayMetrics(
-    job.view_count,
+    jobData.view_count,
     realLikes,
-    job.view_target,
-    job.like_target,
+    jobData.view_target,
+    jobData.like_target,
     publishedAt,
     metricsConfig
   )
 
-  return (
-    <div className="min-h-screen bg-slate-50 pt-6 pb-12">
-      <div className="max-w-4xl mx-auto px-6 lg:px-8">
-        <div className="mb-6">
-          <a
-            href="/jobs"
-            className="inline-flex items-center gap-2 text-sm font-medium text-slate-500 hover:text-slate-900 transition-colors mb-6"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-4 h-4"
-            >
-              <path d="m15 18-6-6 6-6" />
-            </svg>
-            목록으로 돌아가기
-          </a>
-        </div>
+  // Extract company_website from nested join (with type safety)
+  const companyWebsite = (job as any).author?.employer_profile?.company_website || null
 
-        <div className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-            <JobDetail
-              job={job}
-              displayViews={displayViews}
-              displayLikes={displayLikes}
-              isLiked={isLiked}
-              canLike={canLike}
-            />
-        </div>
-      </div>
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <JobDetailPageComponent
+        job={jobData}
+        isLiked={isLiked}
+        canLike={canLike}
+        displayLikes={displayLikes}
+        displayViews={displayViews}
+        user={user}
+        companyWebsite={companyWebsite}
+      />
     </div>
   )
 }
