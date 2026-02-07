@@ -11,18 +11,18 @@ See: .planning/PROJECT.md (updated 2026-01-20)
 ## Current Position
 
 Phase: 13 of 18 (Landing Page Redesign)
-Plan: 3 of 9 in current phase
+Plan: 4 of 9 in current phase
 Status: In progress
-Last activity: 2026-02-07 — Completed 13-03-PLAN.md (Bottom Sections: FAQ, Newsletter, Footer)
+Last activity: 2026-02-07 — Completed 13-04-PLAN.md (Integration & Preview Update)
 
-Progress: [████████████████████░░] 79% (42 plans complete across all phases)
+Progress: [████████████████████░░] 81% (43 plans complete across all phases)
 
 ## Performance Metrics
 
 **Velocity:**
-- Total plans completed: 42 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 6, v2.0 Phase 13: 3)
-- Average duration: 3.48min
-- Total execution time: 2.73 hours
+- Total plans completed: 43 (v1.0: 18, v1.1: 2, v1.2: 1, v1.3: 3, v1.4: 4, v1.5: 5, v2.0 Phase 12: 6, v2.0 Phase 13: 4)
+- Average duration: 3.42min
+- Total execution time: 2.45 hours
 
 **By Phase:**
 
@@ -40,7 +40,7 @@ Progress: [████████████████████░░] 7
 | 10-job-post-images | 4 | 11min | 2.75min |
 | 11-work-location | 5 | 14min | 2.8min |
 | 12-branding-db-schema | 6 | 20.3min | 3.4min |
-| 13-landing-page-redesign | 3 | 5.85min | 1.95min |
+| 13-landing-page-redesign | 4 | 6.85min | 1.71min |
 
 **Recent Trend:**
 - v1.0 completed in 1.4 hours (18 plans)
@@ -56,7 +56,9 @@ Progress: [████████████████████░░] 7
 - v2.0 Phase 12 plan 5: 2.1 minutes (validation schema update)
 - v2.0 Phase 13 plan 1: 1.6 minutes (hero & social proof sections)
 - v2.0 Phase 13 plan 2: 1.5 minutes (search, service intro, filter cards)
-- Trend: Phase 12 complete in 20.3 minutes (average 3.4min/plan). Phase 13 maintaining ultra-fast pace (1.55min avg).
+- v2.0 Phase 13 plan 3: 1.75 minutes (FAQ, newsletter, footer)
+- v2.0 Phase 13 plan 4: 1 minute (integration & preview update)
+- Trend: Phase 12 complete in 20.3 minutes (average 3.4min/plan). Phase 13 maintaining ultra-fast pace (1.71min avg through plan 4).
 
 ## Accumulated Context
 
@@ -153,6 +155,10 @@ Recent decisions affecting v1.1 work:
 - **13-03**: Type assertion (supabase as any) for newsletter_subscribers table (not in generated types yet)
 - **13-02**: Service intro CTAs link to /jobs and /employers (update to info pages in Phase 14)
 - **13-02**: Filter category cards use generic filter params (implementation in Phase 15)
+- **13-04**: Preview section displays 8 jobs in 4-column grid (changed from 6 jobs in 3-column)
+- **13-04**: Removed nationality filter from preview - it's now a simple showcase, not a filtered view
+- **13-04**: Badge colors: job_type (blue), work_location_type (emerald), country (slate)
+- **13-04**: Complete old component removal - WhyEmployersSection, WhyTalentSection, HowItWorksSection, TrustCtaSection replaced by Wave 1 components
 
 ### Roadmap Evolution
 
@@ -204,8 +210,8 @@ Recent decisions affecting v1.1 work:
 ## Session Continuity
 
 Last session: 2026-02-07
-Stopped at: Completed 13-03-PLAN.md (Bottom Sections: FAQ, Newsletter, Footer) - Phase 13 plan 3 of 9
+Stopped at: Completed 13-04-PLAN.md (Integration & Preview Update) - Phase 13 plan 4 of 9
 Resume file: None
 
 ---
-*Last updated: 2026-02-07 (completed 13-03: FAQ accordion, newsletter subscription, extended footer - Phase 13 plan 3)*
+*Last updated: 2026-02-07 (completed 13-04: integrated all 9 landing sections, updated preview with job type and location badges - Phase 13 plan 4)*
