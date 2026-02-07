@@ -3,6 +3,7 @@
 import { createClient } from '@repo/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { postEditSchema, postCreateSchema } from '@/lib/validations/post'
+import { generateJobSlug } from '@repo/lib'
 
 /**
  * Verify that the current user is an admin
@@ -216,7 +217,7 @@ export async function createAdminPost(formData: FormData) {
   // Use custom created_at if provided, otherwise use current time
   const createdAt = result.data.created_at ? new Date(result.data.created_at).toISOString() : new Date().toISOString()
 
-  const { error } = await (supabase as any)
+  const { data: newPost, error } = await (supabase as any)
     .from('job_posts')
     .insert({
       author_id: user.id,
@@ -245,10 +246,24 @@ export async function createAdminPost(formData: FormData) {
       like_target: likeTarget,
       image_url: result.data.image_url || null,
     })
+    .select('id')
+    .single()
 
-  if (error) {
+  if (error || !newPost) {
     console.error('Admin post creation error:', error)
     return { error: { _form: ['공고 등록에 실패했습니다.'] } }
+  }
+
+  // Generate and update slug
+  const slug = generateJobSlug(result.data.title, newPost.id)
+  const { error: slugError } = await (supabase as any)
+    .from('job_posts')
+    .update({ slug })
+    .eq('id', newPost.id)
+
+  if (slugError) {
+    console.error('Slug update error:', slugError)
+    // Don't fail the entire operation if slug update fails - post was created successfully
   }
 
   revalidatePath('/posts')

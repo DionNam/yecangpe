@@ -3,6 +3,7 @@
 import { createClient } from '@repo/supabase/server'
 import { revalidatePath } from 'next/cache'
 import { jobPostSchema, jobPostUpdateSchema } from '@/lib/validations/job-post'
+import { generateJobSlug } from '@repo/lib'
 
 export async function createJobPost(formData: FormData) {
   const supabase = await createClient()
@@ -78,8 +79,8 @@ export async function createJobPost(formData: FormData) {
     Math.random() * (config.like_target_max - config.like_target_min + 1) + config.like_target_min
   )
 
-  // Insert job post with pending review status
-  const { error: insertError } = await supabase
+  // Insert job post with pending review status and get the new post's ID
+  const { data: newPost, error: insertError } = await (supabase as any)
     .from('job_posts')
     .insert({
       author_id: user.id,
@@ -106,11 +107,25 @@ export async function createJobPost(formData: FormData) {
       career_level: result.data.career_level || null,
       apply_url: result.data.apply_url || null,
       apply_email: result.data.apply_email || null,
-    } as any)
+    })
+    .select('id')
+    .single()
 
-  if (insertError) {
+  if (insertError || !newPost) {
     console.error('Job post insert error:', insertError)
     return { error: { _form: ['구인글 등록에 실패했습니다. 다시 시도해주세요.'] } }
+  }
+
+  // Generate and update slug
+  const slug = generateJobSlug(result.data.title, (newPost as any).id)
+  const { error: slugError } = await (supabase as any)
+    .from('job_posts')
+    .update({ slug })
+    .eq('id', (newPost as any).id)
+
+  if (slugError) {
+    console.error('Slug update error:', slugError)
+    // Don't fail the entire operation if slug update fails - post was created successfully
   }
 
   return { success: true }
