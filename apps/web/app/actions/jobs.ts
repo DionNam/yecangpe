@@ -128,6 +128,7 @@ export async function createJobPost(formData: FormData) {
     // Don't fail the entire operation if slug update fails - post was created successfully
   }
 
+  revalidatePath('/dashboard')
   return { success: true }
 }
 
@@ -255,6 +256,7 @@ export async function updateJobPost(formData: FormData) {
   }
 
   revalidatePath('/employer/posts')
+  revalidatePath('/dashboard')
   return { success: true }
 }
 
