@@ -14,13 +14,14 @@ export async function subscribeNewsletter(formData: FormData) {
   // Validate with Zod
   const result = newsletterSchema.safeParse(data)
   if (!result.success) {
-    return { error: result.error.errors[0].message }
+    return { error: result.error.issues[0].message }
   }
 
   const supabase = await createClient()
 
   // Insert into newsletter_subscribers table
-  const { error } = await supabase
+  // Note: Type assertion needed as newsletter_subscribers not yet in generated types
+  const { error } = await (supabase as any)
     .from('newsletter_subscribers')
     .insert({
       email: result.data.email,
