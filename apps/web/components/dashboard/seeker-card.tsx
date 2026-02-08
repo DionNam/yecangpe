@@ -2,7 +2,7 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { NATIONALITIES, CATEGORIES, JOB_TYPES } from '@repo/lib'
+import { NATIONALITIES, CATEGORIES, JOB_TYPES, KOREAN_LEVELS, COUNTRIES } from '@repo/lib'
 import { Mail, Phone, Linkedin, ExternalLink } from 'lucide-react'
 
 interface SeekerCardProps {
@@ -11,23 +11,28 @@ interface SeekerCardProps {
     display_name: string
     bio: string
     nationality: string
-    topik_level: number | null
+    korean_level: string | null
     english_level: string | null
-    city: string | null
+    country_of_residence: string | null
     occupation: string | null
     preferred_job_types: string[] | null
     preferred_categories: string[] | null
-    email: string
+    email?: string
     phone: string | null
     linkedin_url: string | null
     portfolio_url: string | null
     preferred_contact_method: string | null
+    user_id: string
   }
 }
 
 export function SeekerCard({ seeker }: SeekerCardProps) {
   const getNationalityName = (code: string) => {
     return NATIONALITIES.find(n => n.code === code)?.name || code
+  }
+
+  const getCountryName = (code: string) => {
+    return COUNTRIES.find(c => c.code === code)?.name || code
   }
 
   const getCategoryName = (code: string) => {
@@ -38,6 +43,11 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
     return JOB_TYPES.find(t => t.code === code)?.nameKo || code
   }
 
+  const getKoreanLevelName = (code: string | null) => {
+    if (!code || code === 'not_specified') return null
+    return KOREAN_LEVELS.find(l => l.code === code)?.nameKo || code
+  }
+
   const getEnglishLevelName = (code: string | null) => {
     const levels: Record<string, string> = {
       'native_advanced': '원어민/고급',
@@ -46,8 +56,11 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
       'not_required': '무관',
       'not_specified': '미지정',
     }
-    return code ? levels[code] || code : '미지정'
+    return code ? levels[code] || code : null
   }
+
+  const koreanLevelDisplay = getKoreanLevelName(seeker.korean_level)
+  const englishLevelDisplay = getEnglishLevelName(seeker.english_level)
 
   return (
     <div className="bg-white rounded-xl border border-gray-200 p-6 space-y-4 hover:shadow-lg transition-shadow">
@@ -57,18 +70,18 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
           <h3 className="font-bold text-lg text-gray-900">{seeker.display_name}</h3>
           <p className="text-sm text-gray-500">
             {getNationalityName(seeker.nationality)}
-            {seeker.city && ` • ${seeker.city}`}
+            {seeker.country_of_residence && ` • ${getCountryName(seeker.country_of_residence)}`}
           </p>
           {seeker.occupation && (
             <p className="text-sm text-gray-600 mt-1">{seeker.occupation}</p>
           )}
         </div>
         <div className="flex gap-1">
-          {seeker.topik_level !== null && seeker.topik_level > 0 && (
-            <Badge variant="default">TOPIK {seeker.topik_level}</Badge>
+          {koreanLevelDisplay && (
+            <Badge variant="default">{koreanLevelDisplay}</Badge>
           )}
-          {seeker.english_level && seeker.english_level !== 'not_specified' && (
-            <Badge variant="secondary">{getEnglishLevelName(seeker.english_level)}</Badge>
+          {englishLevelDisplay && englishLevelDisplay !== '미지정' && (
+            <Badge variant="secondary">{englishLevelDisplay}</Badge>
           )}
         </div>
       </div>
@@ -107,18 +120,20 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
 
       {/* Contact Buttons */}
       <div className="pt-4 border-t border-gray-200 space-y-2">
-        {/* Email (always available) */}
-        <Button
-          className="w-full"
-          variant={seeker.preferred_contact_method === 'email' ? 'default' : 'outline'}
-          size="sm"
-          asChild
-        >
-          <a href={`mailto:${seeker.email}`}>
-            <Mail className="w-4 h-4 mr-2" />
-            이메일로 연락하기
-          </a>
-        </Button>
+        {/* Email (via mailto with user_id context) */}
+        {seeker.email && (
+          <Button
+            className="w-full"
+            variant={seeker.preferred_contact_method === 'email' ? 'default' : 'outline'}
+            size="sm"
+            asChild
+          >
+            <a href={`mailto:${seeker.email}`}>
+              <Mail className="w-4 h-4 mr-2" />
+              이메일로 연락하기
+            </a>
+          </Button>
+        )}
 
         {/* Phone */}
         {seeker.phone && (

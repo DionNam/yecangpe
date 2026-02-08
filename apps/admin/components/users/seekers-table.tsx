@@ -16,7 +16,7 @@ import { toggleUserActive } from '@/app/actions/users'
 
 interface SeekerProfile {
   nationality: string
-  topik_level: number
+  korean_level: string | null
   occupation: string | null
 }
 
@@ -30,6 +30,15 @@ interface Seeker {
 
 interface SeekersTableProps {
   seekers: Seeker[]
+}
+
+const koreanLevelLabels: Record<string, string> = {
+  native: '원어민',
+  advanced: '고급',
+  intermediate: '중급',
+  basic: '초급',
+  not_required: '무관',
+  not_specified: '-',
 }
 
 export function SeekersTable({ seekers }: SeekersTableProps) {
@@ -47,7 +56,7 @@ export function SeekersTable({ seekers }: SeekersTableProps) {
         <TableRow>
           <TableHead>이메일</TableHead>
           <TableHead>국적</TableHead>
-          <TableHead>TOPIK</TableHead>
+          <TableHead>한국어</TableHead>
           <TableHead>직업</TableHead>
           <TableHead>가입일</TableHead>
           <TableHead>상태</TableHead>
@@ -68,7 +77,7 @@ export function SeekersTable({ seekers }: SeekersTableProps) {
               <TableRow key={seeker.id}>
                 <TableCell className="font-medium">{seeker.email}</TableCell>
                 <TableCell>{profile?.nationality || '-'}</TableCell>
-                <TableCell>{profile?.topik_level ?? '-'}</TableCell>
+                <TableCell>{koreanLevelLabels[profile?.korean_level ?? 'not_specified'] ?? '-'}</TableCell>
                 <TableCell>{profile?.occupation || '-'}</TableCell>
                 <TableCell>
                   {new Date(seeker.created_at).toLocaleDateString('ko-KR')}

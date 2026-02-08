@@ -16,9 +16,7 @@ export async function updateSeekerProfile(formData: FormData) {
   // Parse formData into raw object
   const rawData = {
     nationality: formData.get('nationality'),
-    topik_level: formData.get('topik_level')
-      ? Number(formData.get('topik_level'))
-      : null,
+    korean_level: formData.get('korean_level') || 'not_specified',
     occupation: formData.get('occupation') || null,
     referral_source: formData.get('referral_source') || null,
   }

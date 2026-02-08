@@ -136,8 +136,9 @@ async function requireEmployer() {
 
 export interface SeekerFilters {
   nationality?: string[]
-  topik_level?: number[]
+  korean_level?: string[]
   english_level?: string[]
+  country_of_residence?: string[]
   preferred_categories?: string[]
   preferred_job_types?: string[]
   preferred_countries?: string[]
@@ -159,9 +160,9 @@ export async function getSeekers(filters: SeekerFilters = {}) {
         display_name,
         bio,
         nationality,
-        topik_level,
+        korean_level,
         english_level,
-        city,
+        country_of_residence,
         occupation,
         preferred_job_types,
         preferred_categories,
@@ -171,8 +172,7 @@ export async function getSeekers(filters: SeekerFilters = {}) {
         linkedin_url,
         portfolio_url,
         preferred_contact_method,
-        user_id,
-        users!inner(email)
+        user_id
       `)
       .eq('is_profile_public', true)
       .order('created_at', { ascending: false })
@@ -181,11 +181,14 @@ export async function getSeekers(filters: SeekerFilters = {}) {
     if (filters.nationality && filters.nationality.length > 0) {
       query = query.in('nationality', filters.nationality)
     }
-    if (filters.topik_level && filters.topik_level.length > 0) {
-      query = query.in('topik_level', filters.topik_level)
+    if (filters.korean_level && filters.korean_level.length > 0) {
+      query = query.in('korean_level', filters.korean_level)
     }
     if (filters.english_level && filters.english_level.length > 0) {
       query = query.in('english_level', filters.english_level)
+    }
+    if (filters.country_of_residence && filters.country_of_residence.length > 0) {
+      query = query.in('country_of_residence', filters.country_of_residence)
     }
     if (filters.preferred_categories && filters.preferred_categories.length > 0) {
       query = query.overlaps('preferred_categories', filters.preferred_categories)
@@ -207,12 +210,9 @@ export async function getSeekers(filters: SeekerFilters = {}) {
       return { seekers: [], error: error.message }
     }
 
-    // Flatten user email into seeker object
-    const seekers = data?.map((s: any) => ({
-      ...s,
-      email: s.users?.email || '',
-      users: undefined, // Remove nested users object
-    })) || []
+    // No need to join users table - just return seeker profiles
+    // Email can be fetched separately if needed via user_id
+    const seekers = data || []
 
     return { seekers, error: null }
   } catch (error) {

@@ -3,7 +3,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
-import { NATIONALITIES } from '@repo/lib'
+import { NATIONALITIES, KOREAN_LEVELS } from '@repo/lib'
 import {
   seekerProfileUpdateSchema,
   type SeekerProfileUpdate,
@@ -33,13 +33,14 @@ import {
 } from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { SearchableSelect } from '@/components/ui/searchable-select'
 
 interface ProfileEditModalProps {
   open: boolean
   onOpenChange: (open: boolean) => void
   defaultValues: {
     nationality: string
-    topik_level: number | null
+    korean_level: string | null
     occupation: string | null
     referral_source: string | null
   }
@@ -56,7 +57,7 @@ export function ProfileEditModal({
     resolver: zodResolver(seekerProfileUpdateSchema),
     defaultValues: {
       nationality: defaultValues.nationality,
-      topik_level: defaultValues.topik_level,
+      korean_level: (defaultValues.korean_level as SeekerProfileUpdate['korean_level']) || 'not_specified',
       occupation: defaultValues.occupation || undefined,
       referral_source: defaultValues.referral_source || undefined,
     },
@@ -66,8 +67,8 @@ export function ProfileEditModal({
     startTransition(async () => {
       const formData = new FormData()
       formData.append('nationality', data.nationality)
-      if (data.topik_level !== null && data.topik_level !== undefined) {
-        formData.append('topik_level', String(data.topik_level))
+      if (data.korean_level) {
+        formData.append('korean_level', data.korean_level)
       }
       if (data.occupation) formData.append('occupation', data.occupation)
       if (data.referral_source)
@@ -77,7 +78,6 @@ export function ProfileEditModal({
       if (result.success) {
         onOpenChange(false)
       } else if (result.error) {
-        // Handle errors - for now just log, could add toast later
         console.error('Profile update error:', result.error)
       }
     })
@@ -95,65 +95,50 @@ export function ProfileEditModal({
 
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            {/* Nationality field */}
+            {/* Nationality field - SearchableSelect */}
             <FormField
               control={form.control}
               name="nationality"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>국적 *</FormLabel>
-                  <Select onValueChange={field.onChange} value={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="국적을 선택해주세요" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {NATIONALITIES.filter(n => n.code !== 'ANY').map(nat => (
-                        <SelectItem key={nat.code} value={nat.code}>
-                          {nat.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <SearchableSelect
+                      items={NATIONALITIES.filter(n => n.code !== 'ANY')}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="국적을 선택해주세요"
+                      searchPlaceholder="국가 검색..."
+                      emptyText="검색 결과가 없습니다."
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
 
-            {/* TOPIK level field */}
+            {/* Korean Level field */}
             <FormField
               control={form.control}
-              name="topik_level"
+              name="korean_level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>TOPIK 급수</FormLabel>
+                  <FormLabel>한국어 수준</FormLabel>
                   <Select
-                    onValueChange={value => {
-                      if (value === '') {
-                        field.onChange(null)
-                      } else {
-                        field.onChange(Number(value))
-                      }
-                    }}
-                    value={
-                      field.value === null ? '' : String(field.value || '')
-                    }
+                    onValueChange={field.onChange}
+                    value={field.value || 'not_specified'}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="선택 안함" />
+                        <SelectValue placeholder="한국어 수준 선택" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="">선택 안함</SelectItem>
-                      <SelectItem value="0">없음</SelectItem>
-                      <SelectItem value="1">1급</SelectItem>
-                      <SelectItem value="2">2급</SelectItem>
-                      <SelectItem value="3">3급</SelectItem>
-                      <SelectItem value="4">4급</SelectItem>
-                      <SelectItem value="5">5급</SelectItem>
-                      <SelectItem value="6">6급</SelectItem>
+                      {KOREAN_LEVELS.map(level => (
+                        <SelectItem key={level.code} value={level.code}>
+                          {level.nameKo}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                   <FormMessage />

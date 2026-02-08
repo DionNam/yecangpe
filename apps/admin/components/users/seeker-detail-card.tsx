@@ -8,7 +8,7 @@ import { toggleUserActive } from '@/app/actions/users'
 
 interface SeekerProfile {
   nationality: string
-  topik_level: number
+  korean_level: string | null
   occupation: string | null
   referral_source: string | null
 }
@@ -33,6 +33,18 @@ export function SeekerDetailCard({ seeker }: SeekerDetailCardProps) {
     startTransition(async () => {
       await toggleUserActive(seeker.id, !seeker.is_active)
     })
+  }
+
+  const getKoreanLevelDisplay = (level: string | null) => {
+    const levels: Record<string, string> = {
+      native: '원어민',
+      advanced: '고급',
+      intermediate: '중급',
+      basic: '초급',
+      not_required: '무관',
+      not_specified: '미지정',
+    }
+    return level ? levels[level] || level : '-'
   }
 
   return (
@@ -64,13 +76,9 @@ export function SeekerDetailCard({ seeker }: SeekerDetailCardProps) {
           </div>
 
           <div>
-            <div className="text-sm font-medium text-muted-foreground">TOPIK 레벨</div>
+            <div className="text-sm font-medium text-muted-foreground">한국어 수준</div>
             <div className="text-base">
-              {profile?.topik_level !== undefined && profile?.topik_level !== null
-                ? profile.topik_level === 0
-                  ? '0 (없음)'
-                  : profile.topik_level
-                : '-'}
+              {getKoreanLevelDisplay(profile?.korean_level ?? null)}
             </div>
           </div>
 

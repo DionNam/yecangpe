@@ -25,7 +25,7 @@ export default async function SeekerDetailPage({ params }: SeekerDetailPageProps
       created_at,
       seeker_profiles (
         nationality,
-        topik_level,
+        korean_level,
         occupation,
         referral_source
       )

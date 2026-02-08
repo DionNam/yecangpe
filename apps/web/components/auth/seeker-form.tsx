@@ -3,9 +3,10 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition, useState } from 'react'
-import { NATIONALITIES, CATEGORIES, JOB_TYPES, ENGLISH_LEVELS, COUNTRIES } from '@repo/lib'
+import { NATIONALITIES, CATEGORIES, JOB_TYPES, ENGLISH_LEVELS, KOREAN_LEVELS, COUNTRIES } from '@repo/lib'
 import { seekerProfileSchema, type SeekerProfileInput } from '@/lib/validations/auth'
 import { createSeekerProfile } from '@/app/actions/auth'
+import { useTranslation } from '@/lib/i18n'
 import {
   Form,
   FormControl,
@@ -28,25 +29,27 @@ import { Button } from '@/components/ui/button'
 import { Checkbox } from '@/components/ui/checkbox'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
+import { SearchableSelect } from '@/components/ui/searchable-select'
 
 export function SeekerForm() {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
   const [step, setStep] = useState<1 | 2>(1)
   const [isPublic, setIsPublic] = useState<boolean | null>(null)
+  const { t, language } = useTranslation()
 
   const form = useForm<SeekerProfileInput>({
     resolver: zodResolver(seekerProfileSchema),
     defaultValues: {
       is_profile_public: false,
       nationality: undefined,
-      topik_level: null,
+      korean_level: 'not_specified',
       occupation: '',
       referral_source: '',
       display_name: '',
       bio: '',
       english_level: 'not_specified',
-      city: '',
+      country_of_residence: '',
       portfolio_url: '',
       linkedin_url: '',
       phone: '',
@@ -61,12 +64,7 @@ export function SeekerForm() {
   const handlePublicChoice = (choice: boolean) => {
     setIsPublic(choice)
     form.setValue('is_profile_public', choice)
-    if (!choice) {
-      // Skip to submit if private
-      setStep(2)
-    } else {
-      setStep(2)
-    }
+    setStep(2)
   }
 
   const onSubmit = (data: SeekerProfileInput) => {
@@ -77,9 +75,9 @@ export function SeekerForm() {
     formData.append('is_profile_public', String(data.is_profile_public))
     formData.append('nationality', data.nationality)
 
-    // Optional basic fields
-    if (data.topik_level !== null && data.topik_level !== undefined) {
-      formData.append('topik_level', String(data.topik_level))
+    // Korean level
+    if (data.korean_level) {
+      formData.append('korean_level', data.korean_level)
     }
     if (data.occupation) formData.append('occupation', data.occupation)
     if (data.referral_source) formData.append('referral_source', data.referral_source)
@@ -89,7 +87,7 @@ export function SeekerForm() {
       if (data.display_name) formData.append('display_name', data.display_name)
       if (data.bio) formData.append('bio', data.bio)
       if (data.english_level) formData.append('english_level', data.english_level)
-      if (data.city) formData.append('city', data.city)
+      if (data.country_of_residence) formData.append('country_of_residence', data.country_of_residence)
       if (data.portfolio_url) formData.append('portfolio_url', data.portfolio_url)
       if (data.linkedin_url) formData.append('linkedin_url', data.linkedin_url)
       if (data.phone) formData.append('phone', data.phone)
@@ -119,14 +117,22 @@ export function SeekerForm() {
     })
   }
 
+  // Helper to get localized level names
+  const getLocalizedLevels = (levels: readonly { code: string; nameKo: string; name: string }[]) => {
+    return levels.map(l => ({
+      ...l,
+      displayName: language === 'en' ? l.name : l.nameKo,
+    }))
+  }
+
   // Step 1: Profile visibility choice
   if (step === 1) {
     return (
       <div className="space-y-6">
         <div className="text-center space-y-4">
-          <h2 className="text-2xl font-bold text-gray-900">프로필을 공개하시겠습니까?</h2>
+          <h2 className="text-2xl font-bold text-gray-900">{t('seekerOnboarding.profileQuestion')}</h2>
           <p className="text-gray-600">
-            프로필을 공개하시면 고용주들이 회원님의 프로필을 보고 직접 연락할 수 있습니다.
+            {t('seekerOnboarding.profileDescription')}
           </p>
         </div>
 
@@ -138,8 +144,8 @@ export function SeekerForm() {
             variant="default"
           >
             <div className="text-left w-full">
-              <div className="font-semibold">네, 프로필을 공개합니다</div>
-              <div className="text-sm opacity-90">고용주들이 내 프로필을 보고 연락할 수 있습니다</div>
+              <div className="font-semibold">{t('seekerOnboarding.yesPublic')}</div>
+              <div className="text-sm opacity-90">{t('seekerOnboarding.yesPublicDesc')}</div>
             </div>
           </Button>
 
@@ -150,8 +156,8 @@ export function SeekerForm() {
             variant="outline"
           >
             <div className="text-left w-full">
-              <div className="font-semibold">아니오, 비공개로 합니다</div>
-              <div className="text-sm text-gray-600">내가 직접 공고를 보고 지원하겠습니다</div>
+              <div className="font-semibold">{t('seekerOnboarding.noPrivate')}</div>
+              <div className="text-sm text-gray-600">{t('seekerOnboarding.noPrivateDesc')}</div>
             </div>
           </Button>
         </div>
@@ -165,7 +171,9 @@ export function SeekerForm() {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {/* Show profile visibility status */}
         <div className={`rounded-lg p-3 text-sm ${isPublic ? 'bg-blue-50 text-blue-800' : 'bg-gray-50 text-gray-700'}`}>
-          {isPublic ? '✓ 프로필 공개' : '✓ 프로필 비공개'}
+          {isPublic
+            ? `✓ ${t('seekerOnboarding.profilePublic')}`
+            : `✓ ${t('seekerOnboarding.profilePrivate')}`}
           <Button
             type="button"
             variant="link"
@@ -173,7 +181,7 @@ export function SeekerForm() {
             className="ml-2 h-auto p-0 text-xs"
             onClick={() => setStep(1)}
           >
-            변경
+            {t('seekerOnboarding.change')}
           </Button>
         </div>
 
@@ -185,11 +193,11 @@ export function SeekerForm() {
               name="display_name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>이름 *</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.displayName')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="공개될 이름" {...field} />
+                    <Input placeholder={t('seekerOnboarding.displayNamePlaceholder')} {...field} />
                   </FormControl>
-                  <FormDescription>고용주에게 표시될 이름입니다</FormDescription>
+                  <FormDescription>{t('seekerOnboarding.displayNameDesc')}</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -200,15 +208,15 @@ export function SeekerForm() {
               name="bio"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>자기소개 *</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.bio')}</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder="본인의 경험, 강점, 관심분야 등을 소개해주세요 (50-500자)"
+                      placeholder={t('seekerOnboarding.bioPlaceholder')}
                       className="min-h-[120px]"
                       {...field}
                     />
                   </FormControl>
-                  <FormDescription>{field.value?.length || 0}/500자</FormDescription>
+                  <FormDescription>{field.value?.length || 0}{t('seekerOnboarding.bioCount')}</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
@@ -216,63 +224,50 @@ export function SeekerForm() {
           </>
         )}
 
-        {/* Nationality (required for all) */}
+        {/* Nationality (required for all) - SearchableSelect */}
         <FormField
           control={form.control}
           name="nationality"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>국적 *</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
-                <FormControl>
-                  <SelectTrigger>
-                    <SelectValue placeholder="국적을 선택해주세요" />
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {NATIONALITIES.filter(n => n.code !== 'ANY').map(nat => (
-                    <SelectItem key={nat.code} value={nat.code}>
-                      {nat.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <FormLabel>{t('seekerOnboarding.nationality')}</FormLabel>
+              <FormControl>
+                <SearchableSelect
+                  items={NATIONALITIES.filter(n => n.code !== 'ANY')}
+                  value={field.value}
+                  onValueChange={field.onChange}
+                  placeholder={t('seekerOnboarding.nationalityPlaceholder')}
+                  searchPlaceholder={t('seekerOnboarding.nationalitySearch')}
+                  emptyText={t('seekerOnboarding.nationalityEmpty')}
+                />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        {/* TOPIK level */}
+        {/* Korean Level */}
         <FormField
           control={form.control}
-          name="topik_level"
+          name="korean_level"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>TOPIK 급수 {isPublic && '*'}</FormLabel>
+              <FormLabel>{t('seekerOnboarding.koreanLevel')} {isPublic && '*'}</FormLabel>
               <Select
-                onValueChange={(value) => {
-                  if (value === 'none') {
-                    field.onChange(null)
-                  } else {
-                    field.onChange(Number(value))
-                  }
-                }}
-                defaultValue={field.value === null ? 'none' : String(field.value)}
+                onValueChange={field.onChange}
+                defaultValue={field.value}
               >
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="선택 안함" />
+                    <SelectValue placeholder={t('seekerOnboarding.koreanLevelPlaceholder')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="none">선택 안함</SelectItem>
-                  <SelectItem value="0">없음</SelectItem>
-                  <SelectItem value="1">1급</SelectItem>
-                  <SelectItem value="2">2급</SelectItem>
-                  <SelectItem value="3">3급</SelectItem>
-                  <SelectItem value="4">4급</SelectItem>
-                  <SelectItem value="5">5급</SelectItem>
-                  <SelectItem value="6">6급</SelectItem>
+                  {getLocalizedLevels(KOREAN_LEVELS).map(level => (
+                    <SelectItem key={level.code} value={level.code}>
+                      {level.displayName}
+                    </SelectItem>
+                  ))}
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -288,17 +283,17 @@ export function SeekerForm() {
               name="english_level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>영어 수준</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.englishLevel')}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="영어 수준 선택" />
+                        <SelectValue placeholder={t('seekerOnboarding.englishLevelPlaceholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {ENGLISH_LEVELS.map(level => (
+                      {getLocalizedLevels(ENGLISH_LEVELS).map(level => (
                         <SelectItem key={level.code} value={level.code}>
-                          {level.nameKo}
+                          {level.displayName}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -308,15 +303,22 @@ export function SeekerForm() {
               )}
             />
 
-            {/* City */}
+            {/* Country of Residence - SearchableSelect */}
             <FormField
               control={form.control}
-              name="city"
+              name="country_of_residence"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>거주 도시</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.countryOfResidence')}</FormLabel>
                   <FormControl>
-                    <Input placeholder="예: Seoul, Tokyo, New York" {...field} />
+                    <SearchableSelect
+                      items={COUNTRIES}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder={t('seekerOnboarding.countryOfResidencePlaceholder')}
+                      searchPlaceholder={t('seekerOnboarding.countryOfResidenceSearch')}
+                      emptyText={t('seekerOnboarding.countryOfResidenceEmpty')}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -331,10 +333,10 @@ export function SeekerForm() {
           name="occupation"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>직업/직종 {isPublic && '*'}</FormLabel>
+              <FormLabel>{t('seekerOnboarding.occupation')} {isPublic && '*'}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="예: 제조업, IT, 서비스업"
+                  placeholder={t('seekerOnboarding.occupationPlaceholder')}
                   {...field}
                   value={field.value || ''}
                 />
@@ -352,7 +354,7 @@ export function SeekerForm() {
               name="portfolio_url"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>포트폴리오 URL</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.portfolioUrl')}</FormLabel>
                   <FormControl>
                     <Input placeholder="https://..." {...field} />
                   </FormControl>
@@ -367,7 +369,7 @@ export function SeekerForm() {
               name="linkedin_url"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>LinkedIn URL</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.linkedinUrl')}</FormLabel>
                   <FormControl>
                     <Input placeholder="https://linkedin.com/in/..." {...field} />
                   </FormControl>
@@ -382,7 +384,7 @@ export function SeekerForm() {
               name="preferred_contact_method"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>선호 연락 방법</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.preferredContact')}</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
@@ -391,15 +393,15 @@ export function SeekerForm() {
                     >
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="email" id="email" />
-                        <Label htmlFor="email">이메일</Label>
+                        <Label htmlFor="email">{t('seekerOnboarding.contactEmail')}</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="phone" id="phone" />
-                        <Label htmlFor="phone">전화</Label>
+                        <Label htmlFor="phone">{t('seekerOnboarding.contactPhone')}</Label>
                       </div>
                       <div className="flex items-center space-x-2">
                         <RadioGroupItem value="linkedin" id="linkedin" />
-                        <Label htmlFor="linkedin">LinkedIn</Label>
+                        <Label htmlFor="linkedin">{t('seekerOnboarding.contactLinkedin')}</Label>
                       </div>
                     </RadioGroup>
                   </FormControl>
@@ -415,9 +417,9 @@ export function SeekerForm() {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>전화번호 *</FormLabel>
+                    <FormLabel>{t('seekerOnboarding.phoneNumber')}</FormLabel>
                     <FormControl>
-                      <Input placeholder="+82 10-1234-5678" {...field} />
+                      <Input placeholder={t('seekerOnboarding.phonePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -431,7 +433,7 @@ export function SeekerForm() {
               name="preferred_job_types"
               render={() => (
                 <FormItem>
-                  <FormLabel>선호 고용 형태</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.preferredJobTypes')}</FormLabel>
                   <div className="grid grid-cols-2 gap-3">
                     {JOB_TYPES.map((type) => (
                       <FormField
@@ -457,7 +459,7 @@ export function SeekerForm() {
                               />
                             </FormControl>
                             <FormLabel className="font-normal cursor-pointer">
-                              {type.nameKo}
+                              {language === 'en' ? type.name : type.nameKo}
                             </FormLabel>
                           </FormItem>
                         )}
@@ -475,7 +477,7 @@ export function SeekerForm() {
               name="preferred_categories"
               render={() => (
                 <FormItem>
-                  <FormLabel>선호 카테고리</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.preferredCategories')}</FormLabel>
                   <div className="grid grid-cols-2 gap-3 max-h-60 overflow-y-auto">
                     {CATEGORIES.map((cat) => (
                       <FormField
@@ -501,7 +503,7 @@ export function SeekerForm() {
                               />
                             </FormControl>
                             <FormLabel className="font-normal cursor-pointer text-sm">
-                              {cat.nameKo}
+                              {language === 'en' ? cat.name : cat.nameKo}
                             </FormLabel>
                           </FormItem>
                         )}
@@ -519,17 +521,17 @@ export function SeekerForm() {
               name="preferred_location_type"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>선호 근무 형태</FormLabel>
+                  <FormLabel>{t('seekerOnboarding.preferredLocationType')}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="선택 안함" />
+                        <SelectValue placeholder={t('seekerOnboarding.koreanLevelNone')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      <SelectItem value="remote">원격근무</SelectItem>
-                      <SelectItem value="hybrid">하이브리드</SelectItem>
-                      <SelectItem value="on_site">대면근무</SelectItem>
+                      <SelectItem value="remote">{t('seekerOnboarding.locationRemote')}</SelectItem>
+                      <SelectItem value="hybrid">{t('seekerOnboarding.locationHybrid')}</SelectItem>
+                      <SelectItem value="on_site">{t('seekerOnboarding.locationOnSite')}</SelectItem>
                     </SelectContent>
                   </Select>
                   <FormMessage />
@@ -545,10 +547,10 @@ export function SeekerForm() {
           name="referral_source"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>유입 경로</FormLabel>
+              <FormLabel>{t('seekerOnboarding.referralSource')}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="어떻게 알게 되셨나요?"
+                  placeholder={t('seekerOnboarding.referralPlaceholder')}
                   {...field}
                   value={field.value || ''}
                 />
@@ -573,10 +575,10 @@ export function SeekerForm() {
             onClick={() => setStep(1)}
             disabled={isPending}
           >
-            이전
+            {t('seekerOnboarding.previous')}
           </Button>
           <Button type="submit" className="flex-1" disabled={isPending}>
-            {isPending ? '저장 중...' : '프로필 완성하기'}
+            {isPending ? t('seekerOnboarding.saving') : t('seekerOnboarding.submit')}
           </Button>
         </div>
       </form>

@@ -15,7 +15,6 @@ export async function createSeekerProfile(formData: FormData) {
   }
 
   // Parse form data
-  const topikValue = formData.get('topik_level')
   const isPublic = formData.get('is_profile_public') === 'true'
 
   // Parse arrays from JSON strings
@@ -32,14 +31,14 @@ export async function createSeekerProfile(formData: FormData) {
   const rawData = {
     is_profile_public: isPublic,
     nationality: formData.get('nationality'),
-    topik_level: topikValue ? Number(topikValue) : null,
+    korean_level: formData.get('korean_level') || 'not_specified',
     occupation: formData.get('occupation') || null,
     referral_source: formData.get('referral_source') || null,
     // Extended fields for public profiles
     display_name: formData.get('display_name') || undefined,
     bio: formData.get('bio') || undefined,
     english_level: formData.get('english_level') || undefined,
-    city: formData.get('city') || undefined,
+    country_of_residence: formData.get('country_of_residence') || undefined,
     portfolio_url: formData.get('portfolio_url') || undefined,
     linkedin_url: formData.get('linkedin_url') || undefined,
     phone: formData.get('phone') || undefined,
@@ -76,7 +75,7 @@ export async function createSeekerProfile(formData: FormData) {
     user_id: user.id,
     is_profile_public: result.data.is_profile_public,
     nationality: result.data.nationality,
-    topik_level: result.data.topik_level,
+    korean_level: result.data.korean_level,
     occupation: result.data.occupation,
     referral_source: result.data.referral_source,
   }
@@ -85,7 +84,7 @@ export async function createSeekerProfile(formData: FormData) {
   if (result.data.display_name) profileData.display_name = result.data.display_name
   if (result.data.bio) profileData.bio = result.data.bio
   if (result.data.english_level) profileData.english_level = result.data.english_level
-  if (result.data.city) profileData.city = result.data.city
+  if (result.data.country_of_residence) profileData.country_of_residence = result.data.country_of_residence
   if (result.data.portfolio_url) profileData.portfolio_url = result.data.portfolio_url
   if (result.data.linkedin_url) profileData.linkedin_url = result.data.linkedin_url
   if (result.data.phone) profileData.phone = result.data.phone

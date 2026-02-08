@@ -108,17 +108,10 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 
   const supabase = await createClient()
 
-  // Fetch the job post by slug with employer profile join for company_website
+  // First, try to fetch the job post by slug (without nested join that may fail)
   const { data: job, error: jobError } = await supabase
     .from('job_posts')
-    .select(`
-      *,
-      author:users!job_posts_author_id_fkey (
-        employer_profile:employer_profiles (
-          company_website
-        )
-      )
-    `)
+    .select('*')
     .eq('slug', slug)
     .eq('review_status', 'published')
     .single()
@@ -138,11 +131,40 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
         redirect(`/jobs/${(jobById as any).slug}`)
       }
     }
-    notFound()
+
+    // Also try without review_status filter (for preview/draft access)
+    const { data: draftJob } = await supabase
+      .from('job_posts')
+      .select('*')
+      .eq('slug', slug)
+      .single()
+
+    if (!draftJob) {
+      console.error('Job not found:', { slug, error: jobError?.message })
+      notFound()
+    }
+
+    // If found but not published, still show it (user may be the author)
+    return renderJobPage(supabase, draftJob as any as JobPost)
   }
 
-  // Type assertion for job with nested relations
-  const jobData = job as any as JobPost
+  return renderJobPage(supabase, job as any as JobPost)
+}
+
+async function renderJobPage(supabase: any, jobData: JobPost) {
+  // Try to fetch company_website separately (won't break if join fails)
+  let companyWebsite: string | null = null
+  try {
+    const { data: employerProfile } = await supabase
+      .from('employer_profiles')
+      .select('company_website')
+      .eq('user_id', jobData.author_id)
+      .single()
+
+    companyWebsite = employerProfile?.company_website || null
+  } catch {
+    // Silently fail - company website is optional
+  }
 
   // Get authenticated user (optional for viewing - required for like/apply actions)
   const {
@@ -150,7 +172,11 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   } = await supabase.auth.getUser()
 
   // Increment view count (SECURITY DEFINER function bypasses RLS)
-  await (supabase as any).rpc('increment_view_count', { post_id: jobData.id })
+  try {
+    await supabase.rpc('increment_view_count', { post_id: jobData.id })
+  } catch {
+    // Non-critical - don't block page render
+  }
 
   // Fetch global metrics config
   const { data: configData } = await supabase
@@ -164,20 +190,29 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   }
 
   // Get like count
-  const { data: likeCountData } = await (supabase as any).rpc('get_like_count', {
-    post_id: jobData.id,
-  })
-  const realLikes = (likeCountData as number) || 0
+  let realLikes = 0
+  try {
+    const { data: likeCountData } = await supabase.rpc('get_like_count', {
+      post_id: jobData.id,
+    })
+    realLikes = (likeCountData as number) || 0
+  } catch {
+    // Non-critical
+  }
 
   // Check if current user liked the post (only if logged in)
   let isLiked = false
   let canLike = false
 
   if (user) {
-    const { data: isLikedData } = await (supabase as any).rpc('user_liked_post', {
-      post_id: jobData.id,
-    })
-    isLiked = (isLikedData as boolean) || false
+    try {
+      const { data: isLikedData } = await supabase.rpc('user_liked_post', {
+        post_id: jobData.id,
+      })
+      isLiked = (isLikedData as boolean) || false
+    } catch {
+      // Non-critical
+    }
 
     // Check if user can like (seeker only)
     const { data: seekerProfile } = await supabase
@@ -199,9 +234,6 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     publishedAt,
     metricsConfig
   )
-
-  // Extract company_website from nested join (with type safety)
-  const companyWebsite = (job as any).author?.employer_profile?.company_website || null
 
   return (
     <>

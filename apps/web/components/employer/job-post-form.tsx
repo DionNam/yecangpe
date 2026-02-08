@@ -37,6 +37,7 @@ import { Button } from '@/components/ui/button'
 import { SubmissionDialog } from './submission-dialog'
 import { ImageUpload } from '@/components/ui/image-upload'
 import { RichTextEditor } from '@/components/dashboard/rich-text-editor'
+import { SearchableSelect } from '@/components/ui/searchable-select'
 
 interface JobPostFormProps {
   defaultCompanyName: string
@@ -233,20 +234,16 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>대상 국적 *</FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                  <FormControl>
-                    <SelectTrigger>
-                      <SelectValue placeholder="채용 대상 국적을 선택해주세요" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    {NATIONALITIES.map((nationality) => (
-                      <SelectItem key={nationality.code} value={nationality.code}>
-                        {nationality.name}
-                      </SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
+                <FormControl>
+                  <SearchableSelect
+                    items={NATIONALITIES}
+                    value={field.value}
+                    onValueChange={field.onChange}
+                    placeholder="채용 대상 국적을 선택해주세요"
+                    searchPlaceholder="국가 검색..."
+                    emptyText="검색 결과가 없습니다."
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -371,20 +368,16 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>근무 국가 *</FormLabel>
-                  <Select onValueChange={field.onChange} defaultValue={field.value}>
-                    <FormControl>
-                      <SelectTrigger>
-                        <SelectValue placeholder="근무 국가를 선택해주세요" />
-                      </SelectTrigger>
-                    </FormControl>
-                    <SelectContent>
-                      {COUNTRIES.map((country) => (
-                        <SelectItem key={country.code} value={country.code}>
-                          {country.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <FormControl>
+                    <SearchableSelect
+                      items={COUNTRIES}
+                      value={field.value}
+                      onValueChange={field.onChange}
+                      placeholder="근무 국가를 선택해주세요"
+                      searchPlaceholder="국가 검색..."
+                      emptyText="검색 결과가 없습니다."
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}

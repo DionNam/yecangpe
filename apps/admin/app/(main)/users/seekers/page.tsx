@@ -17,7 +17,7 @@ export default async function SeekersPage() {
       created_at,
       seeker_profiles (
         nationality,
-        topik_level,
+        korean_level,
         occupation
       )
     `)

@@ -1,14 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import { NATIONALITIES } from '@repo/lib'
+import { NATIONALITIES, KOREAN_LEVELS } from '@repo/lib'
 import { Button } from '@/components/ui/button'
 import { ProfileEditModal } from '@/components/my-page/profile-edit-modal'
 
 interface SeekerProfileSectionProps {
   profile: {
     nationality: string
-    topik_level: number | null
+    korean_level: string | null
     occupation: string | null
     referral_source: string | null
   }
@@ -22,11 +22,10 @@ export function SeekerProfileSection({ profile }: SeekerProfileSectionProps) {
     NATIONALITIES.find((n) => n.code === profile.nationality)?.name ||
     profile.nationality
 
-  // Get TOPIK level display
-  const getTopikDisplay = (level: number | null) => {
-    if (level === null) return '미입력'
-    if (level === 0) return '없음'
-    return `${level}급`
+  // Get Korean level display
+  const getKoreanLevelDisplay = (level: string | null) => {
+    if (!level || level === 'not_specified') return '미입력'
+    return KOREAN_LEVELS.find(l => l.code === level)?.nameKo || level
   }
 
   return (
@@ -45,11 +44,11 @@ export function SeekerProfileSection({ profile }: SeekerProfileSectionProps) {
           </p>
         </div>
 
-        {/* TOPIK Level */}
+        {/* Korean Level */}
         <div className="bg-slate-50 border rounded-lg p-4">
-          <p className="text-sm font-medium text-slate-600 mb-1">TOPIK 급수</p>
+          <p className="text-sm font-medium text-slate-600 mb-1">한국어 수준</p>
           <p className="text-base font-semibold text-slate-900">
-            {getTopikDisplay(profile.topik_level)}
+            {getKoreanLevelDisplay(profile.korean_level)}
           </p>
         </div>
 
@@ -76,7 +75,7 @@ export function SeekerProfileSection({ profile }: SeekerProfileSectionProps) {
         onOpenChange={setEditModalOpen}
         defaultValues={{
           nationality: profile.nationality,
-          topik_level: profile.topik_level,
+          korean_level: profile.korean_level,
           occupation: profile.occupation,
           referral_source: profile.referral_source,
         }}

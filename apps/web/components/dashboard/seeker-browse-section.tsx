@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { getSeekers, type SeekerFilters } from '@/app/actions/employer'
 import { SeekerCard } from './seeker-card'
+import { SeekerFilters as SeekerFiltersComponent } from './seeker-filters'
 import { Loader2 } from 'lucide-react'
 
 export function SeekerBrowseSection() {
@@ -18,11 +19,16 @@ export function SeekerBrowseSection() {
   async function loadSeekers() {
     setLoading(true)
     setError(null)
-    const result = await getSeekers(filters)
-    if (result.error) {
-      setError(result.error)
-    } else {
-      setSeekers(result.seekers)
+    try {
+      const result = await getSeekers(filters)
+      if (result.error) {
+        setError(result.error)
+      } else {
+        setSeekers(result.seekers)
+      }
+    } catch (err) {
+      setError('구직자 목록을 불러오는데 실패했습니다.')
+      console.error('loadSeekers error:', err)
     }
     setLoading(false)
   }
@@ -41,8 +47,8 @@ export function SeekerBrowseSection() {
         )}
       </div>
 
-      {/* Future: Filter components will go here */}
-      {/* <SeekerFilters filters={filters} onFilterChange={setFilters} /> */}
+      {/* Filter UI */}
+      <SeekerFiltersComponent filters={filters} onFilterChange={setFilters} />
 
       {error && (
         <div className="bg-red-50 text-red-800 rounded-lg p-4 text-sm">
