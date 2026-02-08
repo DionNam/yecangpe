@@ -21,18 +21,25 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
   const { slug } = await params
   const supabase = await createClient()
 
-  const { data: job } = await supabase
+  // Try by slug first, then by UUID
+  let jobQuery = supabase
     .from('job_posts')
-    .select('title, company_name, content, company_logo_url')
-    .eq('slug', slug)
+    .select('title, company_name, content, image_url')
     .eq('review_status', 'published')
-    .single()
+
+  if (UUID_REGEX.test(slug)) {
+    jobQuery = jobQuery.eq('id', slug)
+  } else {
+    jobQuery = jobQuery.eq('slug', slug)
+  }
+
+  const { data: job } = await jobQuery.single()
 
   if (!job) return {}
 
   // Type assertion for job
   const jobData = job as any
-  const description = jobData.content?.substring(0, 160) || ''
+  const description = jobData.content?.replace(/<[^>]*>/g, '').substring(0, 160) || ''
 
   return {
     title: `${jobData.title} | ${jobData.company_name}`,
@@ -43,7 +50,7 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
       type: 'article',
       locale: 'ko_KR',
       siteName: 'HangulJobs',
-      ...(jobData.company_logo_url && { images: [{ url: jobData.company_logo_url }] }),
+      ...(jobData.image_url && { images: [{ url: jobData.image_url }] }),
     },
     twitter: {
       card: 'summary',
@@ -84,7 +91,7 @@ function buildJobPostingSchema(job: JobPost) {
     hiringOrganization: {
       '@type': 'Organization',
       name: job.company_name,
-      ...(job.company_logo_url && { logo: job.company_logo_url }),
+      ...(job.image_url && { logo: job.image_url }),
     },
     ...(job.job_type && { employmentType: employmentTypeMap[job.job_type] }),
     ...(job.work_location_type === 'remote' && { jobLocationType: 'TELECOMMUTE' }),
