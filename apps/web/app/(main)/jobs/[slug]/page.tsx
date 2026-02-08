@@ -18,7 +18,8 @@ const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12
 
 // Generate metadata for SEO
 export async function generateMetadata({ params }: JobDetailPageProps): Promise<Metadata> {
-  const { slug } = await params
+  const { slug: rawSlug } = await params
+  const slug = decodeURIComponent(rawSlug)
   const supabase = await createClient()
 
   // Try by slug first, then by UUID
@@ -111,7 +112,9 @@ function buildJobPostingSchema(job: JobPost) {
 }
 
 export default async function JobDetailPage({ params }: JobDetailPageProps) {
-  const { slug } = await params
+  const { slug: rawSlug } = await params
+  // Decode URL-encoded slugs (Korean characters, special chars)
+  const slug = decodeURIComponent(rawSlug)
 
   const supabase = await createClient()
 
