@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Mail, Trash2, Users } from 'lucide-react'
+import { Mail, Trash2, Users, Search } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { deleteNewsletterSubscriber } from '@/app/actions/admin'
+import { SeekerBrowseSection } from './seeker-browse-section'
 
 interface Subscriber {
   id: string
@@ -81,6 +82,7 @@ export function AdminDashboard({ subscribers: initialSubscribers }: AdminDashboa
         <Tabs defaultValue="subscribers">
           <TabsList>
             <TabsTrigger value="subscribers">뉴스레터 구독자</TabsTrigger>
+            <TabsTrigger value="talent">인재 탐색</TabsTrigger>
           </TabsList>
 
           <TabsContent value="subscribers" className="mt-6">
@@ -135,6 +137,12 @@ export function AdminDashboard({ subscribers: initialSubscribers }: AdminDashboa
                   </tbody>
                 </table>
               </div>
+            </div>
+          </TabsContent>
+
+          <TabsContent value="talent" className="mt-6">
+            <div className="bg-white rounded-xl border border-slate-200 p-8">
+              <SeekerBrowseSection />
             </div>
           </TabsContent>
         </Tabs>

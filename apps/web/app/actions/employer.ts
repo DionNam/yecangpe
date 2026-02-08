@@ -117,16 +117,26 @@ export async function updateEmployerProfile(
 }
 
 /**
- * Helper function to require employer authentication
+ * Helper function to require employer or admin authentication
  */
-async function requireEmployer() {
+async function requireEmployerOrAdmin() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) throw new Error('Unauthorized')
 
+  // Check if admin
+  const { data: userRecord } = await (supabase as any)
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if (userRecord?.role === 'admin') return supabase
+
+  // Check if employer
   const { data: profile } = await (supabase as any)
     .from('employer_profiles')
-    .select('*')
+    .select('id')
     .eq('user_id', user.id)
     .single()
 
@@ -151,7 +161,7 @@ export interface SeekerFilters {
  */
 export async function getSeekers(filters: SeekerFilters = {}) {
   try {
-    const supabase = await requireEmployer()
+    const supabase = await requireEmployerOrAdmin()
 
     let query = (supabase as any)
       .from('seeker_profiles')
