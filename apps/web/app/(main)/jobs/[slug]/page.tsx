@@ -116,19 +116,23 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
     .eq('review_status', 'published')
     .single()
 
-  // If not found by slug, check if slug is a UUID and try redirect
+  // If not found by slug, check if slug is a UUID and try by ID
   if (jobError || !job) {
     if (UUID_REGEX.test(slug)) {
-      // Try to find by ID and redirect to slug URL
+      // Try to find by ID directly
       const { data: jobById } = await supabase
         .from('job_posts')
-        .select('slug')
+        .select('*')
         .eq('id', slug)
-        .eq('review_status', 'published')
         .single()
 
-      if (jobById && (jobById as any).slug) {
-        redirect(`/jobs/${(jobById as any).slug}`)
+      if (jobById) {
+        // If it has a slug, redirect to the slug URL for SEO
+        if ((jobById as any).slug) {
+          redirect(`/jobs/${(jobById as any).slug}`)
+        }
+        // Otherwise render directly with the UUID
+        return renderJobPage(supabase, jobById as any as JobPost)
       }
     }
 
