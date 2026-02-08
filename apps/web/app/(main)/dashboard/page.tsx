@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Database } from '@repo/supabase/types'
 import { EmployerDashboard } from '@/components/dashboard/employer-dashboard'
 import { SeekerDashboard } from '@/components/dashboard/seeker-dashboard'
+import { AdminDashboard } from '@/components/dashboard/admin-dashboard'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 type SeekerProfile = Database['public']['Tables']['seeker_profiles']['Row']
@@ -22,6 +23,22 @@ export default async function DashboardPage() {
 
   if (!user) {
     redirect('/login')
+  }
+
+  // Check for admin role
+  const { data: userRecord } = await (supabase as any)
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+
+  if ((userRecord as any)?.role === 'admin') {
+    const { data: subscribers } = await (supabase as any)
+      .from('newsletter_subscribers')
+      .select('*')
+      .order('created_at', { ascending: false })
+
+    return <AdminDashboard subscribers={subscribers || []} />
   }
 
   // Check for employer profile

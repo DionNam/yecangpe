@@ -1,15 +1,17 @@
 {
   "executionArgs": {
-    "envs": {
-      "API_KEY": "sk-user-LxH9XKjIJDiuYeV1dd710-Xmo8iti0UBjOw04DBymRh2_v8EN1ahtmeF_TCTr6iOrqyJ00twKX2L7L13E2hUf7ULmNcr9mKvbLLrCEJxh3NKm_KVqbBJZs8paxu-0yQXEeM"
-    },
-    "additionalInstruction": "Run smoke tests",
-    "projectName": "Hire Foreigner Smoke Test",
+    "projectName": "hire_foreigner",
     "projectPath": "/Users/2303-pc02/potenlab/hire_foreigner",
     "testIds": [],
-    "files": []
+    "additionalInstruction": "Use Google account for login testing. The app is in Korean language.",
+    "envs": {
+      "API_KEY": "sk-user-8jdH5lS6iXBYOpBOGkAgC1HAHidLKoxY6pEtZdXM7pTR-XI9PEbk5OHBtWt7iwQZg9t_901pdEAJXMbV76bUuUXrOYiJ-AmyWn_W4ttA89Z3Nr6dn6lfJGehNjmXiHaKuXo"
+    }
   },
-  "localEndpoint": "http://localhost:3000",
+  "localEndpoint": "http://localhost:3000/",
   "type": "frontend",
-  "proxy": "http://de7c19e9-a0b4-4fdc-9610-7bf88aafa7d0:TZuTX43puWtfwmF1H4SbvdXEooRyYEhW@tun.testsprite.com:8080"
+  "proxy": "http://35d5ced4-f15b-4cb3-b517-a24e6684a54e:nQJcdrcYO2jlXKlw4qEyqXh742Ob6Jf6@tun.testsprite.com:8080",
+  "status": "init",
+  "scope": "codebase",
+  "serverPort": 56491
 }

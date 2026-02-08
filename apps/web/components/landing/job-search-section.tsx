@@ -4,13 +4,15 @@ import { Search, MapPin } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { motion } from 'motion/react'
-
-const popularTags = ['Translation', 'Teaching', 'IT/Engineering', 'Marketing', 'Remote']
+import { useTranslation } from '@/lib/i18n'
 
 export function JobSearchSection() {
   const router = useRouter()
   const [keyword, setKeyword] = useState('')
   const [location, setLocation] = useState('')
+  const { t } = useTranslation()
+
+  const tags: string[] = t('jobSearch.tags')
 
   function handleSearch(e: React.FormEvent) {
     e.preventDefault()
@@ -33,7 +35,7 @@ export function JobSearchSection() {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-bold text-center mb-12"
         >
-          Search Korean-Speaking Jobs
+          {t('jobSearch.title')}
         </motion.h2>
 
         <form onSubmit={handleSearch} className="bg-white rounded-2xl shadow-lg p-6 mb-8">
@@ -42,7 +44,7 @@ export function JobSearchSection() {
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Job title, keywords..."
+                placeholder={t('jobSearch.keywordPlaceholder')}
                 value={keyword}
                 onChange={(e) => setKeyword(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -52,7 +54,7 @@ export function JobSearchSection() {
               <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Location (city, country)..."
+                placeholder={t('jobSearch.locationPlaceholder')}
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -63,15 +65,15 @@ export function JobSearchSection() {
             type="submit"
             className="w-full py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
           >
-            Search Jobs
+            {t('jobSearch.searchButton')}
           </button>
         </form>
 
         {/* Popular tags */}
         <div className="text-center">
-          <p className="text-sm text-gray-600 mb-3">Popular searches:</p>
+          <p className="text-sm text-gray-600 mb-3">{t('jobSearch.popularSearches')}</p>
           <div className="flex flex-wrap justify-center gap-2">
-            {popularTags.map((tag) => (
+            {tags.map((tag: string) => (
               <button
                 key={tag}
                 onClick={() => handleTagClick(tag)}

@@ -33,45 +33,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/employers`, priority: 0.7 },
     { url: `${baseUrl}/about`, priority: 0.5 },
     { url: `${baseUrl}/faq`, priority: 0.5 },
+    { url: `${baseUrl}/privacy`, priority: 0.5 },
   ].map(p => ({ ...p, lastModified: new Date(), changeFrequency: 'weekly' as const }))
 
-  // Filter pages - by job type (6 pages)
+  // Filter pages - by job type (query param format)
   const jobTypePages = JOB_TYPES.map(({ code }) => ({
-    url: `${baseUrl}/jobs/by-type/${code}`,
+    url: `${baseUrl}/jobs?job_type=${code}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.8,
   }))
 
-  // Filter pages - by location type (3 pages)
+  // Filter pages - by location type (query param format)
   const locationTypePages = LOCATION_TYPES.map(code => ({
-    url: `${baseUrl}/jobs/by-location-type/${code}`,
+    url: `${baseUrl}/jobs?location_type=${code}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.8,
   }))
 
-  // Filter pages - by country (26 pages)
+  // Filter pages - by country (query param format)
   const countryPages = COUNTRIES.map(({ code }) => ({
-    url: `${baseUrl}/jobs/by-country/${code}`,
+    url: `${baseUrl}/jobs?location_country=${code}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.7,
   }))
 
-  // Filter pages - by category (20 pages)
+  // Filter pages - by category (query param format)
   const categoryPages = CATEGORIES.map(({ code }) => ({
-    url: `${baseUrl}/jobs/by-category/${code}`,
+    url: `${baseUrl}/jobs?category=${code}`,
     lastModified: new Date(),
     changeFrequency: 'daily' as const,
     priority: 0.8,
   }))
 
-  // Filter pages - by language level (5 pages, excluding not_specified)
+  // Filter pages - by language level (query param format, excluding not_specified)
   const languageLevelPages = KOREAN_LEVELS
     .filter(l => l.code !== 'not_specified')
     .map(({ code }) => ({
-      url: `${baseUrl}/jobs/by-language-level/${code}`,
+      url: `${baseUrl}/jobs?korean_level=${code}`,
       lastModified: new Date(),
       changeFrequency: 'daily' as const,
       priority: 0.7,

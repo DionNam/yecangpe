@@ -1,4 +1,147 @@
 {
-    "title": "Standard PRD",
-    "content": "This is a dummy PRD for smoke testing."
+  "meta": {
+    "project": "PotenHire",
+    "date": "2026-01-21",
+    "prepared_by": "Software Development Manager"
+  },
+  "product_overview": "PotenHire is a job hiring platform tailored for Korean-speaking foreigners, connecting talented foreign job seekers proficient in Korean with verified employers offering relevant job opportunities in Korea.",
+  "core_goals": [
+    "Enable seamless authentication and role-based onboarding for seekers and employers.",
+    "Provide an intuitive interface for job seekers to browse, filter, and apply for jobs.",
+    "Facilitate employers in creating, managing, and monitoring job postings effectively.",
+    "Offer a central user profile area for seekers and employers to manage their information and saved jobs.",
+    "Ensure robust admin oversight for job post approval and platform metrics management."
+  ],
+  "key_features": [
+    "Google OAuth-based authentication integrated with Supabase Auth for secure login and easy onboarding.",
+    "Dynamic landing page showcasing platform stats, introduction, and latest job posts.",
+    "Role-specific onboarding flows collecting relevant profile data for seekers (nationality, TOPIK level, occupation) and employers (company name).",
+    "Comprehensive job listings with filters by nationality, work location type, and country, plus sorting by latest and popularity.",
+    "Detailed job pages including descriptions, company info, apply/save/share options.",
+    "User profile page allowing editing personal info, managing liked jobs, and account settings.",
+    "Employer dashboard for creating and managing job posts with status toggling and view statistics.",
+    "Admin dashboard for managing users and job posts ensuring quality and relevance."
+  ],
+  "user_flow_summary": [
+    "User registration via Google OAuth leading to role selection and onboarding.",
+    "Job seekers browsing job listings with filter and sort functionalities, viewing details, and applying or saving jobs.",
+    "Employers creating and submitting new job posts followed by admin approval and publishing.",
+    "Users managing personal profiles, viewing liked jobs, and adjusting settings on their My Page."
+  ],
+  "validation_criteria": [
+    "Successful Google OAuth login and role-based onboarding workflow.",
+    "Accurate filtering, sorting, and pagination of job listings.",
+    "Correct display of job details and apply/save/share functionality.",
+    "Employer job post creation, editing and status management working as intended.",
+    "Admin approval flow correctly controls job post visibility.",
+    "User profile updates persist and reflect immediately.",
+    "Responsive design and accessibility standards met across all pages."
+  ],
+  "code_summary": {
+    "project_name": "PotenHire",
+    "description": "A job hiring platform for Korean-speaking foreigners. Connects foreign talent who can speak Korean with verified job postings from employers.",
+    "tech_stack": {
+      "framework": "Next.js 15",
+      "runtime": "React 19",
+      "language": "TypeScript",
+      "styling": "Tailwind CSS 4",
+      "backend": "Supabase (PostgreSQL)",
+      "authentication": "Supabase Auth with Google OAuth",
+      "ui_components": "Radix UI, shadcn/ui",
+      "form_handling": "React Hook Form + Zod",
+      "deployment": "Vercel"
+    },
+    "apps": {
+      "web": {
+        "port": 3000,
+        "description": "Main web application for job seekers and employers"
+      },
+      "admin": {
+        "port": 3001,
+        "description": "Admin dashboard for managing job posts and users"
+      }
+    },
+    "features": [
+      {
+        "name": "Authentication",
+        "description": "Google OAuth login via Supabase Auth",
+        "routes": [
+          "/login",
+          "/auth/callback",
+          "/auth/signout"
+        ]
+      },
+      {
+        "name": "Landing Page",
+        "description": "Homepage with hero section, stats, how it works, job preview",
+        "routes": [
+          "/"
+        ]
+      },
+      {
+        "name": "Job Listings",
+        "description": "Browse job posts with filters by nationality, location, sorting",
+        "routes": [
+          "/jobs",
+          "/jobs/[id]"
+        ]
+      },
+      {
+        "name": "Onboarding",
+        "description": "Profile creation for seekers (nationality, TOPIK level) and employers (company name)",
+        "routes": [
+          "/onboarding",
+          "/onboarding/seeker",
+          "/onboarding/employer"
+        ]
+      },
+      {
+        "name": "My Page",
+        "description": "User profile management and liked jobs",
+        "routes": [
+          "/my-page"
+        ]
+      },
+      {
+        "name": "Employer Features",
+        "description": "Create and manage job postings",
+        "routes": [
+          "/employer/new-post",
+          "/employer/posts"
+        ]
+      }
+    ],
+    "user_roles": [
+      {
+        "role": "seeker",
+        "description": "Job seekers who are foreigners looking for jobs in Korea"
+      },
+      {
+        "role": "employer",
+        "description": "Companies posting job listings"
+      }
+    ],
+    "database_tables": [
+      "users",
+      "seeker_profiles",
+      "employer_profiles",
+      "job_posts",
+      "site_config",
+      "global_metrics_config"
+    ],
+    "key_components": [
+      "LoginButton - Google OAuth login button",
+      "HeroSection - Landing page hero",
+      "JobListTable - Job listings table",
+      "JobListFilters - Filter jobs by nationality/location",
+      "SeekerForm - Seeker onboarding form",
+      "EmployerForm - Employer onboarding form",
+      "JobPostForm - Create/edit job posts"
+    ],
+    "locale": "Korean (ko_KR)",
+    "test_account": {
+      "provider": "Google",
+      "note": "User can use their own Google account for testing"
+    }
+  }
 }

@@ -6,6 +6,7 @@ import './globals.css'
 import { ScrollFix } from '@/components/scroll-fix'
 import { SiteHeaderWrapper } from '@/components/layout/site-header-wrapper'
 import { HeaderSkeleton } from '@/components/layout/header-skeleton'
+import { LanguageProvider } from '@/lib/i18n'
 
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
@@ -61,11 +62,13 @@ export default function RootLayout({
         </Script>
       </head>
       <body>
-        <Suspense fallback={<HeaderSkeleton />}>
-          <SiteHeaderWrapper />
-        </Suspense>
-        <ScrollFix />
-        {children}
+        <LanguageProvider>
+          <Suspense fallback={<HeaderSkeleton />}>
+            <SiteHeaderWrapper />
+          </Suspense>
+          <ScrollFix />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   )

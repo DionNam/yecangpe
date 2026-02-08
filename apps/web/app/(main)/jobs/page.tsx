@@ -3,7 +3,14 @@ import { createClient } from '@repo/supabase/server'
 import { JobListTable } from '@/components/jobs/job-list-table'
 import { JobListFilters } from '@/components/jobs/job-list-filters'
 import { JobListPagination } from '@/components/jobs/job-list-pagination'
+import { JobsPageHeader } from '@/components/jobs/jobs-page-header'
+import { JobsEmptyState } from '@/components/jobs/jobs-empty-state'
 import type { Database } from '@repo/supabase/types'
+import {
+  getFilterPageTitle,
+  getFilterPageDescription,
+  type FilterDimension,
+} from '@/lib/filter-page-data'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
@@ -27,7 +34,41 @@ interface JobsPageProps {
 // Add ISR revalidation - revalidate every 5 minutes
 export const revalidate = 300
 
-export async function generateMetadata(): Promise<Metadata> {
+export async function generateMetadata({ searchParams }: JobsPageProps): Promise<Metadata> {
+  const params = await searchParams
+
+  // Detect active filter for SEO-friendly metadata
+  const filterMap: Array<{ param: string; dimension: FilterDimension }> = [
+    { param: 'job_type', dimension: 'by-type' },
+    { param: 'category', dimension: 'by-category' },
+    { param: 'location_country', dimension: 'by-country' },
+    { param: 'location_type', dimension: 'by-location-type' },
+    { param: 'korean_level', dimension: 'by-language-level' },
+  ]
+
+  for (const { param, dimension } of filterMap) {
+    const value = params[param as keyof SearchParams]
+    if (value) {
+      const { title: filterTitle } = getFilterPageTitle(dimension, value)
+      const filterDescription = getFilterPageDescription(dimension, value)
+      const fullTitle = `${filterTitle} - HangulJobs`
+      return {
+        title: fullTitle,
+        description: filterDescription,
+        openGraph: {
+          title: fullTitle,
+          description: filterDescription,
+          type: 'website',
+        },
+        twitter: {
+          card: 'summary_large_image',
+          title: fullTitle,
+          description: filterDescription,
+        },
+      }
+    }
+  }
+
   const supabase = await createClient()
 
   // Get job count for dynamic description
@@ -194,18 +235,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 pt-10 pb-24">
         {/* Header section with descriptive content */}
-        <div className="text-center mb-16 space-y-4">
-          <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-3">채용 공고</p>
-          <div className="inline-block relative">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-gray-900 relative z-10">
-              맞춤형 채용 공고
-            </h1>
-            <div className="absolute -bottom-2 left-0 right-0 h-3 bg-primary/10 -rotate-1 -z-10 rounded-full"></div>
-          </div>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto mt-6">
-            한국어 가능한 외국인을 위한 다양한 직무의 채용 공고를 확인하세요
-          </p>
-        </div>
+        <JobsPageHeader />
 
         {/* Filters section */}
         <div className="mb-10">
@@ -231,17 +261,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
         )}
 
         {/* Empty state */}
-        {(!posts || posts.length === 0) && (
-          <div className="text-center py-32">
-            <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span className="text-2xl">🔍</span>
-            </div>
-            <h3 className="text-lg font-bold text-gray-900 mb-2">등록된 공고가 없습니다</h3>
-            <p className="text-slate-500">
-              조건을 변경하거나 나중에 다시 확인해주세요
-            </p>
-          </div>
-        )}
+        {(!posts || posts.length === 0) && <JobsEmptyState />}
       </div>
     </div>
   )

@@ -2,46 +2,33 @@
 
 import { motion } from 'motion/react'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface FinalCTASectionProps {
   variant: 'seeker' | 'employer'
 }
 
 export function FinalCTASection({ variant }: FinalCTASectionProps) {
-  const content =
-    variant === 'seeker'
-      ? {
-          heading: '지금 바로 시작하세요',
-          subtitle: '전 세계 한국어 일자리를 무료로 검색하세요',
-          primaryButton: {
-            text: '잡 검색하기',
-            href: '/jobs',
-            bgClass: 'bg-blue-600 hover:bg-blue-700',
-          },
-          secondaryButton: {
-            text: '뉴스레터 구독',
-            href: '#newsletter',
-            bgClass: 'bg-white text-slate-900 border-2 border-white hover:bg-slate-100',
-          },
-        }
-      : {
-          heading: '무료로 공고를 올려보세요',
-          subtitle: '한국어 가능 인재를 찾는 가장 빠른 방법',
-          primaryButton: {
-            text: '무료로 공고 올리기',
-            href: '/employer/new-post',
-            bgClass: 'bg-amber-600 hover:bg-amber-700',
-          },
-          secondaryButton: {
-            text: '잡보드 둘러보기',
-            href: '/jobs',
-            bgClass: 'bg-white text-slate-900 border-2 border-white hover:bg-slate-100',
-          },
-        }
+  const { t } = useTranslation()
+
+  const prefix = variant === 'seeker' ? 'seekerPage' : 'employerPage'
+  const heading = t(`${prefix}.ctaHeading`)
+  const subtitle = t(`${prefix}.ctaSubtitle`)
+  const primaryText = t(`${prefix}.ctaPrimaryButton`)
+  const secondaryText = t(`${prefix}.ctaSecondaryButton`)
+
+  const primaryHref = variant === 'seeker' ? '/jobs' : '/employer/new-post'
+  const secondaryHref = variant === 'seeker' ? '#newsletter' : '/jobs'
+  const primaryBgClass = variant === 'seeker' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/25' : 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/25'
 
   return (
-    <section className="bg-gradient-to-r from-slate-900 to-slate-800 py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-slate-800 py-20">
+      {/* Decorative blur circles */}
+      <div className="absolute top-10 left-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl" />
+      <div className="absolute bottom-10 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,21 +36,22 @@ export function FinalCTASection({ variant }: FinalCTASectionProps) {
           transition={{ duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{content.heading}</h2>
-          <p className="text-xl text-slate-300 mb-8">{content.subtitle}</p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{heading}</h2>
+          <p className="text-xl text-slate-300 mb-8">{subtitle}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href={content.primaryButton.href}
-              className={`px-8 py-4 ${content.primaryButton.bgClass} text-white rounded-lg transition-all shadow-lg text-lg font-semibold`}
+              href={primaryHref}
+              className={`group px-8 py-4 ${primaryBgClass} text-white rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-lg font-semibold`}
             >
-              {content.primaryButton.text}
+              {primaryText}
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
-              href={content.secondaryButton.href}
-              className={`px-8 py-4 ${content.secondaryButton.bgClass} rounded-lg transition-all text-lg font-semibold`}
+              href={secondaryHref}
+              className="px-8 py-4 bg-white text-slate-900 border-2 border-white hover:bg-slate-100 rounded-xl transition-all text-lg font-semibold"
             >
-              {content.secondaryButton.text}
+              {secondaryText}
             </Link>
           </div>
         </motion.div>

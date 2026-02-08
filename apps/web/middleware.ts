@@ -4,8 +4,8 @@ import type { Database } from '@repo/supabase/types'
 
 type UserRole = Database['public']['Enums']['user_role']
 
-// Define route arrays for access control
-const publicRoutes = ['/', '/login', '/jobs']
+// Protected routes that require authentication (blacklist approach)
+const protectedRoutes = ['/my-page', '/dashboard', '/employer/posts', '/employer/new-post']
 const authRoutes = ['/auth/callback']
 const onboardingRoutes = ['/onboarding']
 
@@ -13,17 +13,21 @@ export async function middleware(request: NextRequest) {
   const { supabaseResponse, user, supabase } = await updateSession(request)
   const { pathname } = request.nextUrl
 
-  // Allow public routes and auth routes without checking authentication
-  if (
-    publicRoutes.includes(pathname) ||
-    pathname.startsWith('/jobs') ||
-    authRoutes.some(route => pathname.startsWith(route))
-  ) {
+  // Allow auth callback routes
+  if (authRoutes.some(route => pathname.startsWith(route))) {
     return supabaseResponse
   }
 
-  // Redirect unauthenticated users to login
-  if (!user && !publicRoutes.includes(pathname)) {
+  // Check if this is a protected route
+  const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
+
+  // Non-protected routes are accessible without authentication
+  if (!isProtectedRoute) {
+    return supabaseResponse
+  }
+
+  // Redirect unauthenticated users to login for protected routes
+  if (!user) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
 

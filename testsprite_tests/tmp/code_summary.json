@@ -1,0 +1,89 @@
+{
+  "project_name": "PotenHire",
+  "description": "A job hiring platform for Korean-speaking foreigners. Connects foreign talent who can speak Korean with verified job postings from employers.",
+  "tech_stack": {
+    "framework": "Next.js 15",
+    "runtime": "React 19",
+    "language": "TypeScript",
+    "styling": "Tailwind CSS 4",
+    "backend": "Supabase (PostgreSQL)",
+    "authentication": "Supabase Auth with Google OAuth",
+    "ui_components": "Radix UI, shadcn/ui",
+    "form_handling": "React Hook Form + Zod",
+    "deployment": "Vercel"
+  },
+  "apps": {
+    "web": {
+      "port": 3000,
+      "description": "Main web application for job seekers and employers"
+    },
+    "admin": {
+      "port": 3001,
+      "description": "Admin dashboard for managing job posts and users"
+    }
+  },
+  "features": [
+    {
+      "name": "Authentication",
+      "description": "Google OAuth login via Supabase Auth",
+      "routes": ["/login", "/auth/callback", "/auth/signout"]
+    },
+    {
+      "name": "Landing Page",
+      "description": "Homepage with hero section, stats, how it works, job preview",
+      "routes": ["/"]
+    },
+    {
+      "name": "Job Listings",
+      "description": "Browse job posts with filters by nationality, location, sorting",
+      "routes": ["/jobs", "/jobs/[id]"]
+    },
+    {
+      "name": "Onboarding",
+      "description": "Profile creation for seekers (nationality, TOPIK level) and employers (company name)",
+      "routes": ["/onboarding", "/onboarding/seeker", "/onboarding/employer"]
+    },
+    {
+      "name": "My Page",
+      "description": "User profile management and liked jobs",
+      "routes": ["/my-page"]
+    },
+    {
+      "name": "Employer Features",
+      "description": "Create and manage job postings",
+      "routes": ["/employer/new-post", "/employer/posts"]
+    }
+  ],
+  "user_roles": [
+    {
+      "role": "seeker",
+      "description": "Job seekers who are foreigners looking for jobs in Korea"
+    },
+    {
+      "role": "employer",
+      "description": "Companies posting job listings"
+    }
+  ],
+  "database_tables": [
+    "users",
+    "seeker_profiles",
+    "employer_profiles",
+    "job_posts",
+    "site_config",
+    "global_metrics_config"
+  ],
+  "key_components": [
+    "LoginButton - Google OAuth login button",
+    "HeroSection - Landing page hero",
+    "JobListTable - Job listings table",
+    "JobListFilters - Filter jobs by nationality/location",
+    "SeekerForm - Seeker onboarding form",
+    "EmployerForm - Employer onboarding form",
+    "JobPostForm - Create/edit job posts"
+  ],
+  "locale": "Korean (ko_KR)",
+  "test_account": {
+    "provider": "Google",
+    "note": "User can use their own Google account for testing"
+  }
+}

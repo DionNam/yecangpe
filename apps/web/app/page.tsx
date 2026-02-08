@@ -117,12 +117,12 @@ export default async function Home() {
         companyCount={totalEmployerCount}
         memberCount={totalMemberCount}
       />
+      <PreviewSection initialJobs={previewJobs || []} />
       <JobSearchSection />
       <ServiceIntroCards />
-      <PreviewSection initialJobs={previewJobs || []} />
       <FilterCategoryCards />
-      <NewsletterSection />
       <FAQSection />
+      <NewsletterSection />
       <Footer />
     </main>
   )

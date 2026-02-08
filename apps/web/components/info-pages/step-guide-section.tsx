@@ -2,92 +2,73 @@
 
 import { motion } from 'motion/react'
 import { Search, Heart, Send, LogIn, FileText, Users } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface StepGuideSectionProps {
   variant: 'seeker' | 'employer'
 }
 
-const seekerSteps = [
-  {
-    icon: Search,
-    title: '잡 검색',
-    description: '국가, 고용형태, 카테고리 등 필터로 맞춤 검색',
-    colorClass: 'bg-blue-100 text-blue-600',
-  },
-  {
-    icon: Heart,
-    title: '관심 표시',
-    description: '마음에 드는 공고에 하트를 눌러 저장',
-    colorClass: 'bg-emerald-100 text-emerald-600',
-  },
-  {
-    icon: Send,
-    title: '직접 지원',
-    description: '공고 상세에서 바로 지원하세요',
-    colorClass: 'bg-amber-100 text-amber-600',
-  },
-]
+const seekerIcons = [Search, Heart, Send]
+const employerIcons = [LogIn, FileText, Users]
 
-const employerSteps = [
-  {
-    icon: LogIn,
-    title: '무료 가입',
-    description: 'Google 계정으로 간편하게 시작',
-    colorClass: 'bg-blue-100 text-blue-600',
-  },
-  {
-    icon: FileText,
-    title: '공고 작성',
-    description: '5분이면 완료되는 간단한 폼',
-    colorClass: 'bg-emerald-100 text-emerald-600',
-  },
-  {
-    icon: Users,
-    title: '인재 매칭',
-    description: '적합한 인재가 직접 지원합니다',
-    colorClass: 'bg-amber-100 text-amber-600',
-  },
+const colorClasses = [
+  'bg-blue-100 text-blue-600 ring-blue-200',
+  'bg-emerald-100 text-emerald-600 ring-emerald-200',
+  'bg-amber-100 text-amber-600 ring-amber-200',
 ]
 
 export function StepGuideSection({ variant }: StepGuideSectionProps) {
-  const steps = variant === 'seeker' ? seekerSteps : employerSteps
-  const heading = variant === 'seeker' ? '이용 방법' : '공고 게시 절차'
+  const { t } = useTranslation()
+
+  const prefix = variant === 'seeker' ? 'seekerPage' : 'employerPage'
+  const icons = variant === 'seeker' ? seekerIcons : employerIcons
+  const steps = t(`${prefix}.steps`) as unknown as Array<{ title: string; description: string }>
+  const heading = t(`${prefix}.stepsTitle`)
 
   return (
-    <section className="bg-white py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <motion.h2
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50/50 py-20">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        {/* Eyebrow + Title */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-12"
+          className="text-center mb-14"
         >
-          {heading}
-        </motion.h2>
+          <span className="inline-block px-4 py-1.5 bg-amber-100 text-amber-700 rounded-full text-sm font-semibold mb-4">
+            How It Works
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
+            {heading}
+          </h2>
+        </motion.div>
 
         <div className="grid md:grid-cols-3 gap-8 relative">
-          {steps.map((step, index) => {
-            const Icon = step.icon
+          {/* Connecting dotted lines (desktop only) */}
+          <div className="hidden md:block absolute top-14 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] h-px border-t-2 border-dashed border-slate-300" />
+
+          {Array.isArray(steps) && steps.map((step, index) => {
+            const Icon = icons[index] || Search
             return (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="flex flex-col items-center text-center relative"
+                transition={{ duration: 0.5, delay: index * 0.15 }}
+                className="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center text-center relative"
               >
-                <div className="relative">
-                  <div className={`w-16 h-16 rounded-full ${step.colorClass} flex items-center justify-center mb-4`}>
+                <div className="relative mb-5">
+                  <div className={`w-16 h-16 rounded-full ${colorClasses[index] || colorClasses[0]} ring-4 flex items-center justify-center`}>
                     <Icon className="w-8 h-8" />
                   </div>
-                  <div className="absolute -top-2 -right-2 bg-slate-900 text-white w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold">
+                  <div className="absolute -top-2 -right-2 bg-slate-900 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
                     {index + 1}
                   </div>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+                <p className="text-gray-600 leading-relaxed">{step.description}</p>
               </motion.div>
             )
           })}

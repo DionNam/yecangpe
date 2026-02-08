@@ -1,13 +1,426 @@
 [
-    {
-        "id": "TC-001",
-        "title": "Verify Home Page",
-        "description": "Navigate to the home page and verify it loads correctly",
-        "steps": [
-            {
-                "step": "Navigate to home page",
-                "expectedResult": "Home page loads successfully"
-            }
-        ]
-    }
+  {
+    "id": "TC001",
+    "title": "Successful Google OAuth Login and Role Selection",
+    "description": "Verify that a user can successfully log in using Google OAuth and is prompted to select a role (seeker or employer) for onboarding.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the login page"
+      },
+      {
+        "type": "action",
+        "description": "Click on the Google OAuth login button"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that Google OAuth flow completes successfully"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify user is redirected to role selection screen"
+      },
+      {
+        "type": "action",
+        "description": "Select a user role (seeker or employer)"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm navigation to appropriate onboarding flow based on selected role"
+      }
+    ]
+  },
+  {
+    "id": "TC002",
+    "title": "Seeker Onboarding Form Validation",
+    "description": "Validate the seeker onboarding form accepts valid inputs and rejects invalid or missing fields according to rules (nationality, TOPIK level, occupation).",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to seeker onboarding form"
+      },
+      {
+        "type": "action",
+        "description": "Input valid nationality, TOPIK level, and occupation"
+      },
+      {
+        "type": "assertion",
+        "description": "Check form allows submission when all fields are valid"
+      },
+      {
+        "type": "action",
+        "description": "Clear mandatory fields and try to submit form"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify appropriate validation error messages are displayed"
+      },
+      {
+        "type": "action",
+        "description": "Input invalid values (e.g. invalid TOPIK level format)"
+      },
+      {
+        "type": "assertion",
+        "description": "Check validation prevents form submission and shows errors"
+      }
+    ]
+  },
+  {
+    "id": "TC003",
+    "title": "Employer Onboarding Form Validation",
+    "description": "Validate the employer onboarding form requires and correctly processes company name information.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to employer onboarding form"
+      },
+      {
+        "type": "action",
+        "description": "Enter a valid company name"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify form submission succeeds"
+      },
+      {
+        "type": "action",
+        "description": "Leave company name empty and submit"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation error for missing company name is shown"
+      }
+    ]
+  },
+  {
+    "id": "TC004",
+    "title": "Job Listings Filtering and Sorting",
+    "description": "Ensure that job listings can be filtered by nationality, work location type, and country, and sorted by latest and popularity with accurate results.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to job listings page"
+      },
+      {
+        "type": "action",
+        "description": "Apply filter for a specific nationality"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that job posts shown match the selected nationality filter"
+      },
+      {
+        "type": "action",
+        "description": "Clear filters and apply work location type filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify job posts correspond to selected work location type"
+      },
+      {
+        "type": "action",
+        "description": "Apply country filter"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify jobs relate only to chosen country"
+      },
+      {
+        "type": "action",
+        "description": "Sort job posts by latest"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm jobs are ordered in descending order of posting date"
+      },
+      {
+        "type": "action",
+        "description": "Sort job posts by popularity"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify jobs are ordered correctly by popularity metric"
+      }
+    ]
+  },
+  {
+    "id": "TC005",
+    "title": "Pagination on Job Listings",
+    "description": "Verify that pagination works correctly on the job listings page and navigating pages updates job posts accordingly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to job listings page with multiple pages of results"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm initial page displays expected number of job posts"
+      },
+      {
+        "type": "action",
+        "description": "Click to navigate to next page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify job listings update to next set of results"
+      },
+      {
+        "type": "action",
+        "description": "Click to navigate back to previous page"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm correct previous page results are displayed"
+      }
+    ]
+  },
+  {
+    "id": "TC006",
+    "title": "Job Detail Page Display and Actions",
+    "description": "Check correct and complete display of job details, company info, and functionality of apply, save, and share actions on job detail page.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to a job detail page from job listings"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all job description fields and company info are displayed accurately"
+      },
+      {
+        "type": "action",
+        "description": "Click the apply button"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that apply workflow is triggered correctly"
+      },
+      {
+        "type": "action",
+        "description": "Click the save job button"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify the job is added to user's liked jobs"
+      },
+      {
+        "type": "action",
+        "description": "Use the share options"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure share functionality triggers appropriate options and links"
+      }
+    ]
+  },
+  {
+    "id": "TC007",
+    "title": "User Profile Update and Persistence",
+    "description": "Validate that users can edit their personal information and changes persist and reflect immediately on their profile page.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in and navigate to My Page"
+      },
+      {
+        "type": "action",
+        "description": "Edit personal information fields such as name, contact info"
+      },
+      {
+        "type": "action",
+        "description": "Save profile changes"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm changes are saved successfully"
+      },
+      {
+        "type": "action",
+        "description": "Reload or revisit My Page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated information is displayed correctly"
+      }
+    ]
+  },
+  {
+    "id": "TC008",
+    "title": "Employer Job Post Creation and Editing",
+    "description": "Verify employers can create new job posts, edit existing ones, and changes are saved and reflected properly.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as an employer and navigate to new job post creation page"
+      },
+      {
+        "type": "action",
+        "description": "Fill in valid job post details"
+      },
+      {
+        "type": "action",
+        "description": "Submit new job post"
+      },
+      {
+        "type": "assertion",
+        "description": "Check job post is created and listed in employer posts"
+      },
+      {
+        "type": "action",
+        "description": "Edit an existing job post"
+      },
+      {
+        "type": "action",
+        "description": "Change job details and save"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify updated details are shown in the job post list"
+      }
+    ]
+  },
+  {
+    "id": "TC009",
+    "title": "Job Post Status Toggling by Employer",
+    "description": "Ensure employers can toggle the visibility/status of job posts (e.g., active/inactive) and changes take effect accordingly.",
+    "category": "functional",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in as employer and view the list of job posts"
+      },
+      {
+        "type": "action",
+        "description": "Toggle status of a job post from active to inactive"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm status change is saved and reflected"
+      },
+      {
+        "type": "action",
+        "description": "Toggle status back to active"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify job post becomes visible again on public listings if approved"
+      }
+    ]
+  },
+  {
+    "id": "TC010",
+    "title": "Admin Approval Workflow for Job Posts",
+    "description": "Test that admin can view pending job posts, approve or reject them, and that approval controls the job post visibility on the platform.",
+    "category": "functional",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Log in to admin dashboard"
+      },
+      {
+        "type": "action",
+        "description": "Navigate to pending job posts review page"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify list of pending job posts is displayed"
+      },
+      {
+        "type": "action",
+        "description": "Approve a pending job post"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm job post status updates and becomes visible in public listings"
+      },
+      {
+        "type": "action",
+        "description": "Reject another job post"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify rejected job post is not visible publicly"
+      }
+    ]
+  },
+  {
+    "id": "TC011",
+    "title": "Validation for Job Post Creation Form Fields",
+    "description": "Check that the job post creation form enforces correct validation rules and shows error messages for incorrect or missing data.",
+    "category": "error handling",
+    "priority": "High",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Navigate to the job post creation form"
+      },
+      {
+        "type": "action",
+        "description": "Submit the form with empty mandatory fields"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify validation errors are shown for missing required fields"
+      },
+      {
+        "type": "action",
+        "description": "Enter invalid data formats into fields (e.g., invalid dates or text where numbers expected)"
+      },
+      {
+        "type": "assertion",
+        "description": "Check that appropriate validation messages appear and submission is blocked"
+      }
+    ]
+  },
+  {
+    "id": "TC012",
+    "title": "Responsiveness and Accessibility Across Pages",
+    "description": "Verify that the application UI is responsive on various devices and meets accessibility standards including keyboard navigation and screen reader support.",
+    "category": "ui",
+    "priority": "Medium",
+    "steps": [
+      {
+        "type": "action",
+        "description": "Open key pages (landing, job listings, onboarding, profile) on desktop and mobile screen sizes"
+      },
+      {
+        "type": "assertion",
+        "description": "Confirm layouts adapt fluidly without content cutoff or overlap"
+      },
+      {
+        "type": "action",
+        "description": "Navigate pages using only keyboard controls"
+      },
+      {
+        "type": "assertion",
+        "description": "Verify all interactive elements can be accessed and operated via keyboard"
+      },
+      {
+        "type": "action",
+        "description": "Run accessibility tool scans on pages"
+      },
+      {
+        "type": "assertion",
+        "description": "Ensure no critical accessibility errors are detected"
+      }
+    ]
+  }
 ]

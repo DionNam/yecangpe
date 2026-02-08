@@ -12,7 +12,40 @@ const nextConfig: NextConfig = {
         hostname: '*.supabase.co',
         pathname: '/storage/v1/object/public/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
     ],
+  },
+  async redirects() {
+    return [
+      {
+        source: '/jobs/by-type/:type',
+        destination: '/jobs?job_type=:type',
+        permanent: true,
+      },
+      {
+        source: '/jobs/by-category/:category',
+        destination: '/jobs?category=:category',
+        permanent: true,
+      },
+      {
+        source: '/jobs/by-country/:country',
+        destination: '/jobs?location_country=:country',
+        permanent: true,
+      },
+      {
+        source: '/jobs/by-location-type/:loc',
+        destination: '/jobs?location_type=:loc',
+        permanent: true,
+      },
+      {
+        source: '/jobs/by-language-level/:level',
+        destination: '/jobs?korean_level=:level',
+        permanent: true,
+      },
+    ]
   },
   async headers() {
     return [

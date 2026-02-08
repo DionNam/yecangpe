@@ -2,7 +2,11 @@
   "permissions": {
     "allow": [
       "Bash(git commit:*)",
-      "Bash(git tag:*)"
+      "Bash(git tag:*)",
+      "Bash(vercel --version:*)",
+      "Bash(vercel:*)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm build:*)"
     ]
   }
 }

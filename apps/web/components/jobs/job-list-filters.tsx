@@ -1,22 +1,160 @@
 'use client'
 
+import { useRef, useState, useEffect, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { Search, X } from 'lucide-react'
+import { Search, SlidersHorizontal, ChevronRight, ChevronDown, Check, X } from 'lucide-react'
 import { useDebouncedCallback } from 'use-debounce'
 import { JOB_TYPES, CATEGORIES, KOREAN_LEVELS, ENGLISH_LEVELS, NATIONALITIES, COUNTRIES } from '@repo/lib'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
-import { Button } from '@/components/ui/button'
-import { Checkbox } from '@/components/ui/checkbox'
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { useTranslation } from '@/lib/i18n'
+import { localizeItems } from '@/lib/i18n/constants'
 
+/* ─── Pill trigger (shared style matching the screenshot) ─── */
+function FilterPill({
+  label,
+  active,
+  onClick,
+  hasChevron = true,
+  children,
+}: {
+  label: string
+  active: boolean
+  onClick?: () => void
+  hasChevron?: boolean
+  children?: React.ReactNode
+}) {
+  return (
+    <button
+      onClick={onClick}
+      className={`inline-flex items-center gap-1 whitespace-nowrap px-4 py-2 rounded-full text-sm transition-all shrink-0 ${
+        active
+          ? 'border-2 border-gray-900 text-gray-900 font-semibold bg-white'
+          : 'border border-gray-200 text-gray-600 font-medium bg-white hover:border-gray-400'
+      }`}
+    >
+      {children}
+      {label}
+      {hasChevron && <ChevronDown className="w-3.5 h-3.5 ml-0.5 opacity-60" />}
+    </button>
+  )
+}
+
+/* ─── Multi-select dropdown content ─── */
+function MultiSelectContent({
+  items,
+  selected,
+  onToggle,
+}: {
+  items: Array<{ code: string; nameKo: string }>
+  selected: string[]
+  onToggle: (code: string) => void
+}) {
+  return (
+    <div className="py-1">
+      {items.map(item => {
+        const isSelected = selected.includes(item.code)
+        return (
+          <button
+            key={item.code}
+            onClick={() => onToggle(item.code)}
+            className="flex items-center gap-2.5 w-full px-3 py-2 text-sm hover:bg-gray-50 transition-colors text-left"
+          >
+            <div className={`w-4 h-4 rounded border flex items-center justify-center shrink-0 ${
+              isSelected ? 'bg-gray-900 border-gray-900' : 'border-gray-300'
+            }`}>
+              {isSelected && <Check className="w-3 h-3 text-white" />}
+            </div>
+            <span className={isSelected ? 'text-gray-900 font-medium' : 'text-gray-600'}>
+              {item.nameKo}
+            </span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+/* ─── Single-select dropdown content ─── */
+function SingleSelectContent({
+  items,
+  selected,
+  onSelect,
+  allLabel = '전체',
+}: {
+  items: Array<{ code: string; nameKo?: string; name?: string }>
+  selected: string
+  onSelect: (code: string) => void
+  allLabel?: string
+}) {
+  return (
+    <div className="py-1 max-h-64 overflow-y-auto">
+      <button
+        onClick={() => onSelect('all')}
+        className="flex items-center gap-2.5 w-full px-3 py-2 text-sm hover:bg-gray-50 transition-colors text-left"
+      >
+        <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+          selected === 'all' ? 'border-gray-900' : 'border-gray-300'
+        }`}>
+          {selected === 'all' && <div className="w-2 h-2 rounded-full bg-gray-900" />}
+        </div>
+        <span className={selected === 'all' ? 'text-gray-900 font-medium' : 'text-gray-600'}>
+          {allLabel}
+        </span>
+      </button>
+      {items.map(item => {
+        const isSelected = selected === item.code
+        const displayName = item.nameKo || item.name || item.code
+        return (
+          <button
+            key={item.code}
+            onClick={() => onSelect(item.code)}
+            className="flex items-center gap-2.5 w-full px-3 py-2 text-sm hover:bg-gray-50 transition-colors text-left"
+          >
+            <div className={`w-4 h-4 rounded-full border flex items-center justify-center shrink-0 ${
+              isSelected ? 'border-gray-900' : 'border-gray-300'
+            }`}>
+              {isSelected && <div className="w-2 h-2 rounded-full bg-gray-900" />}
+            </div>
+            <span className={isSelected ? 'text-gray-900 font-medium' : 'text-gray-600'}>
+              {displayName}
+            </span>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+/* ─── Main component ─── */
 export function JobListFilters() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const scrollRef = useRef<HTMLDivElement>(null)
+  const [canScrollRight, setCanScrollRight] = useState(false)
+  const { t, language } = useTranslation()
+
+  // Localized filter items
+  const localizedJobTypes = localizeItems(JOB_TYPES, language)
+  const localizedCategories = localizeItems(CATEGORIES, language)
+  const localizedKoreanLevels = localizeItems(KOREAN_LEVELS, language)
+  const localizedEnglishLevels = localizeItems(ENGLISH_LEVELS, language)
+  const localizedNationalities = localizeItems(NATIONALITIES, language)
+  const localizedCountries = localizeItems(COUNTRIES, language)
+
+  const LOCATION_TYPES = [
+    { code: 'remote', nameKo: t('filters.remote') },
+    { code: 'hybrid', nameKo: t('filters.hybrid') },
+    { code: 'on_site', nameKo: t('filters.onSite') },
+  ]
+
+  const SORT_OPTIONS = [
+    { code: 'latest', nameKo: t('filters.latest') },
+    { code: 'popular', nameKo: t('filters.popular') },
+  ]
 
   // Read all filter values from URL
   const keyword = searchParams.get('q') || ''
@@ -29,7 +167,36 @@ export function JobListFilters() {
   const englishLevel = searchParams.get('english_level') || 'all'
   const sortBy = searchParams.get('sort') || 'latest'
 
-  // Single-select filter handler
+  // Check if any filters are active
+  const hasActiveFilters = keyword || jobTypes.length > 0 || locationTypes.length > 0 ||
+    (nationality !== 'all') || (locationCountry !== 'all') ||
+    (category !== 'all') || (koreanLevel !== 'all') ||
+    (englishLevel !== 'all')
+
+  // Scroll overflow detection
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current
+    if (!el) return
+    setCanScrollRight(el.scrollWidth - el.scrollLeft - el.clientWidth > 1)
+  }, [])
+
+  useEffect(() => {
+    checkScroll()
+    const el = scrollRef.current
+    if (!el) return
+    el.addEventListener('scroll', checkScroll, { passive: true })
+    window.addEventListener('resize', checkScroll)
+    return () => {
+      el.removeEventListener('scroll', checkScroll)
+      window.removeEventListener('resize', checkScroll)
+    }
+  }, [checkScroll])
+
+  const scrollRight = () => {
+    scrollRef.current?.scrollBy({ left: 200, behavior: 'smooth' })
+  }
+
+  // ─── Handlers ───
   const handleFilterChange = (param: string, value: string | null) => {
     const params = new URLSearchParams(searchParams.toString())
     if (value && value !== 'all') {
@@ -37,11 +204,10 @@ export function JobListFilters() {
     } else {
       params.delete(param)
     }
-    params.delete('page') // Always reset page
+    params.delete('page')
     router.push(`/jobs?${params.toString()}`)
   }
 
-  // Multi-select checkbox handler
   const handleMultiToggle = (param: string, code: string) => {
     const params = new URLSearchParams(searchParams.toString())
     const current = params.get(param)?.split(',').filter(Boolean) || []
@@ -57,18 +223,15 @@ export function JobListFilters() {
     router.push(`/jobs?${params.toString()}`)
   }
 
-  // Keyword search handler with debounce
   const handleKeywordChange = useDebouncedCallback((value: string) => {
     const params = new URLSearchParams(searchParams.toString())
     if (value.trim()) {
       params.set('q', value.trim())
-      // When keyword is present, allow relevance sort
       if (params.get('sort') === 'relevance' || !params.has('sort')) {
         params.set('sort', 'relevance')
       }
     } else {
       params.delete('q')
-      // Remove relevance sort if keyword is cleared
       if (params.get('sort') === 'relevance') {
         params.delete('sort')
       }
@@ -77,211 +240,213 @@ export function JobListFilters() {
     router.push(`/jobs?${params.toString()}`)
   }, 300)
 
-  // Reset all filters
   const handleResetFilters = () => {
     router.push('/jobs')
   }
 
-  // Check if any filters are active
-  const hasActiveFilters = keyword || jobTypes.length > 0 || locationTypes.length > 0 ||
-    (nationality && nationality !== 'all') || (locationCountry && locationCountry !== 'all') ||
-    (category && category !== 'all') || (koreanLevel && koreanLevel !== 'all') ||
-    (englishLevel && englishLevel !== 'all')
+  // ─── Label helpers ───
+  const jobTypeLabel = jobTypes.length > 0
+    ? jobTypes.length === 1
+      ? localizedJobTypes.find(t => t.code === jobTypes[0])?.nameKo || t('filters.jobType')
+      : `${t('filters.jobType')} ${jobTypes.length}`
+    : t('filters.jobType')
+
+  const locationTypeLabel = locationTypes.length > 0
+    ? locationTypes.length === 1
+      ? LOCATION_TYPES.find(lt => lt.code === locationTypes[0])?.nameKo || t('filters.locationType')
+      : `${t('filters.locationType')} ${locationTypes.length}`
+    : t('filters.locationType')
+
+  const categoryLabel = category !== 'all'
+    ? localizedCategories.find(c => c.code === category)?.nameKo || t('filters.category')
+    : t('filters.category')
+
+  const countryLabel = locationCountry !== 'all'
+    ? localizedCountries.find(c => c.code === locationCountry)?.nameKo || t('filters.country')
+    : t('filters.country')
+
+  const koreanLabel = koreanLevel !== 'all'
+    ? localizedKoreanLevels.find(l => l.code === koreanLevel)?.nameKo || t('filters.korean')
+    : t('filters.korean')
+
+  const englishLabel = englishLevel !== 'all'
+    ? localizedEnglishLevels.find(l => l.code === englishLevel)?.nameKo || t('filters.english')
+    : t('filters.english')
+
+  const nationalityLabel = nationality !== 'all'
+    ? localizedNationalities.find(n => n.code === nationality)?.nameKo || t('filters.nationality')
+    : t('filters.nationality')
+
+  const sortLabel = SORT_OPTIONS.find(s => s.code === sortBy)?.nameKo || t('filters.latest')
 
   return (
-    <div className="space-y-6">
-      {/* Keyword Search - Full width */}
+    <div className="space-y-3">
+      {/* Search bar */}
       <div className="relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400" />
         <input
           type="text"
-          placeholder="직무명, 회사명, 키워드로 검색하세요..."
+          placeholder={t('filters.searchPlaceholder')}
           defaultValue={keyword}
           onChange={(e) => handleKeywordChange(e.target.value)}
-          className="w-full h-11 pl-10 pr-4 rounded-lg border border-slate-300 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary text-sm"
+          className="w-full h-11 pl-10 pr-4 rounded-full border border-gray-200 bg-white focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 text-sm transition-all"
         />
       </div>
 
-      {/* Filter Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* 고용 형태 (Job Type) - Multi-select checkboxes */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">고용 형태</label>
-          <div className="space-y-2">
-            {JOB_TYPES.map(type => (
-              <div key={type.code} className="flex items-center space-x-2">
-                <Checkbox
-                  id={`job_type_${type.code}`}
-                  checked={jobTypes.includes(type.code)}
-                  onCheckedChange={() => handleMultiToggle('job_type', type.code)}
-                />
-                <label
-                  htmlFor={`job_type_${type.code}`}
-                  className="text-sm text-slate-600 cursor-pointer"
-                >
-                  {type.nameKo}
-                </label>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* 근무 형태 (Work Location Type) - Multi-select checkboxes */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">근무 형태</label>
-          <div className="space-y-2">
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="location_type_remote"
-                checked={locationTypes.includes('remote')}
-                onCheckedChange={() => handleMultiToggle('location_type', 'remote')}
-              />
-              <label htmlFor="location_type_remote" className="text-sm text-slate-600 cursor-pointer">
-                원격근무
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="location_type_hybrid"
-                checked={locationTypes.includes('hybrid')}
-                onCheckedChange={() => handleMultiToggle('location_type', 'hybrid')}
-              />
-              <label htmlFor="location_type_hybrid" className="text-sm text-slate-600 cursor-pointer">
-                하이브리드
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="location_type_on_site"
-                checked={locationTypes.includes('on_site')}
-                onCheckedChange={() => handleMultiToggle('location_type', 'on_site')}
-              />
-              <label htmlFor="location_type_on_site" className="text-sm text-slate-600 cursor-pointer">
-                대면근무
-              </label>
-            </div>
-          </div>
-        </div>
-
-        {/* 카테고리 (Category) - Single-select dropdown */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">카테고리</label>
-          <Select value={category} onValueChange={(value) => handleFilterChange('category', value)}>
-            <SelectTrigger className="h-10 text-sm">
-              <SelectValue placeholder="전체" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체</SelectItem>
-              {CATEGORIES.map(cat => (
-                <SelectItem key={cat.code} value={cat.code}>
-                  {cat.nameKo}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* 한국어 레벨 (Korean Level) - Single-select dropdown */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">한국어 레벨</label>
-          <Select value={koreanLevel} onValueChange={(value) => handleFilterChange('korean_level', value)}>
-            <SelectTrigger className="h-10 text-sm">
-              <SelectValue placeholder="전체" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체</SelectItem>
-              {KOREAN_LEVELS.filter(level => level.code !== 'not_specified').map(level => (
-                <SelectItem key={level.code} value={level.code}>
-                  {level.nameKo}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* 영어 레벨 (English Level) - Single-select dropdown */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">영어 레벨</label>
-          <Select value={englishLevel} onValueChange={(value) => handleFilterChange('english_level', value)}>
-            <SelectTrigger className="h-10 text-sm">
-              <SelectValue placeholder="전체" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체</SelectItem>
-              {ENGLISH_LEVELS.filter(level => level.code !== 'not_specified').map(level => (
-                <SelectItem key={level.code} value={level.code}>
-                  {level.nameKo}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* 국적 (Nationality) - Single-select dropdown */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">국적</label>
-          <Select value={nationality} onValueChange={(value) => handleFilterChange('nationality', value)}>
-            <SelectTrigger className="h-10 text-sm">
-              <SelectValue placeholder="전체" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체</SelectItem>
-              {NATIONALITIES.filter(n => n.code !== 'ANY').map(nat => (
-                <SelectItem key={nat.code} value={nat.code}>
-                  {nat.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* 근무 국가 (Country) - Single-select dropdown */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">근무 국가</label>
-          <Select value={locationCountry} onValueChange={(value) => handleFilterChange('location_country', value)}>
-            <SelectTrigger className="h-10 text-sm">
-              <SelectValue placeholder="전체" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="all">전체</SelectItem>
-              {COUNTRIES.map(country => (
-                <SelectItem key={country.code} value={country.code}>
-                  {country.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
-
-        {/* 정렬 (Sort) - Single-select dropdown */}
-        <div className="space-y-3">
-          <label className="text-sm font-semibold text-slate-700">정렬</label>
-          <Select value={sortBy} onValueChange={(value) => handleFilterChange('sort', value)}>
-            <SelectTrigger className="h-10 text-sm">
-              <SelectValue placeholder="최신순" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="latest">최신순</SelectItem>
-              {keyword && <SelectItem value="relevance">관련도순</SelectItem>}
-            </SelectContent>
-          </Select>
-        </div>
-      </div>
-
-      {/* Reset Filters Button */}
-      {hasActiveFilters && (
-        <div className="flex justify-end">
-          <Button
-            variant="outline"
-            size="sm"
+      {/* Filter pills row — single horizontal scrollable line */}
+      <div className="relative">
+        <div
+          ref={scrollRef}
+          className="flex items-center gap-2 overflow-x-auto scrollbar-hide"
+          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+          {/* Reset */}
+          <button
             onClick={handleResetFilters}
-            className="gap-2"
+            className={`inline-flex items-center gap-1.5 whitespace-nowrap px-4 py-2 rounded-full text-sm font-medium transition-all shrink-0 border ${
+              hasActiveFilters
+                ? 'border-2 border-gray-900 text-gray-900 bg-white'
+                : 'border-gray-200 text-gray-600 bg-white hover:border-gray-400'
+            }`}
           >
-            <X className="h-4 w-4" />
-            필터 초기화
-          </Button>
+            <SlidersHorizontal className="w-3.5 h-3.5" />
+            {t('filters.resetAll')}
+          </button>
+
+          {/* 고용 형태 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={jobTypeLabel} active={jobTypes.length > 0} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-48 p-0" align="start">
+              <MultiSelectContent
+                items={localizedJobTypes}
+                selected={jobTypes}
+                onToggle={(code) => handleMultiToggle('job_type', code)}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 근무 형태 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={locationTypeLabel} active={locationTypes.length > 0} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-44 p-0" align="start">
+              <MultiSelectContent
+                items={LOCATION_TYPES}
+                selected={locationTypes}
+                onToggle={(code) => handleMultiToggle('location_type', code)}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 카테고리 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={categoryLabel} active={category !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-52 p-0" align="start">
+              <SingleSelectContent
+                items={localizedCategories}
+                selected={category}
+                onSelect={(code) => handleFilterChange('category', code)}
+                allLabel={t('filters.allCategory')}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 근무 국가 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={countryLabel} active={locationCountry !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-52 p-0" align="start">
+              <SingleSelectContent
+                items={localizedCountries}
+                selected={locationCountry}
+                onSelect={(code) => handleFilterChange('location_country', code)}
+                allLabel={t('filters.allCountry')}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 한국어 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={koreanLabel} active={koreanLevel !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-44 p-0" align="start">
+              <SingleSelectContent
+                items={localizedKoreanLevels.filter(l => l.code !== 'not_specified')}
+                selected={koreanLevel}
+                onSelect={(code) => handleFilterChange('korean_level', code)}
+                allLabel={t('filters.allKorean')}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 영어 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={englishLabel} active={englishLevel !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-48 p-0" align="start">
+              <SingleSelectContent
+                items={localizedEnglishLevels.filter(l => l.code !== 'not_specified')}
+                selected={englishLevel}
+                onSelect={(code) => handleFilterChange('english_level', code)}
+                allLabel={t('filters.allEnglish')}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 국적 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={nationalityLabel} active={nationality !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-52 p-0" align="start">
+              <SingleSelectContent
+                items={localizedNationalities.filter(n => n.code !== 'ANY')}
+                selected={nationality}
+                onSelect={(code) => handleFilterChange('nationality', code)}
+                allLabel={t('filters.allNationality')}
+              />
+            </PopoverContent>
+          </Popover>
+
+          {/* 정렬 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={sortLabel} active={sortBy !== 'latest'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-36 p-0" align="start">
+              <SingleSelectContent
+                items={[
+                  ...SORT_OPTIONS,
+                  ...(keyword ? [{ code: 'relevance', nameKo: t('filters.relevance') }] : []),
+                ]}
+                selected={sortBy}
+                onSelect={(code) => handleFilterChange('sort', code === 'all' ? 'latest' : code)}
+                allLabel={t('filters.latest')}
+              />
+            </PopoverContent>
+          </Popover>
         </div>
-      )}
+
+        {/* Right scroll fade + arrow */}
+        {canScrollRight && (
+          <button
+            onClick={scrollRight}
+            className="absolute right-0 top-0 bottom-0 w-12 flex items-center justify-end bg-gradient-to-l from-slate-50 via-slate-50/90 to-transparent"
+          >
+            <div className="w-8 h-8 rounded-full border border-gray-200 bg-white flex items-center justify-center shadow-sm">
+              <ChevronRight className="w-4 h-4 text-gray-600" />
+            </div>
+          </button>
+        )}
+      </div>
     </div>
   )
 }

@@ -115,3 +115,108 @@ export async function updateEmployerProfile(
 
   return { success: true }
 }
+
+/**
+ * Helper function to require employer authentication
+ */
+async function requireEmployer() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) throw new Error('Unauthorized')
+
+  const { data: profile } = await (supabase as any)
+    .from('employer_profiles')
+    .select('*')
+    .eq('user_id', user.id)
+    .single()
+
+  if (!profile) throw new Error('Employer profile not found')
+  return supabase
+}
+
+export interface SeekerFilters {
+  nationality?: string[]
+  topik_level?: number[]
+  english_level?: string[]
+  preferred_categories?: string[]
+  preferred_job_types?: string[]
+  preferred_countries?: string[]
+  preferred_location_type?: string
+}
+
+/**
+ * Get public seeker profiles with optional filtering
+ * Only accessible to authenticated employers
+ */
+export async function getSeekers(filters: SeekerFilters = {}) {
+  try {
+    const supabase = await requireEmployer()
+
+    let query = (supabase as any)
+      .from('seeker_profiles')
+      .select(`
+        id,
+        display_name,
+        bio,
+        nationality,
+        topik_level,
+        english_level,
+        city,
+        occupation,
+        preferred_job_types,
+        preferred_categories,
+        preferred_countries,
+        preferred_location_type,
+        phone,
+        linkedin_url,
+        portfolio_url,
+        preferred_contact_method,
+        user_id,
+        users!inner(email)
+      `)
+      .eq('is_profile_public', true)
+      .order('created_at', { ascending: false })
+
+    // Apply filters
+    if (filters.nationality && filters.nationality.length > 0) {
+      query = query.in('nationality', filters.nationality)
+    }
+    if (filters.topik_level && filters.topik_level.length > 0) {
+      query = query.in('topik_level', filters.topik_level)
+    }
+    if (filters.english_level && filters.english_level.length > 0) {
+      query = query.in('english_level', filters.english_level)
+    }
+    if (filters.preferred_categories && filters.preferred_categories.length > 0) {
+      query = query.overlaps('preferred_categories', filters.preferred_categories)
+    }
+    if (filters.preferred_job_types && filters.preferred_job_types.length > 0) {
+      query = query.overlaps('preferred_job_types', filters.preferred_job_types)
+    }
+    if (filters.preferred_countries && filters.preferred_countries.length > 0) {
+      query = query.overlaps('preferred_countries', filters.preferred_countries)
+    }
+    if (filters.preferred_location_type) {
+      query = query.eq('preferred_location_type', filters.preferred_location_type)
+    }
+
+    const { data, error } = await query
+
+    if (error) {
+      console.error('Failed to fetch seekers:', error)
+      return { seekers: [], error: error.message }
+    }
+
+    // Flatten user email into seeker object
+    const seekers = data?.map((s: any) => ({
+      ...s,
+      email: s.users?.email || '',
+      users: undefined, // Remove nested users object
+    })) || []
+
+    return { seekers, error: null }
+  } catch (error) {
+    console.error('getSeekers error:', error)
+    return { seekers: [], error: error instanceof Error ? error.message : 'Unknown error' }
+  }
+}

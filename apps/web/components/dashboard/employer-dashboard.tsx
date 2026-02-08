@@ -7,6 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Button } from '@/components/ui/button'
 import { JobPostTable } from './job-post-table'
 import { CompanySettingsForm } from './company-settings-form'
+import { SeekerBrowseSection } from './seeker-browse-section'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -96,6 +97,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
         <Tabs defaultValue="posts" className="space-y-6">
           <TabsList>
             <TabsTrigger value="posts">공고 관리</TabsTrigger>
+            <TabsTrigger value="talent">인재 탐색</TabsTrigger>
             <TabsTrigger value="settings">계정 설정</TabsTrigger>
           </TabsList>
 
@@ -110,6 +112,12 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
             {/* Posts Table */}
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
               <JobPostTable posts={posts} likeCounts={likeCounts} onPostDeleted={handlePostDeleted} />
+            </div>
+          </TabsContent>
+
+          <TabsContent value="talent" className="space-y-6">
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+              <SeekerBrowseSection />
             </div>
           </TabsContent>
 

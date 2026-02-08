@@ -1,0 +1,649 @@
+[    1494ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[  402159ms] [WARNING] Image with src "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[  402162ms] [WARNING] Image with src "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[ 1645374ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:111
+[ 1647656ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 1657898ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:111
+[ 1659399ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 2773457ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:111
+[ 2775606ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 2789568ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:111
+[ 2791273ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 2829737ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:111
+[ 2831258ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 2846913ms] [WARNING] [Fast Refresh] performing full reload
+
+Fast Refresh will perform a full reload when you edit a file that's imported by modules outside of the React rendering tree.
+You might have a file which exports a React component but also exports a value that is imported by a non-React component file.
+Consider migrating the non-React component export to a separate file and importing it into both files.
+
+It is also possible the parent component of the component you edited is a class component, which disables Fast Refresh.
+Fast Refresh requires at least one parent function component in your React tree. @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/hot-reloader-app.js:111
+[ 2848412ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 3219982ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed:  @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/app/use-websocket.js:41
+[ 3269184ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 3272252ms] [WARNING] The resource http://localhost:3000/_next/static/media/ff840cfebfb63b0c-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/job-seekers:0
+[ 3277243ms] [WARNING] The resource http://localhost:3000/_next/static/media/ff840cfebfb63b0c-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/job-seekers:0
+[ 3306984ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 3321933ms] Error: Hydration failed because the server rendered text didn't match the client. As a result this tree will be regenerated on the client. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+https://react.dev/link/hydration-mismatch
+
+  ...
+    <RootLayout>
+      <html lang="ko" className="__variable...">
+        <head>
+        ...
+          <Suspense fallback={<header>}>
+            <SiteHeaderWrapper>
+              <SiteHeader user={null} role={null}>
+                <motion.header initial={{y:-100}} animate={{y:0}} transition={{duration:0.5}} className="fixed top-...">
+                  <header className="fixed top-..." style={{...}} ref={function useMotionRef.useCallback}>
+                    <div className="max-w-7xl ...">
+                      <div className="flex items...">
+                        <LinkComponent>
+                        <nav className="hidden md:...">
+                          <LinkComponent href="/jobs" className="text-sm te...">
+                            <a
+                              className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium"
+                              ref={function}
+                              onClick={function onClick}
+                              onMouseEnter={function onMouseEnter}
+                              onTouchStart={function onTouchStart}
+                              href="/jobs"
+                            >
++                             Jobs
+-                             공고 보기
+                          ...
+                        ...
+          ...
+
+    at throwOnHydrationMismatch (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4506:11)
+    at prepareToHydrateHostInstance (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:4602:21)
+    at completeWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:11635:15)
+    at runWithFiberInDEV (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:872:30)
+    at completeUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15863:19)
+    at performUnitOfWork (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15744:11)
+    at workLoopConcurrentByScheduler (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15721:9)
+    at renderRootConcurrent (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:15696:15)
+    at performWorkOnRoot (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:14990:13)
+    at performWorkOnRootViaSchedulerTask (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:16816:7)
+    at MessagePort.performWorkUntilDeadline (webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/compiled/scheduler/cjs/scheduler.development.js:45:48)
+[ 3337029ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3337405ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3337405ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3337684ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3337684ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3338943ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3338943ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3339175ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3339175ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(app-pages-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/app/errors/intercept-console-error.js:56
+[ 3339454ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/privacy:0
+[ 3339766ms] Error: You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups
+    at getNextAppLoaderError (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/parseNextAppLoaderError.js:20:16)
+    at getModuleBuildError (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/webpackModuleError.js:127:78)
+    at async (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:29:49)
+    at async (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:27:21)
+[ 3339768ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup.js:76
+[ 3339768ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup.js:76
+[ 3339770ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/favicon.ico:0
+[ 3369822ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/privacy:0
+[ 3369850ms] Error: You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups
+    at getNextAppLoaderError (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/parseNextAppLoaderError.js:20:16)
+    at getModuleBuildError (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/webpackModuleError.js:127:78)
+    at async (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:29:49)
+    at async (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:27:21)
+[ 3369848ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup.js:76
+[ 3369848ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup.js:76
+[ 3377320ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/privacy:0
+[ 3377341ms] Error: You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups
+    at getNextAppLoaderError (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/parseNextAppLoaderError.js:20:16)
+    at getModuleBuildError (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/webpackModuleError.js:127:78)
+    at async (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:29:49)
+    at async (file:///Users/2303-pc02/potenlab/hire_foreigner/node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/build/webpack/plugins/wellknown-errors-plugin/index.js:27:21)
+[ 3377342ms] [ERROR] app/(marketing)/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup.js:76
+[ 3377342ms] [ERROR] app/privacy/page.tsx
+You cannot have two parallel pages that resolve to the same path. Please check /(marketing)/privacy/page and /privacy/page. Refer to the route group docs for more information: https://nextjs.org/docs/app/building-your-application/routing/route-groups @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/next-devtools/userspace/pages/pages-dev-overlay-setup.js:76
+[ 3398774ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[ 3399779ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[ 3400781ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[ 3401783ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[ 3402785ms] [ERROR] WebSocket connection to 'ws://localhost:3000/_next/webpack-hmr' failed: Error in connection establishment: net::ERR_CONNECTION_REFUSED @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/websocket.js:88
+[ 3407800ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/static/webpack/79acf4dbf61176bf.webpack.hot-update.json:0
+[ 3407800ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/hot-reloader-pages.js:347
+[ 3414227ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://localhost:3000/_next/static/webpack/79acf4dbf61176bf.webpack.hot-update.json:0
+[ 3414227ms] [WARNING] [Fast Refresh] performing full reload because your application had an unrecoverable error @ webpack-internal:///(pages-dir-browser)/../../node_modules/.pnpm/next@15.5.9_@playwright+test@1.58.0_react-dom@19.2.3_react@19.2.3__react@19.2.3/node_modules/next/dist/client/dev/hot-reloader/pages/hot-reloader-pages.js:347
+[ 4168136ms] [WARNING] The resource http://localhost:3000/_next/static/media/ff840cfebfb63b0c-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/login:0
+[ 4173122ms] [WARNING] The resource http://localhost:3000/_next/static/media/ff840cfebfb63b0c-s.p.woff2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/login:0
+[ 4283174ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:35055)
+    at rO (https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:36088)
+    at https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:118076
+    at ix (https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:122948)
+    at ik (https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:114736)
+    at https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:110723
+    at iu (https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:110824)
+    at iX (https://potenhire.com/_next/static/chunks/c476d598-9099ed8b975ae1d6.js:1:132927)
+    at MessagePort.w (https://potenhire.com/_next/static/chunks/498-ad4e539d948e058e.js:1:57180)
+[ 4284600ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://potenhire.com/employer?_rsc=3lb4g:0
+[ 5743252ms] [WARNING] [Warning] Please install/enable Redux devtools extension @ https://frontend-assets.supabase.com/studio/32817d2e7436/_next/static/chunks/86a543bb87658b3c.js?dpl=dpl_n5PKkT35wif6vtnGAXFts5bmxtK9:9
+[ 5744503ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.supabase.com/platform/auth/_/config:0
+[ 5744610ms] [ERROR] Failed to load resource: the server responded with a status of 401 () @ https://api.supabase.com/platform/projects/_/config/storage:0
+[ 5744771ms] [ERROR] Connecting to 'https://analytics.google.com/g/collect?a=adblocker_check' violates the following Content Security Policy directive: "default-src 'self' https://api.supabase.com http://localhost:8000 https://auth.supabase.io ws://localhost:8000 wss://localhost:8000 https://*.supabase.co wss://*.supabase.co https://*.hcaptcha.com https://cdn-global.configcat.com https://configcat.supabase.com https://*.stripe.com https://*.stripe.network https://www.cloudflare.com https://*.vercel-insights.com https://api.github.com https://raw.githubusercontent.com https://frontend-assets.supabase.com https://*.usercentrics.eu https://ss.supabase.com https://maps.googleapis.com https://ph.supabase.com https://cdnjs.cloudflare.com wss://*.pusher.com https://*.ingest.sentry.io https://*.ingest.us.sentry.io https://*.ingest.de.sentry.io". Note that 'connect-src' was not explicitly set, so 'default-src' is used as a fallback. The action has been blocked. @ https://frontend-assets.supabase.com/studio/32817d2e7436/_next/static/chunks/86a543bb87658b3c.js?dpl=dpl_n5PKkT35wif6vtnGAXFts5bmxtK9:8
+[ 5744771ms] [ERROR] Fetch API cannot load https://analytics.google.com/g/collect?a=adblocker_check. Refused to connect because it violates the document's Content Security Policy. @ https://frontend-assets.supabase.com/studio/32817d2e7436/_next/static/chunks/86a543bb87658b3c.js?dpl=dpl_n5PKkT35wif6vtnGAXFts5bmxtK9:8

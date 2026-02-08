@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { User } from '@supabase/supabase-js'
+import { useTranslation } from '@/lib/i18n'
 
 interface UserMenuProps {
   user: User
@@ -20,6 +21,7 @@ interface UserMenuProps {
 
 export function UserMenu({ user, role }: UserMenuProps) {
   const initials = user.email?.charAt(0).toUpperCase() || 'U'
+  const { t } = useTranslation()
 
   return (
     <DropdownMenu>
@@ -34,7 +36,7 @@ export function UserMenu({ user, role }: UserMenuProps) {
       <DropdownMenuContent className="w-56" align="end" forceMount>
         <DropdownMenuLabel className="font-normal">
           <div className="flex flex-col space-y-1">
-            <p className="text-sm font-medium leading-none">내 계정</p>
+            <p className="text-sm font-medium leading-none">{t('userMenu.myAccount')}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {user.email}
             </p>
@@ -42,22 +44,21 @@ export function UserMenu({ user, role }: UserMenuProps) {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
 
-        {/* Show dashboard link for employer and seeker */}
         {role === 'employer' && (
           <DropdownMenuItem asChild>
-            <Link href="/dashboard">고용주 대시보드</Link>
+            <Link href="/dashboard">{t('userMenu.employerDashboard')}</Link>
           </DropdownMenuItem>
         )}
 
         {role === 'seeker' && (
           <DropdownMenuItem asChild>
-            <Link href="/dashboard">마이페이지</Link>
+            <Link href="/dashboard">{t('userMenu.myPage')}</Link>
           </DropdownMenuItem>
         )}
 
         {role === 'admin' && (
           <DropdownMenuItem asChild>
-            <Link href="/admin">관리자 대시보드</Link>
+            <Link href="/admin">{t('userMenu.adminDashboard')}</Link>
           </DropdownMenuItem>
         )}
 
@@ -66,7 +67,7 @@ export function UserMenu({ user, role }: UserMenuProps) {
         <DropdownMenuItem asChild>
           <form action="/auth/signout" method="POST" className="w-full">
             <button type="submit" className="w-full text-left text-destructive">
-              로그아웃
+              {t('userMenu.logout')}
             </button>
           </form>
         </DropdownMenuItem>
