@@ -19,7 +19,6 @@ interface RelatedJob {
   slug: string | null
   title: string
   company_name: string
-  company_logo_url: string | null
   image_url: string | null
   work_location_type: string | null
   work_location_country: string | null
@@ -124,10 +123,10 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
                 <div className="p-4 flex flex-col h-full">
                   {/* Company Logo */}
                   <div className="flex items-center gap-3 mb-3">
-                    {job.company_logo_url ? (
+                    {job.image_url ? (
                       <div className="relative w-12 h-12 flex-shrink-0 overflow-hidden rounded-lg border border-slate-200">
                         <Image
-                          src={job.company_logo_url}
+                          src={job.image_url}
                           alt={`${job.company_name} 로고`}
                           fill
                           className="object-contain"

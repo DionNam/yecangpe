@@ -25,7 +25,7 @@ export async function RelatedJobsCarousel({
     const { data } = await supabase
       .from('job_posts')
       .select(
-        'id, slug, title, company_name, company_logo_url, image_url, work_location_type, work_location_country, job_type, published_at, salary_min, salary_max, salary_currency, salary_period'
+        'id, slug, title, company_name, image_url, work_location_type, work_location_country, job_type, published_at, salary_min, salary_max, salary_currency, salary_period'
       )
       .eq('review_status', 'published')
       .neq('id', currentJobId)
@@ -39,7 +39,7 @@ export async function RelatedJobsCarousel({
     const { data } = await supabase
       .from('job_posts')
       .select(
-        'id, slug, title, company_name, company_logo_url, image_url, work_location_type, work_location_country, job_type, published_at, salary_min, salary_max, salary_currency, salary_period'
+        'id, slug, title, company_name, image_url, work_location_type, work_location_country, job_type, published_at, salary_min, salary_max, salary_currency, salary_period'
       )
       .eq('review_status', 'published')
       .neq('id', currentJobId)

@@ -48,7 +48,7 @@ export function JobRow({
 
   // Get company logo or fallback
   const getCompanyLogo = () => {
-    const logoUrl = job.company_logo_url || job.image_url
+    const logoUrl = job.image_url
 
     if (logoUrl) {
       return (

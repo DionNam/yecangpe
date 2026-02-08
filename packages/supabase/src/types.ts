@@ -114,7 +114,6 @@ export type Database = {
                     expires_at: string | null;
                     status: Database["public"]["Enums"]["job_status"];
                     apply_click_count: number;
-                    company_logo_url: string | null;
                     created_at: string;
                     updated_at: string;
                 };
@@ -150,7 +149,6 @@ export type Database = {
                     expires_at?: string | null;
                     status?: Database["public"]["Enums"]["job_status"];
                     apply_click_count?: number;
-                    company_logo_url?: string | null;
                     created_at?: string;
                     updated_at?: string;
                 };
@@ -186,7 +184,6 @@ export type Database = {
                     expires_at?: string | null;
                     status?: Database["public"]["Enums"]["job_status"];
                     apply_click_count?: number;
-                    company_logo_url?: string | null;
                     created_at?: string;
                     updated_at?: string;
                 };

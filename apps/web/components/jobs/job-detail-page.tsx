@@ -112,7 +112,7 @@ export function JobDetailPage({
           {/* Company Info Card */}
           <JobDetailCompanyCard
             companyName={job.company_name}
-            companyLogoUrl={job.company_logo_url}
+            companyLogoUrl={job.image_url}
             companyWebsite={companyWebsite}
           />
 
