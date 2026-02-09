@@ -7,7 +7,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Button } from '@/components/ui/button'
 import { JobPostTable } from './job-post-table'
 import { CompanySettingsForm } from './company-settings-form'
-import { SeekerBrowseSection } from './seeker-browse-section'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -116,8 +115,14 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           </TabsContent>
 
           <TabsContent value="talent" className="space-y-6">
-            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-              <SeekerBrowseSection />
+            <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center py-12">
+              <h2 className="text-xl font-semibold mb-2">인재 탐색</h2>
+              <p className="text-sm text-gray-500 mb-6">
+                프로필을 공개한 구직자를 찾아보세요
+              </p>
+              <Button asChild>
+                <Link href="/employer/talent">인재 탐색 페이지로 이동</Link>
+              </Button>
             </div>
           </TabsContent>
 

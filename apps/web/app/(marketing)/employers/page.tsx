@@ -7,7 +7,6 @@ import { StepGuideSection } from '@/components/info-pages/step-guide-section'
 import { FinalCTASection } from '@/components/info-pages/final-cta-section'
 import { Footer } from '@/components/landing/footer'
 import { EmployerFAQSection } from '@/components/info-pages/employer-faq-section'
-import { SeekerBrowseSection } from '@/components/dashboard/seeker-browse-section'
 
 export const metadata: Metadata = {
   title: 'For Employers - Post Korean-Speaking Jobs for Free',
@@ -86,13 +85,6 @@ export default async function EmployersPage() {
 
       {/* Step Guide */}
       <StepGuideSection variant="employer" />
-
-      {/* Talent Pool */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <SeekerBrowseSection />
-        </div>
-      </section>
 
       {/* FAQ */}
       <EmployerFAQSection />

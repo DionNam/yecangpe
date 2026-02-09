@@ -5,7 +5,7 @@ import type { Database } from '@repo/supabase/types'
 type UserRole = Database['public']['Enums']['user_role']
 
 // Protected routes that require authentication (blacklist approach)
-const protectedRoutes = ['/my-page', '/dashboard', '/employer/posts', '/employer/new-post']
+const protectedRoutes = ['/my-page', '/dashboard', '/employer/posts', '/employer/new-post', '/employer/talent']
 const authRoutes = ['/auth/callback']
 const onboardingRoutes = ['/onboarding']
 
