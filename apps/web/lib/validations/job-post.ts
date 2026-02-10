@@ -85,14 +85,6 @@ export const jobPostSchema = z.object({
     })
   }
 
-  // New: At least one application method
-  if (!data.apply_url && !data.apply_email) {
-    ctx.addIssue({
-      code: z.ZodIssueCode.custom,
-      message: '지원 URL 또는 이메일 중 하나는 필수입니다',
-      path: ['apply_url'],
-    })
-  }
 })
 
 export const jobPostUpdateSchema = z.object({

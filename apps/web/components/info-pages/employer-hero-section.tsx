@@ -2,7 +2,7 @@
 
 import { motion } from 'motion/react'
 import Link from 'next/link'
-import { Sparkles, Shield, Globe, ArrowRight } from 'lucide-react'
+import { Sparkles, Shield, Globe, ArrowRight, Users } from 'lucide-react'
 import { useTranslation } from '@/lib/i18n'
 
 export function EmployerHeroSection() {
@@ -69,10 +69,12 @@ export function EmployerHeroSection() {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/jobs"
-                className="group px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-300 rounded-xl transition-all flex items-center justify-center gap-2 text-lg font-semibold"
+                href="/employer/talent"
+                className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 text-lg font-semibold"
               >
-                {t('employerPage.ctaSecondary')}
+                <Users className="w-5 h-5" />
+                {t('employerPage.ctaTalent')}
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
             </motion.div>
 

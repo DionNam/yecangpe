@@ -542,8 +542,8 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
           {/* Application method section */}
           <div className="space-y-4 border-t pt-6">
             <div>
-              <h3 className="text-sm font-medium">지원 방법 *</h3>
-              <p className="text-sm text-muted-foreground">URL 또는 이메일 중 하나는 필수입니다</p>
+              <h3 className="text-sm font-medium">지원 방법 (선택사항)</h3>
+              <p className="text-sm text-muted-foreground">입력하면 공고에 지원하기 버튼이 표시됩니다</p>
             </div>
 
             {/* Apply URL field */}
