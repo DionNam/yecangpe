@@ -19,7 +19,7 @@ export function FinalCTASection({ variant }: FinalCTASectionProps) {
   const secondaryText = t(`${prefix}.ctaSecondaryButton`)
 
   const primaryHref = variant === 'seeker' ? '/jobs' : '/employer/new-post'
-  const secondaryHref = variant === 'seeker' ? '#newsletter' : '/jobs'
+  const secondaryHref = variant === 'seeker' ? '#newsletter' : '/employer/talent'
   const primaryBgClass = variant === 'seeker' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/25' : 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/25'
 
   return (
