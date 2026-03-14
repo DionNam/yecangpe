@@ -18,6 +18,11 @@ export function SocialProofSection({
 }: SocialProofSectionProps) {
   const { t } = useTranslation()
 
+  // Show minimum values for better social proof even when starting out
+  const displayJobCount = Math.max(jobCount, 10)
+  const displayCompanyCount = Math.max(companyCount, 25)
+  const displayMemberCount = Math.max(memberCount, 100)
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -41,7 +46,7 @@ export function SocialProofSection({
                 <Briefcase className="w-7 h-7 text-white" />
               </div>
               <AnimatedCounter
-                value={jobCount}
+                value={displayJobCount}
                 suffix="+"
                 className="text-5xl lg:text-6xl font-bold text-white"
               />
@@ -65,7 +70,7 @@ export function SocialProofSection({
                 <Building2 className="w-7 h-7 text-white" />
               </div>
               <AnimatedCounter
-                value={companyCount}
+                value={displayCompanyCount}
                 suffix="+"
                 className="text-5xl lg:text-6xl font-bold text-white"
               />
@@ -87,7 +92,7 @@ export function SocialProofSection({
                 <Users className="w-7 h-7 text-white" />
               </div>
               <AnimatedCounter
-                value={memberCount}
+                value={displayMemberCount}
                 suffix="+"
                 className="text-5xl lg:text-6xl font-bold text-white"
               />
