@@ -68,76 +68,57 @@ export default function OnboardingPage() {
           </div>
 
           <div className="grid md:grid-cols-2 gap-4">
-            <Button
-              asChild={agreed}
-              variant="outline"
-              className="h-auto p-0 overflow-hidden group"
-              disabled={!agreed}
-              onClick={!agreed ? undefined : undefined}
-            >
-              {agreed ? (
-                <Link href="/onboarding/seeker" className="block">
-                  <div className="p-6 text-left transition-colors group-hover:bg-slate-50">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-slate-200 transition-colors">
-                        <Briefcase className="w-5 h-5 text-slate-700" />
-                      </div>
-                      <div className="font-semibold text-lg">일자리를 찾고 있어요</div>
+            {agreed ? (
+              <Link href="/onboarding/seeker" className="group block rounded-lg border border-slate-200 overflow-hidden hover:border-slate-400 hover:shadow-sm transition-all">
+                <div className="p-6 text-left transition-colors group-hover:bg-slate-50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-slate-200 transition-colors">
+                      <Briefcase className="w-5 h-5 text-slate-700" />
                     </div>
-                    <div className="text-sm text-muted-foreground pl-11">
-                      구직자로 가입합니다
-                    </div>
+                    <div className="font-semibold text-lg">일자리를 찾고 있어요</div>
                   </div>
-                </Link>
-              ) : (
-                <div className="p-6 text-left opacity-50">
+                  <div className="text-sm text-muted-foreground pl-11">구직자로 가입합니다</div>
+                </div>
+              </Link>
+            ) : (
+              <div className="rounded-lg border border-slate-200 overflow-hidden opacity-50 cursor-not-allowed">
+                <div className="p-6 text-left">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="p-2 rounded-lg bg-slate-100">
                       <Briefcase className="w-5 h-5 text-slate-700" />
                     </div>
                     <div className="font-semibold text-lg">일자리를 찾고 있어요</div>
                   </div>
-                  <div className="text-sm text-muted-foreground pl-11">
-                    구직자로 가입합니다
-                  </div>
+                  <div className="text-sm text-muted-foreground pl-11">구직자로 가입합니다</div>
                 </div>
-              )}
-            </Button>
+              </div>
+            )}
 
-            <Button
-              asChild={agreed}
-              variant="outline"
-              className="h-auto p-0 overflow-hidden group"
-              disabled={!agreed}
-            >
-              {agreed ? (
-                <Link href="/onboarding/employer" className="block">
-                  <div className="p-6 text-left transition-colors group-hover:bg-slate-50">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-slate-200 transition-colors">
-                        <Users className="w-5 h-5 text-slate-700" />
-                      </div>
-                      <div className="font-semibold text-lg">인재를 찾고 있어요</div>
+            {agreed ? (
+              <Link href="/onboarding/employer" className="group block rounded-lg border border-slate-200 overflow-hidden hover:border-slate-400 hover:shadow-sm transition-all">
+                <div className="p-6 text-left transition-colors group-hover:bg-slate-50">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="p-2 rounded-lg bg-slate-100 group-hover:bg-slate-200 transition-colors">
+                      <Users className="w-5 h-5 text-slate-700" />
                     </div>
-                    <div className="text-sm text-muted-foreground pl-11">
-                      고용주로 가입합니다
-                    </div>
+                    <div className="font-semibold text-lg">인재를 찾고 있어요</div>
                   </div>
-                </Link>
-              ) : (
-                <div className="p-6 text-left opacity-50">
+                  <div className="text-sm text-muted-foreground pl-11">고용주로 가입합니다</div>
+                </div>
+              </Link>
+            ) : (
+              <div className="rounded-lg border border-slate-200 overflow-hidden opacity-50 cursor-not-allowed">
+                <div className="p-6 text-left">
                   <div className="flex items-center gap-3 mb-3">
                     <div className="p-2 rounded-lg bg-slate-100">
                       <Users className="w-5 h-5 text-slate-700" />
                     </div>
                     <div className="font-semibold text-lg">인재를 찾고 있어요</div>
                   </div>
-                  <div className="text-sm text-muted-foreground pl-11">
-                    고용주로 가입합니다
-                  </div>
+                  <div className="text-sm text-muted-foreground pl-11">고용주로 가입합니다</div>
                 </div>
-              )}
-            </Button>
+              </div>
+            )}
           </div>
         </CardContent>
       </Card>
