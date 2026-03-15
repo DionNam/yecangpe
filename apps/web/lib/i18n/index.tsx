@@ -17,14 +17,24 @@ function getNestedValue(obj: Record<string, any>, path: string): any {
   return path.split('.').reduce((acc, key) => acc?.[key], obj)
 }
 
+function getDefaultLanguage(): Language {
+  // 1. User's saved preference takes priority
+  const stored = localStorage.getItem(STORAGE_KEY)
+  if (stored === 'en' || stored === 'ko') return stored
+
+  // 2. Fall back to IP-based default set by middleware
+  const match = document.cookie.match(/hanguljobs-lang-default=(ko|en)/)
+  if (match) return match[1] as Language
+
+  // 3. Final fallback
+  return 'ko'
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('ko')
 
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === 'en' || stored === 'ko') {
-      setLanguageState(stored)
-    }
+    setLanguageState(getDefaultLanguage())
   }, [])
 
   const setLanguage = useCallback((lang: Language) => {

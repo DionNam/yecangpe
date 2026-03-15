@@ -13,6 +13,17 @@ export async function middleware(request: NextRequest) {
   const { supabaseResponse, user, supabase } = await updateSession(request)
   const { pathname } = request.nextUrl
 
+  // Set language default cookie based on IP country (only if not already set by user)
+  if (!request.cookies.has('hanguljobs-lang-default')) {
+    const country = request.headers.get('x-vercel-ip-country') ?? ''
+    const defaultLang = country === 'KR' ? 'ko' : 'en'
+    supabaseResponse.cookies.set('hanguljobs-lang-default', defaultLang, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365, // 1 year
+      sameSite: 'lax',
+    })
+  }
+
   // Allow auth callback routes
   if (authRoutes.some(route => pathname.startsWith(route))) {
     return supabaseResponse
