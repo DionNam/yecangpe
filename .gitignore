@@ -29,3 +29,11 @@ next-env.d.ts
 .DS_Store
 Thumbs.db
 .vercel
+
+# Test artifacts
+.playwright-mcp/
+test-results/
+e2e/screenshots/
+*.png
+UAT-*.md
+uat-test-results.json
