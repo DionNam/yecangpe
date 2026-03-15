@@ -13,13 +13,20 @@ export async function middleware(request: NextRequest) {
   const { supabaseResponse, user, supabase } = await updateSession(request)
   const { pathname } = request.nextUrl
 
-  // Set language default cookie based on IP country (only if not already set by user)
+  // Set IP-based cookies (only on first visit)
+  const ipCountry = request.headers.get('x-vercel-ip-country') ?? ''
+  if (ipCountry && !request.cookies.has('hanguljobs-ip-country')) {
+    supabaseResponse.cookies.set('hanguljobs-ip-country', ipCountry, {
+      path: '/',
+      maxAge: 60 * 60 * 24 * 365,
+      sameSite: 'lax',
+    })
+  }
   if (!request.cookies.has('hanguljobs-lang-default')) {
-    const country = request.headers.get('x-vercel-ip-country') ?? ''
-    const defaultLang = country === 'KR' ? 'ko' : 'en'
+    const defaultLang = ipCountry === 'KR' ? 'ko' : 'en'
     supabaseResponse.cookies.set('hanguljobs-lang-default', defaultLang, {
       path: '/',
-      maxAge: 60 * 60 * 24 * 365, // 1 year
+      maxAge: 60 * 60 * 24 * 365,
       sameSite: 'lax',
     })
   }

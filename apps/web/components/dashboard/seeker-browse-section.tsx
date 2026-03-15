@@ -8,6 +8,19 @@ import { Loader2, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { useTranslation } from '@/lib/i18n'
 
+const TALENT_FILTER_KEY = 'hanguljobs-talent-filters'
+
+function loadSavedFilters(): SeekerFilters {
+  try {
+    const stored = localStorage.getItem(TALENT_FILTER_KEY)
+    if (stored) return JSON.parse(stored)
+    // IP country default
+    const match = document.cookie.match(/hanguljobs-ip-country=([A-Z]{2})/)
+    if (match) return { country_of_residence: [match[1]] }
+  } catch {}
+  return {}
+}
+
 export function SeekerBrowseSection() {
   const { t } = useTranslation()
   const [seekers, setSeekers] = useState<any[]>([])
@@ -15,6 +28,16 @@ export function SeekerBrowseSection() {
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  // Load saved filters on mount
+  useEffect(() => {
+    setFilters(loadSavedFilters())
+  }, [])
+
+  const handleFilterChange = (newFilters: SeekerFilters) => {
+    setFilters(newFilters)
+    localStorage.setItem(TALENT_FILTER_KEY, JSON.stringify(newFilters))
+  }
 
   useEffect(() => {
     loadSeekers()
@@ -71,7 +94,7 @@ export function SeekerBrowseSection() {
       </div>
 
       {/* Filter UI */}
-      <SeekerFiltersComponent filters={filters} onFilterChange={setFilters} />
+      <SeekerFiltersComponent filters={filters} onFilterChange={handleFilterChange} />
 
       {error && (
         <div className="bg-red-50 text-red-800 rounded-lg p-4 text-sm">

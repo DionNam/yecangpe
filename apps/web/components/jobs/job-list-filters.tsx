@@ -129,6 +129,20 @@ function SingleSelectContent({
   )
 }
 
+const FILTER_STORAGE_KEY = 'hanguljobs-job-filters'
+const FILTER_PARAMS = ['job_type', 'location_type', 'nationality', 'location_country', 'category', 'korean_level', 'english_level']
+
+function getIpCountry(): string {
+  const match = document.cookie.match(/hanguljobs-ip-country=([A-Z]{2})/)
+  return match ? match[1] : ''
+}
+
+function saveFilters(params: URLSearchParams) {
+  const toSave = new URLSearchParams()
+  FILTER_PARAMS.forEach(k => { if (params.has(k)) toSave.set(k, params.get(k)!) })
+  localStorage.setItem(FILTER_STORAGE_KEY, toSave.toString())
+}
+
 /* ─── Main component ─── */
 export function JobListFilters() {
   const router = useRouter()
@@ -136,6 +150,23 @@ export function JobListFilters() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [canScrollRight, setCanScrollRight] = useState(false)
   const { t, language } = useTranslation()
+
+  // On first load with no URL filters, apply saved or IP-based defaults
+  useEffect(() => {
+    const hasUrlFilters = FILTER_PARAMS.some(k => searchParams.has(k))
+    if (hasUrlFilters) return
+
+    const stored = localStorage.getItem(FILTER_STORAGE_KEY)
+    if (stored) {
+      router.replace(`/jobs?${stored}`)
+      return
+    }
+
+    const country = getIpCountry()
+    if (country) {
+      router.replace(`/jobs?location_country=${country}`)
+    }
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Localized filter items
   const localizedJobTypes = localizeItems(JOB_TYPES, language)
@@ -205,6 +236,7 @@ export function JobListFilters() {
       params.delete(param)
     }
     params.delete('page')
+    saveFilters(params)
     router.push(`/jobs?${params.toString()}`)
   }
 
@@ -220,6 +252,7 @@ export function JobListFilters() {
       params.delete(param)
     }
     params.delete('page')
+    saveFilters(params)
     router.push(`/jobs?${params.toString()}`)
   }
 
@@ -241,6 +274,7 @@ export function JobListFilters() {
   }, 300)
 
   const handleResetFilters = () => {
+    localStorage.removeItem(FILTER_STORAGE_KEY)
     router.push('/jobs')
   }
 
