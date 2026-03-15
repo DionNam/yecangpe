@@ -12,6 +12,18 @@ interface ProfileTabProps {
     korean_level: string | null
     occupation: string | null
     referral_source: string | null
+    is_profile_public: boolean | null
+    display_name: string | null
+    bio: string | null
+    english_level: string | null
+    country_of_residence: string | null
+    portfolio_url: string | null
+    linkedin_url: string | null
+    phone: string | null
+    preferred_contact_method: string | null
+    preferred_job_types: string[] | null
+    preferred_categories: string[] | null
+    preferred_location_type: string | null
   }
 }
 

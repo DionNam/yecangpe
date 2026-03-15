@@ -284,11 +284,14 @@ export function SeekerForm() {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  {getLocalizedLevels(KOREAN_LEVELS).map(level => (
+                  {getLocalizedLevels(KOREAN_LEVELS.filter(l => l.code !== 'not_required' && l.code !== 'not_specified')).map(level => (
                     <SelectItem key={level.code} value={level.code}>
                       {level.displayName}
                     </SelectItem>
                   ))}
+                  <SelectItem value="not_specified">
+                    {language === 'en' ? "I don't know" : '모르겠어요'}
+                  </SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -569,13 +572,19 @@ export function SeekerForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('seekerOnboarding.referralSource')}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={t('seekerOnboarding.referralPlaceholder')}
-                  {...field}
-                  value={field.value || ''}
-                />
-              </FormControl>
+              <Select onValueChange={field.onChange} defaultValue={field.value ?? ''}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('seekerOnboarding.referralPlaceholder')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="google">{language === 'en' ? 'Google Search' : '구글 검색'}</SelectItem>
+                  <SelectItem value="instagram">{language === 'en' ? 'Instagram Ad' : '인스타 광고'}</SelectItem>
+                  <SelectItem value="referral">{language === 'en' ? 'Friend Referral' : '지인 추천'}</SelectItem>
+                  <SelectItem value="other">{language === 'en' ? 'Other' : '기타'}</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}
