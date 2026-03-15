@@ -1,7 +1,4 @@
 {
-  "github": {
-    "enabled": false
-  },
   "buildCommand": "cd ../.. && pnpm build --filter=@repo/web",
   "devCommand": "cd ../.. && pnpm dev --filter=@repo/web",
   "installCommand": "cd ../.. && pnpm install --frozen-lockfile",
