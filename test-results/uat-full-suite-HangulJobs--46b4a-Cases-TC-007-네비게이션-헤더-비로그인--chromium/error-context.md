@@ -1,0 +1,349 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "H HangulJobs" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: H
+        - generic [ref=e8]: HangulJobs
+      - navigation [ref=e9]:
+        - link "공고 보기" [ref=e10] [cursor=pointer]:
+          - /url: /jobs
+        - link "고용주" [ref=e11] [cursor=pointer]:
+          - /url: /employers
+        - button "EN" [ref=e12]
+        - link "로그인" [ref=e13] [cursor=pointer]:
+          - /url: /login
+  - main [ref=e14]:
+    - generic [ref=e20]:
+      - generic [ref=e21]:
+        - generic [ref=e23]: No.1 한국어 구인구직 플랫폼
+        - heading "한국어 가능한 인재를 위한 글로벌 채용" [level=1] [ref=e24]:
+          - text: 한국어 가능한 인재를 위한
+          - text: 글로벌 채용
+        - paragraph [ref=e25]:
+          - text: 한국어를 구사하는 글로벌 인재와 검증된 채용 공고를 연결합니다.
+          - text: 전 세계 한국어 일자리를 한곳에서 찾아보세요.
+        - generic [ref=e26]:
+          - link "구직자로 시작하기" [ref=e27] [cursor=pointer]:
+            - /url: /job-seekers
+            - text: 구직자로 시작하기
+            - img [ref=e28]
+          - link "채용 공고 올리기" [ref=e30] [cursor=pointer]:
+            - /url: /employers
+            - text: 채용 공고 올리기
+            - img [ref=e31]
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - img [ref=e36]
+            - generic [ref=e39]: 검증된 채용 공고
+          - generic [ref=e40]:
+            - img [ref=e41]
+            - generic [ref=e44]: 글로벌 기회
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - generic [ref=e50]: 한국어 특화
+      - generic [ref=e51]:
+        - img "Diverse professionals finding Korean-speaking jobs worldwide" [ref=e53]
+        - generic [ref=e56]:
+          - img [ref=e58]
+          - generic [ref=e61]:
+            - paragraph [ref=e62]: 100% 검증
+            - paragraph [ref=e63]: 모든 공고 심사 완료
+    - generic [ref=e66]:
+      - generic [ref=e68]:
+        - img [ref=e70]
+        - generic [ref=e73]: 0+
+        - paragraph [ref=e74]: Active Jobs
+        - paragraph [ref=e75]: 등록 채용 공고
+      - generic [ref=e78]:
+        - img [ref=e80]
+        - generic [ref=e84]: 0+
+        - paragraph [ref=e85]: Companies
+        - paragraph [ref=e86]: 등록 기업
+      - generic [ref=e89]:
+        - img [ref=e91]
+        - generic [ref=e96]: 0+
+        - paragraph [ref=e97]: Job Seekers
+        - paragraph [ref=e98]: 가입 구직자
+    - generic [ref=e102]:
+      - generic [ref=e103]:
+        - paragraph [ref=e104]: 최신 채용 공고
+        - heading "최신 채용 공고" [level=2] [ref=e105]
+        - paragraph [ref=e106]: 한국어를 구사하는 전문 인력을 위한 최신 기회를 확인하세요
+      - generic [ref=e107]:
+        - link "E2E Test - Frontend Developer (React/Next.js) Test Company Inc Full Time Remote 상세 보기" [ref=e109] [cursor=pointer]:
+          - /url: /jobs/e2e-test-frontend-developer-react-next-js-5e28dfd2
+          - generic [ref=e110]:
+            - heading "E2E Test - Frontend Developer (React/Next.js)" [level=3] [ref=e111]
+            - paragraph [ref=e112]: Test Company Inc
+            - generic [ref=e113]:
+              - generic [ref=e114]: Full Time
+              - generic [ref=e115]: Remote
+            - img [ref=e117]
+            - generic [ref=e119]:
+              - text: 상세 보기
+              - img [ref=e120]
+        - link "긴급 - 전시회 통역 (3일) 은지 Full Time On-site ID Jan 26, 2026 상세 보기" [ref=e123] [cursor=pointer]:
+          - /url: /jobs/긴급-전시회-통역-3일-e4bbb213
+          - generic [ref=e124]:
+            - heading "긴급 - 전시회 통역 (3일)" [level=3] [ref=e125]
+            - paragraph [ref=e126]: 은지
+            - generic [ref=e127]:
+              - generic [ref=e128]: Full Time
+              - generic [ref=e129]: On-site
+              - generic [ref=e130]: ID
+            - generic [ref=e131]:
+              - img [ref=e132]
+              - generic [ref=e134]: Jan 26, 2026
+            - generic [ref=e135]:
+              - text: 상세 보기
+              - img [ref=e136]
+        - link "Korean Liaison Officer Needed Subedi Trade Full Time On-site NP Jan 24, 2026 상세 보기" [ref=e139] [cursor=pointer]:
+          - /url: /jobs/korean-liaison-officer-needed-ec7cb7ea
+          - generic [ref=e140]:
+            - heading "Korean Liaison Officer Needed" [level=3] [ref=e141]
+            - paragraph [ref=e142]: Subedi Trade
+            - generic [ref=e143]:
+              - generic [ref=e144]: Full Time
+              - generic [ref=e145]: On-site
+              - generic [ref=e146]: NP
+            - generic [ref=e147]:
+              - img [ref=e148]
+              - generic [ref=e150]: Jan 24, 2026
+            - generic [ref=e151]:
+              - text: 상세 보기
+              - img [ref=e152]
+        - link "한국-인니 이사회 실시간 통역사 구인 Dial Full Time On-site ID Jan 23, 2026 상세 보기" [ref=e155] [cursor=pointer]:
+          - /url: /jobs/한국-인니-이사회-실시간-통역사-구인-82fdc93c
+          - generic [ref=e156]:
+            - heading "한국-인니 이사회 실시간 통역사 구인" [level=3] [ref=e157]
+            - paragraph [ref=e158]: Dial
+            - generic [ref=e159]:
+              - generic [ref=e160]: Full Time
+              - generic [ref=e161]: On-site
+              - generic [ref=e162]: ID
+            - generic [ref=e163]:
+              - img [ref=e164]
+              - generic [ref=e166]: Jan 23, 2026
+            - generic [ref=e167]:
+              - text: 상세 보기
+              - img [ref=e168]
+        - link "긴급 구인 - 단기 통역 윤아 Full Time On-site ID Jan 22, 2026 상세 보기" [ref=e171] [cursor=pointer]:
+          - /url: /jobs/긴급-구인-단기-통역-596f3a45
+          - generic [ref=e172]:
+            - heading "긴급 구인 - 단기 통역" [level=3] [ref=e173]
+            - paragraph [ref=e174]: 윤아
+            - generic [ref=e175]:
+              - generic [ref=e176]: Full Time
+              - generic [ref=e177]: On-site
+              - generic [ref=e178]: ID
+            - generic [ref=e179]:
+              - img [ref=e180]
+              - generic [ref=e182]: Jan 22, 2026
+            - generic [ref=e183]:
+              - text: 상세 보기
+              - img [ref=e184]
+        - link "Korean Language Instructor (Online) Paudel & Co Full Time Hybrid Jan 21, 2026 상세 보기" [ref=e187] [cursor=pointer]:
+          - /url: /jobs/korean-language-instructor-online-d8e67969
+          - generic [ref=e188]:
+            - heading "Korean Language Instructor (Online)" [level=3] [ref=e189]
+            - paragraph [ref=e190]: Paudel & Co
+            - generic [ref=e191]:
+              - generic [ref=e192]: Full Time
+              - generic [ref=e193]: Hybrid
+            - generic [ref=e194]:
+              - img [ref=e195]
+              - generic [ref=e197]: Jan 21, 2026
+            - generic [ref=e198]:
+              - text: 상세 보기
+              - img [ref=e199]
+      - link "전체 공고 보기" [ref=e202] [cursor=pointer]:
+        - /url: /jobs
+        - text: 전체 공고 보기
+        - img [ref=e203]
+    - generic [ref=e206]:
+      - heading "한국어 구사 직무 검색" [level=2] [ref=e207]
+      - generic [ref=e208]:
+        - generic [ref=e209]:
+          - generic [ref=e210]:
+            - img [ref=e211]
+            - textbox "직무명, 키워드..." [ref=e214]
+          - generic [ref=e215]:
+            - img [ref=e216]
+            - textbox "지역 (도시, 국가)..." [ref=e219]
+        - button "검색" [ref=e220]
+      - generic [ref=e221]:
+        - paragraph [ref=e222]: "인기 검색어:"
+        - generic [ref=e223]:
+          - button "번역" [ref=e224]
+          - button "교육" [ref=e225]
+          - button "IT/엔지니어링" [ref=e226]
+          - button "마케팅" [ref=e227]
+          - button "원격근무" [ref=e228]
+    - generic [ref=e230]:
+      - heading "HangulJobs 이용 방법" [level=2] [ref=e231]
+      - generic [ref=e232]:
+        - link "구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역, 유형, 언어 레벨로 필터링 직접 고용주에게 지원 자세히 보기" [ref=e234] [cursor=pointer]:
+          - /url: /job-seekers
+          - generic [ref=e235]:
+            - img "구직자 이용 방법" [ref=e236]
+            - heading "구직자 이용 방법" [level=3] [ref=e238]
+          - generic [ref=e239]:
+            - paragraph [ref=e240]: 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지.
+            - list [ref=e241]:
+              - listitem [ref=e242]:
+                - generic [ref=e244]: 검증된 채용 공고 탐색
+              - listitem [ref=e245]:
+                - generic [ref=e247]: 지역, 유형, 언어 레벨로 필터링
+              - listitem [ref=e248]:
+                - generic [ref=e250]: 직접 고용주에게 지원
+            - generic [ref=e251]:
+              - text: 자세히 보기
+              - img [ref=e252]
+        - link "고용주 이용 방법 고용주 이용 방법 전 세계 한국어 구사 인재와 연결하세요. 무료로 채용 공고를 게시하고 한국 비즈니스 문화를 이해하는 인재를 만나보세요. 무료 공고 게시 글로벌 한국어 인재 네트워크 관리자 검증 채용 공고 자세히 보기" [ref=e255] [cursor=pointer]:
+          - /url: /employers
+          - generic [ref=e256]:
+            - img "고용주 이용 방법" [ref=e257]
+            - heading "고용주 이용 방법" [level=3] [ref=e259]
+          - generic [ref=e260]:
+            - paragraph [ref=e261]: 전 세계 한국어 구사 인재와 연결하세요. 무료로 채용 공고를 게시하고 한국 비즈니스 문화를 이해하는 인재를 만나보세요.
+            - list [ref=e262]:
+              - listitem [ref=e263]:
+                - generic [ref=e265]: 무료 공고 게시
+              - listitem [ref=e266]:
+                - generic [ref=e268]: 글로벌 한국어 인재 네트워크
+              - listitem [ref=e269]:
+                - generic [ref=e271]: 관리자 검증 채용 공고
+            - generic [ref=e272]:
+              - text: 자세히 보기
+              - img [ref=e273]
+    - generic [ref=e276]:
+      - heading "카테고리별 공고 탐색" [level=2] [ref=e277]
+      - generic [ref=e278]:
+        - link "고용 형태별 정규직, 파트타임, 프리랜서 등" [ref=e280] [cursor=pointer]:
+          - /url: /jobs?job_type=full_time
+          - generic [ref=e281]:
+            - img [ref=e282]
+            - heading "고용 형태별" [level=3] [ref=e285]
+            - paragraph [ref=e286]: 정규직, 파트타임, 프리랜서 등
+        - link "근무 형태별 원격, 하이브리드, 대면" [ref=e288] [cursor=pointer]:
+          - /url: /jobs?location_type=remote
+          - generic [ref=e289]:
+            - img [ref=e290]
+            - heading "근무 형태별" [level=3] [ref=e293]
+            - paragraph [ref=e294]: 원격, 하이브리드, 대면
+        - link "지역별 국가별 공고 보기" [ref=e296] [cursor=pointer]:
+          - /url: /jobs?location_country=KR
+          - generic [ref=e297]:
+            - img [ref=e298]
+            - heading "지역별" [level=3] [ref=e301]
+            - paragraph [ref=e302]: 국가별 공고 보기
+        - link "카테고리별 IT, 마케팅, 교육 등" [ref=e304] [cursor=pointer]:
+          - /url: /jobs?category=it_engineering
+          - generic [ref=e305]:
+            - img [ref=e306]
+            - heading "카테고리별" [level=3] [ref=e310]
+            - paragraph [ref=e311]: IT, 마케팅, 교육 등
+        - link "언어 수준별 한국어 능력 수준" [ref=e313] [cursor=pointer]:
+          - /url: /jobs?korean_level=advanced
+          - generic [ref=e314]:
+            - img [ref=e315]
+            - heading "언어 수준별" [level=3] [ref=e319]
+            - paragraph [ref=e320]: 한국어 능력 수준
+    - generic [ref=e322]:
+      - heading "자주 묻는 질문" [level=2] [ref=e323]
+      - generic [ref=e324]:
+        - heading "HangulJobs는 무료인가요?" [level=3] [ref=e326]:
+          - button "HangulJobs는 무료인가요?" [ref=e327]:
+            - text: HangulJobs는 무료인가요?
+            - img
+        - heading "한국어를 유창하게 해야 하나요?" [level=3] [ref=e329]:
+          - button "한국어를 유창하게 해야 하나요?" [ref=e330]:
+            - text: 한국어를 유창하게 해야 하나요?
+            - img
+        - heading "어떤 종류의 직무가 있나요?" [level=3] [ref=e332]:
+          - button "어떤 종류의 직무가 있나요?" [ref=e333]:
+            - text: 어떤 종류의 직무가 있나요?
+            - img
+        - heading "고용주로서 공고를 어떻게 올리나요?" [level=3] [ref=e335]:
+          - button "고용주로서 공고를 어떻게 올리나요?" [ref=e336]:
+            - text: 고용주로서 공고를 어떻게 올리나요?
+            - img
+        - heading "원격 근무가 가능한가요?" [level=3] [ref=e338]:
+          - button "원격 근무가 가능한가요?" [ref=e339]:
+            - text: 원격 근무가 가능한가요?
+            - img
+    - generic [ref=e345]:
+      - heading "최신 소식 받기" [level=2] [ref=e346]
+      - paragraph [ref=e347]: 최신 한국어 구직 기회를 이메일로 받아보세요
+      - generic [ref=e348]:
+        - button "구직자입니다" [ref=e349]
+        - button "고용주입니다" [ref=e350]
+      - generic [ref=e351]:
+        - textbox "이름" [ref=e352]
+        - textbox "이메일" [ref=e353]
+        - button "구독하기" [ref=e354]
+    - generic [ref=e356]:
+      - generic [ref=e357]:
+        - generic [ref=e358]:
+          - generic [ref=e359]:
+            - generic [ref=e361]: H
+            - generic [ref=e362]: HangulJobs
+          - paragraph [ref=e363]: Find Korean-Speaking Jobs Worldwide
+          - paragraph [ref=e364]: 전 세계 한국어 구인구직 플랫폼
+        - generic [ref=e365]:
+          - heading "공고 탐색" [level=4] [ref=e366]
+          - list [ref=e367]:
+            - listitem [ref=e368]:
+              - link "원격 근무" [ref=e369] [cursor=pointer]:
+                - /url: /jobs?work_location_type=remote
+            - listitem [ref=e370]:
+              - link "정규직" [ref=e371] [cursor=pointer]:
+                - /url: /jobs?job_type=full_time
+            - listitem [ref=e372]:
+              - link "파트타임" [ref=e373] [cursor=pointer]:
+                - /url: /jobs?job_type=part_time
+            - listitem [ref=e374]:
+              - link "전체 공고" [ref=e375] [cursor=pointer]:
+                - /url: /jobs
+        - generic [ref=e376]:
+          - heading "리소스" [level=4] [ref=e377]
+          - list [ref=e378]:
+            - listitem [ref=e379]:
+              - link "구직자 이용 방법" [ref=e380] [cursor=pointer]:
+                - /url: /job-seekers
+            - listitem [ref=e381]:
+              - link "고용주 이용 방법" [ref=e382] [cursor=pointer]:
+                - /url: /employers
+            - listitem [ref=e383]:
+              - link "FAQ" [ref=e384] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e385]:
+              - link "소개" [ref=e386] [cursor=pointer]:
+                - /url: /about
+        - generic [ref=e387]:
+          - heading "법적 안내" [level=4] [ref=e388]
+          - list [ref=e389]:
+            - listitem [ref=e390]:
+              - link "이용약관" [ref=e391] [cursor=pointer]:
+                - /url: /terms
+            - listitem [ref=e392]:
+              - link "개인정보처리방침" [ref=e393] [cursor=pointer]:
+                - /url: /privacy
+            - listitem [ref=e394]:
+              - link "문의하기" [ref=e395] [cursor=pointer]:
+                - /url: /contact
+      - generic [ref=e396]:
+        - paragraph [ref=e397]: © 2026 HangulJobs. All rights reserved.
+        - generic [ref=e398]:
+          - link "Twitter" [ref=e399] [cursor=pointer]:
+            - /url: "#"
+          - link "LinkedIn" [ref=e400] [cursor=pointer]:
+            - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e406] [cursor=pointer]:
+    - img [ref=e407]
+  - alert [ref=e410]
+```

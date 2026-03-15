@@ -1,0 +1,47 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "H HangulJobs" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: H
+        - generic [ref=e8]: HangulJobs
+      - navigation [ref=e9]:
+        - link "공고 보기" [ref=e10] [cursor=pointer]:
+          - /url: /jobs
+        - link "고용주" [ref=e11] [cursor=pointer]:
+          - /url: /employers
+        - button "EN" [ref=e12]
+        - link "로그인" [ref=e13] [cursor=pointer]:
+          - /url: /login
+  - generic [ref=e14]:
+    - link "메인으로" [ref=e16] [cursor=pointer]:
+      - /url: /
+      - img [ref=e17]
+      - text: 메인으로
+    - generic [ref=e23]:
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - generic [ref=e28]:
+            - img [ref=e29]
+            - generic [ref=e32]: HangulJobs
+          - heading "환영합니다" [level=1] [ref=e33]
+          - paragraph [ref=e34]: 한국어 가능한 외국인을 위한 채용 플랫폼
+        - generic [ref=e35]:
+          - button "Google로 계속하기" [ref=e36]:
+            - img
+            - text: Google로 계속하기
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - img [ref=e41]
+              - generic [ref=e43]: 관리자 승인형 공고로 안전한 플랫폼
+            - generic [ref=e44]:
+              - img [ref=e46]
+              - generic [ref=e49]: 다양한 국적의 글로벌 인재 연결
+      - paragraph [ref=e50]: 계정이 없으신가요? 로그인 후 자동으로 프로필을 생성합니다
+  - button "Open Next.js Dev Tools" [ref=e56] [cursor=pointer]:
+    - img [ref=e57]
+  - alert [ref=e60]
+```

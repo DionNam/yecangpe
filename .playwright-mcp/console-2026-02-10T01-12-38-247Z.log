@@ -1,0 +1,2 @@
+[      -4ms] [ERROR] Failed to load resource: the server responded with a status of 403 () @ https://testcompany.com/apply:0
+[     443ms] [ERROR] Failed to load resource: the server responded with a status of 441 () @ https://testcompany.com/favicon.ico:0

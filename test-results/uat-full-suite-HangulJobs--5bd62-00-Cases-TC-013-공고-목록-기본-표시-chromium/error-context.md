@@ -1,0 +1,262 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "H HangulJobs" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: H
+        - generic [ref=e8]: HangulJobs
+      - navigation [ref=e9]:
+        - link "공고 보기" [ref=e10] [cursor=pointer]:
+          - /url: /jobs
+        - link "고용주" [ref=e11] [cursor=pointer]:
+          - /url: /employers
+        - button "EN" [ref=e12]
+        - link "로그인" [ref=e13] [cursor=pointer]:
+          - /url: /login
+  - main [ref=e14]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: 채용 공고
+        - heading "맞춤형 채용 공고" [level=1] [ref=e21]
+        - paragraph [ref=e23]: 한국어 가능한 외국인을 위한 다양한 직무의 채용 공고를 확인하세요
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - img [ref=e27]
+          - textbox "직무명, 회사명, 키워드로 검색..." [ref=e30]
+        - generic [ref=e32]:
+          - button "필터 전체" [ref=e33]:
+            - img [ref=e34]
+            - text: 필터 전체
+          - button "고용 형태" [ref=e36]:
+            - text: 고용 형태
+            - img [ref=e37]
+          - button "근무 형태" [ref=e40]:
+            - text: 근무 형태
+            - img [ref=e41]
+          - button "카테고리" [ref=e44]:
+            - text: 카테고리
+            - img [ref=e45]
+          - button "근무 국가" [ref=e48]:
+            - text: 근무 국가
+            - img [ref=e49]
+          - button "한국어" [ref=e52]:
+            - text: 한국어
+            - img [ref=e53]
+          - button "영어" [ref=e56]:
+            - text: 영어
+            - img [ref=e57]
+          - button "국적" [ref=e60]:
+            - text: 국적
+            - img [ref=e61]
+          - button "최신순" [ref=e64]:
+            - text: 최신순
+            - img [ref=e65]
+      - generic [ref=e68]:
+        - generic [ref=e69] [cursor=pointer]:
+          - generic [ref=e70]: T
+          - generic [ref=e71]:
+            - heading "E2E Test - Frontend Developer (React/Next.js)" [level=3] [ref=e73]
+            - paragraph [ref=e74]: Test Company Inc
+            - generic [ref=e76]:
+              - img [ref=e77]
+              - generic [ref=e80]: 원격근무
+            - generic [ref=e81]:
+              - generic [ref=e82]: 정규직
+              - generic [ref=e83]: 원격
+              - generic [ref=e84]: "한국어: 중급"
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - img [ref=e87]
+              - text: "-"
+            - button "공유" [ref=e90]:
+              - img
+              - generic [ref=e91]: 공유
+        - generic [ref=e92] [cursor=pointer]:
+          - generic [ref=e93]: 은
+          - generic [ref=e94]:
+            - heading "긴급 - 전시회 통역 (3일)" [level=3] [ref=e96]
+            - paragraph [ref=e97]: 은지
+            - generic [ref=e99]:
+              - img [ref=e100]
+              - generic [ref=e103]: 인도네시아
+            - generic [ref=e104]:
+              - generic [ref=e105]: 정규직
+              - generic [ref=e106]: 현장
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - img [ref=e109]
+              - text: 19일 전
+            - button "공유" [ref=e112]:
+              - img
+              - generic [ref=e113]: 공유
+        - generic [ref=e114] [cursor=pointer]:
+          - generic [ref=e115]: S
+          - generic [ref=e116]:
+            - heading "Korean Liaison Officer Needed" [level=3] [ref=e118]
+            - paragraph [ref=e119]: Subedi Trade
+            - generic [ref=e121]:
+              - img [ref=e122]
+              - generic [ref=e125]: 네팔
+            - generic [ref=e126]:
+              - generic [ref=e127]: 정규직
+              - generic [ref=e128]: 현장
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - img [ref=e131]
+              - text: 21일 전
+            - button "공유" [ref=e134]:
+              - img
+              - generic [ref=e135]: 공유
+        - generic [ref=e136] [cursor=pointer]:
+          - generic [ref=e137]: D
+          - generic [ref=e138]:
+            - heading "한국-인니 이사회 실시간 통역사 구인" [level=3] [ref=e140]
+            - paragraph [ref=e141]: Dial
+            - generic [ref=e143]:
+              - img [ref=e144]
+              - generic [ref=e147]: 인도네시아
+            - generic [ref=e148]:
+              - generic [ref=e149]: 정규직
+              - generic [ref=e150]: 현장
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - img [ref=e153]
+              - text: 22일 전
+            - button "공유" [ref=e156]:
+              - img
+              - generic [ref=e157]: 공유
+        - generic [ref=e158] [cursor=pointer]:
+          - generic [ref=e159]: 윤
+          - generic [ref=e160]:
+            - heading "긴급 구인 - 단기 통역" [level=3] [ref=e162]
+            - paragraph [ref=e163]: 윤아
+            - generic [ref=e165]:
+              - img [ref=e166]
+              - generic [ref=e169]: 인도네시아
+            - generic [ref=e170]:
+              - generic [ref=e171]: 정규직
+              - generic [ref=e172]: 현장
+          - generic [ref=e173]:
+            - generic [ref=e174]:
+              - img [ref=e175]
+              - text: 23일 전
+            - button "공유" [ref=e178]:
+              - img
+              - generic [ref=e179]: 공유
+        - generic [ref=e180] [cursor=pointer]:
+          - generic [ref=e181]: P
+          - generic [ref=e182]:
+            - heading "Korean Language Instructor (Online)" [level=3] [ref=e184]
+            - paragraph [ref=e185]: Paudel & Co
+            - generic [ref=e187]:
+              - img [ref=e188]
+              - generic [ref=e191]: 하이브리드
+            - generic [ref=e192]:
+              - generic [ref=e193]: 정규직
+              - generic [ref=e194]: 하이브리드
+          - generic [ref=e195]:
+            - generic [ref=e196]:
+              - img [ref=e197]
+              - text: 24일 전
+            - button "공유" [ref=e200]:
+              - img
+              - generic [ref=e201]: 공유
+        - generic [ref=e202] [cursor=pointer]:
+          - generic [ref=e203]: B
+          - generic [ref=e204]:
+            - heading "통역사 급구" [level=3] [ref=e206]
+            - paragraph [ref=e207]: Bold
+            - generic [ref=e209]:
+              - img [ref=e210]
+              - generic [ref=e213]: 몽골
+            - generic [ref=e214]:
+              - generic [ref=e215]: 정규직
+              - generic [ref=e216]: 현장
+          - generic [ref=e217]:
+            - generic [ref=e218]:
+              - img [ref=e219]
+              - text: 25일 전
+            - button "공유" [ref=e222]:
+              - img
+              - generic [ref=e223]: 공유
+        - generic [ref=e224] [cursor=pointer]:
+          - generic [ref=e225]: S
+          - generic [ref=e226]:
+            - heading "Korean Restaurant Manager" [level=3] [ref=e228]
+            - paragraph [ref=e229]: Subash Limbu
+            - generic [ref=e231]:
+              - img [ref=e232]
+              - generic [ref=e235]: 네팔
+            - generic [ref=e236]:
+              - generic [ref=e237]: 정규직
+              - generic [ref=e238]: 현장
+          - generic [ref=e239]:
+            - generic [ref=e240]:
+              - img [ref=e241]
+              - text: 27일 전
+            - button "공유" [ref=e244]:
+              - img
+              - generic [ref=e245]: 공유
+        - generic [ref=e246] [cursor=pointer]:
+          - generic [ref=e247]: K
+          - generic [ref=e248]:
+            - heading "Korean Language Customer Service (Remote)" [level=3] [ref=e250]
+            - paragraph [ref=e251]: Kumar & Associates
+            - generic [ref=e253]:
+              - img [ref=e254]
+              - generic [ref=e257]: 원격근무
+            - generic [ref=e258]:
+              - generic [ref=e259]: 정규직
+              - generic [ref=e260]: 원격
+          - generic [ref=e261]:
+            - generic [ref=e262]:
+              - img [ref=e263]
+              - text: 28일 전
+            - button "공유" [ref=e266]:
+              - img
+              - generic [ref=e267]: 공유
+        - generic [ref=e268] [cursor=pointer]:
+          - generic [ref=e269]: G
+          - generic [ref=e270]:
+            - heading "Korean Speaking Office Staff" [level=3] [ref=e272]
+            - paragraph [ref=e273]: Gurung Tours
+            - generic [ref=e275]:
+              - img [ref=e276]
+              - generic [ref=e279]: 네팔
+            - generic [ref=e280]:
+              - generic [ref=e281]: 정규직
+              - generic [ref=e282]: 현장
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - img [ref=e285]
+              - text: 29일 전
+            - button "공유" [ref=e288]:
+              - img
+              - generic [ref=e289]: 공유
+      - navigation "pagination" [ref=e291]:
+        - list [ref=e292]:
+          - listitem [ref=e293]:
+            - link "1" [ref=e294] [cursor=pointer]:
+              - /url: /jobs
+          - listitem [ref=e295]:
+            - link "2" [ref=e296] [cursor=pointer]:
+              - /url: /jobs?page=2
+          - listitem [ref=e297]:
+            - generic [ref=e298]:
+              - img [ref=e299]
+              - generic [ref=e303]: More pages
+          - listitem [ref=e304]:
+            - link "17" [ref=e305] [cursor=pointer]:
+              - /url: /jobs?page=17
+          - listitem [ref=e306]:
+            - link "Go to next page" [ref=e307] [cursor=pointer]:
+              - /url: /jobs?page=2
+              - generic [ref=e308]: Next
+              - img
+  - button "Open Next.js Dev Tools" [ref=e314] [cursor=pointer]:
+    - img [ref=e315]
+  - alert [ref=e318]
+```

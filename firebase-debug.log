@@ -64,3 +64,21 @@
 [debug] [2026-01-28T06:11:20.727Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo 403
 [debug] [2026-01-28T06:11:20.727Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
 [debug] [2026-01-28T06:11:20.728Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo 403
+[debug] [2026-03-14T06:00:45.170Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-14T06:00:45.172Z] > authorizing via signed-in user (henry.nam@cupix.com)
+[debug] [2026-03-14T06:00:45.172Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-14T06:00:45.172Z] > authorizing via signed-in user (henry.nam@cupix.com)
+[debug] [2026-03-14T06:00:45.172Z] Checked if tokens are valid: true, expires at: 1773471512263
+[debug] [2026-03-14T06:00:45.172Z] Checked if tokens are valid: true, expires at: 1773471512263
+[debug] [2026-03-14T06:00:45.173Z] Checked if tokens are valid: true, expires at: 1773471512263
+[debug] [2026-03-14T06:00:45.173Z] Checked if tokens are valid: true, expires at: 1773471512263
+[debug] [2026-03-14T06:00:45.173Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-03-14T06:00:45.173Z] > authorizing via signed-in user (henry.nam@cupix.com)
+[debug] [2026-03-14T06:00:45.173Z] Checked if tokens are valid: true, expires at: 1773471512263
+[debug] [2026-03-14T06:00:45.173Z] Checked if tokens are valid: true, expires at: 1773471512263
+[debug] [2026-03-14T06:00:45.174Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo [none]
+[debug] [2026-03-14T06:00:45.175Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo [none]
+[debug] [2026-03-14T06:00:45.175Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo [none]
+[debug] [2026-03-14T06:00:46.537Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo 403
+[debug] [2026-03-14T06:00:46.538Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo {"error":{"code":403,"message":"The caller does not have permission","status":"PERMISSION_DENIED"}}
+[debug] [2026-03-14T06:00:46.543Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/meeting-app-d0ee2/billingInfo 403

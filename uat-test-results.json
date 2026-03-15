@@ -1,0 +1,1416 @@
+{
+  "config": {
+    "configFile": "/Users/2303-pc02/potenlab/hire_foreigner/playwright.config.ts",
+    "rootDir": "/Users/2303-pc02/potenlab/hire_foreigner/e2e",
+    "forbidOnly": false,
+    "fullyParallel": true,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 5
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/2303-pc02/potenlab/hire_foreigner/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 5
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/Users/2303-pc02/potenlab/hire_foreigner/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "json"
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "runAgents": "none",
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.58.0",
+    "workers": 5,
+    "webServer": {
+      "command": "pnpm --filter @repo/web dev",
+      "url": "http://localhost:3000",
+      "reuseExistingServer": true,
+      "timeout": 120000
+    }
+  },
+  "suites": [
+    {
+      "title": "uat-full-suite.spec.ts",
+      "file": "uat-full-suite.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "HangulJobs UAT - Full 100 Cases",
+          "file": "uat-full-suite.spec.ts",
+          "line": 11,
+          "column": 6,
+          "specs": [
+            {
+              "title": "TC-001: 메인 페이지 히어로 섹션",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 3881,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('검증된 채용 공고')\nExpected: visible\nError: strict mode violation: getByText('검증된 채용 공고') resolved to 3 elements:\n    1) <p class=\"text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg\">…</p> aka getByText('한국어를 구사하는 글로벌 인재와 검증된 채용 공고를 연결합니다.전 세계 한국어 일자리를 한곳에서 찾아보세요')\n    2) <span>검증된 채용 공고</span> aka getByText('검증된 채용 공고', { exact: true })\n    3) <span class=\"text-sm text-gray-700\">검증된 채용 공고 탐색</span> aka getByRole('link', { name: '구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('검증된 채용 공고')\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('검증된 채용 공고')\nExpected: visible\nError: strict mode violation: getByText('검증된 채용 공고') resolved to 3 elements:\n    1) <p class=\"text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg\">…</p> aka getByText('한국어를 구사하는 글로벌 인재와 검증된 채용 공고를 연결합니다.전 세계 한국어 일자리를 한곳에서 찾아보세요')\n    2) <span>검증된 채용 공고</span> aka getByText('검증된 채용 공고', { exact: true })\n    3) <span class=\"text-sm text-gray-700\">검증된 채용 공고 탐색</span> aka getByRole('link', { name: '구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('검증된 채용 공고')\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:28:47",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 47,
+                          "line": 28
+                        },
+                        "snippet": "  26 |\n  27 |     // Check badges\n> 28 |     await expect(page.getByText('검증된 채용 공고')).toBeVisible()\n     |                                               ^\n  29 |     await expect(page.getByText('글로벌 기회')).toBeVisible()\n  30 |     await expect(page.getByText('한국어 특화')).toBeVisible()\n  31 |   })"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 47,
+                            "line": 28
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: getByText('검증된 채용 공고')\nExpected: visible\nError: strict mode violation: getByText('검증된 채용 공고') resolved to 3 elements:\n    1) <p class=\"text-lg lg:text-xl text-gray-600 mb-8 leading-relaxed max-w-lg\">…</p> aka getByText('한국어를 구사하는 글로벌 인재와 검증된 채용 공고를 연결합니다.전 세계 한국어 일자리를 한곳에서 찾아보세요')\n    2) <span>검증된 채용 공고</span> aka getByText('검증된 채용 공고', { exact: true })\n    3) <span class=\"text-sm text-gray-700\">검증된 채용 공고 탐색</span> aka getByRole('link', { name: '구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역' })\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByText('검증된 채용 공고')\u001b[22m\n\n\n  26 |\n  27 |     // Check badges\n> 28 |     await expect(page.getByText('검증된 채용 공고')).toBeVisible()\n     |                                               ^\n  29 |     await expect(page.getByText('글로벌 기회')).toBeVisible()\n  30 |     await expect(page.getByText('한국어 특화')).toBeVisible()\n  31 |   })\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:28:47"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:01.761Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--3cea4--Cases-TC-001-메인-페이지-히어로-섹션-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--3cea4--Cases-TC-001-메인-페이지-히어로-섹션-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 47,
+                        "line": 28
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-984c115e6c6cc5f113ad",
+              "file": "uat-full-suite.spec.ts",
+              "line": 15,
+              "column": 7
+            },
+            {
+              "title": "TC-002: 메인 페이지 통계 섹션",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 3834,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:01.747Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-b272075194c5a84dac01",
+              "file": "uat-full-suite.spec.ts",
+              "line": 33,
+              "column": 7
+            },
+            {
+              "title": "TC-003: 메인 페이지 최신 공고 섹션",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 3860,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:01.768Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-e3661166bc1dff4dba76",
+              "file": "uat-full-suite.spec.ts",
+              "line": 45,
+              "column": 7
+            },
+            {
+              "title": "TC-004: 메인 페이지 검색바",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4719,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:01.741Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-1b423739d760ec82af1c",
+              "file": "uat-full-suite.spec.ts",
+              "line": 59,
+              "column": 7
+            },
+            {
+              "title": "TC-005: 메인 페이지 FAQ 아코디언",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 4079,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:01.781Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-8c459ac4749a1975eb0e",
+              "file": "uat-full-suite.spec.ts",
+              "line": 73,
+              "column": 7
+            },
+            {
+              "title": "TC-006: 메인 페이지 HangulJobs 이용 방법 섹션",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 3594,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /구직자 이용 방법/i })\nExpected: \u001b[32m\"/job-seekers\"\u001b[39m\nError: strict mode violation: getByRole('link', { name: /구직자 이용 방법/i }) resolved to 2 elements:\n    1) <a href=\"/job-seekers\" class=\"group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02]\">…</a> aka getByRole('link', { name: '구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역' })\n    2) <a href=\"/job-seekers\" class=\"hover:text-white transition-colors\">구직자 이용 방법</a> aka getByRole('link', { name: '구직자 이용 방법', exact: true })\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /구직자 이용 방법/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /구직자 이용 방법/i })\nExpected: \u001b[32m\"/job-seekers\"\u001b[39m\nError: strict mode violation: getByRole('link', { name: /구직자 이용 방법/i }) resolved to 2 elements:\n    1) <a href=\"/job-seekers\" class=\"group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02]\">…</a> aka getByRole('link', { name: '구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역' })\n    2) <a href=\"/job-seekers\" class=\"hover:text-white transition-colors\">구직자 이용 방법</a> aka getByRole('link', { name: '구직자 이용 방법', exact: true })\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /구직자 이용 방법/i })\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:92:30",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 30,
+                          "line": 92
+                        },
+                        "snippet": "  90 |     const employerCard = page.getByRole('link', { name: /고용주 이용 방법/i })\n  91 |\n> 92 |     await expect(seekerCard).toHaveAttribute('href', '/job-seekers')\n     |                              ^\n  93 |     await expect(employerCard).toHaveAttribute('href', '/employers')\n  94 |   })\n  95 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 30,
+                            "line": 92
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /구직자 이용 방법/i })\nExpected: \u001b[32m\"/job-seekers\"\u001b[39m\nError: strict mode violation: getByRole('link', { name: /구직자 이용 방법/i }) resolved to 2 elements:\n    1) <a href=\"/job-seekers\" class=\"group block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:scale-[1.02]\">…</a> aka getByRole('link', { name: '구직자 이용 방법 구직자 이용 방법 전 세계에서 한국어 능력을 인정받는 기회를 찾아보세요. 정규직부터 프리랜서까지. 검증된 채용 공고 탐색 지역' })\n    2) <a href=\"/job-seekers\" class=\"hover:text-white transition-colors\">구직자 이용 방법</a> aka getByRole('link', { name: '구직자 이용 방법', exact: true })\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /구직자 이용 방법/i })\u001b[22m\n\n\n  90 |     const employerCard = page.getByRole('link', { name: /고용주 이용 방법/i })\n  91 |\n> 92 |     await expect(seekerCard).toHaveAttribute('href', '/job-seekers')\n     |                              ^\n  93 |     await expect(employerCard).toHaveAttribute('href', '/employers')\n  94 |   })\n  95 |\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:92:30"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:08.101Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--bf569--메인-페이지-HangulJobs-이용-방법-섹션-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--bf569--메인-페이지-HangulJobs-이용-방법-섹션-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 30,
+                        "line": 92
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-861078f6c6dcc805f246",
+              "file": "uat-full-suite.spec.ts",
+              "line": 86,
+              "column": 7
+            },
+            {
+              "title": "TC-007: 네비게이션 헤더 (비로그인)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 3683,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /공고 보기/i })\nExpected: \u001b[32m\"/jobs\"\u001b[39m\nError: strict mode violation: getByRole('link', { name: /공고 보기/i }) resolved to 3 elements:\n    1) <a href=\"/jobs\" class=\"text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium\">공고 보기</a> aka getByRole('link', { name: '공고 보기', exact: true })\n    2) <a href=\"/jobs\" class=\"group px-8 py-3.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/25 inline-flex items-center gap-2 text-sm font-semibold\">…</a> aka getByRole('link', { name: '전체 공고 보기' })\n    3) <a class=\"block group\" href=\"/jobs?location_country=KR\">…</a> aka getByRole('link', { name: '지역별 국가별 공고 보기' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /공고 보기/i })\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /공고 보기/i })\nExpected: \u001b[32m\"/jobs\"\u001b[39m\nError: strict mode violation: getByRole('link', { name: /공고 보기/i }) resolved to 3 elements:\n    1) <a href=\"/jobs\" class=\"text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium\">공고 보기</a> aka getByRole('link', { name: '공고 보기', exact: true })\n    2) <a href=\"/jobs\" class=\"group px-8 py-3.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/25 inline-flex items-center gap-2 text-sm font-semibold\">…</a> aka getByRole('link', { name: '전체 공고 보기' })\n    3) <a class=\"block group\" href=\"/jobs?location_country=KR\">…</a> aka getByRole('link', { name: '지역별 국가별 공고 보기' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /공고 보기/i })\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:104:62",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 62,
+                          "line": 104
+                        },
+                        "snippet": "  102 |\n  103 |     // Check menu items\n> 104 |     await expect(page.getByRole('link', { name: /공고 보기/i })).toHaveAttribute('href', '/jobs')\n      |                                                              ^\n  105 |     await expect(page.getByRole('link', { name: /고용주/i })).toHaveAttribute('href', '/employers')\n  106 |     await expect(page.getByRole('link', { name: /로그인/i })).toBeVisible()\n  107 |   })"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 62,
+                            "line": 104
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoHaveAttribute\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nLocator: getByRole('link', { name: /공고 보기/i })\nExpected: \u001b[32m\"/jobs\"\u001b[39m\nError: strict mode violation: getByRole('link', { name: /공고 보기/i }) resolved to 3 elements:\n    1) <a href=\"/jobs\" class=\"text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium\">공고 보기</a> aka getByRole('link', { name: '공고 보기', exact: true })\n    2) <a href=\"/jobs\" class=\"group px-8 py-3.5 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/25 inline-flex items-center gap-2 text-sm font-semibold\">…</a> aka getByRole('link', { name: '전체 공고 보기' })\n    3) <a class=\"block group\" href=\"/jobs?location_country=KR\">…</a> aka getByRole('link', { name: '지역별 국가별 공고 보기' })\n\nCall log:\n\u001b[2m  - Expect \"toHaveAttribute\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for getByRole('link', { name: /공고 보기/i })\u001b[22m\n\n\n  102 |\n  103 |     // Check menu items\n> 104 |     await expect(page.getByRole('link', { name: /공고 보기/i })).toHaveAttribute('href', '/jobs')\n      |                                                              ^\n  105 |     await expect(page.getByRole('link', { name: /고용주/i })).toHaveAttribute('href', '/employers')\n  106 |     await expect(page.getByRole('link', { name: /로그인/i })).toBeVisible()\n  107 |   })\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:104:62"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:08.108Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--46b4a-Cases-TC-007-네비게이션-헤더-비로그인--chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--46b4a-Cases-TC-007-네비게이션-헤더-비로그인--chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 62,
+                        "line": 104
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-ebafb6fd15da5bda9295",
+              "file": "uat-full-suite.spec.ts",
+              "line": 96,
+              "column": 7
+            },
+            {
+              "title": "TC-009: 언어 전환 (EN/KO)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 5426,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:08.884Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-e96ead761fdd70444850",
+              "file": "uat-full-suite.spec.ts",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "TC-010: 고용주 랜딩 페이지",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3387,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:08.322Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-5034720cb31c267c584e",
+              "file": "uat-full-suite.spec.ts",
+              "line": 123,
+              "column": 7
+            },
+            {
+              "title": "TC-011: 구직자 랜딩 페이지",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1019,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:08.957Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-b89d05c35439c3dcd9cb",
+              "file": "uat-full-suite.spec.ts",
+              "line": 130,
+              "column": 7
+            },
+            {
+              "title": "TC-012: 정적 페이지",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 3,
+                      "status": "failed",
+                      "duration": 16130,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m404\u001b[39m",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m404\u001b[39m\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:142:34",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 34,
+                          "line": 142
+                        },
+                        "snippet": "  140 |     for (const path of pages) {\n  141 |       const response = await page.goto(`${BASE_URL}${path}`)\n> 142 |       expect(response?.status()).toBe(200)\n      |                                  ^\n  143 |     }\n  144 |   })\n  145 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 34,
+                            "line": 142
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m200\u001b[39m\nReceived: \u001b[31m404\u001b[39m\n\n  140 |     for (const path of pages) {\n  141 |       const response = await page.goto(`${BASE_URL}${path}`)\n> 142 |       expect(response?.status()).toBe(200)\n      |                                  ^\n  143 |     }\n  144 |   })\n  145 |\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:142:34"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:10.021Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs-UAT---Full-100-Cases-TC-012-정적-페이지-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs-UAT---Full-100-Cases-TC-012-정적-페이지-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 34,
+                        "line": 142
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-8e3b3e661e5196d8529b",
+              "file": "uat-full-suite.spec.ts",
+              "line": 137,
+              "column": 7
+            },
+            {
+              "title": "TC-013: 공고 목록 기본 표시",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 4,
+                      "status": "failed",
+                      "duration": 9073,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"job\"]').or(locator('article')).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"job\"]').or(locator('article')).first()\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"job\"]').or(locator('article')).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"job\"]').or(locator('article')).first()\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:155:28",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 28,
+                          "line": 155
+                        },
+                        "snippet": "  153 |     // Check job cards displayed\n  154 |     const jobCards = page.locator('[class*=\"job\"]').or(page.locator('article')).first()\n> 155 |     await expect(jobCards).toBeVisible()\n      |                            ^\n  156 |   })\n  157 |\n  158 |   test('TC-014: 페이지네이션', async ({ page }) => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 28,
+                            "line": 155
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('[class*=\"job\"]').or(locator('article')).first()\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('[class*=\"job\"]').or(locator('article')).first()\u001b[22m\n\n\n  153 |     // Check job cards displayed\n  154 |     const jobCards = page.locator('[class*=\"job\"]').or(page.locator('article')).first()\n> 155 |     await expect(jobCards).toBeVisible()\n      |                            ^\n  156 |   })\n  157 |\n  158 |   test('TC-014: 페이지네이션', async ({ page }) => {\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:155:28"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:11.720Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--5bd62-00-Cases-TC-013-공고-목록-기본-표시-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--5bd62-00-Cases-TC-013-공고-목록-기본-표시-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 28,
+                        "line": 155
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-99dcf7faf73a92351c9c",
+              "file": "uat-full-suite.spec.ts",
+              "line": 148,
+              "column": 7
+            },
+            {
+              "title": "TC-014: 페이지네이션",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 3096,
+                      "error": {
+                        "message": "Error: locator.isVisible: Error: strict mode violation: getByRole('link', { name: '2' }).or(getByText('Next')) resolved to 4 elements:\n    1) <h3 class=\"font-semibold text-sm text-gray-900 line-clamp-2 flex-1\">E2E Test - Frontend Developer (React/Next.js)</h3> aka getByText('E2E Test - Frontend Developer').first()\n    2) <h3 class=\"font-semibold text-base group-hover:text-slate-900 transition-colors line-clamp-1 flex-1\">E2E Test - Frontend Developer (React/Next.js)</h3> aka getByRole('heading', { name: 'E2E Test - Frontend Developer' })\n    3) <a data-active=\"false\" href=\"/jobs?page=2\" data-slot=\"pagination-link\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-de…>2</a> aka getByRole('link', { name: '2' })\n    4) <span class=\"hidden sm:block\">Next</span> aka getByRole('link', { name: 'Go to next page' })\n\nCall log:\n\u001b[2m    - checking visibility of getByRole('link', { name: '2' }).or(getByText('Next'))\u001b[22m\n",
+                        "stack": "Error: locator.isVisible: Error: strict mode violation: getByRole('link', { name: '2' }).or(getByText('Next')) resolved to 4 elements:\n    1) <h3 class=\"font-semibold text-sm text-gray-900 line-clamp-2 flex-1\">E2E Test - Frontend Developer (React/Next.js)</h3> aka getByText('E2E Test - Frontend Developer').first()\n    2) <h3 class=\"font-semibold text-base group-hover:text-slate-900 transition-colors line-clamp-1 flex-1\">E2E Test - Frontend Developer (React/Next.js)</h3> aka getByRole('heading', { name: 'E2E Test - Frontend Developer' })\n    3) <a data-active=\"false\" href=\"/jobs?page=2\" data-slot=\"pagination-link\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-de…>2</a> aka getByRole('link', { name: '2' })\n    4) <span class=\"hidden sm:block\">Next</span> aka getByRole('link', { name: 'Go to next page' })\n\nCall log:\n\u001b[2m    - checking visibility of getByRole('link', { name: '2' }).or(getByText('Next'))\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:164:25",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 25,
+                          "line": 164
+                        },
+                        "snippet": "  162 |     const page2Link = page.getByRole('link', { name: '2' }).or(page.getByText('Next'))\n  163 |\n> 164 |     if (await page2Link.isVisible()) {\n      |                         ^\n  165 |       await page2Link.click()\n  166 |       await expect(page).toHaveURL(/page=2/)\n  167 |     }"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 25,
+                            "line": 164
+                          },
+                          "message": "Error: locator.isVisible: Error: strict mode violation: getByRole('link', { name: '2' }).or(getByText('Next')) resolved to 4 elements:\n    1) <h3 class=\"font-semibold text-sm text-gray-900 line-clamp-2 flex-1\">E2E Test - Frontend Developer (React/Next.js)</h3> aka getByText('E2E Test - Frontend Developer').first()\n    2) <h3 class=\"font-semibold text-base group-hover:text-slate-900 transition-colors line-clamp-1 flex-1\">E2E Test - Frontend Developer (React/Next.js)</h3> aka getByRole('heading', { name: 'E2E Test - Frontend Developer' })\n    3) <a data-active=\"false\" href=\"/jobs?page=2\" data-slot=\"pagination-link\" class=\"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-de…>2</a> aka getByRole('link', { name: '2' })\n    4) <span class=\"hidden sm:block\">Next</span> aka getByRole('link', { name: 'Go to next page' })\n\nCall log:\n\u001b[2m    - checking visibility of getByRole('link', { name: '2' }).or(getByText('Next'))\u001b[22m\n\n\n  162 |     const page2Link = page.getByRole('link', { name: '2' }).or(page.getByText('Next'))\n  163 |\n> 164 |     if (await page2Link.isVisible()) {\n      |                         ^\n  165 |       await page2Link.click()\n  166 |       await expect(page).toHaveURL(/page=2/)\n  167 |     }\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:164:25"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:12.575Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs-UAT---Full-100-Cases-TC-014-페이지네이션-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs-UAT---Full-100-Cases-TC-014-페이지네이션-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 25,
+                        "line": 164
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-ff40970d185e32364ccb",
+              "file": "uat-full-suite.spec.ts",
+              "line": 158,
+              "column": 7
+            },
+            {
+              "title": "TC-015: 키워드 검색",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 8515,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/q=.*통역/\u001b[39m\nReceived string:  \u001b[31m\"http://localhost:3000/jobs?q=%ED%86%B5%EC%97%AD&sort=relevance\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    4 × unexpected value \"http://localhost:3000/jobs\"\u001b[22m\n\u001b[2m    5 × unexpected value \"http://localhost:3000/jobs?q=%ED%86%B5%EC%97%AD&sort=relevance\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/q=.*통역/\u001b[39m\nReceived string:  \u001b[31m\"http://localhost:3000/jobs?q=%ED%86%B5%EC%97%AD&sort=relevance\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    4 × unexpected value \"http://localhost:3000/jobs\"\u001b[22m\n\u001b[2m    5 × unexpected value \"http://localhost:3000/jobs?q=%ED%86%B5%EC%97%AD&sort=relevance\"\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:178:24",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 24,
+                          "line": 178
+                        },
+                        "snippet": "  176 |\n  177 |     // URL should update\n> 178 |     await expect(page).toHaveURL(/q=.*통역/)\n      |                        ^\n  179 |   })\n  180 |\n  181 |   test('TC-016: 필터 - 고용 형태', async ({ page }) => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 24,
+                            "line": 178
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveURL\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/q=.*통역/\u001b[39m\nReceived string:  \u001b[31m\"http://localhost:3000/jobs?q=%ED%86%B5%EC%97%AD&sort=relevance\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveURL\" with timeout 5000ms\u001b[22m\n\u001b[2m    4 × unexpected value \"http://localhost:3000/jobs\"\u001b[22m\n\u001b[2m    5 × unexpected value \"http://localhost:3000/jobs?q=%ED%86%B5%EC%97%AD&sort=relevance\"\u001b[22m\n\n\n  176 |\n  177 |     // URL should update\n> 178 |     await expect(page).toHaveURL(/q=.*통역/)\n      |                        ^\n  179 |   })\n  180 |\n  181 |   test('TC-016: 필터 - 고용 형태', async ({ page }) => {\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:178:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:12.627Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs-UAT---Full-100-Cases-TC-015-키워드-검색-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs-UAT---Full-100-Cases-TC-015-키워드-검색-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 24,
+                        "line": 178
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-92d606ad0df8f2b6087b",
+              "file": "uat-full-suite.spec.ts",
+              "line": 170,
+              "column": 7
+            },
+            {
+              "title": "TC-016: 필터 - 고용 형태",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2751,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByText(/정규직|Full.*Time/i) resolved to 21 elements:\n    1) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').first()\n    2) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(1)\n    3) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(2)\n    4) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(3)\n    5) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(4)\n    6) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(5)\n    7) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(7) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    8) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(8) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    9) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(9) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    10) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(10) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    ...\n\nCall log:\n\u001b[2m  - waiting for getByText(/정규직|Full.*Time/i)\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByText(/정규직|Full.*Time/i) resolved to 21 elements:\n    1) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').first()\n    2) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(1)\n    3) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(2)\n    4) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(3)\n    5) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(4)\n    6) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(5)\n    7) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(7) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    8) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(8) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    9) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(9) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    10) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(10) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    ...\n\nCall log:\n\u001b[2m  - waiting for getByText(/정규직|Full.*Time/i)\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:189:45",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 45,
+                          "line": 189
+                        },
+                        "snippet": "  187 |\n  188 |     // Select full_time\n> 189 |     await page.getByText(/정규직|Full.*Time/i).click()\n      |                                             ^\n  190 |\n  191 |     await expect(page).toHaveURL(/job_type=full_time/)\n  192 |   })"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 45,
+                            "line": 189
+                          },
+                          "message": "Error: locator.click: Error: strict mode violation: getByText(/정규직|Full.*Time/i) resolved to 21 elements:\n    1) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').first()\n    2) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(1)\n    3) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(2)\n    4) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(3)\n    5) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(4)\n    6) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka getByText('정규직').nth(5)\n    7) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(7) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    8) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(8) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    9) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(9) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    10) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>정규직</span> aka locator('div:nth-child(10) > .flex.gap-3 > .flex-1.min-w-0 > .flex.gap-1\\\\.5 > .inline-flex.items-center.justify-center.rounded-md.border.font-medium.w-fit.whitespace-nowrap.shrink-0.\\\\[\\\\&\\\\>svg\\\\]\\\\:size-3.gap-1.\\\\[\\\\&\\\\>svg\\\\]\\\\:pointer-events-none.focus-visible\\\\:border-ring.focus-visible\\\\:ring-ring\\\\/50.focus-visible\\\\:ring-\\\\[3px\\\\].aria-invalid\\\\:ring-destructive\\\\/20.dark\\\\:aria-invalid\\\\:ring-destructive\\\\/40.aria-invalid\\\\:border-destructive.transition-\\\\[color\\\\,box-shadow\\\\].overflow-hidden.border-transparent.text-primary-foreground.\\\\[a\\\\&\\\\]\\\\:hover\\\\:bg-primary\\\\/90.text-\\\\[10px\\\\].px-1\\\\.5.py-0\\\\.5.bg-blue-500')\n    ...\n\nCall log:\n\u001b[2m  - waiting for getByText(/정규직|Full.*Time/i)\u001b[22m\n\n\n  187 |\n  188 |     // Select full_time\n> 189 |     await page.getByText(/정규직|Full.*Time/i).click()\n      |                                             ^\n  190 |\n  191 |     await expect(page).toHaveURL(/job_type=full_time/)\n  192 |   })\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:189:45"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:14.481Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--eb763-100-Cases-TC-016-필터---고용-형태-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--eb763-100-Cases-TC-016-필터---고용-형태-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 45,
+                        "line": 189
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-ab467e4c87c52b669616",
+              "file": "uat-full-suite.spec.ts",
+              "line": 181,
+              "column": 7
+            },
+            {
+              "title": "TC-017: 필터 - 근무 형태",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 1,
+                      "status": "failed",
+                      "duration": 3207,
+                      "error": {
+                        "message": "Error: locator.click: Error: strict mode violation: getByText(/원격|Remote/i) resolved to 11 elements:\n    1) <span>원격근무</span> aka getByText('원격근무').first()\n    2) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>원격</span> aka getByText('원격').nth(1)\n    3) <h3 class=\"font-semibold text-sm text-gray-900 line-clamp-2 flex-1\">Korean Language Customer Service (Remote)</h3> aka getByText('Korean Language Customer').first()\n    4) <span>원격근무</span> aka getByText('원격근무').nth(1)\n    5) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>원격</span> aka getByText('원격').nth(3)\n    6) <span>원격근무</span> aka getByText('원격근무').nth(2)\n    7) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-xs px-2 py-0.5 bg-eme…>원격</span> aka getByText('원격').nth(5)\n    8) <h3 class=\"font-semibold text-base group-hover:text-slate-900 transition-colors line-clamp-1 flex-1\">Korean Language Customer Service (Remote)</h3> aka getByRole('heading', { name: 'Korean Language Customer' })\n    9) <span>원격근무</span> aka getByText('원격근무').nth(3)\n    10) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-xs px-2 py-0.5 bg-eme…>원격</span> aka getByText('원격', { exact: true }).nth(3)\n    ...\n\nCall log:\n\u001b[2m  - waiting for getByText(/원격|Remote/i)\u001b[22m\n",
+                        "stack": "Error: locator.click: Error: strict mode violation: getByText(/원격|Remote/i) resolved to 11 elements:\n    1) <span>원격근무</span> aka getByText('원격근무').first()\n    2) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>원격</span> aka getByText('원격').nth(1)\n    3) <h3 class=\"font-semibold text-sm text-gray-900 line-clamp-2 flex-1\">Korean Language Customer Service (Remote)</h3> aka getByText('Korean Language Customer').first()\n    4) <span>원격근무</span> aka getByText('원격근무').nth(1)\n    5) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>원격</span> aka getByText('원격').nth(3)\n    6) <span>원격근무</span> aka getByText('원격근무').nth(2)\n    7) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-xs px-2 py-0.5 bg-eme…>원격</span> aka getByText('원격').nth(5)\n    8) <h3 class=\"font-semibold text-base group-hover:text-slate-900 transition-colors line-clamp-1 flex-1\">Korean Language Customer Service (Remote)</h3> aka getByRole('heading', { name: 'Korean Language Customer' })\n    9) <span>원격근무</span> aka getByText('원격근무').nth(3)\n    10) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-xs px-2 py-0.5 bg-eme…>원격</span> aka getByText('원격', { exact: true }).nth(3)\n    ...\n\nCall log:\n\u001b[2m  - waiting for getByText(/원격|Remote/i)\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:200:40",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 40,
+                          "line": 200
+                        },
+                        "snippet": "  198 |     await locationFilter.click()\n  199 |\n> 200 |     await page.getByText(/원격|Remote/i).click()\n      |                                        ^\n  201 |\n  202 |     await expect(page).toHaveURL(/location_type=remote/)\n  203 |   })"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 40,
+                            "line": 200
+                          },
+                          "message": "Error: locator.click: Error: strict mode violation: getByText(/원격|Remote/i) resolved to 11 elements:\n    1) <span>원격근무</span> aka getByText('원격근무').first()\n    2) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>원격</span> aka getByText('원격').nth(1)\n    3) <h3 class=\"font-semibold text-sm text-gray-900 line-clamp-2 flex-1\">Korean Language Customer Service (Remote)</h3> aka getByText('Korean Language Customer').first()\n    4) <span>원격근무</span> aka getByText('원격근무').nth(1)\n    5) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-[10px] px-1.5 py-0.5 …>원격</span> aka getByText('원격').nth(3)\n    6) <span>원격근무</span> aka getByText('원격근무').nth(2)\n    7) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-xs px-2 py-0.5 bg-eme…>원격</span> aka getByText('원격').nth(5)\n    8) <h3 class=\"font-semibold text-base group-hover:text-slate-900 transition-colors line-clamp-1 flex-1\">Korean Language Customer Service (Remote)</h3> aka getByRole('heading', { name: 'Korean Language Customer' })\n    9) <span>원격근무</span> aka getByText('원격근무').nth(3)\n    10) <span data-slot=\"badge\" class=\"inline-flex items-center justify-center rounded-md border font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden border-transparent text-primary-foreground [a&]:hover:bg-primary/90 text-xs px-2 py-0.5 bg-eme…>원격</span> aka getByText('원격', { exact: true }).nth(3)\n    ...\n\nCall log:\n\u001b[2m  - waiting for getByText(/원격|Remote/i)\u001b[22m\n\n\n  198 |     await locationFilter.click()\n  199 |\n> 200 |     await page.getByText(/원격|Remote/i).click()\n      |                                        ^\n  201 |\n  202 |     await expect(page).toHaveURL(/location_type=remote/)\n  203 |   })\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:200:40"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:16.648Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--8210b-100-Cases-TC-017-필터---근무-형태-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--8210b-100-Cases-TC-017-필터---근무-형태-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 40,
+                        "line": 200
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-a6496d86133cc069e201",
+              "file": "uat-full-suite.spec.ts",
+              "line": 194,
+              "column": 7
+            },
+            {
+              "title": "TC-024: 정렬 옵션",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3855,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:18.157Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-e52ba2ff6cbaa39422ab",
+              "file": "uat-full-suite.spec.ts",
+              "line": 205,
+              "column": 7
+            },
+            {
+              "title": "TC-026: 공고 상세 - 기본 정보 표시",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 1,
+                      "status": "timedOut",
+                      "duration": 30059,
+                      "error": {
+                        "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m",
+                        "stack": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                      },
+                      "errors": [
+                        {
+                          "message": "\u001b[31mTest timeout of 30000ms exceeded.\u001b[39m"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 20,
+                            "line": 224
+                          },
+                          "message": "Error: locator.click: Test timeout of 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for locator('[href^=\"/jobs/\"]').first()\u001b[22m\n\n\n  222 |     // Click first job card\n  223 |     const firstJob = page.locator('[href^=\"/jobs/\"]').first()\n> 224 |     await firstJob.click()\n      |                    ^\n  225 |\n  226 |     // Check detail page loaded\n  227 |     await expect(page).toHaveURL(/\\/jobs\\//)\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:224:20"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:20.920Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--a2af3-ses-TC-026-공고-상세---기본-정보-표시-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--a2af3-ses-TC-026-공고-상세---기본-정보-표시-chromium/error-context.md"
+                        }
+                      ]
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-fc3a44c2630fcbb476ed",
+              "file": "uat-full-suite.spec.ts",
+              "line": 219,
+              "column": 7
+            },
+            {
+              "title": "TC-035: 공고 상세 - 한글 슬러그",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 5568,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:21.754Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-de001906ddde5ef5da03",
+              "file": "uat-full-suite.spec.ts",
+              "line": 231,
+              "column": 7
+            },
+            {
+              "title": "TC-036: 로그인 페이지",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 2,
+                      "status": "failed",
+                      "duration": 8778,
+                      "error": {
+                        "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/로그인|Login/i\u001b[39m\nReceived string:  \u001b[31m\"HangulJobs (한글잡스)\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"HangulJobs (한글잡스)\"\u001b[22m\n",
+                        "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/로그인|Login/i\u001b[39m\nReceived string:  \u001b[31m\"HangulJobs (한글잡스)\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"HangulJobs (한글잡스)\"\u001b[22m\n\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:244:24",
+                        "location": {
+                          "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                          "column": 24,
+                          "line": 244
+                        },
+                        "snippet": "  242 |     await page.goto(`${BASE_URL}/login`)\n  243 |\n> 244 |     await expect(page).toHaveTitle(/로그인|Login/i)\n      |                        ^\n  245 |     await expect(page.getByRole('heading', { name: /환영합니다|Welcome/i })).toBeVisible()\n  246 |     await expect(page.getByRole('button', { name: /Google/i })).toBeVisible()\n  247 |   })"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                            "column": 24,
+                            "line": 244
+                          },
+                          "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mpage\u001b[39m\u001b[2m).\u001b[22mtoHaveTitle\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m failed\n\nExpected pattern: \u001b[32m/로그인|Login/i\u001b[39m\nReceived string:  \u001b[31m\"HangulJobs (한글잡스)\"\u001b[39m\nTimeout: 5000ms\n\nCall log:\n\u001b[2m  - Expect \"toHaveTitle\" with timeout 5000ms\u001b[22m\n\u001b[2m    9 × unexpected value \"HangulJobs (한글잡스)\"\u001b[22m\n\n\n  242 |     await page.goto(`${BASE_URL}/login`)\n  243 |\n> 244 |     await expect(page).toHaveTitle(/로그인|Login/i)\n      |                        ^\n  245 |     await expect(page.getByRole('heading', { name: /환영합니다|Welcome/i })).toBeVisible()\n  246 |     await expect(page.getByRole('button', { name: /Google/i })).toBeVisible()\n  247 |   })\n    at /Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts:244:24"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:22.250Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--75a8a-ll-100-Cases-TC-036-로그인-페이지-chromium/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/2303-pc02/potenlab/hire_foreigner/test-results/uat-full-suite-HangulJobs--75a8a-ll-100-Cases-TC-036-로그인-페이지-chromium/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/2303-pc02/potenlab/hire_foreigner/e2e/uat-full-suite.spec.ts",
+                        "column": 24,
+                        "line": 244
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-b0cd67636a2d2be0d1aa",
+              "file": "uat-full-suite.spec.ts",
+              "line": 241,
+              "column": 7
+            },
+            {
+              "title": "TC-040: 보호된 라우트 접근 (비로그인)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 4096,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:22.224Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-f3252db0916bbec99d7f",
+              "file": "uat-full-suite.spec.ts",
+              "line": 249,
+              "column": 7
+            },
+            {
+              "title": "TC-093: 뉴스레터 구독 - 정상 플로우",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 4013,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:27.298Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-a4ec2740958b9df9ea9d",
+              "file": "uat-full-suite.spec.ts",
+              "line": 258,
+              "column": 7
+            },
+            {
+              "title": "TC-094: 뉴스레터 구독 - 유효성 검증",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3867,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:26.330Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-5348a3380afc44bf5e6f",
+              "file": "uat-full-suite.spec.ts",
+              "line": 278,
+              "column": 7
+            },
+            {
+              "title": "TC-096: 모바일 반응형 (375px)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 3259,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:27.513Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-38ad01ec3ba04069f935",
+              "file": "uat-full-suite.spec.ts",
+              "line": 292,
+              "column": 7
+            },
+            {
+              "title": "TC-097: 태블릿 반응형 (768px)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2140,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:30.211Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-2b91f4271de1baebaa25",
+              "file": "uat-full-suite.spec.ts",
+              "line": 303,
+              "column": 7
+            },
+            {
+              "title": "TC-098: 데스크탑 (1440px)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 4,
+                      "status": "passed",
+                      "duration": 2293,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:30.783Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-c2cb251b974870c959eb",
+              "file": "uat-full-suite.spec.ts",
+              "line": 310,
+              "column": 7
+            },
+            {
+              "title": "TC-099: SEO 메타 & 구조화 데이터",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 14,
+                      "parallelIndex": 2,
+                      "status": "passed",
+                      "duration": 2419,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:32.024Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-b2883b3b2cff18d11f40",
+              "file": "uat-full-suite.spec.ts",
+              "line": 319,
+              "column": 7
+            },
+            {
+              "title": "TC-100: 에러 페이지 & 엣지 케이스",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "chromium",
+                  "projectName": "chromium",
+                  "results": [
+                    {
+                      "workerIndex": 13,
+                      "parallelIndex": 3,
+                      "status": "passed",
+                      "duration": 1159,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-02-14T02:49:31.495Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "5cfdf620b38d0a2345ac-cf3805711406c9ab39c4",
+              "file": "uat-full-suite.spec.ts",
+              "line": 330,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-02-14T02:48:57.689Z",
+    "duration": 53505.657,
+    "expected": 17,
+    "skipped": 0,
+    "unexpected": 11,
+    "flaky": 0
+  }
+}

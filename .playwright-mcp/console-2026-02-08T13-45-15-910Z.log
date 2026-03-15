@@ -1,0 +1,10 @@
+[    8286ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:35061)
+    at rO (https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:36094)
+    at https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:118082
+    at ix (https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:122954)
+    at ik (https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:114742)
+    at https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:110729
+    at iu (https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:110830)
+    at iX (https://potenhire.com/_next/static/chunks/b04784d5-213ae53d005fd1ed.js:1:132933)
+    at MessagePort.w (https://potenhire.com/_next/static/chunks/1087-67ac915d84844b2e.js:1:133511)

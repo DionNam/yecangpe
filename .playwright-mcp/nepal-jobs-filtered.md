@@ -1,0 +1,165 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "H HangulJobs" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: H
+        - generic [ref=e8]: HangulJobs
+      - navigation [ref=e9]:
+        - link "공고 보기" [ref=e10] [cursor=pointer]:
+          - /url: /jobs
+        - link "고용주" [ref=e11] [cursor=pointer]:
+          - /url: /employers
+        - button "EN" [ref=e12]
+        - link "로그인" [ref=e13] [cursor=pointer]:
+          - /url: /login
+  - main [ref=e14]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: 채용 공고
+        - heading "맞춤형 채용 공고" [level=1] [ref=e21]
+        - paragraph [ref=e23]: 한국어 가능한 외국인을 위한 다양한 직무의 채용 공고를 확인하세요
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - img [ref=e27]
+          - textbox "직무명, 회사명, 키워드로 검색..." [ref=e30]
+        - generic [ref=e32]:
+          - button "필터 전체" [ref=e33]:
+            - img [ref=e34]
+            - text: 필터 전체
+          - button "고용 형태" [ref=e36]:
+            - text: 고용 형태
+            - img [ref=e37]
+          - button "근무 형태" [ref=e40]:
+            - text: 근무 형태
+            - img [ref=e41]
+          - button "카테고리" [ref=e44]:
+            - text: 카테고리
+            - img [ref=e45]
+          - button "네팔" [ref=e857]:
+            - text: 네팔
+            - img [ref=e49]
+          - button "한국어" [ref=e52]:
+            - text: 한국어
+            - img [ref=e53]
+          - button "영어" [ref=e56]:
+            - text: 영어
+            - img [ref=e57]
+          - button "국적" [ref=e60]:
+            - text: 국적
+            - img [ref=e61]
+          - button "최신순" [ref=e64]:
+            - text: 최신순
+            - img [ref=e65]
+      - generic [ref=e68]:
+        - generic [ref=e114] [cursor=pointer]:
+          - generic [ref=e115]: S
+          - generic [ref=e116]:
+            - heading "Korean Liaison Officer Needed" [level=3] [ref=e118]
+            - paragraph [ref=e119]: Subedi Trade
+            - generic [ref=e121]:
+              - img [ref=e122]
+              - generic [ref=e125]: 네팔
+            - generic [ref=e126]:
+              - generic [ref=e127]: 정규직
+              - generic [ref=e128]: 현장
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - img [ref=e131]
+              - text: 22일 전
+            - button "공유" [ref=e134]:
+              - img
+              - generic [ref=e135]: 공유
+        - generic [ref=e224] [cursor=pointer]:
+          - generic [ref=e225]: S
+          - generic [ref=e226]:
+            - heading "Korean Restaurant Manager" [level=3] [ref=e228]
+            - paragraph [ref=e229]: Subash Limbu
+            - generic [ref=e231]:
+              - img [ref=e232]
+              - generic [ref=e235]: 네팔
+            - generic [ref=e236]:
+              - generic [ref=e237]: 정규직
+              - generic [ref=e238]: 현장
+          - generic [ref=e239]:
+            - generic [ref=e240]:
+              - img [ref=e241]
+              - text: 28일 전
+            - button "공유" [ref=e244]:
+              - img
+              - generic [ref=e245]: 공유
+        - generic [ref=e268] [cursor=pointer]:
+          - generic [ref=e269]: G
+          - generic [ref=e270]:
+            - heading "Korean Speaking Office Staff" [level=3] [ref=e272]
+            - paragraph [ref=e273]: Gurung Tours
+            - generic [ref=e275]:
+              - img [ref=e276]
+              - generic [ref=e279]: 네팔
+            - generic [ref=e280]:
+              - generic [ref=e281]: 정규직
+              - generic [ref=e282]: 현장
+          - generic [ref=e283]:
+            - generic [ref=e284]:
+              - img [ref=e285]
+              - text: 30일 전
+            - button "공유" [ref=e288]:
+              - img
+              - generic [ref=e289]: 공유
+        - generic [ref=e858] [cursor=pointer]:
+          - generic [ref=e859]: R
+          - generic [ref=e860]:
+            - heading "Korean Tour Guide (Pokhara)" [level=3] [ref=e862]
+            - paragraph [ref=e863]: Rai Brothers
+            - generic [ref=e865]:
+              - img [ref=e866]
+              - generic [ref=e869]: 네팔
+            - generic [ref=e870]:
+              - generic [ref=e871]: 정규직
+              - generic [ref=e872]: 현장
+          - generic [ref=e873]:
+            - generic [ref=e874]:
+              - img [ref=e875]
+              - text: 약 1개월 전
+            - button "공유" [ref=e878]:
+              - img
+              - generic [ref=e879]: 공유
+        - generic [ref=e880] [cursor=pointer]:
+          - generic [ref=e881]: 이
+          - generic [ref=e882]:
+            - heading "Job Vacancy" [level=3] [ref=e884]
+            - paragraph [ref=e885]: 이서연
+            - generic [ref=e887]:
+              - img [ref=e888]
+              - generic [ref=e891]: 네팔
+            - generic [ref=e892]:
+              - generic [ref=e893]: 정규직
+              - generic [ref=e894]: 현장
+          - generic [ref=e895]:
+            - generic [ref=e896]:
+              - img [ref=e897]
+              - text: 4개월 전
+            - button "공유" [ref=e900]:
+              - img
+              - generic [ref=e901]: 공유
+        - generic [ref=e902] [cursor=pointer]:
+          - generic [ref=e903]: H
+          - generic [ref=e904]:
+            - heading "Job Opening - Korean-Nepali Translator (Construction Site)" [level=3] [ref=e906]
+            - paragraph [ref=e907]: Himalaya Construction Pvt. Ltd.
+            - generic [ref=e909]:
+              - img [ref=e910]
+              - generic [ref=e913]: 네팔
+            - generic [ref=e914]:
+              - generic [ref=e915]: 정규직
+              - generic [ref=e916]: 현장
+          - generic [ref=e917]:
+            - generic [ref=e918]:
+              - img [ref=e919]
+              - text: 4개월 전
+            - button "공유" [ref=e922]:
+              - img
+              - generic [ref=e923]: 공유
+  - button "Open Next.js Dev Tools" [ref=e314] [cursor=pointer]:
+    - img [ref=e315]
+  - alert [ref=e318]: Jobs in Nepal - HangulJobs | HangulJobs

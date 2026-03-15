@@ -1,0 +1,7 @@
+[   30271ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/signup:0
+[   30514ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/signup:0
+[   58104ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/signup:0
+[   60357ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/signup:0
+[  103054ms] [ERROR] Failed to load resource: the server responded with a status of 429 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/signup:0
+[  114170ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/token?grant_type=password:0
+[  122223ms] [ERROR] Failed to load resource: the server responded with a status of 400 () @ https://xztfqnznwcgjjbpyuchf.supabase.co/auth/v1/token?grant_type=password:0

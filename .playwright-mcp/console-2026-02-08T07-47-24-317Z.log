@@ -1,0 +1,22 @@
+[    5470ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:35057)
+    at rO (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:36090)
+    at https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:118078
+    at ix (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:122950)
+    at ik (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:114738)
+    at https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:110725
+    at iu (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:110826)
+    at iX (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:132929)
+    at MessagePort.w (https://potenhire.com/_next/static/chunks/1087-77dffc5e607d5eeb.js:1:8845)
+[    6006ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://potenhire.com/favicon.ico:0
+[  293929ms] Error: Minified React error #418; visit https://react.dev/errors/418?args[]=text&args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.
+    at rD (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:35057)
+    at rO (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:36090)
+    at https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:118078
+    at ix (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:122950)
+    at ik (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:114738)
+    at https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:110725
+    at iu (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:110826)
+    at iX (https://potenhire.com/_next/static/chunks/b04784d5-60a21102aca6fd3e.js:1:132929)
+    at MessagePort.w (https://potenhire.com/_next/static/chunks/1087-77dffc5e607d5eeb.js:1:8845)
+[  294180ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://potenhire.com/favicon.ico:0

@@ -1,0 +1,5 @@
+[    2615ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://potenhire.com/jobs/e4bbb213-11c9-455b-bd98-34d17389585c:0
+[    4396ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://potenhire.com/favicon.ico:0
+[    5478ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://potenhire.com/_next/data/8Zd5fNVAhunYgG9WhtPkT/jobs/e4bbb213-11c9-455b-bd98-34d17389585c.json:0
+[    6456ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://potenhire.com/_next/data/8Zd5fNVAhunYgG9WhtPkT/jobs/e4bbb213-11c9-455b-bd98-34d17389585c.json:0
+[    7425ms] [ERROR] Failed to load resource: the server responded with a status of 500 () @ https://potenhire.com/_next/data/8Zd5fNVAhunYgG9WhtPkT/jobs/e4bbb213-11c9-455b-bd98-34d17389585c.json:0

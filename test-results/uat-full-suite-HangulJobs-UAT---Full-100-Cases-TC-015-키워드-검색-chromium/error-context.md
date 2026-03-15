@@ -1,0 +1,254 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "H HangulJobs" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e7]: H
+        - generic [ref=e8]: HangulJobs
+      - navigation [ref=e9]:
+        - link "공고 보기" [ref=e10] [cursor=pointer]:
+          - /url: /jobs
+        - link "고용주" [ref=e11] [cursor=pointer]:
+          - /url: /employers
+        - button "EN" [ref=e12]
+        - link "로그인" [ref=e13] [cursor=pointer]:
+          - /url: /login
+  - main [ref=e14]:
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: 채용 공고
+        - heading "맞춤형 채용 공고" [level=1] [ref=e21]
+        - paragraph [ref=e23]: 한국어 가능한 외국인을 위한 다양한 직무의 채용 공고를 확인하세요
+      - generic [ref=e25]:
+        - generic [ref=e26]:
+          - img [ref=e27]
+          - textbox "직무명, 회사명, 키워드로 검색..." [active] [ref=e30]: 통역
+        - generic [ref=e32]:
+          - button "필터 전체" [ref=e33]:
+            - img [ref=e34]
+            - text: 필터 전체
+          - button "고용 형태" [ref=e36]:
+            - text: 고용 형태
+            - img [ref=e37]
+          - button "근무 형태" [ref=e40]:
+            - text: 근무 형태
+            - img [ref=e41]
+          - button "카테고리" [ref=e44]:
+            - text: 카테고리
+            - img [ref=e45]
+          - button "근무 국가" [ref=e48]:
+            - text: 근무 국가
+            - img [ref=e49]
+          - button "한국어" [ref=e52]:
+            - text: 한국어
+            - img [ref=e53]
+          - button "영어" [ref=e56]:
+            - text: 영어
+            - img [ref=e57]
+          - button "국적" [ref=e60]:
+            - text: 국적
+            - img [ref=e61]
+          - button "최신순" [ref=e64]:
+            - text: 최신순
+            - img [ref=e65]
+      - generic [ref=e68]:
+        - generic [ref=e69] [cursor=pointer]:
+          - generic [ref=e70]: 은
+          - generic [ref=e71]:
+            - heading "긴급 - 전시회 통역 (3일)" [level=3] [ref=e73]
+            - paragraph [ref=e74]: 은지
+            - generic [ref=e76]:
+              - img [ref=e77]
+              - generic [ref=e80]: 인도네시아
+            - generic [ref=e81]:
+              - generic [ref=e82]: 정규직
+              - generic [ref=e83]: 현장
+          - generic [ref=e84]:
+            - generic [ref=e85]:
+              - img [ref=e86]
+              - text: 19일 전
+            - button "공유" [ref=e89]:
+              - img
+              - generic [ref=e90]: 공유
+        - generic [ref=e91] [cursor=pointer]:
+          - generic [ref=e92]: 윤
+          - generic [ref=e93]:
+            - heading "긴급 구인 - 단기 통역" [level=3] [ref=e95]
+            - paragraph [ref=e96]: 윤아
+            - generic [ref=e98]:
+              - img [ref=e99]
+              - generic [ref=e102]: 인도네시아
+            - generic [ref=e103]:
+              - generic [ref=e104]: 정규직
+              - generic [ref=e105]: 현장
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - img [ref=e108]
+              - text: 23일 전
+            - button "공유" [ref=e111]:
+              - img
+              - generic [ref=e112]: 공유
+        - generic [ref=e113] [cursor=pointer]:
+          - generic [ref=e114]: T
+          - generic [ref=e115]:
+            - heading "한국 건설회사 현장 직원" [level=3] [ref=e117]
+            - paragraph [ref=e118]: Tseren
+            - generic [ref=e120]:
+              - img [ref=e121]
+              - generic [ref=e124]: 몽골
+            - generic [ref=e125]:
+              - generic [ref=e126]: 정규직
+              - generic [ref=e127]: 현장
+          - generic [ref=e128]:
+            - generic [ref=e129]:
+              - img [ref=e130]
+              - text: 5개월 전
+            - button "공유" [ref=e133]:
+              - img
+              - generic [ref=e134]: 공유
+        - generic [ref=e135] [cursor=pointer]:
+          - generic [ref=e136]: B
+          - generic [ref=e137]:
+            - heading "통역사 급구" [level=3] [ref=e139]
+            - paragraph [ref=e140]: Bold
+            - generic [ref=e142]:
+              - img [ref=e143]
+              - generic [ref=e146]: 몽골
+            - generic [ref=e147]:
+              - generic [ref=e148]: 정규직
+              - generic [ref=e149]: 현장
+          - generic [ref=e150]:
+            - generic [ref=e151]:
+              - img [ref=e152]
+              - text: 25일 전
+            - button "공유" [ref=e155]:
+              - img
+              - generic [ref=e156]: 공유
+        - generic [ref=e157] [cursor=pointer]:
+          - generic [ref=e158]: 민
+          - generic [ref=e159]:
+            - heading "통역사 구합니다 (급구)" [level=3] [ref=e161]
+            - paragraph [ref=e162]: 민수
+            - generic [ref=e164]:
+              - img [ref=e165]
+              - generic [ref=e168]: 인도네시아
+            - generic [ref=e169]:
+              - generic [ref=e170]: 정규직
+              - generic [ref=e171]: 현장
+          - generic [ref=e172]:
+            - generic [ref=e173]:
+              - img [ref=e174]
+              - text: 4개월 전
+            - button "공유" [ref=e177]:
+              - img
+              - generic [ref=e178]: 공유
+        - generic [ref=e179] [cursor=pointer]:
+          - generic [ref=e180]: 수
+          - generic [ref=e181]:
+            - heading "일일 통역 구함" [level=3] [ref=e183]
+            - paragraph [ref=e184]: 수진
+            - generic [ref=e186]:
+              - img [ref=e187]
+              - generic [ref=e190]: 인도네시아
+            - generic [ref=e191]:
+              - generic [ref=e192]: 정규직
+              - generic [ref=e193]: 현장
+          - generic [ref=e194]:
+            - generic [ref=e195]:
+              - img [ref=e196]
+              - text: 6개월 전
+            - button "공유" [ref=e199]:
+              - img
+              - generic [ref=e200]: 공유
+        - generic [ref=e201] [cursor=pointer]:
+          - generic [ref=e202]: 손
+          - generic [ref=e203]:
+            - heading "개인 통역/비서 구합니다" [level=3] [ref=e205]
+            - paragraph [ref=e206]: 손님
+            - generic [ref=e208]:
+              - img [ref=e209]
+              - generic [ref=e212]: 인도네시아
+            - generic [ref=e213]:
+              - generic [ref=e214]: 정규직
+              - generic [ref=e215]: 현장
+          - generic [ref=e216]:
+            - generic [ref=e217]:
+              - img [ref=e218]
+              - text: 7개월 전
+            - button "공유" [ref=e221]:
+              - img
+              - generic [ref=e222]: 공유
+        - generic [ref=e223] [cursor=pointer]:
+          - generic [ref=e224]: 진
+          - generic [ref=e225]:
+            - heading "자동차 정비소 통역 구함" [level=3] [ref=e227]
+            - paragraph [ref=e228]: 진호
+            - generic [ref=e230]:
+              - img [ref=e231]
+              - generic [ref=e234]: 인도네시아
+            - generic [ref=e235]:
+              - generic [ref=e236]: 정규직
+              - generic [ref=e237]: 현장
+          - generic [ref=e238]:
+            - generic [ref=e239]:
+              - img [ref=e240]
+              - text: 6개월 전
+            - button "공유" [ref=e243]:
+              - img
+              - generic [ref=e244]: 공유
+        - generic [ref=e245] [cursor=pointer]:
+          - generic [ref=e246]: 정
+          - generic [ref=e247]:
+            - heading "한국 병원 코디네이터 구함" [level=3] [ref=e249]
+            - paragraph [ref=e250]: 정우
+            - generic [ref=e252]:
+              - img [ref=e253]
+              - generic [ref=e256]: 인도네시아
+            - generic [ref=e257]:
+              - generic [ref=e258]: 정규직
+              - generic [ref=e259]: 현장
+          - generic [ref=e260]:
+            - generic [ref=e261]:
+              - img [ref=e262]
+              - text: 3개월 전
+            - button "공유" [ref=e265]:
+              - img
+              - generic [ref=e266]: 공유
+        - generic [ref=e267] [cursor=pointer]:
+          - generic [ref=e268]: B
+          - generic [ref=e269]:
+            - heading "한국어 통역사 구함" [level=3] [ref=e271]
+            - paragraph [ref=e272]: Battulga
+            - generic [ref=e274]:
+              - img [ref=e275]
+              - generic [ref=e278]: 몽골
+            - generic [ref=e279]:
+              - generic [ref=e280]: 정규직
+              - generic [ref=e281]: 현장
+          - generic [ref=e282]:
+            - generic [ref=e283]:
+              - img [ref=e284]
+              - text: 6개월 전
+            - button "공유" [ref=e287]:
+              - img
+              - generic [ref=e288]: 공유
+      - navigation "pagination" [ref=e290]:
+        - list [ref=e291]:
+          - listitem [ref=e292]:
+            - link "1" [ref=e293] [cursor=pointer]:
+              - /url: /jobs?q=%ED%86%B5%EC%97%AD&sort=relevance
+          - listitem [ref=e294]:
+            - link "2" [ref=e295] [cursor=pointer]:
+              - /url: /jobs?q=%ED%86%B5%EC%97%AD&sort=relevance&page=2
+          - listitem [ref=e296]:
+            - link "Go to next page" [ref=e297] [cursor=pointer]:
+              - /url: /jobs?q=%ED%86%B5%EC%97%AD&sort=relevance&page=2
+              - generic [ref=e298]: Next
+              - img
+  - button "Open Next.js Dev Tools" [ref=e304] [cursor=pointer]:
+    - img [ref=e305]
+  - alert [ref=e308]
+```
