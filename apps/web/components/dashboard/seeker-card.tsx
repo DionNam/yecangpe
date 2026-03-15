@@ -2,8 +2,9 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { NATIONALITIES, CATEGORIES, JOB_TYPES, KOREAN_LEVELS, COUNTRIES } from '@repo/lib'
+import { NATIONALITIES, CATEGORIES, JOB_TYPES, KOREAN_LEVELS, ENGLISH_LEVELS, COUNTRIES } from '@repo/lib'
 import { Mail, Phone, Linkedin, ExternalLink } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface SeekerCardProps {
   seeker: {
@@ -27,36 +28,38 @@ interface SeekerCardProps {
 }
 
 export function SeekerCard({ seeker }: SeekerCardProps) {
+  const { t, language } = useTranslation()
+
   const getNationalityName = (code: string) => {
-    return NATIONALITIES.find(n => n.code === code)?.name || code
+    const n = NATIONALITIES.find(n => n.code === code)
+    return n ? (language === 'en' ? n.nameEn : n.name) : code
   }
 
   const getCountryName = (code: string) => {
-    return COUNTRIES.find(c => c.code === code)?.name || code
+    const c = COUNTRIES.find(c => c.code === code)
+    return c ? (language === 'en' ? c.nameEn : c.name) : code
   }
 
   const getCategoryName = (code: string) => {
-    return CATEGORIES.find(c => c.code === code)?.nameKo || code
+    const c = CATEGORIES.find(c => c.code === code)
+    return c ? (language === 'en' ? c.name : c.nameKo) : code
   }
 
   const getJobTypeName = (code: string) => {
-    return JOB_TYPES.find(t => t.code === code)?.nameKo || code
+    const j = JOB_TYPES.find(t => t.code === code)
+    return j ? (language === 'en' ? j.name : j.nameKo) : code
   }
 
   const getKoreanLevelName = (code: string | null) => {
     if (!code || code === 'not_specified') return null
-    return KOREAN_LEVELS.find(l => l.code === code)?.nameKo || code
+    const l = KOREAN_LEVELS.find(l => l.code === code)
+    return l ? (language === 'en' ? l.name : l.nameKo) : code
   }
 
   const getEnglishLevelName = (code: string | null) => {
-    const levels: Record<string, string> = {
-      'native_advanced': '원어민/고급',
-      'intermediate': '중급',
-      'basic': '초급',
-      'not_required': '무관',
-      'not_specified': '미지정',
-    }
-    return code ? levels[code] || code : null
+    if (!code || code === 'not_specified') return null
+    const l = ENGLISH_LEVELS.find(l => l.code === code)
+    return l ? (language === 'en' ? l.name : l.nameKo) : code
   }
 
   const koreanLevelDisplay = getKoreanLevelName(seeker.korean_level)
@@ -80,7 +83,7 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
           {koreanLevelDisplay && (
             <Badge variant="default">{koreanLevelDisplay}</Badge>
           )}
-          {englishLevelDisplay && englishLevelDisplay !== '미지정' && (
+          {englishLevelDisplay && (
             <Badge variant="secondary">{englishLevelDisplay}</Badge>
           )}
         </div>
@@ -130,7 +133,7 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
           >
             <a href={`mailto:${seeker.email}`}>
               <Mail className="w-4 h-4 mr-2" />
-              이메일로 연락하기
+              {t('employerDashboard.contactEmail')}
             </a>
           </Button>
         )}
@@ -160,7 +163,7 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
           >
             <a href={seeker.linkedin_url} target="_blank" rel="noopener noreferrer">
               <Linkedin className="w-4 h-4 mr-2" />
-              LinkedIn 프로필
+              {t('employerDashboard.viewLinkedIn')}
             </a>
           </Button>
         )}
@@ -175,7 +178,7 @@ export function SeekerCard({ seeker }: SeekerCardProps) {
           >
             <a href={seeker.portfolio_url} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="w-4 h-4 mr-2" />
-              포트폴리오
+              {t('employerDashboard.viewPortfolio')}
             </a>
           </Button>
         )}

@@ -153,6 +153,7 @@ export interface SeekerFilters {
   preferred_job_types?: string[]
   preferred_countries?: string[]
   preferred_location_type?: string
+  search?: string
 }
 
 /**
@@ -211,6 +212,9 @@ export async function getSeekers(filters: SeekerFilters = {}) {
     }
     if (filters.preferred_location_type) {
       query = query.eq('preferred_location_type', filters.preferred_location_type)
+    }
+    if (filters.search) {
+      query = query.or(`display_name.ilike.%${filters.search}%,occupation.ilike.%${filters.search}%,bio.ilike.%${filters.search}%`)
     }
 
     const { data, error } = await query

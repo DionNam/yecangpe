@@ -316,6 +316,11 @@ export const translations = {
       contactPhone: '전화',
       viewLinkedIn: 'LinkedIn 프로필',
       viewPortfolio: '포트폴리오',
+      filter: '필터',
+      resetFilters: '초기화',
+      searchPlaceholder: '이름, 직업 검색...',
+      residenceCountry: '거주 국가',
+      allResidenceCountry: '거주 국가 전체',
     },
     privacyPage: {
       title: '개인정보 처리방침',
@@ -731,6 +736,11 @@ export const translations = {
       contactPhone: 'Phone',
       viewLinkedIn: 'LinkedIn Profile',
       viewPortfolio: 'Portfolio',
+      filter: 'Filters',
+      resetFilters: 'Reset',
+      searchPlaceholder: 'Search by name, occupation...',
+      residenceCountry: 'Country of Residence',
+      allResidenceCountry: 'All Countries',
     },
     privacyPage: {
       title: 'Privacy Policy',

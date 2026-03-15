@@ -1,6 +1,6 @@
 'use client'
 
-import { NATIONALITIES, CATEGORIES, KOREAN_LEVELS, ENGLISH_LEVELS, COUNTRIES } from '@repo/lib'
+import { NATIONALITIES, KOREAN_LEVELS, ENGLISH_LEVELS, COUNTRIES } from '@repo/lib'
 import type { SeekerFilters as SeekerFiltersType } from '@/app/actions/employer'
 import {
   Select,
@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/select'
 import { Button } from '@/components/ui/button'
 import { X } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface SeekerFiltersProps {
   filters: SeekerFiltersType
@@ -18,6 +19,8 @@ interface SeekerFiltersProps {
 }
 
 export function SeekerFilters({ filters, onFilterChange }: SeekerFiltersProps) {
+  const { t, language } = useTranslation()
+
   const handleChange = (key: keyof SeekerFiltersType, value: string) => {
     if (value === 'all') {
       const next = { ...filters }
@@ -39,11 +42,11 @@ export function SeekerFilters({ filters, onFilterChange }: SeekerFiltersProps) {
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-medium text-gray-700">필터</h3>
+        <h3 className="text-sm font-medium text-gray-700">{t('employerDashboard.filter')}</h3>
         {hasActiveFilters && (
           <Button variant="ghost" size="sm" onClick={handleReset} className="text-xs">
             <X className="w-3 h-3 mr-1" />
-            초기화
+            {t('employerDashboard.resetFilters')}
           </Button>
         )}
       </div>
@@ -55,12 +58,14 @@ export function SeekerFilters({ filters, onFilterChange }: SeekerFiltersProps) {
           onValueChange={(v) => handleChange('nationality', v)}
         >
           <SelectTrigger className="h-9 text-sm">
-            <SelectValue placeholder="국적" />
+            <SelectValue placeholder={t('filters.nationality')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">국적 전체</SelectItem>
+            <SelectItem value="all">{t('filters.allNationality')}</SelectItem>
             {NATIONALITIES.filter(n => n.code !== 'ANY').map(n => (
-              <SelectItem key={n.code} value={n.code}>{n.name}</SelectItem>
+              <SelectItem key={n.code} value={n.code}>
+                {language === 'en' ? n.nameEn : n.name}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -71,12 +76,14 @@ export function SeekerFilters({ filters, onFilterChange }: SeekerFiltersProps) {
           onValueChange={(v) => handleChange('korean_level', v)}
         >
           <SelectTrigger className="h-9 text-sm">
-            <SelectValue placeholder="한국어" />
+            <SelectValue placeholder={t('filters.korean')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">한국어 전체</SelectItem>
+            <SelectItem value="all">{t('filters.allKorean')}</SelectItem>
             {KOREAN_LEVELS.filter(l => l.code !== 'not_specified').map(l => (
-              <SelectItem key={l.code} value={l.code}>{l.nameKo}</SelectItem>
+              <SelectItem key={l.code} value={l.code}>
+                {language === 'en' ? l.name : l.nameKo}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -87,12 +94,14 @@ export function SeekerFilters({ filters, onFilterChange }: SeekerFiltersProps) {
           onValueChange={(v) => handleChange('english_level', v)}
         >
           <SelectTrigger className="h-9 text-sm">
-            <SelectValue placeholder="영어" />
+            <SelectValue placeholder={t('filters.english')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">영어 전체</SelectItem>
+            <SelectItem value="all">{t('filters.allEnglish')}</SelectItem>
             {ENGLISH_LEVELS.filter(l => l.code !== 'not_specified').map(l => (
-              <SelectItem key={l.code} value={l.code}>{l.nameKo}</SelectItem>
+              <SelectItem key={l.code} value={l.code}>
+                {language === 'en' ? l.name : l.nameKo}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -103,12 +112,14 @@ export function SeekerFilters({ filters, onFilterChange }: SeekerFiltersProps) {
           onValueChange={(v) => handleChange('country_of_residence', v)}
         >
           <SelectTrigger className="h-9 text-sm">
-            <SelectValue placeholder="거주 국가" />
+            <SelectValue placeholder={t('employerDashboard.residenceCountry')} />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">거주 국가 전체</SelectItem>
+            <SelectItem value="all">{t('employerDashboard.allResidenceCountry')}</SelectItem>
             {COUNTRIES.map(c => (
-              <SelectItem key={c.code} value={c.code}>{c.name}</SelectItem>
+              <SelectItem key={c.code} value={c.code}>
+                {language === 'en' ? c.nameEn : c.name}
+              </SelectItem>
             ))}
           </SelectContent>
         </Select>
