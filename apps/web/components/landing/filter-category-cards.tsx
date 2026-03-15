@@ -52,18 +52,19 @@ export function FilterCategoryCards() {
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           {t('filterCategories.title')}
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6 items-stretch">
           {categories.map((category, index) => {
             const Icon = category.icon
             return (
               <motion.div
                 key={index}
+                className="h-full"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <Link href={category.href} className="block group">
+                <Link href={category.href} className="block group h-full">
                   <div className={`rounded-xl p-6 text-white ${category.color} h-full hover:shadow-lg hover:scale-[1.02] transition-all`}>
                     <Icon className="w-10 h-10 mb-4" />
                     <h3 className="font-bold text-lg mb-1">{category.title}</h3>
