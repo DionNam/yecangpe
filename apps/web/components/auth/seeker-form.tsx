@@ -8,6 +8,13 @@ import { seekerProfileSchema, type SeekerProfileInput } from '@/lib/validations/
 import { createSeekerProfile } from '@/app/actions/auth'
 import { useTranslation } from '@/lib/i18n'
 import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import {
   Form,
   FormControl,
   FormDescription,
@@ -128,6 +135,12 @@ export function SeekerForm() {
   // Step 1: Profile visibility choice
   if (step === 1) {
     return (
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>{t('seekerOnboarding.cardTitle')}</CardTitle>
+          <CardDescription>{t('seekerOnboarding.cardDescription')}</CardDescription>
+        </CardHeader>
+        <CardContent>
       <div className="space-y-6">
         <div className="text-center space-y-4">
           <h2 className="text-2xl font-bold text-gray-900">{t('seekerOnboarding.profileQuestion')}</h2>
@@ -162,11 +175,19 @@ export function SeekerForm() {
           </Button>
         </div>
       </div>
+        </CardContent>
+      </Card>
     )
   }
 
   // Step 2: Form fields (conditional based on public/private)
   return (
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>{t('seekerOnboarding.cardTitle')}</CardTitle>
+        <CardDescription>{t('seekerOnboarding.cardDescription')}</CardDescription>
+      </CardHeader>
+      <CardContent>
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
         {/* Show profile visibility status */}
@@ -583,5 +604,7 @@ export function SeekerForm() {
         </div>
       </form>
     </Form>
+      </CardContent>
+    </Card>
   )
 }
