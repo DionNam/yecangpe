@@ -2,9 +2,10 @@
 
 import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
-import { ko } from 'date-fns/locale'
+import { ko, enUS } from 'date-fns/locale'
 import { Badge } from '@/components/ui/badge'
 import type { Database } from '@repo/supabase/types'
+import { useTranslation } from '@/lib/i18n'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
@@ -19,17 +20,19 @@ interface SeekerLikedJobsProps {
 }
 
 export function SeekerLikedJobs({ jobs }: SeekerLikedJobsProps) {
+  const { t, language } = useTranslation()
+
   if (jobs.length === 0) {
     return (
       <div className="text-center py-12">
         <p className="text-lg text-slate-600 mb-4">
-          하트를 누른 공고가 없습니다. 관심 있는 공고에 하트를 눌러보세요!
+          {t('seekerDashboard.noLikedJobs')}
         </p>
         <Link
           href="/jobs"
           className="inline-block text-blue-600 hover:text-blue-700 font-medium hover:underline"
         >
-          채용 공고 둘러보기 →
+          {t('seekerDashboard.browseJobs')} →
         </Link>
       </div>
     )
@@ -38,7 +41,7 @@ export function SeekerLikedJobs({ jobs }: SeekerLikedJobsProps) {
   return (
     <div className="space-y-4">
       <h3 className="text-lg font-semibold text-slate-900">
-        관심 공고 ({jobs.length})
+        {t('seekerDashboard.likedJobs')} ({jobs.length})
       </h3>
 
       <div className="space-y-3">
@@ -67,12 +70,12 @@ export function SeekerLikedJobs({ jobs }: SeekerLikedJobsProps) {
                         post.hiring_status === 'hiring' ? 'default' : 'secondary'
                       }
                     >
-                      {post.hiring_status === 'hiring' ? '채용중' : '마감'}
+                      {post.hiring_status === 'hiring' ? t('common.hiring') : t('common.closed')}
                     </Badge>
                     <span className="text-xs text-slate-500">
                       {formatDistanceToNow(new Date(created_at), {
                         addSuffix: true,
-                        locale: ko,
+                        locale: language === 'en' ? enUS : ko,
                       })}
                     </span>
                   </div>

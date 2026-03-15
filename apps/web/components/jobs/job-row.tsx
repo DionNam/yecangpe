@@ -16,8 +16,9 @@ import {
 } from '@repo/lib'
 import { MapPin, Calendar } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
-import { ko } from 'date-fns/locale'
+import { ko, enUS } from 'date-fns/locale'
 import type { Database } from '@repo/supabase/types'
+import { useTranslation } from '@/lib/i18n'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
@@ -32,6 +33,7 @@ export function JobRow({
 }: JobRowProps) {
   const router = useRouter()
   const [showLoginModal, setShowLoginModal] = useState(false)
+  const { t, language } = useTranslation()
 
   const handleClick = () => {
     if (isAuthenticated) {
@@ -86,15 +88,15 @@ export function JobRow({
   const getLocationText = () => {
     switch (job.work_location_type) {
       case 'remote':
-        return '원격근무'
+        return t('filters.remote')
       case 'hybrid':
-        return '하이브리드'
+        return t('filters.hybrid')
       case 'on_site':
         return job.work_location_country
           ? getCountryName(job.work_location_country)
-          : '대면근무'
+          : t('filters.onSite')
       default:
-        return '대면근무'
+        return t('filters.onSite')
     }
   }
 
@@ -118,24 +120,24 @@ export function JobRow({
       salaryText = `~${currency?.symbol || '₩'}${formatAmount(job.salary_max)}`
     }
 
-    return `${salaryText} ${period?.nameKo || ''}`
+    return `${salaryText} ${language === 'en' ? (period?.name || '') : (period?.nameKo || '')}`
   }
 
   // Get job type name
   const getJobTypeName = () => {
-    const jobType = JOB_TYPES.find(t => t.code === job.job_type)
-    return jobType?.nameKo || job.job_type
+    const jobType = JOB_TYPES.find(jt => jt.code === job.job_type)
+    return language === 'en' ? (jobType?.name || job.job_type) : (jobType?.nameKo || job.job_type)
   }
 
   // Get work location type name
   const getWorkLocationTypeName = () => {
     switch (job.work_location_type) {
       case 'remote':
-        return '원격'
+        return t('filters.remote')
       case 'hybrid':
-        return '하이브리드'
+        return t('filters.hybrid')
       case 'on_site':
-        return '현장'
+        return t('common.onSiteShort')
       default:
         return job.work_location_type
     }
@@ -145,14 +147,14 @@ export function JobRow({
   const getKoreanLevelName = () => {
     if (!job.korean_level || job.korean_level === 'not_specified') return null
     const level = KOREAN_LEVELS.find(l => l.code === job.korean_level)
-    return level?.nameKo
+    return language === 'en' ? level?.name : level?.nameKo
   }
 
   // Get English level name
   const getEnglishLevelName = () => {
     if (!job.english_level || job.english_level === 'not_specified') return null
     const level = ENGLISH_LEVELS.find(l => l.code === job.english_level)
-    return level?.nameKo
+    return language === 'en' ? level?.name : level?.nameKo
   }
 
   // Format relative date
@@ -160,7 +162,7 @@ export function JobRow({
     if (!job.published_at) return '-'
     return formatDistanceToNow(new Date(job.published_at), {
       addSuffix: true,
-      locale: ko
+      locale: language === 'en' ? enUS : ko,
     })
   }
 
@@ -233,14 +235,14 @@ export function JobRow({
             {/* Korean level - outline */}
             {koreanLevelName && (
               <Badge variant="outline" className="text-xs px-2 py-0.5">
-                한국어: {koreanLevelName}
+                {t('common.korean')}: {koreanLevelName}
               </Badge>
             )}
 
             {/* English level - outline */}
             {englishLevelName && (
               <Badge variant="outline" className="text-xs px-2 py-0.5">
-                영어: {englishLevelName}
+                {t('common.english')}: {englishLevelName}
               </Badge>
             )}
           </div>

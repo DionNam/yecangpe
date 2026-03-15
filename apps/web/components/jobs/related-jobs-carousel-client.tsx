@@ -10,9 +10,10 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel'
-import { JOB_TYPES } from '@repo/lib'
+import { JOB_TYPES, SALARY_PERIODS } from '@repo/lib'
 import { formatDistanceToNow } from 'date-fns'
-import { ko } from 'date-fns/locale'
+import { ko, enUS } from 'date-fns/locale'
+import { useTranslation } from '@/lib/i18n'
 
 interface RelatedJob {
   id: string
@@ -35,6 +36,8 @@ interface RelatedJobsCarouselClientProps {
 }
 
 export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientProps) {
+  const { t, language } = useTranslation()
+
   // Logo fallback colors (same pattern as job-card.tsx)
   const logoColors = [
     'bg-blue-500',
@@ -52,12 +55,10 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
 
   const getWorkLocationTypeName = (type: string | null) => {
     if (!type) return null
-    const types = {
-      on_site: '현장근무',
-      remote: '원격근무',
-      hybrid: '하이브리드',
-    }
-    return types[type as keyof typeof types] || type
+    if (type === 'remote') return t('filters.remote')
+    if (type === 'hybrid') return t('filters.hybrid')
+    if (type === 'on_site') return t('common.onSiteShort')
+    return type
   }
 
   const formatSalary = (
@@ -69,14 +70,10 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
     if (!min && !max) return null
 
     const currencySymbol = currency === 'USD' ? '$' : currency === 'EUR' ? '€' : '₩'
-    const periodMap: Record<string, string> = {
-      hourly: '시간',
-      daily: '일',
-      weekly: '주',
-      monthly: '월',
-      yearly: '연',
-    }
-    const periodText = period ? periodMap[period] || '' : ''
+    const periodEntry = period ? SALARY_PERIODS.find(p => p.code === period) : null
+    const periodText = periodEntry
+      ? (language === 'en' ? periodEntry.name : periodEntry.nameKo)
+      : (period || '')
 
     if (min && max) {
       return `${currencySymbol}${min.toLocaleString()} - ${currencySymbol}${max.toLocaleString()} ${periodText}`
@@ -97,7 +94,8 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
     >
       <CarouselContent className="-ml-2 md:-ml-4">
         {jobs.map(job => {
-          const jobTypeKo = JOB_TYPES.find(t => t.code === job.job_type)?.nameKo
+          const jobTypeEntry = JOB_TYPES.find(jt => jt.code === job.job_type)
+          const jobTypeKo = language === 'en' ? jobTypeEntry?.name : jobTypeEntry?.nameKo
           const workLocationType = getWorkLocationTypeName(job.work_location_type)
           const salary = formatSalary(
             job.salary_min,
@@ -106,7 +104,7 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
             job.salary_period
           )
           const postedDate = job.published_at
-            ? formatDistanceToNow(new Date(job.published_at), { addSuffix: true, locale: ko })
+            ? formatDistanceToNow(new Date(job.published_at), { addSuffix: true, locale: language === 'en' ? enUS : ko })
             : null
 
           const logoFallback = getLogoFallback(job.company_name)

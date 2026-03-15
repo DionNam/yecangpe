@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useTranslation } from '@/lib/i18n'
 
 interface JobDetailShareMenuProps {
   title: string
@@ -17,6 +18,7 @@ interface JobDetailShareMenuProps {
 
 export function JobDetailShareMenu({ title, slug }: JobDetailShareMenuProps) {
   const [copied, setCopied] = useState(false)
+  const { t } = useTranslation()
 
   // Build full URL - use env var with fallback
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
@@ -63,7 +65,7 @@ export function JobDetailShareMenu({ title, slug }: JobDetailShareMenuProps) {
           className="gap-1.5 text-slate-600 hover:text-slate-900"
         >
           <Share2 className="w-4 h-4" />
-          <span>공유</span>
+          <span>{t('common.share')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start" className="w-48">
@@ -71,12 +73,12 @@ export function JobDetailShareMenu({ title, slug }: JobDetailShareMenuProps) {
           {copied ? (
             <>
               <Check className="w-4 h-4 mr-2 text-green-600" />
-              <span className="text-green-600">링크 복사됨</span>
+              <span className="text-green-600">{t('common.linkCopied')}</span>
             </>
           ) : (
             <>
               <LinkIcon className="w-4 h-4 mr-2" />
-              <span>링크 복사</span>
+              <span>{t('common.copyLink')}</span>
             </>
           )}
         </DropdownMenuItem>
@@ -107,7 +109,7 @@ export function JobDetailShareMenu({ title, slug }: JobDetailShareMenuProps) {
 
         <DropdownMenuItem onClick={handleEmailShare} className="cursor-pointer">
           <Mail className="w-4 h-4 mr-2" />
-          <span>이메일</span>
+          <span>{t('common.email')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

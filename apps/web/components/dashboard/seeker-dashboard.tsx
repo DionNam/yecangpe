@@ -7,6 +7,7 @@ import { SeekerProfileSection } from './seeker-profile-section'
 import { JobAlertForm } from './job-alert-form'
 import { JobAlertList } from './job-alert-list'
 import type { Database } from '@repo/supabase/types'
+import { useTranslation } from '@/lib/i18n'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 type SeekerProfile = Database['public']['Tables']['seeker_profiles']['Row']
@@ -24,6 +25,7 @@ interface SeekerDashboardProps {
 }
 
 export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardProps) {
+  const { t } = useTranslation()
   // Calculate stats
   const likedJobsCount = likedJobs.length
   const activeAlertsCount = alerts.filter((a) => a.is_active).length
@@ -34,10 +36,10 @@ export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardP
         {/* Header */}
         <div className="mb-10">
           <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">
-            구직자 대시보드
+            {t('seekerDashboard.title')}
           </p>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-            마이페이지
+            {t('seekerDashboard.myPage')}
           </h1>
         </div>
 
@@ -46,7 +48,7 @@ export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardP
           <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">관심 공고</p>
+                <p className="text-sm font-medium text-slate-600">{t('seekerDashboard.likedJobs')}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">
                   {likedJobsCount}
                 </p>
@@ -58,7 +60,7 @@ export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardP
           <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">활성 알림</p>
+                <p className="text-sm font-medium text-slate-600">{t('seekerDashboard.activeAlerts')}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">
                   {activeAlertsCount}
                 </p>
@@ -71,9 +73,9 @@ export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardP
         {/* Tabbed Content */}
         <Tabs defaultValue="liked-jobs" className="space-y-6">
           <TabsList>
-            <TabsTrigger value="liked-jobs">관심 공고</TabsTrigger>
-            <TabsTrigger value="profile">프로필</TabsTrigger>
-            <TabsTrigger value="alerts">잡 알림</TabsTrigger>
+            <TabsTrigger value="liked-jobs">{t('seekerDashboard.likedJobs')}</TabsTrigger>
+            <TabsTrigger value="profile">{t('seekerDashboard.profile')}</TabsTrigger>
+            <TabsTrigger value="alerts">{t('seekerDashboard.jobAlerts')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="liked-jobs">
@@ -91,11 +93,11 @@ export function SeekerDashboard({ profile, likedJobs, alerts }: SeekerDashboardP
           <TabsContent value="alerts" className="mt-0 focus-visible:outline-none">
             <div className="space-y-8">
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                <h3 className="text-lg font-semibold mb-4">새 알림 설정</h3>
+                <h3 className="text-lg font-semibold mb-4">{t('seekerDashboard.newAlertSetup')}</h3>
                 <JobAlertForm />
               </div>
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                <h3 className="text-lg font-semibold mb-4">내 알림 ({alerts.length})</h3>
+                <h3 className="text-lg font-semibold mb-4">{t('seekerDashboard.myAlerts')} ({alerts.length})</h3>
                 <JobAlertList alerts={alerts} />
               </div>
             </div>

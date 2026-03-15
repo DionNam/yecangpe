@@ -2,6 +2,7 @@
 
 import { useTransition } from 'react'
 import { useForm } from 'react-hook-form'
+import { useTranslation } from '@/lib/i18n'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { createJobAlert } from '@/app/actions/job-alerts'
@@ -39,6 +40,7 @@ interface JobAlertFormProps {
 
 export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
   const [isPending, startTransition] = useTransition()
+  const { t, language } = useTranslation()
 
   const form = useForm<JobAlertFormValues>({
     resolver: zodResolver(jobAlertSchema),
@@ -73,9 +75,9 @@ export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
           name="keywords"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>키워드 (선택)</FormLabel>
+              <FormLabel>{t('jobAlertForm.keywords')}</FormLabel>
               <FormControl>
-                <Input placeholder="예: 통번역, 마케팅, IT" {...field} />
+                <Input placeholder={t('jobAlertForm.keywordsPlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -87,15 +89,15 @@ export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
           name="country"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>국가 (선택)</FormLabel>
+              <FormLabel>{t('jobAlertForm.country')}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="모든 국가" />
+                    <SelectValue placeholder={t('jobAlertForm.allCountries')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="">모든 국가</SelectItem>
+                  <SelectItem value="">{t('jobAlertForm.allCountries')}</SelectItem>
                   {COUNTRIES.map((country) => (
                     <SelectItem key={country.code} value={country.code}>
                       {country.name}
@@ -113,18 +115,18 @@ export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
           name="job_type"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>고용형태 (선택)</FormLabel>
+              <FormLabel>{t('jobAlertForm.jobType')}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
-                    <SelectValue placeholder="모든 고용형태" />
+                    <SelectValue placeholder={t('jobAlertForm.allJobTypes')} />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="">모든 고용형태</SelectItem>
+                  <SelectItem value="">{t('jobAlertForm.allJobTypes')}</SelectItem>
                   {JOB_TYPES.map((type) => (
                     <SelectItem key={type.code} value={type.code}>
-                      {type.nameKo}
+                      {language === 'en' ? type.name : type.nameKo}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -139,7 +141,7 @@ export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
           name="frequency"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>알림 주기 *</FormLabel>
+              <FormLabel>{t('jobAlertForm.frequency')}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
@@ -147,9 +149,9 @@ export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="instant">즉시</SelectItem>
-                  <SelectItem value="daily">매일</SelectItem>
-                  <SelectItem value="weekly">주간</SelectItem>
+                  <SelectItem value="instant">{t('jobAlertForm.instant')}</SelectItem>
+                  <SelectItem value="daily">{t('jobAlertForm.daily')}</SelectItem>
+                  <SelectItem value="weekly">{t('jobAlertForm.weekly')}</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -158,7 +160,7 @@ export function JobAlertForm({ onSuccess }: JobAlertFormProps) {
         />
 
         <Button type="submit" disabled={isPending} className="w-full">
-          {isPending ? '설정 중...' : '알림 설정'}
+          {isPending ? t('jobAlertForm.setting') : t('jobAlertForm.setAlert')}
         </Button>
       </form>
     </Form>

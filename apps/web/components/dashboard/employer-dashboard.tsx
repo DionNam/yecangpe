@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { JobPostTable } from './job-post-table'
 import { CompanySettingsForm } from './company-settings-form'
 import type { Database } from '@repo/supabase/types'
+import { useTranslation } from '@/lib/i18n'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 type EmployerProfile = Database['public']['Tables']['employer_profiles']['Row']
@@ -20,6 +21,7 @@ interface EmployerDashboardProps {
 
 export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashboardProps) {
   const router = useRouter()
+  const { t } = useTranslation()
 
   // Calculate stats
   const totalPosts = posts.length
@@ -42,10 +44,10 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
         {/* Header */}
         <div className="mb-10">
           <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">
-            고용주 대시보드
+            {t('employerDashboardPage.title')}
           </p>
           <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
-            {profile.company_name || '내 회사'}
+            {profile.company_name || t('employerDashboardPage.myCompany')}
           </h1>
         </div>
 
@@ -54,7 +56,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">전체 공고</p>
+                <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.totalPosts')}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">{totalPosts}</p>
               </div>
               <FileText className="h-8 w-8 text-blue-500" />
@@ -64,7 +66,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">활성 공고</p>
+                <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.activePosts')}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">{activePosts}</p>
               </div>
               <CheckCircle2 className="h-8 w-8 text-green-500" />
@@ -74,7 +76,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">총 조회수</p>
+                <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.totalViews')}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">{totalViews.toLocaleString()}</p>
               </div>
               <Eye className="h-8 w-8 text-purple-500" />
@@ -84,7 +86,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-slate-600">총 지원클릭</p>
+                <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.totalApplyClicks')}</p>
                 <p className="text-2xl font-bold text-slate-900 mt-1">{totalApplyClicks.toLocaleString()}</p>
               </div>
               <MousePointerClick className="h-8 w-8 text-amber-500" />
@@ -95,16 +97,16 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
         {/* Tabbed Content */}
         <Tabs defaultValue="posts" className="space-y-6">
           <TabsList>
-            <TabsTrigger value="posts">공고 관리</TabsTrigger>
-            <TabsTrigger value="talent">인재 탐색</TabsTrigger>
-            <TabsTrigger value="settings">계정 설정</TabsTrigger>
+            <TabsTrigger value="posts">{t('employerDashboardPage.postManagement')}</TabsTrigger>
+            <TabsTrigger value="talent">{t('employerDashboardPage.talentBrowse')}</TabsTrigger>
+            <TabsTrigger value="settings">{t('employerDashboardPage.accountSettings')}</TabsTrigger>
           </TabsList>
 
           <TabsContent value="posts" className="space-y-6">
             {/* New Post Button */}
             <div className="flex justify-end">
               <Button asChild>
-                <Link href="/dashboard/post-job">새 공고 작성</Link>
+                <Link href="/dashboard/post-job">{t('employerDashboardPage.newPost')}</Link>
               </Button>
             </div>
 
@@ -116,19 +118,19 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
 
           <TabsContent value="talent" className="space-y-6">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center py-12">
-              <h2 className="text-xl font-semibold mb-2">인재 탐색</h2>
+              <h2 className="text-xl font-semibold mb-2">{t('employerDashboardPage.talentBrowse')}</h2>
               <p className="text-sm text-gray-500 mb-6">
-                프로필을 공개한 구직자를 찾아보세요
+                {t('employerDashboardPage.talentDescription')}
               </p>
               <Button asChild>
-                <Link href="/employer/talent">인재 탐색 페이지로 이동</Link>
+                <Link href="/employer/talent">{t('employerDashboardPage.goToTalentPage')}</Link>
               </Button>
             </div>
           </TabsContent>
 
           <TabsContent value="settings">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-              <h2 className="text-xl font-semibold mb-6">회사 정보</h2>
+              <h2 className="text-xl font-semibold mb-6">{t('employerDashboardPage.companyInfo')}</h2>
               <CompanySettingsForm profile={profile} />
             </div>
           </TabsContent>

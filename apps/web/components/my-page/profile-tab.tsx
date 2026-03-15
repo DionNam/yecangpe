@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { NATIONALITIES, KOREAN_LEVELS } from '@repo/lib'
 import { Button } from '@/components/ui/button'
 import { ProfileEditModal } from './profile-edit-modal'
+import { useTranslation } from '@/lib/i18n'
 
 interface ProfileTabProps {
   profile: {
@@ -16,43 +17,45 @@ interface ProfileTabProps {
 
 export function ProfileTab({ profile }: ProfileTabProps) {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false)
+  const { t, language } = useTranslation()
 
-  // Get nationality Korean name
+  // Get nationality name
   const nationality = NATIONALITIES.find(n => n.code === profile.nationality)
 
   // Get Korean level display
   const getKoreanLevelDisplay = (level: string | null) => {
-    if (!level || level === 'not_specified') return '미입력'
-    return KOREAN_LEVELS.find(l => l.code === level)?.nameKo || level
+    if (!level || level === 'not_specified') return t('profileSection.notEntered')
+    const levelEntry = KOREAN_LEVELS.find(l => l.code === level)
+    return language === 'en' ? (levelEntry?.name || level) : (levelEntry?.nameKo || level)
   }
 
   return (
     <>
       <div className="space-y-6">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold tracking-tight">프로필 정보</h2>
-          <Button onClick={() => setIsEditModalOpen(true)} variant="outline" size="sm">수정</Button>
+          <h2 className="text-xl font-bold tracking-tight">{t('profileSection.title')}</h2>
+          <Button onClick={() => setIsEditModalOpen(true)} variant="outline" size="sm">{t('profileSection.edit')}</Button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">국적</p>
+            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.nationality')}</p>
             <p className="font-semibold text-slate-900">{nationality?.name || profile.nationality}</p>
           </div>
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">한국어 수준</p>
+            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.koreanLevel')}</p>
             <p className="font-semibold text-slate-900">
               {getKoreanLevelDisplay(profile.korean_level)}
             </p>
           </div>
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">직업/직종</p>
-            <p className="font-semibold text-slate-900">{profile.occupation || '미입력'}</p>
+            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.occupation')}</p>
+            <p className="font-semibold text-slate-900">{profile.occupation || t('profileSection.notEntered')}</p>
           </div>
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">유입 경로</p>
+            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.referralSource')}</p>
             <p className="font-semibold text-slate-900">
-              {profile.referral_source || '미입력'}
+              {profile.referral_source || t('profileSection.notEntered')}
             </p>
           </div>
         </div>

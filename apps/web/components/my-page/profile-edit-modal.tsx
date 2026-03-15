@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition } from 'react'
 import { NATIONALITIES, KOREAN_LEVELS } from '@repo/lib'
+import { useTranslation } from '@/lib/i18n'
 import {
   seekerProfileUpdateSchema,
   type SeekerProfileUpdate,
@@ -52,6 +53,7 @@ export function ProfileEditModal({
   defaultValues,
 }: ProfileEditModalProps) {
   const [isPending, startTransition] = useTransition()
+  const { t, language } = useTranslation()
 
   const form = useForm<SeekerProfileUpdate>({
     resolver: zodResolver(seekerProfileUpdateSchema),
@@ -87,9 +89,9 @@ export function ProfileEditModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>프로필 수정</DialogTitle>
+          <DialogTitle>{t('profileEditModal.title')}</DialogTitle>
           <DialogDescription>
-            구직자 프로필 정보를 수정합니다.
+            {t('profileEditModal.description')}
           </DialogDescription>
         </DialogHeader>
 
@@ -101,15 +103,15 @@ export function ProfileEditModal({
               name="nationality"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>국적 *</FormLabel>
+                  <FormLabel>{t('profileEditModal.nationalityLabel')}</FormLabel>
                   <FormControl>
                     <SearchableSelect
                       items={NATIONALITIES.filter(n => n.code !== 'ANY')}
                       value={field.value}
                       onValueChange={field.onChange}
-                      placeholder="국적을 선택해주세요"
-                      searchPlaceholder="국가 검색..."
-                      emptyText="검색 결과가 없습니다."
+                      placeholder={t('profileEditModal.nationalityPlaceholder')}
+                      searchPlaceholder={t('profileEditModal.nationalitySearch')}
+                      emptyText={t('profileEditModal.nationalityEmpty')}
                     />
                   </FormControl>
                   <FormMessage />
@@ -123,20 +125,20 @@ export function ProfileEditModal({
               name="korean_level"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>한국어 수준</FormLabel>
+                  <FormLabel>{t('profileEditModal.koreanLevelLabel')}</FormLabel>
                   <Select
                     onValueChange={field.onChange}
                     value={field.value || 'not_specified'}
                   >
                     <FormControl>
                       <SelectTrigger>
-                        <SelectValue placeholder="한국어 수준 선택" />
+                        <SelectValue placeholder={t('profileEditModal.koreanLevelPlaceholder')} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {KOREAN_LEVELS.map(level => (
                         <SelectItem key={level.code} value={level.code}>
-                          {level.nameKo}
+                          {language === 'en' ? level.name : level.nameKo}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -152,10 +154,10 @@ export function ProfileEditModal({
               name="occupation"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>직업/직종</FormLabel>
+                  <FormLabel>{t('profileEditModal.occupationLabel')}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="예: 제조업, IT, 서비스업"
+                      placeholder={t('profileEditModal.occupationPlaceholder')}
                       {...field}
                       value={field.value || ''}
                     />
@@ -171,10 +173,10 @@ export function ProfileEditModal({
               name="referral_source"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>유입 경로</FormLabel>
+                  <FormLabel>{t('profileEditModal.referralLabel')}</FormLabel>
                   <FormControl>
                     <Input
-                      placeholder="어떻게 알게 되셨나요?"
+                      placeholder={t('profileEditModal.referralPlaceholder')}
                       {...field}
                       value={field.value || ''}
                     />
@@ -192,10 +194,10 @@ export function ProfileEditModal({
                 onClick={() => onOpenChange(false)}
                 disabled={isPending}
               >
-                취소
+                {t('profileEditModal.cancel')}
               </Button>
               <Button type="submit" disabled={isPending}>
-                {isPending ? '저장 중...' : '저장'}
+                {isPending ? t('profileEditModal.saving') : t('profileEditModal.save')}
               </Button>
             </div>
           </form>

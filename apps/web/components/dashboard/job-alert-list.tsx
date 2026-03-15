@@ -7,6 +7,7 @@ import { COUNTRIES, JOB_TYPES } from '@repo/lib'
 import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
+import { useTranslation } from '@/lib/i18n'
 
 interface JobAlert {
   id: string
@@ -24,6 +25,7 @@ interface JobAlertListProps {
 
 export function JobAlertList({ alerts }: JobAlertListProps) {
   const [isPending, startTransition] = useTransition()
+  const { t, language } = useTranslation()
 
   function handleToggle(alertId: string, currentState: boolean) {
     startTransition(async () => {
@@ -35,7 +37,7 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
   }
 
   function handleDelete(alertId: string) {
-    if (!window.confirm('이 알림을 삭제하시겠습니까?')) {
+    if (!window.confirm(t('jobAlertList.deleteConfirm'))) {
       return
     }
 
@@ -50,7 +52,7 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
   if (alerts.length === 0) {
     return (
       <div className="text-center py-12 text-slate-600">
-        설정된 잡 알림이 없습니다
+        {t('jobAlertList.noAlerts')}
       </div>
     )
   }
@@ -60,18 +62,21 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
       {alerts.map((alert) => {
         // Lookup display names
         const countryName = alert.country
-          ? COUNTRIES.find((c) => c.code === alert.country)?.name || '모든 국가'
-          : '모든 국가'
-        const jobTypeName = alert.job_type
-          ? JOB_TYPES.find((t) => t.code === alert.job_type)?.nameKo || '모든 고용형태'
-          : '모든 고용형태'
+          ? COUNTRIES.find((c) => c.code === alert.country)?.name || t('jobAlertForm.allCountries')
+          : t('jobAlertForm.allCountries')
+        const jobTypeEntry = alert.job_type
+          ? JOB_TYPES.find((jt) => jt.code === alert.job_type)
+          : null
+        const jobTypeName = jobTypeEntry
+          ? (language === 'en' ? jobTypeEntry.name : jobTypeEntry.nameKo)
+          : t('jobAlertForm.allJobTypes')
 
         const frequencyText =
           alert.frequency === 'instant'
-            ? '즉시'
+            ? t('jobAlertForm.instant')
             : alert.frequency === 'daily'
-            ? '매일'
-            : '주간'
+            ? t('jobAlertForm.daily')
+            : t('jobAlertForm.weekly')
 
         return (
           <div
@@ -81,7 +86,7 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
             <div className="flex-1 space-y-2">
               <div>
                 <p className="font-medium text-slate-900">
-                  {alert.keywords || '키워드 없음'}
+                  {alert.keywords || t('jobAlertList.noKeywords')}
                 </p>
                 <div className="flex flex-wrap gap-2 mt-2">
                   <Badge variant="outline">{countryName}</Badge>
@@ -94,7 +99,7 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
             <div className="flex items-center gap-3">
               <div className="flex items-center gap-2">
                 <span className="text-sm text-slate-600">
-                  {alert.is_active ? '활성' : '비활성'}
+                  {alert.is_active ? t('jobAlertList.active') : t('jobAlertList.inactive')}
                 </span>
                 <Switch
                   checked={alert.is_active}
