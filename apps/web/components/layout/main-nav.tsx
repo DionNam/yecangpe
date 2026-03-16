@@ -47,20 +47,12 @@ export async function MainNav({ user }: MainNavProps) {
             >
               공고 보기
             </Link>
-            {!user && (
+            {userRole !== 'seeker' && (
               <Link
                 href="/employers"
                 className="text-sm font-medium transition-colors hover:text-primary"
               >
                 고용주
-              </Link>
-            )}
-            {userRole === 'seeker' && (
-              <Link
-                href="/my-page"
-                className="text-sm font-medium transition-colors hover:text-primary"
-              >
-                마이페이지
               </Link>
             )}
             {user ? (
