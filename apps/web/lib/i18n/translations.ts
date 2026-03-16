@@ -420,8 +420,6 @@ export const translations = {
       saved: "저장됨",
       print: "인쇄",
       jobDescription: "공고 내용",
-      apply: "Contact Employer",
-      applyByEmail: "Contact by Email",
       apply: '지원하기',
       applyByEmail: '이메일로 지원하기',
       jobInfo: '공고 정보',
