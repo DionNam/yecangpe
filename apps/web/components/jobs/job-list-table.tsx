@@ -7,11 +7,15 @@ type JobPost = Database['public']['Tables']['job_posts']['Row']
 interface JobListTableProps {
   posts: JobPost[]
   isAuthenticated: boolean
+  canLike: boolean
+  likedPostIds: Set<string>
 }
 
 export function JobListTable({
   posts,
   isAuthenticated,
+  canLike,
+  likedPostIds,
 }: JobListTableProps) {
   return (
     <>
@@ -33,6 +37,8 @@ export function JobListTable({
             key={post.id}
             job={post}
             isAuthenticated={isAuthenticated}
+            canLike={canLike}
+            isLiked={likedPostIds.has(post.id)}
           />
         ))}
       </div>

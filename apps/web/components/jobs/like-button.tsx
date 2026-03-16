@@ -11,6 +11,7 @@ interface LikeButtonProps {
   initialLiked: boolean
   initialCount: number
   canLike: boolean
+  compact?: boolean
 }
 
 export function LikeButton({
@@ -18,6 +19,7 @@ export function LikeButton({
   initialLiked,
   initialCount,
   canLike,
+  compact = false,
 }: LikeButtonProps) {
   const [isPending, startTransition] = useTransition()
   const { t } = useTranslation()
@@ -37,6 +39,23 @@ export function LikeButton({
       setOptimisticState(newLikedState)
       await toggleLike(postId)
     })
+  }
+
+  if (compact) {
+    return (
+      <Button
+        variant="ghost"
+        size="sm"
+        onClick={handleClick}
+        disabled={!canLike || isPending}
+        className={`gap-1.5 ${optimisticState.liked ? 'text-slate-900' : 'text-slate-600 hover:text-slate-900'}`}
+      >
+        <Bookmark
+          className={optimisticState.liked ? 'fill-current' : ''}
+          size={16}
+        />
+      </Button>
+    )
   }
 
   return (

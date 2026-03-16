@@ -119,6 +119,17 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   } = await supabase.auth.getUser()
   const isAuthenticated = !!user
 
+  // Check if user is a seeker (can like posts)
+  let canLike = false
+  if (user) {
+    const { data: seekerProfile } = await supabase
+      .from('seeker_profiles')
+      .select('id')
+      .eq('user_id', user.id)
+      .single()
+    canLike = !!seekerProfile
+  }
+
   // Build query
   let query = supabase
     .from('job_posts')
@@ -182,6 +193,21 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   query = query.range(start, end)
 
   const { data: posts, count, error } = await query as { data: JobPost[] | null, count: number | null, error: any }
+
+  // Fetch like status for all posts if user is authenticated
+  let likedPostIds: Set<string> = new Set()
+  if (user && posts && posts.length > 0) {
+    const postIds = posts.map(p => p.id)
+    const { data: likesData } = await supabase
+      .from('post_likes')
+      .select('post_id')
+      .eq('user_id', user.id)
+      .in('post_id', postIds)
+
+    if (likesData) {
+      likedPostIds = new Set(likesData.map(l => l.post_id))
+    }
+  }
 
   if (error) {
     console.error('Error fetching job posts:', error)
@@ -247,6 +273,8 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           <JobListTable
             posts={posts || []}
             isAuthenticated={isAuthenticated}
+            canLike={canLike}
+            likedPostIds={likedPostIds}
           />
         </div>
 

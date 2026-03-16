@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { LoginModal } from './login-modal'
 import { ShareButton } from './share-button'
+import { LikeButton } from './like-button'
 import {
   getCountryName,
   JOB_TYPES,
@@ -25,11 +26,15 @@ type JobPost = Database['public']['Tables']['job_posts']['Row']
 interface JobRowProps {
   job: JobPost
   isAuthenticated: boolean
+  canLike: boolean
+  isLiked: boolean
 }
 
 export function JobRow({
   job,
   isAuthenticated,
+  canLike,
+  isLiked,
 }: JobRowProps) {
   const router = useRouter()
   const [showLoginModal, setShowLoginModal] = useState(false)
@@ -248,14 +253,23 @@ export function JobRow({
           </div>
         </div>
 
-        {/* Right side: Date and Share */}
+        {/* Right side: Date, Save, and Share */}
         <div className="flex flex-col items-end gap-2 flex-shrink-0">
           <span className="flex items-center gap-1 text-xs text-slate-400">
             <Calendar className="w-3.5 h-3.5" />
             {getRelativeDate()}
           </span>
 
-          <div onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center gap-1" onClick={(e) => e.stopPropagation()}>
+            {canLike && (
+              <LikeButton
+                postId={job.id}
+                initialLiked={isLiked}
+                initialCount={0}
+                canLike={canLike}
+                compact
+              />
+            )}
             <ShareButton
               title={job.title || ''}
               url={`${typeof window !== 'undefined' ? window.location.origin : ''}/jobs/${job.slug || job.id}`}
