@@ -98,7 +98,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
         <Tabs defaultValue="posts" className="space-y-6">
           <TabsList>
             <TabsTrigger value="posts">{t('employerDashboardPage.postManagement')}</TabsTrigger>
-            <TabsTrigger value="talent">{t('employerDashboardPage.talentBrowse')}</TabsTrigger>
+            {/* <TabsTrigger value="talent">{t('employerDashboardPage.talentBrowse')}</TabsTrigger> */}
             <TabsTrigger value="settings">{t('employerDashboardPage.accountSettings')}</TabsTrigger>
           </TabsList>
 
@@ -116,6 +116,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
             </div>
           </TabsContent>
 
+          {/* TODO: Talent browse - premium feature
           <TabsContent value="talent" className="space-y-6">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8 text-center py-12">
               <h2 className="text-xl font-semibold mb-2">{t('employerDashboardPage.talentBrowse')}</h2>
@@ -127,6 +128,7 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
               </Button>
             </div>
           </TabsContent>
+          */}
 
           <TabsContent value="settings">
             <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
