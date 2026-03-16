@@ -521,7 +521,7 @@ export const translations = {
     },
     seekerOnboarding: {
       cardTitle: '구직자 프로필',
-      cardDescription: '프로필 정보를 입력해주세요',
+      cardDescription: "",
       profileQuestion: '프로필을 공개하시겠습니까?',
       profileDescription: '프로필을 공개하시면 고용주들이 회원님의 프로필을 보고 직접 연락할 수 있습니다.',
       yesPublic: '네, 프로필을 공개합니다',
@@ -1095,7 +1095,7 @@ export const translations = {
     },
     seekerOnboarding: {
       cardTitle: 'Job Seeker Profile',
-      cardDescription: 'Enter your profile information',
+      cardDescription: "",
       profileQuestion: 'Would you like to make your profile public?',
       profileDescription: 'If you make your profile public, employers can view your profile and contact you directly.',
       yesPublic: 'Yes, make my profile public',

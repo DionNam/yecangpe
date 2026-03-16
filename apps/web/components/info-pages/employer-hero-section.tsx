@@ -68,6 +68,7 @@ export function EmployerHeroSection() {
                 {t('employerPage.ctaPrimary')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
+              {/* TODO: Talent browse - premium feature
               <Link
                 href="/employer/talent"
                 className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 text-lg font-semibold"
@@ -76,6 +77,7 @@ export function EmployerHeroSection() {
                 {t('employerPage.ctaTalent')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
+              */}
             </motion.div>
 
             {/* Trust Indicators */}
