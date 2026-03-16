@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { UserMenu } from './user-menu'
 import { createClient } from '@repo/supabase/server'
@@ -27,8 +28,15 @@ export async function MainNav({ user }: MainNavProps) {
       <div className="container flex h-14 items-center">
         <div className="flex flex-1 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <span className="font-bold text-lg">HangulJobs</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-full.png"
+              alt="HangulJobs"
+              width={140}
+              height={40}
+              className="h-8 w-auto"
+              priority
+            />
           </Link>
 
           {/* Navigation */}
@@ -37,8 +45,24 @@ export async function MainNav({ user }: MainNavProps) {
               href="/jobs"
               className="text-sm font-medium transition-colors hover:text-primary"
             >
-              채용 공고
+              공고 보기
             </Link>
+            {!user && (
+              <Link
+                href="/employers"
+                className="text-sm font-medium transition-colors hover:text-primary"
+              >
+                고용주
+              </Link>
+            )}
+            {userRole === 'seeker' && (
+              <Link
+                href="/my-page"
+                className="text-sm font-medium transition-colors hover:text-primary"
+              >
+                마이페이지
+              </Link>
+            )}
             {user ? (
               <UserMenu user={user} role={userRole} />
             ) : (
