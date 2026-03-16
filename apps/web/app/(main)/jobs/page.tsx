@@ -205,7 +205,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
       .in('post_id', postIds)
 
     if (likesData) {
-      likedPostIds = new Set(likesData.map(l => l.post_id))
+      likedPostIds = new Set(likesData.map((l: any) => l.post_id))
     }
   }
 
