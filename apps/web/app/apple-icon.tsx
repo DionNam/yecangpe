@@ -8,24 +8,31 @@ export const size = {
 }
 export const contentType = 'image/png'
 
-export default function AppleIcon() {
+export default async function AppleIcon() {
+  const imageData = await fetch(
+    new URL('../public/favicon.png', import.meta.url)
+  ).then((res) => res.arrayBuffer())
+
   return new ImageResponse(
     (
       <div
         style={{
-          fontSize: 120,
-          background: '#1e293b',
           width: '100%',
           height: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: 'white',
-          fontWeight: 700,
-          borderRadius: 36,
+          background: 'white',
         }}
       >
-        ㅎ
+        <img
+          src={`data:image/png;base64,${Buffer.from(imageData).toString('base64')}`}
+          width="160"
+          height="160"
+          style={{
+            objectFit: 'contain',
+          }}
+        />
       </div>
     ),
     {
