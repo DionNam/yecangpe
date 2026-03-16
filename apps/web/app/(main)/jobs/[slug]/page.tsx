@@ -40,21 +40,28 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
 
   // Type assertion for job
   const jobData = job as any
-  const description = jobData.content?.replace(/<[^>]*>/g, '').substring(0, 160) || ''
+  const plainText = jobData.content?.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() || ''
+  const description = plainText.substring(0, 160)
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const canonicalSlug = jobData.slug || slug
 
   return {
     title: `${jobData.title} | ${jobData.company_name}`,
     description,
+    alternates: {
+      canonical: `/jobs/${canonicalSlug}`,
+    },
     openGraph: {
       title: `${jobData.title} - ${jobData.company_name}`,
       description,
       type: 'article',
       locale: 'ko_KR',
       siteName: 'HangulJobs',
-      ...(jobData.image_url && { images: [{ url: jobData.image_url }] }),
+      url: `${baseUrl}/jobs/${canonicalSlug}`,
+      ...(jobData.image_url && { images: [{ url: jobData.image_url, alt: `${jobData.title} - ${jobData.company_name}` }] }),
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: `${jobData.title} - ${jobData.company_name}`,
       description,
     },
@@ -249,11 +256,43 @@ async function renderJobPage(supabase: any, jobData: JobPost) {
     metricsConfig
   )
 
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const canonicalSlug = (jobData as any).slug || jobData.id
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: baseUrl,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: '채용 공고',
+        item: `${baseUrl}/jobs`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: jobData.title,
+        item: `${baseUrl}/jobs/${canonicalSlug}`,
+      },
+    ],
+  }
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(buildJobPostingSchema(jobData)) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       <div className="min-h-screen bg-slate-50">
         <JobDetailPageComponent

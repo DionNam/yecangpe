@@ -15,29 +15,56 @@ const pretendard = localFont({
   weight: '100 900',
 })
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'),
+  metadataBase: new URL(baseUrl),
   title: {
     default: 'HangulJobs (한글잡스)',
     template: '%s | HangulJobs',
   },
-  description: 'Find Korean-Speaking Jobs Worldwide - 전 세계 한국어 일자리 플랫폼',
+  description: 'Find Korean-Speaking Jobs Worldwide - 전 세계 한국어 일자리 플랫폼. 한국어 구사 외국인 인재와 검증된 채용 공고를 연결합니다.',
   alternates: {
     canonical: '/',
+    languages: {
+      'ko': '/',
+      'en': '/',
+      'x-default': '/',
+    },
   },
   openGraph: {
     title: 'HangulJobs (한글잡스)',
     description: 'Find Korean-Speaking Jobs Worldwide - 전 세계 한국어 일자리 플랫폼',
     locale: 'ko_KR',
+    alternateLocale: ['en_US'],
     type: 'website',
     siteName: 'HangulJobs',
+    url: baseUrl,
   },
   twitter: {
     card: 'summary_large_image',
     title: 'HangulJobs (한글잡스)',
     description: 'Find Korean-Speaking Jobs Worldwide - 전 세계 한국어 일자리 플랫폼',
+    site: '@hanguljobs',
   },
-  keywords: ['Korean speaking jobs', 'Korean language jobs', 'HangulJobs', '한글잡스', '한국어 채용', '해외 취업', 'foreigner jobs', 'Korea jobs'],
+  keywords: [
+    'Korean speaking jobs', 'Korean language jobs', 'HangulJobs', '한글잡스',
+    '한국어 채용', '해외 취업', 'foreigner jobs Korea', 'bilingual jobs Korean',
+    '외국인 채용', '한국어 가능 구인', 'Korean bilingual jobs', 'work in Korea',
+    'Korean company jobs', '한국 기업 취업', 'TOPIK jobs', 'Korean speaker careers',
+  ],
+  category: 'jobs',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export default function RootLayout({

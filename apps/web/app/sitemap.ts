@@ -1,90 +1,145 @@
 import { MetadataRoute } from 'next'
+import { createClient } from '@repo/supabase/server'
 import { JOB_TYPES, CATEGORIES, KOREAN_LEVELS, COUNTRIES } from '@repo/lib'
 
 const LOCATION_TYPES = ['remote', 'on_site', 'hybrid']
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const revalidate = 3600 // Regenerate sitemap every hour
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
 
-  const staticPages = [
+  const staticPages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/jobs`,
       lastModified: new Date(),
-      changeFrequency: 'hourly' as const,
+      changeFrequency: 'hourly',
       priority: 0.9,
     },
     {
-      url: `${baseUrl}/employer`,
+      url: `${baseUrl}/employers`,
       lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/job-seekers`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/faq`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
       priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/about`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/privacy`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/terms`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/contact`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
     },
   ]
 
-  // Info pages
-  const infoPages = [
-    { url: `${baseUrl}/job-seekers`, priority: 0.7 },
-    { url: `${baseUrl}/employers`, priority: 0.7 },
-    { url: `${baseUrl}/about`, priority: 0.5 },
-    { url: `${baseUrl}/faq`, priority: 0.5 },
-    { url: `${baseUrl}/privacy`, priority: 0.5 },
-  ].map(p => ({ ...p, lastModified: new Date(), changeFrequency: 'weekly' as const }))
-
-  // Filter pages - by job type (query param format)
-  const jobTypePages = JOB_TYPES.map(({ code }) => ({
+  // Filter pages - by job type
+  const jobTypePages: MetadataRoute.Sitemap = JOB_TYPES.map(({ code }) => ({
     url: `${baseUrl}/jobs?job_type=${code}`,
     lastModified: new Date(),
-    changeFrequency: 'daily' as const,
+    changeFrequency: 'daily',
     priority: 0.8,
   }))
 
-  // Filter pages - by location type (query param format)
-  const locationTypePages = LOCATION_TYPES.map(code => ({
+  // Filter pages - by location type
+  const locationTypePages: MetadataRoute.Sitemap = LOCATION_TYPES.map(code => ({
     url: `${baseUrl}/jobs?location_type=${code}`,
     lastModified: new Date(),
-    changeFrequency: 'daily' as const,
+    changeFrequency: 'daily',
     priority: 0.8,
   }))
 
-  // Filter pages - by country (query param format)
-  const countryPages = COUNTRIES.map(({ code }) => ({
+  // Filter pages - by country
+  const countryPages: MetadataRoute.Sitemap = COUNTRIES.map(({ code }) => ({
     url: `${baseUrl}/jobs?location_country=${code}`,
     lastModified: new Date(),
-    changeFrequency: 'daily' as const,
+    changeFrequency: 'daily',
     priority: 0.7,
   }))
 
-  // Filter pages - by category (query param format)
-  const categoryPages = CATEGORIES.map(({ code }) => ({
+  // Filter pages - by category
+  const categoryPages: MetadataRoute.Sitemap = CATEGORIES.map(({ code }) => ({
     url: `${baseUrl}/jobs?category=${code}`,
     lastModified: new Date(),
-    changeFrequency: 'daily' as const,
+    changeFrequency: 'daily',
     priority: 0.8,
   }))
 
-  // Filter pages - by language level (query param format, excluding not_specified)
-  const languageLevelPages = KOREAN_LEVELS
+  // Filter pages - by Korean level (excluding not_specified)
+  const languageLevelPages: MetadataRoute.Sitemap = KOREAN_LEVELS
     .filter(l => l.code !== 'not_specified')
     .map(({ code }) => ({
       url: `${baseUrl}/jobs?korean_level=${code}`,
       lastModified: new Date(),
-      changeFrequency: 'daily' as const,
+      changeFrequency: 'daily',
       priority: 0.7,
     }))
 
+  // Dynamic job post pages
+  let jobPages: MetadataRoute.Sitemap = []
+  try {
+    const supabase = await createClient()
+    const { data: jobs } = await supabase
+      .from('job_posts')
+      .select('slug, published_at, updated_at')
+      .eq('review_status', 'published')
+      .eq('hiring_status', 'hiring')
+      .not('slug', 'is', null)
+      .order('published_at', { ascending: false })
+      .limit(1000)
+
+    if (jobs) {
+      jobPages = (jobs as Array<{ slug: string; published_at: string | null; updated_at: string | null }>).map(job => ({
+        url: `${baseUrl}/jobs/${job.slug}`,
+        lastModified: new Date(job.updated_at || job.published_at || new Date()),
+        changeFrequency: 'weekly' as const,
+        priority: 0.7,
+      }))
+    }
+  } catch {
+    // Non-critical - sitemap works without dynamic job pages
+  }
+
   return [
     ...staticPages,
-    ...infoPages,
     ...jobTypePages,
     ...locationTypePages,
     ...countryPages,
     ...categoryPages,
     ...languageLevelPages,
+    ...jobPages,
   ]
 }

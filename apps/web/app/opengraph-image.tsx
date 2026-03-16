@@ -10,7 +10,13 @@ export const size = {
 
 export const contentType = 'image/png'
 
-export default function OGImage() {
+export default async function OGImage() {
+  const logoData = await fetch(
+    new URL('../public/logo-full.png', import.meta.url)
+  ).then((res) => res.arrayBuffer())
+
+  const logoSrc = `data:image/png;base64,${Buffer.from(logoData).toString('base64')}`
+
   return new ImageResponse(
     (
       <div
@@ -21,64 +27,61 @@ export default function OGImage() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#0f172a',
+          backgroundColor: '#ffffff',
+          padding: '60px 80px',
         }}
       >
         {/* Logo */}
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: 24,
-            marginBottom: 40,
-          }}
-        >
-          <div
-            style={{
-              width: 80,
-              height: 80,
-              backgroundColor: '#0f172a',
-              border: '2px solid #334155',
-              borderRadius: 16,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: 48,
-              fontWeight: 700,
-              fontStyle: 'italic',
-              color: 'white',
-            }}
-          >
-            P
-          </div>
-          <div
-            style={{
-              fontSize: 72,
-              fontWeight: 700,
-              color: 'white',
-            }}
-          >
-            HangulJobs
-          </div>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={logoSrc}
+          width={480}
+          height={120}
+          style={{ objectFit: 'contain', marginBottom: 40 }}
+          alt="HangulJobs"
+        />
 
         {/* Tagline */}
         <div
           style={{
-            fontSize: 32,
-            color: '#94a3b8',
+            fontSize: 36,
+            fontWeight: 600,
+            color: '#1e293b',
+            textAlign: 'center',
+            marginBottom: 20,
           }}
         >
           Find Korean-Speaking Jobs Worldwide
         </div>
 
-        {/* URL */}
+        <div
+          style={{
+            fontSize: 26,
+            color: '#64748b',
+            textAlign: 'center',
+          }}
+        >
+          전 세계 한국어 구인구직 플랫폼
+        </div>
+
+        {/* Bottom URL bar */}
         <div
           style={{
             position: 'absolute',
-            bottom: 50,
-            fontSize: 24,
-            color: '#64748b',
+            bottom: 0,
+            left: 0,
+            right: 0,
+            height: 8,
+            backgroundColor: '#0f172a',
+          }}
+        />
+
+        <div
+          style={{
+            position: 'absolute',
+            bottom: 28,
+            fontSize: 22,
+            color: '#94a3b8',
           }}
         >
           hanguljobs.com

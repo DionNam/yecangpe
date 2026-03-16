@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
 import { User } from '@supabase/supabase-js'
@@ -26,11 +27,15 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-              <span className="text-lg font-bold text-white italic">H</span>
-            </div>
-            <span className="text-xl font-bold text-gray-900">HangulJobs</span>
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo-full.png"
+              alt="HangulJobs"
+              width={160}
+              height={40}
+              className="h-10 w-auto"
+              priority
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">

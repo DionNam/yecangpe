@@ -55,10 +55,14 @@ export async function generateMetadata({ searchParams }: JobsPageProps): Promise
       return {
         title: fullTitle,
         description: filterDescription,
+        alternates: {
+          canonical: `/jobs?${param}=${value}`,
+        },
         openGraph: {
           title: fullTitle,
           description: filterDescription,
           type: 'website',
+          siteName: 'HangulJobs',
         },
         twitter: {
           card: 'summary_large_image',
@@ -84,10 +88,14 @@ export async function generateMetadata({ searchParams }: JobsPageProps): Promise
   return {
     title,
     description,
+    alternates: {
+      canonical: '/jobs',
+    },
     openGraph: {
       title,
       description,
       type: 'website',
+      siteName: 'HangulJobs',
     },
     twitter: {
       card: 'summary_large_image',
