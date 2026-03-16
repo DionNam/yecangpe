@@ -43,6 +43,7 @@ export function SeekerForm() {
   const [error, setError] = useState<string | null>(null)
   const [step, setStep] = useState<1 | 2>(1)
   const [isPublic, setIsPublic] = useState<boolean | null>(null)
+  const [referralOther, setReferralOther] = useState<string>("")
   const { t, language } = useTranslation()
 
   const form = useForm<SeekerProfileInput>({

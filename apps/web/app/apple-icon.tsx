@@ -26,6 +26,7 @@ export default async function AppleIcon() {
         }}
       >
         <img
+          // @ts-ignore
           src={`data:image/png;base64,${Buffer.from(imageData).toString('base64')}`}
           width="160"
           height="160"
