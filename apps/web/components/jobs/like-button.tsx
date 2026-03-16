@@ -1,9 +1,10 @@
 'use client'
 
 import { useOptimistic, useTransition } from 'react'
-import { Heart } from 'lucide-react'
+import { Bookmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { toggleLike } from '@/app/actions/likes'
+import { useTranslation } from '@/lib/i18n'
 
 interface LikeButtonProps {
   postId: string
@@ -19,6 +20,7 @@ export function LikeButton({
   canLike,
 }: LikeButtonProps) {
   const [isPending, startTransition] = useTransition()
+  const { t } = useTranslation()
   const [optimisticState, setOptimisticState] = useOptimistic(
     { liked: initialLiked, count: initialCount },
     (current, newLiked: boolean) => ({
@@ -39,20 +41,18 @@ export function LikeButton({
 
   return (
     <Button
-      variant="ghost"
+      variant={optimisticState.liked ? "default" : "outline"}
       onClick={handleClick}
       disabled={!canLike || isPending}
       className="flex items-center gap-2"
     >
-      <Heart
-        className={
-          optimisticState.liked
-            ? 'fill-red-500 text-red-500'
-            : 'text-gray-400'
-        }
-        size={20}
+      <Bookmark
+        className={optimisticState.liked ? 'fill-current' : ''}
+        size={16}
       />
-      <span className="text-sm font-medium">{optimisticState.count}</span>
+      <span className="text-sm font-medium">
+        {optimisticState.liked ? t('common.saved') : t('common.save')}
+      </span>
     </Button>
   )
 }

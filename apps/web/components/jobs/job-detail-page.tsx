@@ -69,7 +69,7 @@ export function JobDetailPage({
         >
           <path d="m15 18-6-6 6-6" />
         </svg>
-        목록으로 돌아가기
+        Back to List
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 mt-6">
@@ -131,7 +131,7 @@ export function JobDetailPage({
 
           {/* Job Description - rich text rendering */}
           <section>
-            <h2 className="text-xl font-bold mb-4 text-gray-900">공고 내용</h2>
+            <h2 className="text-xl font-bold mb-4 text-gray-900">Job Description</h2>
             <div className="prose prose-slate max-w-none">
               <p className="whitespace-pre-wrap text-slate-700 leading-relaxed">
                 {job.content}

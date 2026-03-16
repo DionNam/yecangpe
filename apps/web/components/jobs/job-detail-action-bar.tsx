@@ -4,6 +4,7 @@ import { LikeButton } from './like-button'
 import { JobDetailShareMenu } from './job-detail-share-menu'
 import { Button } from '@/components/ui/button'
 import { Printer } from 'lucide-react'
+import { useTranslation } from '@/lib/i18n'
 
 interface JobDetailActionBarProps {
   jobId: string
@@ -22,13 +23,15 @@ export function JobDetailActionBar({
   canLike,
   displayLikes,
 }: JobDetailActionBarProps) {
+  const { t } = useTranslation()
+
   const handlePrint = () => {
     window.print()
   }
 
   return (
     <div className="flex items-center gap-4 pt-6 border-t border-slate-200 no-print">
-      {/* Heart (Like Button) */}
+      {/* Save Button */}
       {canLike && (
         <LikeButton
           postId={jobId}
@@ -52,7 +55,7 @@ export function JobDetailActionBar({
         className="gap-1.5 text-slate-600 hover:text-slate-900"
       >
         <Printer className="w-4 h-4" />
-        <span>인쇄</span>
+        <span>{t('common.print')}</span>
       </Button>
     </div>
   )
