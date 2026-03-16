@@ -202,10 +202,10 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
       .from('post_likes')
       .select('post_id')
       .eq('user_id', user.id)
-      .in('post_id', postIds)
+      .in('post_id', postIds) as { data: Array<{ post_id: string }> | null }
 
     if (likesData) {
-      likedPostIds = new Set(likesData.map((l: any) => l.post_id))
+      likedPostIds = new Set(likesData.map(l => l.post_id))
     }
   }
 
