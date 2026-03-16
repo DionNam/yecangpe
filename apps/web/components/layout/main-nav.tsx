@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { UserMenu } from './user-menu'
 import { createClient } from '@repo/supabase/server'
@@ -29,13 +28,6 @@ export async function MainNav({ user }: MainNavProps) {
         <div className="flex flex-1 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="HangulJobs"
-              width={32}
-              height={32}
-              className="w-8 h-8"
-            />
             <span className="font-bold text-lg">HangulJobs</span>
           </Link>
 

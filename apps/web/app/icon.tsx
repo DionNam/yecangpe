@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-// favicon: H mark
+// favicon: Hangul ㅎ character
 export const size = {
   width: 32,
   height: 32,
@@ -14,20 +14,19 @@ export default function Icon() {
     (
       <div
         style={{
-          fontSize: 20,
-          background: '#0f172a',
+          fontSize: 24,
+          background: '#1e293b',
           width: '100%',
           height: '100%',
           display: 'flex',
-          alignItems: 'center',
+          alignments: 'center',
           justifyContent: 'center',
           color: 'white',
           fontWeight: 700,
-          fontStyle: 'italic',
           borderRadius: 6,
         }}
       >
-        H
+        ㅎ
       </div>
     ),
     {

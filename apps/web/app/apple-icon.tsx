@@ -13,8 +13,8 @@ export default function AppleIcon() {
     (
       <div
         style={{
-          fontSize: 110,
-          background: '#0f172a',
+          fontSize: 120,
+          background: '#1e293b',
           width: '100%',
           height: '100%',
           display: 'flex',
@@ -22,11 +22,10 @@ export default function AppleIcon() {
           justifyContent: 'center',
           color: 'white',
           fontWeight: 700,
-          fontStyle: 'italic',
           borderRadius: 36,
         }}
       >
-        H
+        ㅎ
       </div>
     ),
     {
