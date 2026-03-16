@@ -26,7 +26,7 @@ export default function AppleIcon() {
           borderRadius: 36,
         }}
       >
-        P
+        H
       </div>
     ),
     {
