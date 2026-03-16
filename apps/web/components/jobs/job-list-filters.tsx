@@ -132,11 +132,6 @@ function SingleSelectContent({
 const FILTER_STORAGE_KEY = 'hanguljobs-job-filters'
 const FILTER_PARAMS = ['job_type', 'location_type', 'nationality', 'location_country', 'category', 'korean_level', 'english_level']
 
-function getIpCountry(): string {
-  const match = document.cookie.match(/hanguljobs-ip-country=([A-Z]{2})/)
-  return match ? match[1] : ''
-}
-
 function saveFilters(params: URLSearchParams) {
   const toSave = new URLSearchParams()
   FILTER_PARAMS.forEach(k => { if (params.has(k)) toSave.set(k, params.get(k)!) })
@@ -151,7 +146,7 @@ export function JobListFilters() {
   const [canScrollRight, setCanScrollRight] = useState(false)
   const { t, language } = useTranslation()
 
-  // On first load with no URL filters, apply saved or IP-based defaults
+  // On first load with no URL filters, apply saved filters from localStorage
   useEffect(() => {
     const hasUrlFilters = FILTER_PARAMS.some(k => searchParams.has(k))
     if (hasUrlFilters) return
@@ -159,13 +154,8 @@ export function JobListFilters() {
     const stored = localStorage.getItem(FILTER_STORAGE_KEY)
     if (stored) {
       router.replace(`/jobs?${stored}`)
-      return
     }
-
-    const country = getIpCountry()
-    if (country) {
-      router.replace(`/jobs?location_country=${country}`)
-    }
+    // No automatic country filter - let user choose
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   // Localized filter items
