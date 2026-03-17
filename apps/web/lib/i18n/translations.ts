@@ -508,6 +508,12 @@ export const translations = {
       preferredJobTypes: '선호 고용 형태',
       preferredCategories: '선호 카테고리',
     },
+    likedJobsTab: {
+      empty: '관심 표시한 공고가 없습니다',
+      date: '날짜',
+      title: '제목',
+      views: '조회수',
+    },
     profileEditModal: {
       title: '프로필 수정',
       description: '구직자 프로필 정보를 수정합니다.',
@@ -1241,6 +1247,12 @@ export const translations = {
       linkedinUrl: 'LinkedIn',
       preferredJobTypes: 'Preferred Job Types',
       preferredCategories: 'Preferred Categories',
+    },
+    likedJobsTab: {
+      empty: 'No saved jobs yet',
+      date: 'Date',
+      title: 'Title',
+      views: 'Views',
     },
     profileEditModal: {
       title: 'Edit Profile',

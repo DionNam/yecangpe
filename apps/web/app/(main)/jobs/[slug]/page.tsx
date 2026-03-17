@@ -186,8 +186,7 @@ async function renderJobPage(supabase: any, jobData: JobPost) {
       .from('employer_profiles')
       .select('company_website')
       .eq('user_id', jobData.author_id)
-      .single()
-      .catch(() => ({ data: null })),
+      .maybeSingle(),
     // 2. Get authenticated user
     supabase.auth.getUser(),
     // 3. Increment view count (fire and forget)

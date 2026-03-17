@@ -52,7 +52,7 @@ export function ProfileTab({ profile }: ProfileTabProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.nationality')}</p>
-            <p className="font-semibold text-slate-900">{nationality?.name || profile.nationality}</p>
+            <p className="font-semibold text-slate-900">{language === 'ko' ? (nationality?.name || profile.nationality) : (nationality?.nameEn || profile.nationality)}</p>
           </div>
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.koreanLevel')}</p>
@@ -63,12 +63,6 @@ export function ProfileTab({ profile }: ProfileTabProps) {
           <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
             <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.occupation')}</p>
             <p className="font-semibold text-slate-900">{profile.occupation || t('profileSection.notEntered')}</p>
-          </div>
-          <div className="p-4 rounded-lg bg-slate-50 border border-slate-100">
-            <p className="text-xs font-medium text-slate-500 uppercase tracking-wider mb-1">{t('profileSection.referralSource')}</p>
-            <p className="font-semibold text-slate-900">
-              {profile.referral_source || t('profileSection.notEntered')}
-            </p>
           </div>
         </div>
       </div>

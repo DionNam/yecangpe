@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import {
   Table,
@@ -9,6 +11,7 @@ import {
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
 import { getDisplayMetrics } from '@/lib/utils/metrics'
+import { useTranslation } from '@/lib/i18n'
 import type { Database } from '@repo/supabase/types'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
@@ -29,10 +32,12 @@ interface LikedJobsTabProps {
 }
 
 export function LikedJobsTab({ jobs, metricsConfig }: LikedJobsTabProps) {
+  const { t, language } = useTranslation()
+
   if (jobs.length === 0) {
     return (
       <div className="text-center py-12 text-muted-foreground">
-        관심 표시한 공고가 없습니다
+        {t('likedJobsTab.empty')}
       </div>
     )
   }
@@ -41,9 +46,9 @@ export function LikedJobsTab({ jobs, metricsConfig }: LikedJobsTabProps) {
     <Table>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">날짜</TableHead>
-          <TableHead>제목</TableHead>
-          <TableHead className="w-[80px] text-right">조회수</TableHead>
+          <TableHead className="w-[100px]">{t('likedJobsTab.date')}</TableHead>
+          <TableHead>{t('likedJobsTab.title')}</TableHead>
+          <TableHead className="w-[80px] text-right">{t('likedJobsTab.views')}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -56,33 +61,31 @@ export function LikedJobsTab({ jobs, metricsConfig }: LikedJobsTabProps) {
 
           const { displayViews } = getDisplayMetrics(
             post.view_count,
-            0, // Real likes - not needed for display here
+            0,
             post.view_target,
             post.like_target,
             publishedAt,
             metricsConfig
           )
 
-          // Format date
-          const dateStr = publishedAt.toLocaleDateString('ko-KR', {
+          const dateStr = publishedAt.toLocaleDateString(language === 'en' ? 'en-US' : 'ko-KR', {
             year: 'numeric',
             month: '2-digit',
             day: '2-digit',
           })
 
-          // Get hiring status badge
           const getStatusBadge = (status: string) => {
             switch (status) {
               case 'hiring':
                 return (
                   <Badge variant="default" className="mr-2">
-                    채용중
+                    {t('jobPostForm.hiring')}
                   </Badge>
                 )
               case 'closed':
                 return (
                   <Badge variant="secondary" className="mr-2">
-                    마감
+                    {t('jobPostForm.closed')}
                   </Badge>
                 )
               default:
