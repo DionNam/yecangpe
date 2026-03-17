@@ -64,10 +64,10 @@ export function HeroSection() {
               className="flex flex-col sm:flex-row gap-4 mb-10"
             >
               <Link
-                href="/job-seekers"
+                href="/jobs"
                 className="group px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 text-lg font-semibold"
               >
-                {t('hero.ctaSeeker')}
+                {t('hero.ctaSearchJobs')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
