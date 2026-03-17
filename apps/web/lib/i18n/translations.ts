@@ -423,6 +423,9 @@ export const translations = {
       jobDescription: "공고 내용",
       new: "New",
     },
+    roleError: {
+      employerOnly: '이 기능은 고용주 계정으로만 이용할 수 있습니다.',
+    },
     jobDetail: {
       apply: '지원하기',
       applyByEmail: '이메일로 지원하기',
@@ -1162,6 +1165,9 @@ export const translations = {
       jobDescription: "Job Description",
       email: 'Email',
       new: "New",
+    },
+    roleError: {
+      employerOnly: 'This feature is only available for employer accounts.',
     },
     jobDetail: {
       apply: 'Apply',

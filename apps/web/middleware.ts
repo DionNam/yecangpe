@@ -9,6 +9,9 @@ const protectedRoutes = ['/my-page', '/dashboard', '/employer/posts', '/employer
 const authRoutes = ['/auth/callback']
 const onboardingRoutes = ['/onboarding']
 
+// Routes that require employer role
+const employerOnlyRoutes = ['/dashboard/post-job', '/employer/talent']
+
 export async function middleware(request: NextRequest) {
   const { supabaseResponse, user, supabase } = await updateSession(request)
   const { pathname } = request.nextUrl
@@ -39,31 +42,50 @@ export async function middleware(request: NextRequest) {
     return supabaseResponse
   }
 
-  // Check if this is a protected route
+  // Check if this is a protected route (including onboarding)
   const isProtectedRoute = protectedRoutes.some(route => pathname.startsWith(route))
+  const isOnboardingRoute = onboardingRoutes.some(route => pathname.startsWith(route))
 
-  // Non-protected routes are accessible without authentication
-  if (!isProtectedRoute) {
+  // Non-protected, non-onboarding routes are accessible without authentication
+  if (!isProtectedRoute && !isOnboardingRoute) {
     return supabaseResponse
   }
 
-  // Redirect unauthenticated users to login for protected routes
+  // Redirect unauthenticated users to login for protected/onboarding routes
   if (!user) {
-    return NextResponse.redirect(new URL('/login', request.url))
+    if (isOnboardingRoute) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    if (isProtectedRoute) {
+      return NextResponse.redirect(new URL('/login', request.url))
+    }
+    return supabaseResponse
   }
 
-  // For authenticated users, check if profile is complete
-  if (user && !onboardingRoutes.some(route => pathname.startsWith(route))) {
-    const { data: profile } = await supabase
-      .from('users')
-      .select('role')
-      .eq('id', user.id)
-      .single<{ role: UserRole | null }>()
+  // For authenticated users, fetch their role
+  const { data: profile } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single<{ role: UserRole | null }>()
 
-    // Redirect to onboarding if no role set
-    if (!profile || !profile.role) {
-      return NextResponse.redirect(new URL('/onboarding', request.url))
-    }
+  const userRole = profile?.role
+
+  // If user already has a role, block onboarding access
+  if (isOnboardingRoute && userRole) {
+    return NextResponse.redirect(new URL('/dashboard', request.url))
+  }
+
+  // If user has no role and is on a protected route, send to onboarding
+  if (isProtectedRoute && !userRole) {
+    return NextResponse.redirect(new URL('/onboarding', request.url))
+  }
+
+  // Employer-only route checks
+  const isEmployerOnlyRoute = employerOnlyRoutes.some(route => pathname.startsWith(route))
+  if (isEmployerOnlyRoute && userRole !== 'employer' && userRole !== 'admin') {
+    // Redirect seeker to dashboard with a query param to show a toast
+    return NextResponse.redirect(new URL('/dashboard?role_error=employer_only', request.url))
   }
 
   return supabaseResponse

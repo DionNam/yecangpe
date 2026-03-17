@@ -7,6 +7,7 @@ import { ScrollFix } from '@/components/scroll-fix'
 import { SiteHeaderWrapper } from '@/components/layout/site-header-wrapper'
 import { HeaderSkeleton } from '@/components/layout/header-skeleton'
 import { LanguageProvider } from '@/lib/i18n'
+import { RoleErrorToast } from '@/components/ui/role-error-toast'
 
 const pretendard = localFont({
   src: './fonts/PretendardVariable.woff2',
@@ -94,6 +95,9 @@ export default function RootLayout({
             <SiteHeaderWrapper />
           </Suspense>
           <ScrollFix />
+          <Suspense fallback={null}>
+            <RoleErrorToast />
+          </Suspense>
           {children}
         </LanguageProvider>
       </body>
