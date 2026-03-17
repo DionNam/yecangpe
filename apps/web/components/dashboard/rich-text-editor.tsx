@@ -451,7 +451,7 @@ export function RichTextEditor({
       {/* Editor content */}
       <EditorContent
         editor={editor}
-        className="prose prose-sm max-w-none focus:outline-none min-h-[300px] p-4"
+        className="prose prose-sm max-w-none focus:outline-none min-h-[300px] p-4 [&_.tiptap]:min-h-[280px] [&_.tiptap]:outline-none [&_.tiptap]:cursor-text"
       />
 
       {/* Character count footer */}
