@@ -4,18 +4,13 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useState } from 'react'
 import { Loader2 } from 'lucide-react'
-import { createClient } from '@repo/supabase/client'
 import { useRouter } from 'next/navigation'
-
-const ADMIN_USERNAME = 'admin'
-const ADMIN_PASSWORD = 'Nasig0reng!'
-const ADMIN_EMAIL = 'ndh8392@gmail.com'
+import { adminLogin } from '@/app/actions/admin-auth'
 
 export function AdminLoginForm() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
-  const supabase = createClient()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -23,58 +18,34 @@ export function AdminLoginForm() {
     setError(null)
 
     const formData = new FormData(e.currentTarget)
-    const username = formData.get('username') as string
+    const email = formData.get('email') as string
     const password = formData.get('password') as string
 
-    // Verify credentials
-    if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
-      setError('아이디 또는 비밀번호가 일치하지 않습니다')
+    const result = await adminLogin(email, password)
+
+    if (result.error) {
+      setError(result.error)
       setIsLoading(false)
       return
     }
 
-    try {
-      // Sign in with admin email and password
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email: ADMIN_EMAIL,
-        password: ADMIN_PASSWORD,
-      })
-
-      if (signInError) {
-        console.error('Supabase auth error:', signInError)
-        setError('로그인 처리 중 오류가 발생했습니다')
-        setIsLoading(false)
-        return
-      }
-
-      if (!data.user) {
-        setError('관리자 계정을 찾을 수 없습니다')
-        setIsLoading(false)
-        return
-      }
-
-      router.push('/employer/posts')
-      router.refresh()
-    } catch (error) {
-      console.error('Admin login error:', error)
-      setError('로그인 처리 중 오류가 발생했습니다')
-      setIsLoading(false)
-    }
+    router.push('/dashboard')
+    router.refresh()
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <div>
-        <label htmlFor="username" className="block text-sm font-medium text-slate-700 mb-1.5">
-          아이디
+        <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1.5">
+          이메일
         </label>
         <Input
-          id="username"
-          name="username"
-          type="text"
+          id="email"
+          name="email"
+          type="email"
           required
           className="w-full"
-          placeholder="admin"
+          placeholder="admin@example.com"
           disabled={isLoading}
         />
       </div>
