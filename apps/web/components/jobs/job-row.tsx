@@ -107,6 +107,7 @@ export function JobRow({
 
   // Format salary
   const getSalaryText = () => {
+    if ((job as any).salary_negotiable) return t('jobPostForm.salaryNegotiable')
     if (!job.salary_min && !job.salary_max) return null
 
     const currency = SALARY_CURRENCIES.find(c => c.code === job.salary_currency)

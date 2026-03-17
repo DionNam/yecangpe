@@ -60,6 +60,7 @@ export function JobDetailSidebar({
 
   // Format salary
   const formatSalary = () => {
+    if ((job as any).salary_negotiable) return t('jobPostForm.salaryNegotiable')
     if (!job.salary_min && !job.salary_max) return null
 
     const currency = SALARY_CURRENCIES.find(c => c.code === job.salary_currency)?.symbol || job.salary_currency || 'KRW'

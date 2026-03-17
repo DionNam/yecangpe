@@ -102,6 +102,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
       category: undefined as string | undefined,
       korean_level: undefined as string | undefined,
       english_level: undefined as string | undefined,
+      salary_negotiable: false,
       salary_min: undefined as number | undefined,
       salary_max: undefined as number | undefined,
       salary_currency: 'KRW' as const,
@@ -119,6 +120,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
 
   // Watch location type for conditional country picker
   const workLocationType = form.watch('work_location_type')
+  const salaryNegotiable = form.watch('salary_negotiable')
 
   const onSubmit = (data: JobPostInput) => {
     startTransition(async () => {
@@ -176,17 +178,21 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
         formData.append('english_level', data.english_level)
       }
 
-      if (data.salary_min !== undefined) {
-        formData.append('salary_min', String(data.salary_min))
-      }
-      if (data.salary_max !== undefined) {
-        formData.append('salary_max', String(data.salary_max))
-      }
-      if (data.salary_currency) {
-        formData.append('salary_currency', data.salary_currency)
-      }
-      if (data.salary_period) {
-        formData.append('salary_period', data.salary_period)
+      if (data.salary_negotiable) {
+        formData.append('salary_negotiable', 'true')
+      } else {
+        if (data.salary_min !== undefined) {
+          formData.append('salary_min', String(data.salary_min))
+        }
+        if (data.salary_max !== undefined) {
+          formData.append('salary_max', String(data.salary_max))
+        }
+        if (data.salary_currency) {
+          formData.append('salary_currency', data.salary_currency)
+        }
+        if (data.salary_period) {
+          formData.append('salary_period', data.salary_period)
+        }
       }
 
       if (data.career_level) {
@@ -504,9 +510,20 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
 
           {/* Salary section */}
           <div className="space-y-4 border-t pt-6">
-            <h3 className="text-sm font-medium">{t('jobPostForm.salarySection')}</h3>
+            <div className="flex items-center justify-between">
+              <h3 className="text-sm font-medium">{t('jobPostForm.salarySection')}</h3>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={salaryNegotiable}
+                  onChange={(e) => form.setValue('salary_negotiable', e.target.checked)}
+                  className="rounded border-slate-300"
+                />
+                <span className="text-sm text-slate-600">{t('jobPostForm.salaryNegotiable')}</span>
+              </label>
+            </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            {!salaryNegotiable && <><div className="grid grid-cols-2 gap-4">
               {/* Salary Min field */}
               <FormField
                 control={form.control}
@@ -602,7 +619,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   </FormItem>
                 )}
               />
-            </div>
+            </div></>}
           </div>
 
           {/* Application method section */}

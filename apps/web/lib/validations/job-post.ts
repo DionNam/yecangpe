@@ -52,6 +52,7 @@ export const jobPostSchema = z.object({
   english_level: z.enum(englishLevelCodes).optional(),
 
   // Salary (all optional)
+  salary_negotiable: z.boolean().default(false),
   salary_min: z.number().int().positive().nullable().optional(),
   salary_max: z.number().int().positive().nullable().optional(),
   salary_currency: z.enum(salaryCurrencyCodes).default('KRW'),
@@ -112,6 +113,7 @@ export const jobPostUpdateSchema = z.object({
   category: z.enum(categoryCodes).optional(),
   korean_level: z.enum(koreanLevelCodes).optional(),
   english_level: z.enum(englishLevelCodes).optional(),
+  salary_negotiable: z.boolean().default(false).optional(),
   salary_min: z.number().int().positive().nullable().optional(),
   salary_max: z.number().int().positive().nullable().optional(),
   salary_currency: z.enum(salaryCurrencyCodes).optional(),
