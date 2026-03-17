@@ -15,6 +15,28 @@ import {
   SALARY_PERIODS,
 } from '@repo/lib'
 import { jobPostSchema, type JobPostInput } from '@/lib/validations/job-post'
+
+// Country/nationality code to default currency mapping
+const COUNTRY_CURRENCY_MAP: Record<string, string> = {
+  KR: 'KRW', JP: 'JPY', CN: 'CNY', TW: 'TWD', HK: 'HKD',
+  ID: 'IDR', VN: 'VND', PH: 'PHP', TH: 'THB', MM: 'MMK',
+  SG: 'SGD', MY: 'MYR', KH: 'KHR', LA: 'LAK', BN: 'BND',
+  IN: 'INR', PK: 'PKR', BD: 'BDT', NP: 'NPR', LK: 'LKR',
+  MN: 'MNT', UZ: 'UZS', KZ: 'KZT',
+  AE: 'AED', SA: 'SAR', QA: 'QAR', KW: 'KWD', BH: 'BHD',
+  OM: 'OMR', IL: 'ILS', TR: 'TRY',
+  GB: 'GBP', CH: 'CHF', SE: 'SEK', NO: 'NOK', DK: 'DKK',
+  PL: 'PLN', CZ: 'CZK', HU: 'HUF', RO: 'RON', RU: 'RUB', UA: 'UAH',
+  US: 'USD', CA: 'CAD', MX: 'MXN',
+  BR: 'BRL', AR: 'ARS', CL: 'CLP', CO: 'COP', PE: 'PEN',
+  AU: 'AUD', NZ: 'NZD',
+  ZA: 'ZAR', EG: 'EGP', NG: 'NGN', KE: 'KES',
+  // EUR zone
+  DE: 'EUR', FR: 'EUR', IT: 'EUR', ES: 'EUR', PT: 'EUR', NL: 'EUR',
+  BE: 'EUR', AT: 'EUR', IE: 'EUR', FI: 'EUR', GR: 'EUR', LU: 'EUR',
+  MT: 'EUR', CY: 'EUR', SK: 'EUR', SI: 'EUR', EE: 'EUR', LV: 'EUR', LT: 'EUR',
+  HR: 'EUR', AD: 'EUR', MC: 'EUR', SM: 'EUR', VA: 'EUR',
+}
 import { createJobPost } from '@/app/actions/jobs'
 import { getSignedUploadUrl } from '@/app/actions/storage'
 import {
@@ -238,7 +260,14 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   <SearchableSelect
                     items={NATIONALITIES}
                     value={field.value}
-                    onValueChange={field.onChange}
+                    onValueChange={(value) => {
+                      field.onChange(value)
+                      // Auto-set currency based on nationality
+                      const currency = COUNTRY_CURRENCY_MAP[value]
+                      if (currency) {
+                        form.setValue('salary_currency', currency)
+                      }
+                    }}
                     placeholder="채용 대상 국적을 선택해주세요"
                     searchPlaceholder="국가 검색..."
                     emptyText="검색 결과가 없습니다."
