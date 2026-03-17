@@ -1,11 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('PotenHire E2E Tests', () => {
+test.describe('HangulJobs E2E Tests', () => {
   test('homepage loads correctly', async ({ page }) => {
     await page.goto('/');
 
     // Check that the page loads
-    await expect(page).toHaveTitle(/PotenHire/);
+    await expect(page).toHaveTitle(/HangulJobs/);
 
     // Check for hero section elements
     await expect(page.getByRole('main')).toBeVisible();
