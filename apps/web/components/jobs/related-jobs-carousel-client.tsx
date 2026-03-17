@@ -183,8 +183,8 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
           )
         })}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      <CarouselPrevious className="hidden md:flex" />
+      <CarouselNext className="hidden md:flex" />
     </Carousel>
     </>
   )
