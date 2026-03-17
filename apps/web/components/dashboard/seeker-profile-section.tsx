@@ -20,8 +20,10 @@ export function SeekerProfileSection({ profile }: SeekerProfileSectionProps) {
   const isPublic = (profile as any).is_profile_public ?? false
 
   // Get nationality display name
-  const nationalityName =
-    NATIONALITIES.find((n) => n.code === profile.nationality)?.name || profile.nationality
+  const nationalityEntry = NATIONALITIES.find((n) => n.code === profile.nationality)
+  const nationalityName = language === 'ko'
+    ? (nationalityEntry?.name || profile.nationality)
+    : (nationalityEntry?.nameEn || profile.nationality)
 
   // Get Korean level display
   const getKoreanLevelDisplay = (level: string | null) => {
@@ -136,14 +138,6 @@ export function SeekerProfileSection({ profile }: SeekerProfileSectionProps) {
           <p className="text-sm font-medium text-slate-600 mb-1">{t('profileSection.occupation')}</p>
           <p className="text-base font-semibold text-slate-900">
             {profile.occupation || t('profileSection.notEntered')}
-          </p>
-        </div>
-
-        {/* Referral Source */}
-        <div className="bg-slate-50 border rounded-lg p-4">
-          <p className="text-sm font-medium text-slate-600 mb-1">{t('profileSection.referralSource')}</p>
-          <p className="text-base font-semibold text-slate-900">
-            {getReferralDisplay(profile.referral_source)}
           </p>
         </div>
 
