@@ -1,6 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
+import { useTranslation } from '@/lib/i18n'
 
 interface JobPreview {
   id: string
@@ -16,6 +19,7 @@ interface JobPreviewCardProps {
 }
 
 export function JobPreviewCard({ job }: JobPreviewCardProps) {
+  const { t } = useTranslation()
   const formatDate = (dateString: string | null) => {
     if (!dateString) return '-'
     const date = new Date(dateString)
@@ -32,7 +36,7 @@ export function JobPreviewCard({ job }: JobPreviewCardProps) {
         <CardHeader>
           <div className="flex items-start justify-between gap-2 mb-2">
             <Badge variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}>
-              {job.hiring_status === 'hiring' ? '채용중' : '마감'}
+              {job.hiring_status === 'hiring' ? t('jobPostForm.hiring') : t('jobPostForm.closed')}
             </Badge>
             <Badge variant="outline">
               {job.target_nationality}

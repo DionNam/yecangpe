@@ -3,6 +3,7 @@
 import * as React from 'react'
 import { Check, ChevronsUpDown } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n'
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -45,11 +46,14 @@ export function SearchableSelect({
   disabled = false,
   className,
 }: SearchableSelectProps) {
+  const { language } = useTranslation()
   const [open, setOpen] = React.useState(false)
 
   const selectedItem = items.find(item => item.code === value)
   const displayValue = selectedItem
-    ? `${selectedItem.name} (${selectedItem.nameEn})`
+    ? language === 'ko'
+      ? `${selectedItem.name} (${selectedItem.nameEn})`
+      : `${selectedItem.nameEn} (${selectedItem.name})`
     : null
 
   return (
@@ -103,9 +107,9 @@ export function SearchableSelect({
                       value === item.code ? 'opacity-100' : 'opacity-0',
                     )}
                   />
-                  <span>{item.name}</span>
+                  <span>{language === 'ko' ? item.name : item.nameEn}</span>
                   <span className="ml-1 text-muted-foreground text-xs">
-                    ({item.nameEn})
+                    ({language === 'ko' ? item.nameEn : item.name})
                   </span>
                 </CommandItem>
               ))}

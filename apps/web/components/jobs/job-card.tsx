@@ -189,7 +189,7 @@ export function JobCard({
               </h3>
               {isNew && (
                 <Badge variant="destructive" className="text-[10px] px-1.5 py-0.5 flex-shrink-0">
-                  New
+                  {t('common.new')}
                 </Badge>
               )}
             </div>

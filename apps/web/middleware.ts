@@ -22,13 +22,16 @@ export async function middleware(request: NextRequest) {
       sameSite: 'lax',
     })
   }
-  if (!request.cookies.has('hanguljobs-lang-default')) {
-    const defaultLang = ipCountry === 'KR' ? 'ko' : 'en'
-    supabaseResponse.cookies.set('hanguljobs-lang-default', defaultLang, {
-      path: '/',
-      maxAge: 60 * 60 * 24 * 365,
-      sameSite: 'lax',
-    })
+  if (ipCountry) {
+    // Only set language cookie when we have IP-based country info
+    if (!request.cookies.has('hanguljobs-lang-default')) {
+      const defaultLang = ipCountry === 'KR' ? 'ko' : 'en'
+      supabaseResponse.cookies.set('hanguljobs-lang-default', defaultLang, {
+        path: '/',
+        maxAge: 60 * 60 * 24 * 365,
+        sameSite: 'lax',
+      })
+    }
   }
 
   // Allow auth callback routes

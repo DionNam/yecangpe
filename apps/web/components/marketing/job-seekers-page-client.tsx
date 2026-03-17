@@ -14,9 +14,10 @@ import { useTranslation } from '@/lib/i18n'
 
 interface JobSeekersPageClientProps {
   initialJobs: any[]
+  isLoggedIn?: boolean
 }
 
-export function JobSeekersPageClient({ initialJobs }: JobSeekersPageClientProps) {
+export function JobSeekersPageClient({ initialJobs, isLoggedIn }: JobSeekersPageClientProps) {
   const { t } = useTranslation()
 
   return (
@@ -48,12 +49,14 @@ export function JobSeekersPageClient({ initialJobs }: JobSeekersPageClientProps)
               >
                 {t('seekerPage.ctaSearch')}
               </Link>
-              <Link
-                href="/login"
-                className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-blue-600 bg-white hover:bg-gray-50 border-2 border-blue-600 rounded-lg transition-colors duration-150"
-              >
-                {t('seekerPage.ctaSignup')}
-              </Link>
+              {!isLoggedIn && (
+                <Link
+                  href="/login"
+                  className="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-blue-600 bg-white hover:bg-gray-50 border-2 border-blue-600 rounded-lg transition-colors duration-150"
+                >
+                  {t('seekerPage.ctaSignup')}
+                </Link>
+              )}
             </div>
 
             {/* Trust Indicators */}

@@ -3,6 +3,7 @@
 import { useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { updateHiringStatus } from '@/app/actions/jobs'
+import { useTranslation } from '@/lib/i18n'
 
 interface HiringStatusToggleProps {
   postId: string
@@ -15,6 +16,7 @@ export function HiringStatusToggle({
   currentStatus,
   disabled = false,
 }: HiringStatusToggleProps) {
+  const { t } = useTranslation()
   const [isPending, startTransition] = useTransition()
 
   const handleToggle = () => {
@@ -38,7 +40,7 @@ export function HiringStatusToggle({
       disabled={disabled || isPending}
       className="min-w-[60px]"
     >
-      {isPending ? '...' : isHiring ? '채용중' : '마감'}
+      {isPending ? '...' : isHiring ? t('jobPostForm.hiring') : t('jobPostForm.closed')}
     </Button>
   )
 }

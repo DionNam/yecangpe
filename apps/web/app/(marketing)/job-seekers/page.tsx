@@ -27,6 +27,9 @@ export const revalidate = 7200
 export default async function JobSeekersPage() {
   const supabase = await createClient()
 
+  // Check if user is logged in
+  const { data: { user } } = await supabase.auth.getUser()
+
   // Fetch latest 8 published, hiring jobs
   const { data: previewJobs } = await supabase
     .from('job_posts')
@@ -36,5 +39,5 @@ export default async function JobSeekersPage() {
     .order('published_at', { ascending: false })
     .limit(8)
 
-  return <JobSeekersPageClient initialJobs={previewJobs || []} />
+  return <JobSeekersPageClient initialJobs={previewJobs || []} isLoggedIn={!!user} />
 }

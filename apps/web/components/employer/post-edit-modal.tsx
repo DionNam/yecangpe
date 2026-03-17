@@ -36,7 +36,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { Textarea } from '@/components/ui/textarea'
+import { RichTextEditor } from '@/components/dashboard/rich-text-editor'
 import { Button } from '@/components/ui/button'
 import {
   Select,
@@ -46,6 +46,19 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { ImageUpload } from '@/components/ui/image-upload'
+import { useTranslation } from '@/lib/i18n'
+
+// Format number with commas for display
+const formatNumberWithCommas = (value: number | undefined | null) => {
+  if (value === undefined || value === null) return ''
+  return value.toLocaleString('ko-KR')
+}
+
+// Parse comma-formatted string to number
+const parseFormattedNumber = (value: string) => {
+  const num = Number(value.replace(/,/g, ''))
+  return isNaN(num) || value.replace(/,/g, '') === '' ? undefined : num
+}
 
 interface PostEditModalProps {
   open: boolean
@@ -81,10 +94,15 @@ export function PostEditModal({
   defaultValues,
   reviewStatus,
 }: PostEditModalProps) {
+  const { t, language } = useTranslation()
   const [isPending, startTransition] = useTransition()
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [imageRemoved, setImageRemoved] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
+
+  // Helper to get localized name from constants (name=English, nameKo=Korean)
+  const getName = (item: { name: string; nameKo?: string }) =>
+    language === 'ko' ? (item.nameKo ?? item.name) : item.name
 
   const form = useForm({
     resolver: zodResolver(jobPostUpdateSchema),
@@ -240,8 +258,8 @@ export function PostEditModal({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="max-w-2xl max-h-[90vh] flex flex-col">
         <DialogHeader>
-          <DialogTitle>공고 수정</DialogTitle>
-          <DialogDescription>공고의 제목과 내용을 수정합니다.</DialogDescription>
+          <DialogTitle>{t('jobPostForm.editTitle')}</DialogTitle>
+          <DialogDescription>{t('jobPostForm.editDesc')}</DialogDescription>
         </DialogHeader>
 
         <Form {...form}>
@@ -254,9 +272,9 @@ export function PostEditModal({
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>제목 *</FormLabel>
+                    <FormLabel>{t('jobPostForm.title')} *</FormLabel>
                     <FormControl>
-                      <Input placeholder="공고 제목" {...field} />
+                      <Input placeholder={t('jobPostForm.titlePlaceholder')} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -269,12 +287,13 @@ export function PostEditModal({
                 name="content"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>내용 *</FormLabel>
+                    <FormLabel>{t('jobPostForm.content')} *</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder="공고 내용을 입력해주세요"
-                        className="min-h-[200px]"
-                        {...field}
+                      <RichTextEditor
+                        content={field.value}
+                        onChange={field.onChange}
+                        placeholder={t('jobPostForm.contentPlaceholder')}
+                        disabled={isPending}
                       />
                     </FormControl>
                     <FormMessage />
@@ -288,17 +307,17 @@ export function PostEditModal({
                 name="job_type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>고용 형태</FormLabel>
+                    <FormLabel>{t('jobPostForm.jobType')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="고용 형태를 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.jobTypePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {JOB_TYPES.map((type) => (
                           <SelectItem key={type.code} value={type.code}>
-                            {type.nameKo}
+                            {getName(type)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -314,17 +333,17 @@ export function PostEditModal({
                 name="category"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>카테고리</FormLabel>
+                    <FormLabel>{t('jobPostForm.category')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="카테고리를 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.categoryPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {CATEGORIES.map((cat) => (
                           <SelectItem key={cat.code} value={cat.code}>
-                            {cat.nameKo}
+                            {getName(cat)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -340,17 +359,17 @@ export function PostEditModal({
                 name="career_level"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>경력 수준 (선택사항)</FormLabel>
+                    <FormLabel>{t('jobPostForm.careerLevel')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="경력 수준을 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.careerLevelPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {CAREER_LEVELS.map((level) => (
                           <SelectItem key={level.code} value={level.code}>
-                            {level.nameKo}
+                            {getName(level)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -366,7 +385,7 @@ export function PostEditModal({
                 name="hiring_status"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>채용 상태 *</FormLabel>
+                    <FormLabel>{t('jobPostForm.hiringStatus')} *</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
@@ -374,17 +393,17 @@ export function PostEditModal({
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="채용 상태를 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.hiringStatusPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="hiring">채용중</SelectItem>
-                        <SelectItem value="closed">마감</SelectItem>
+                        <SelectItem value="hiring">{t('jobPostForm.hiring')}</SelectItem>
+                        <SelectItem value="closed">{t('jobPostForm.closed')}</SelectItem>
                       </SelectContent>
                     </Select>
                     {reviewStatus !== 'published' && (
                       <FormDescription>
-                        게시된 공고만 채용 상태를 변경할 수 있습니다.
+                        {t('jobPostForm.hiringStatusNote')}
                       </FormDescription>
                     )}
                     <FormMessage />
@@ -398,7 +417,7 @@ export function PostEditModal({
                 name="work_location_type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>근무 형태 *</FormLabel>
+                    <FormLabel>{t('jobPostForm.workLocationType')} *</FormLabel>
                     <Select
                       onValueChange={(value) => {
                         field.onChange(value)
@@ -411,13 +430,13 @@ export function PostEditModal({
                     >
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="근무 형태를 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.workLocationTypePlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="remote">원격근무</SelectItem>
-                        <SelectItem value="hybrid">하이브리드</SelectItem>
-                        <SelectItem value="on_site">대면근무</SelectItem>
+                        <SelectItem value="remote">{t('common.remote')}</SelectItem>
+                        <SelectItem value="hybrid">{t('common.hybrid')}</SelectItem>
+                        <SelectItem value="on_site">{t('common.onSite')}</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -432,17 +451,17 @@ export function PostEditModal({
                   name="work_location_country"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>근무 국가 *</FormLabel>
+                      <FormLabel>{t('jobPostForm.workLocationCountry')} *</FormLabel>
                       <Select onValueChange={field.onChange} defaultValue={field.value}>
                         <FormControl>
                           <SelectTrigger>
-                            <SelectValue placeholder="근무 국가를 선택해주세요" />
+                            <SelectValue placeholder={t('jobPostForm.workLocationCountryPlaceholder')} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
                           {COUNTRIES.map((country) => (
                             <SelectItem key={country.code} value={country.code}>
-                              {country.name}
+                              {language === 'ko' ? country.name : country.nameEn}
                             </SelectItem>
                           ))}
                         </SelectContent>
@@ -459,17 +478,17 @@ export function PostEditModal({
                 name="korean_level"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>한국어 레벨</FormLabel>
+                    <FormLabel>{t('jobPostForm.koreanLevel')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="한국어 레벨을 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.koreanLevelPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {KOREAN_LEVELS.filter((level) => level.code !== 'not_specified').map((level) => (
                           <SelectItem key={level.code} value={level.code}>
-                            {level.nameKo}
+                            {getName(level)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -485,17 +504,17 @@ export function PostEditModal({
                 name="english_level"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>영어 레벨 (선택사항)</FormLabel>
+                    <FormLabel>{t('jobPostForm.englishLevel')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="영어 레벨을 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.englishLevelPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
                         {ENGLISH_LEVELS.filter((level) => level.code !== 'not_specified').map((level) => (
                           <SelectItem key={level.code} value={level.code}>
-                            {level.nameKo}
+                            {getName(level)}
                           </SelectItem>
                         ))}
                       </SelectContent>
@@ -507,7 +526,7 @@ export function PostEditModal({
 
               {/* Salary section */}
               <div className="space-y-4 border-t pt-4">
-                <h3 className="text-sm font-medium">급여 정보 (선택사항)</h3>
+                <h3 className="text-sm font-medium">{t('jobPostForm.salarySection')}</h3>
 
                 <div className="grid grid-cols-2 gap-4">
                   {/* Salary Min field */}
@@ -516,14 +535,14 @@ export function PostEditModal({
                     name="salary_min"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>최소 급여</FormLabel>
+                        <FormLabel>{t('jobPostForm.salaryMin')}</FormLabel>
                         <FormControl>
                           <Input
-                            type="number"
-                            placeholder="최소 급여"
-                            {...field}
-                            value={field.value ?? ''}
-                            onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                            type="text"
+                            inputMode="numeric"
+                            placeholder={t('jobPostForm.salaryMin')}
+                            value={formatNumberWithCommas(field.value)}
+                            onChange={(e) => field.onChange(parseFormattedNumber(e.target.value))}
                           />
                         </FormControl>
                         <FormMessage />
@@ -537,14 +556,14 @@ export function PostEditModal({
                     name="salary_max"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>최대 급여</FormLabel>
+                        <FormLabel>{t('jobPostForm.salaryMax')}</FormLabel>
                         <FormControl>
                           <Input
-                            type="number"
-                            placeholder="최대 급여"
-                            {...field}
-                            value={field.value ?? ''}
-                            onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                            type="text"
+                            inputMode="numeric"
+                            placeholder={t('jobPostForm.salaryMax')}
+                            value={formatNumberWithCommas(field.value)}
+                            onChange={(e) => field.onChange(parseFormattedNumber(e.target.value))}
                           />
                         </FormControl>
                         <FormMessage />
@@ -560,15 +579,15 @@ export function PostEditModal({
                     name="salary_currency"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>통화</FormLabel>
-                        <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
+                        <FormLabel>{t('jobPostForm.currency')}</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value ?? undefined}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="통화를 선택해주세요" />
+                              <SelectValue placeholder={t('jobPostForm.currency')} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            {SALARY_CURRENCIES.map((currency) => (
+                            {[...SALARY_CURRENCIES].sort((a, b) => a.code.localeCompare(b.code)).map((currency) => (
                               <SelectItem key={currency.code} value={currency.code}>
                                 {currency.name}
                               </SelectItem>
@@ -586,17 +605,17 @@ export function PostEditModal({
                     name="salary_period"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>급여 주기</FormLabel>
+                        <FormLabel>{t('jobPostForm.salaryPeriod')}</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                           <FormControl>
                             <SelectTrigger>
-                              <SelectValue placeholder="급여 주기를 선택해주세요" />
+                              <SelectValue placeholder={t('jobPostForm.salaryPeriodPlaceholder')} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
                             {SALARY_PERIODS.map((period) => (
                               <SelectItem key={period.code} value={period.code}>
-                                {period.nameKo}
+                                {getName(period)}
                               </SelectItem>
                             ))}
                           </SelectContent>
@@ -611,8 +630,8 @@ export function PostEditModal({
               {/* Application method section */}
               <div className="space-y-4 border-t pt-4">
                 <div>
-                  <h3 className="text-sm font-medium">지원 방법</h3>
-                  <p className="text-sm text-muted-foreground">URL 또는 이메일 중 하나는 필수입니다</p>
+                  <h3 className="text-sm font-medium">{t('jobPostForm.applySection')}</h3>
+                  <p className="text-sm text-muted-foreground">{t('jobPostForm.applySectionDesc')}</p>
                 </div>
 
                 {/* Apply URL field */}
@@ -621,7 +640,7 @@ export function PostEditModal({
                   name="apply_url"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>지원 URL</FormLabel>
+                      <FormLabel>{t('jobPostForm.applyUrl')}</FormLabel>
                       <FormControl>
                         <Input
                           type="url"
@@ -641,7 +660,7 @@ export function PostEditModal({
                   name="apply_email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>지원 이메일</FormLabel>
+                      <FormLabel>{t('jobPostForm.applyEmail')}</FormLabel>
                       <FormControl>
                         <Input
                           type="email"
@@ -658,7 +677,7 @@ export function PostEditModal({
 
               {/* Image upload field */}
               <FormItem>
-                <FormLabel>이미지 (선택사항)</FormLabel>
+                <FormLabel>{t('jobPostForm.image')}</FormLabel>
                 <ImageUpload
                   currentImageUrl={imageRemoved ? null : defaultValues.image_url}
                   onImageChange={handleImageChange}
@@ -683,10 +702,10 @@ export function PostEditModal({
                 onClick={() => onOpenChange(false)}
                 disabled={isPending || isUploading}
               >
-                취소
+                {t('jobPostForm.cancel')}
               </Button>
               <Button type="submit" disabled={isPending || isUploading}>
-                {isUploading ? '이미지 업로드 중...' : isPending ? '저장 중...' : '저장'}
+                {isUploading ? t('jobPostForm.imageUploading') : isPending ? t('jobPostForm.saving') : t('jobPostForm.save')}
               </Button>
             </div>
           </form>

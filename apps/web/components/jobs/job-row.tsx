@@ -199,7 +199,7 @@ export function JobRow({
             </h3>
             {isNew && (
               <Badge variant="destructive" className="text-xs px-2 py-0.5 flex-shrink-0">
-                New
+                {t('common.new')}
               </Badge>
             )}
           </div>

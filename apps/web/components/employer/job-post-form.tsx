@@ -66,8 +66,24 @@ interface JobPostFormProps {
   defaultCompanyName: string
 }
 
+// Format number with commas for display
+const formatNumberWithCommas = (value: number | undefined | null) => {
+  if (value === undefined || value === null) return ''
+  return value.toLocaleString('ko-KR')
+}
+
+// Parse comma-formatted string to number
+const parseFormattedNumber = (value: string) => {
+  const num = Number(value.replace(/,/g, ''))
+  return isNaN(num) || value.replace(/,/g, '') === '' ? undefined : num
+}
+
 export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
-  const { t } = useTranslation()
+  const { t, language } = useTranslation()
+
+  // Helper to get localized name from constants (name=English, nameKo=Korean)
+  const getName = (item: { name: string; nameKo?: string }) =>
+    language === 'ko' ? (item.nameKo ?? item.name) : item.name
   const [isPending, startTransition] = useTransition()
   const [showDialog, setShowDialog] = useState(false)
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -311,7 +327,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   <SelectContent>
                     {JOB_TYPES.map((type) => (
                       <SelectItem key={type.code} value={type.code}>
-                        {type.nameKo}
+                        {getName(type)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -337,7 +353,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   <SelectContent>
                     {CATEGORIES.map((cat) => (
                       <SelectItem key={cat.code} value={cat.code}>
-                        {cat.nameKo}
+                        {getName(cat)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -363,7 +379,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   <SelectContent>
                     {CAREER_LEVELS.map((level) => (
                       <SelectItem key={level.code} value={level.code}>
-                        {level.nameKo}
+                        {getName(level)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -446,7 +462,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   <SelectContent>
                     {KOREAN_LEVELS.filter((level) => level.code !== 'not_specified').map((level) => (
                       <SelectItem key={level.code} value={level.code}>
-                        {level.nameKo}
+                        {getName(level)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -472,7 +488,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                   <SelectContent>
                     {ENGLISH_LEVELS.filter((level) => level.code !== 'not_specified').map((level) => (
                       <SelectItem key={level.code} value={level.code}>
-                        {level.nameKo}
+                        {getName(level)}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -496,11 +512,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                     <FormLabel>{t('jobPostForm.salaryMin')}</FormLabel>
                     <FormControl>
                       <Input
-                        type="number"
+                        type="text"
+                        inputMode="numeric"
                         placeholder={t('jobPostForm.salaryMin')}
-                        {...field}
-                        value={field.value ?? ''}
-                        onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                        value={formatNumberWithCommas(field.value)}
+                        onChange={(e) => field.onChange(parseFormattedNumber(e.target.value))}
                       />
                     </FormControl>
                     <FormMessage />
@@ -517,11 +533,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                     <FormLabel>{t('jobPostForm.salaryMax')}</FormLabel>
                     <FormControl>
                       <Input
-                        type="number"
+                        type="text"
+                        inputMode="numeric"
                         placeholder={t('jobPostForm.salaryMax')}
-                        {...field}
-                        value={field.value ?? ''}
-                        onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
+                        value={formatNumberWithCommas(field.value)}
+                        onChange={(e) => field.onChange(parseFormattedNumber(e.target.value))}
                       />
                     </FormControl>
                     <FormMessage />
@@ -538,14 +554,14 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>{t('jobPostForm.currency')}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <Select onValueChange={field.onChange} value={field.value}>
                       <FormControl>
                         <SelectTrigger>
                           <SelectValue placeholder={t('jobPostForm.currency')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        {SALARY_CURRENCIES.map((currency) => (
+                        {[...SALARY_CURRENCIES].sort((a, b) => a.code.localeCompare(b.code)).map((currency) => (
                           <SelectItem key={currency.code} value={currency.code}>
                             {currency.name}
                           </SelectItem>
@@ -573,7 +589,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                       <SelectContent>
                         {SALARY_PERIODS.map((period) => (
                           <SelectItem key={period.code} value={period.code}>
-                            {period.nameKo}
+                            {getName(period)}
                           </SelectItem>
                         ))}
                       </SelectContent>
