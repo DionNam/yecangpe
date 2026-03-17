@@ -206,8 +206,8 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   let likedPostIds: Set<string> = new Set()
   if (user && posts && posts.length > 0) {
     const postIds = posts.map(p => p.id)
-    const { data: likesData } = await supabase
-      .from('post_likes')
+    const { data: likesData } = await (supabase as any)
+      .from('likes')
       .select('post_id')
       .eq('user_id', user.id)
       .in('post_id', postIds) as { data: Array<{ post_id: string }> | null }

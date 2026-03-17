@@ -57,6 +57,7 @@ export async function toggleLike(postId: string) {
   }
 
   // Revalidate paths
+  revalidatePath('/jobs')
   revalidatePath(`/jobs/${postId}`)
   revalidatePath('/my-page')
 
