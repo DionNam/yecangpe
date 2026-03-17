@@ -49,6 +49,7 @@ export async function createJobPost(formData: FormData) {
     career_level: formData.get('career_level') || undefined,
     apply_url: formData.get('apply_url') || undefined,
     apply_email: formData.get('apply_email') || undefined,
+    apply_text: formData.get('apply_text') || undefined,
   }
 
   // Validate with Zod schema
@@ -111,6 +112,7 @@ export async function createJobPost(formData: FormData) {
       career_level: result.data.career_level || null,
       apply_url: result.data.apply_url || null,
       apply_email: result.data.apply_email || null,
+      apply_text: result.data.apply_text || null,
       expires_at: expiresAt.toISOString(),
     })
     .select('id')
@@ -173,6 +175,7 @@ export async function updateJobPost(formData: FormData) {
     career_level: formData.get('career_level') || undefined,
     apply_url: formData.get('apply_url') || undefined,
     apply_email: formData.get('apply_email') || undefined,
+    apply_text: formData.get('apply_text') || undefined,
   }
 
   // Validate with Zod schema
@@ -247,6 +250,9 @@ export async function updateJobPost(formData: FormData) {
   }
   if (result.data.apply_email !== undefined) {
     updateData.apply_email = result.data.apply_email
+  }
+  if (result.data.apply_text !== undefined) {
+    updateData.apply_text = result.data.apply_text
   }
 
   // Update job post

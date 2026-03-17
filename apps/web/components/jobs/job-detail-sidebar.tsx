@@ -1,8 +1,14 @@
 'use client'
 
+import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { LikeButton } from './like-button'
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import {
   ExternalLink,
   Calendar,
@@ -12,6 +18,9 @@ import {
   DollarSign,
   Languages,
   GraduationCap,
+  Mail,
+  Globe,
+  MessageSquare,
 } from 'lucide-react'
 import { formatDistanceToNow } from 'date-fns'
 import { ko, enUS } from 'date-fns/locale'
@@ -45,14 +54,9 @@ export function JobDetailSidebar({
   user,
 }: JobDetailSidebarProps) {
   const { t, language } = useTranslation()
+  const [showApplyModal, setShowApplyModal] = useState(false)
 
-  const handleApply = () => {
-    if (job.apply_url) {
-      window.open(job.apply_url, '_blank', 'noopener,noreferrer')
-    } else if (job.apply_email) {
-      window.location.href = `mailto:${job.apply_email}`
-    }
-  }
+  const hasApplyMethod = !!(job.apply_url || job.apply_email || (job as any).apply_text)
 
   // Format salary
   const formatSalary = () => {
@@ -105,17 +109,67 @@ export function JobDetailSidebar({
 
   return (
     <div className="space-y-6">
-      {/* Apply Button Section */}
-      {(job.apply_url || job.apply_email) && (
+      {/* Apply Button */}
+      {hasApplyMethod && (
         <Button
-          onClick={handleApply}
+          onClick={() => setShowApplyModal(true)}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
           size="lg"
         >
-          {job.apply_url ? t('jobDetail.apply') : t('jobDetail.applyByEmail')}
+          {t('jobDetail.apply')}
           <ExternalLink className="w-5 h-5 ml-2" />
         </Button>
       )}
+
+      {/* Apply Modal */}
+      <Dialog open={showApplyModal} onOpenChange={setShowApplyModal}>
+        <DialogContent className="sm:max-w-md">
+          <DialogHeader>
+            <DialogTitle>{t('jobDetail.applyMethodTitle')}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4 pt-2">
+            {job.apply_url && (
+              <a
+                href={job.apply_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-slate-900">{t('jobDetail.applyViaWebsite')}</p>
+                  <p className="text-xs text-slate-500 truncate">{job.apply_url}</p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-slate-400 flex-shrink-0" />
+              </a>
+            )}
+
+            {job.apply_email && (
+              <a
+                href={`mailto:${job.apply_email}`}
+                className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
+              >
+                <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-slate-900">{t('jobDetail.applyViaEmail')}</p>
+                  <p className="text-xs text-slate-500 truncate">{job.apply_email}</p>
+                </div>
+                <ExternalLink className="w-4 h-4 text-slate-400 flex-shrink-0" />
+              </a>
+            )}
+
+            {(job as any).apply_text && (
+              <div className="flex items-start gap-3 p-4 rounded-lg border border-slate-200 bg-slate-50">
+                <MessageSquare className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-slate-900 mb-1">{t('jobDetail.applyOther')}</p>
+                  <p className="text-sm text-slate-700 whitespace-pre-wrap">{(job as any).apply_text}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
 
       {/* Job Summary Panel */}
       <Card className="p-6 space-y-4 shadow-sm">
@@ -201,7 +255,7 @@ export function JobDetailSidebar({
             </div>
           )}
 
-          {/* English level (only if not not_specified) */}
+          {/* English level */}
           {job.english_level && job.english_level !== 'not_specified' && englishLevelKo && (
             <div className="flex items-start gap-3 pt-3">
               <Languages className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />

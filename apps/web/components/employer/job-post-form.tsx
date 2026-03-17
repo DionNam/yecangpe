@@ -109,6 +109,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
       career_level: undefined as string | undefined,
       apply_url: undefined as string | undefined,
       apply_email: undefined as string | undefined,
+      apply_text: undefined as string | undefined,
     },
   })
 
@@ -197,6 +198,9 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
       }
       if (data.apply_email) {
         formData.append('apply_email', data.apply_email)
+      }
+      if (data.apply_text) {
+        formData.append('apply_text', data.apply_text)
       }
 
       if (imageUrl) {
@@ -639,6 +643,25 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                     <Input
                       type="email"
                       placeholder="recruit@example.com"
+                      {...field}
+                      value={field.value ?? ''}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            {/* Apply Text field */}
+            <FormField
+              control={form.control}
+              name="apply_text"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('jobPostForm.applyText')}</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder={t('jobPostForm.applyTextPlaceholder')}
                       {...field}
                       value={field.value ?? ''}
                     />

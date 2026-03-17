@@ -83,6 +83,7 @@ interface PostEditModalProps {
     career_level?: string | null
     apply_url?: string | null
     apply_email?: string | null
+    apply_text?: string | null
   }
   reviewStatus: string
 }
@@ -124,6 +125,7 @@ export function PostEditModal({
       career_level: (defaultValues.career_level || undefined) as string | undefined,
       apply_url: (defaultValues.apply_url || undefined) as string | undefined,
       apply_email: (defaultValues.apply_email || undefined) as string | undefined,
+      apply_text: (defaultValues.apply_text || undefined) as string | undefined,
     },
   })
 
@@ -225,6 +227,9 @@ export function PostEditModal({
       }
       if (data.apply_email) {
         formData.append('apply_email', data.apply_email)
+      }
+      if (data.apply_text) {
+        formData.append('apply_text', data.apply_text)
       }
 
       // Only include image_url in formData if it was explicitly changed
@@ -666,6 +671,25 @@ export function PostEditModal({
                         <Input
                           type="email"
                           placeholder="recruit@example.com"
+                          {...field}
+                          value={field.value ?? ''}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Apply Text field */}
+                <FormField
+                  control={form.control}
+                  name="apply_text"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>{t('jobPostForm.applyText')}</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder={t('jobPostForm.applyTextPlaceholder')}
                           {...field}
                           value={field.value ?? ''}
                         />

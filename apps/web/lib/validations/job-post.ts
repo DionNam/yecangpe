@@ -63,6 +63,7 @@ export const jobPostSchema = z.object({
   // Application method
   apply_url: z.string().url('올바른 URL을 입력해주세요').nullable().optional(),
   apply_email: z.string().email('올바른 이메일을 입력해주세요').nullable().optional(),
+  apply_text: z.string().max(500, '지원 안내는 500자 이내로 입력해주세요').nullable().optional(),
 }).superRefine((data, ctx) => {
   // Existing: Country required only for on_site
   if (data.work_location_type === 'on_site' && !data.work_location_country) {
@@ -118,6 +119,7 @@ export const jobPostUpdateSchema = z.object({
   career_level: z.enum(careerLevelCodes).nullable().optional(),
   apply_url: z.string().url('올바른 URL을 입력해주세요').nullable().optional(),
   apply_email: z.string().email('올바른 이메일을 입력해주세요').nullable().optional(),
+  apply_text: z.string().max(500, '지원 안내는 500자 이내로 입력해주세요').nullable().optional(),
 }).superRefine((data, ctx) => {
   if (data.work_location_type === 'on_site' && !data.work_location_country) {
     ctx.addIssue({
