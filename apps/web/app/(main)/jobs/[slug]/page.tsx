@@ -177,25 +177,17 @@ async function renderJobPage(supabase: any, jobData: JobPost) {
   const [
     employerProfileResult,
     userResult,
-    _viewCountResult,
     configResult,
     likeCountResult,
   ] = await Promise.all([
-    // 1. Fetch company_website
-    supabase
-      .from('employer_profiles')
-      .select('company_website')
-      .eq('user_id', jobData.author_id)
-      .maybeSingle(),
-    // 2. Get authenticated user
+    supabase.from('employer_profiles').select('company_website').eq('user_id', jobData.author_id).maybeSingle(),
     supabase.auth.getUser(),
-    // 3. Increment view count (fire and forget)
-    supabase.rpc('increment_view_count', { post_id: jobData.id }).catch(() => null),
-    // 4. Fetch global metrics config
-    supabase.from('global_metrics_config').select('ramp_days, curve_strength').single(),
-    // 5. Get like count
-    supabase.rpc('get_like_count', { post_id: jobData.id }).catch(() => ({ data: 0 })),
+    supabase.from('global_metrics_config').select('ramp_days, curve_strength').maybeSingle(),
+    supabase.rpc('get_like_count', { post_id: jobData.id }),
   ])
+
+  // Fire and forget view count increment (non-blocking)
+  supabase.rpc('increment_view_count', { post_id: jobData.id }).then(() => {}).catch(() => {})
 
   const companyWebsite: string | null = employerProfileResult?.data?.company_website || null
   const user = userResult?.data?.user || null
@@ -208,8 +200,8 @@ async function renderJobPage(supabase: any, jobData: JobPost) {
 
   if (user) {
     const [isLikedResult, seekerProfileResult] = await Promise.all([
-      supabase.rpc('user_liked_post', { post_id: jobData.id }).catch(() => ({ data: false })),
-      supabase.from('seeker_profiles').select('id').eq('user_id', user.id).single(),
+      supabase.rpc('user_liked_post', { post_id: jobData.id }),
+      supabase.from('seeker_profiles').select('id').eq('user_id', user.id).maybeSingle(),
     ])
 
     isLiked = (isLikedResult?.data as boolean) || false
