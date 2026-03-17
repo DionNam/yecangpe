@@ -3,9 +3,11 @@
 import Link from "next/link"
 import { useState } from "react"
 import { Briefcase, Users, ArrowRight, Check } from "lucide-react"
+import { useTranslation } from '@/lib/i18n'
 
 export default function OnboardingPage() {
   const [agreed, setAgreed] = useState(false)
+  const { t } = useTranslation()
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-slate-50 via-white to-blue-50/30 relative overflow-hidden">
@@ -31,7 +33,7 @@ export default function OnboardingPage() {
         >
           <path d="m15 18-6-6 6-6"/>
         </svg>
-        메인으로
+        {t('onboarding.backToMain')}
       </Link>
 
       {/* Main content */}
@@ -39,10 +41,10 @@ export default function OnboardingPage() {
         {/* Header */}
         <div className="text-center mb-12 space-y-3">
           <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
-            어떤 목적으로 사용하시나요?
+            {t('onboarding.heading')}
           </h1>
           <p className="text-lg text-slate-600">
-            가입 유형을 선택해주세요
+            {t('onboarding.subheading')}
           </p>
         </div>
 
@@ -87,7 +89,7 @@ export default function OnboardingPage() {
                     target="_blank"
                     className="font-semibold text-slate-900 hover:text-blue-600 transition-colors underline decoration-slate-300 hover:decoration-blue-600 underline-offset-2"
                   >
-                    이용약관
+                    {t('onboarding.terms')}
                   </Link>
                   {' '}및{' '}
                   <Link
@@ -95,9 +97,9 @@ export default function OnboardingPage() {
                     target="_blank"
                     className="font-semibold text-slate-900 hover:text-blue-600 transition-colors underline decoration-slate-300 hover:decoration-blue-600 underline-offset-2"
                   >
-                    개인정보 처리방침
+                    {t('onboarding.privacy')}
                   </Link>
-                  에 동의합니다.
+                  {t('onboarding.termsAgree')}
                 </span>
                 <span className="block mt-1 text-sm text-slate-500">
                   I agree to the Terms of Service and Privacy Policy.
@@ -131,15 +133,15 @@ export default function OnboardingPage() {
 
                   {/* Content */}
                   <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-                    일자리를 찾고 있어요
+                    {t('onboarding.seekerTitle')}
                   </h3>
                   <p className="text-slate-600 mb-6">
-                    구직자로 가입합니다
+                    {t('onboarding.seekerDesc')}
                   </p>
 
                   {/* Arrow indicator */}
                   <div className="flex items-center text-sm font-medium text-blue-600 group-hover:text-blue-700">
-                    <span>시작하기</span>
+                    <span>{t('onboarding.start')}</span>
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -153,10 +155,10 @@ export default function OnboardingPage() {
                     <Briefcase className="w-7 h-7" strokeWidth={2} />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-                    일자리를 찾고 있어요
+                    {t('onboarding.seekerTitle')}
                   </h3>
                   <p className="text-slate-600">
-                    구직자로 가입합니다
+                    {t('onboarding.seekerDesc')}
                   </p>
                 </div>
               </div>
@@ -191,15 +193,15 @@ export default function OnboardingPage() {
 
                   {/* Content */}
                   <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-                    인재를 찾고 있어요
+                    {t('onboarding.employerTitle')}
                   </h3>
                   <p className="text-slate-600 mb-6">
-                    고용주로 가입합니다
+                    {t('onboarding.employerDesc')}
                   </p>
 
                   {/* Arrow indicator */}
                   <div className="flex items-center text-sm font-medium text-amber-600 group-hover:text-amber-700">
-                    <span>시작하기</span>
+                    <span>{t('onboarding.start')}</span>
                     <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -213,10 +215,10 @@ export default function OnboardingPage() {
                     <Users className="w-7 h-7" strokeWidth={2} />
                   </div>
                   <h3 className="text-2xl font-bold text-slate-900 mb-2 tracking-tight">
-                    인재를 찾고 있어요
+                    {t('onboarding.employerTitle')}
                   </h3>
                   <p className="text-slate-600">
-                    고용주로 가입합니다
+                    {t('onboarding.employerDesc')}
                   </p>
                 </div>
               </div>

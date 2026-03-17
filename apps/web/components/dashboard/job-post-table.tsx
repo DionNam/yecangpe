@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from 'react'
 import Link from 'next/link'
+import { useTranslation } from '@/lib/i18n'
 import { Eye, MousePointerClick, Heart, Edit, Trash2 } from 'lucide-react'
 import {
   Table,
@@ -28,6 +29,7 @@ interface JobPostTableProps {
 export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableProps) {
   const [editingPost, setEditingPost] = useState<JobPost | null>(null)
   const [isPending, startTransition] = useTransition()
+  const { t } = useTranslation()
 
   // Split posts into active and expired
   const now = new Date()
@@ -42,7 +44,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
   })
 
   const handleDelete = (postId: string, title: string) => {
-    if (!window.confirm(`이 공고를 삭제하시겠습니까?\n\n"${title}"`)) {
+    if (!window.confirm(`${t('jobPostTable.confirmDelete')}\n\n"${title}"`)) {
       return
     }
 
@@ -58,9 +60,9 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
 
   const renderPostRow = (post: JobPost, dimmed = false) => {
     const reviewStatusBadge = {
-      published: { text: '게시중', variant: 'default' as const },
-      pending: { text: '검토중', variant: 'secondary' as const },
-      rejected: { text: '반려됨', variant: 'destructive' as const },
+      published: { text: t('jobPostTable.published'), variant: 'default' as const },
+      pending: { text: t('jobPostTable.pending'), variant: 'secondary' as const },
+      rejected: { text: t('jobPostTable.rejected'), variant: 'destructive' as const },
     }[post.review_status]
 
     const likeCount = likeCounts[post.id] || 0
@@ -87,7 +89,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
               <span className="font-medium">{post.title}</span>
             )}
             {post.review_status === 'rejected' && post.rejection_reason && (
-              <p className="text-sm text-red-600">사유: {post.rejection_reason}</p>
+              <p className="text-sm text-red-600">{t('jobPostTable.reason')} {post.rejection_reason}</p>
             )}
           </div>
         </TableCell>
@@ -132,7 +134,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
               disabled={isPending}
             >
               <Edit className="h-4 w-4 mr-1" />
-              수정
+              {t('jobPostTable.edit')}
             </Button>
             <Button
               variant="outline"
@@ -141,7 +143,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
               disabled={isPending}
             >
               <Trash2 className="h-4 w-4 mr-1" />
-              삭제
+              {t('jobPostTable.delete')}
             </Button>
           </div>
         </TableCell>
@@ -152,7 +154,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
   if (posts.length === 0) {
     return (
       <div className="text-center py-12 text-slate-500">
-        <p className="text-lg">등록한 공고가 없습니다</p>
+        <p className="text-lg">{t('jobPostTable.noPosts')}</p>
       </div>
     )
   }
@@ -162,20 +164,20 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
       <div className="space-y-8">
         {/* Active posts section */}
         <div>
-          <h3 className="text-lg font-semibold mb-4">활성 공고 ({activePosts.length})</h3>
+          <h3 className="text-lg font-semibold mb-4">{t('jobPostTable.activeJobs')} ({activePosts.length})</h3>
           {activePosts.length > 0 ? (
             <div className="border rounded-lg overflow-hidden">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>상태</TableHead>
-                    <TableHead>제목</TableHead>
-                    <TableHead className="text-center">조회수</TableHead>
-                    <TableHead className="text-center">지원클릭</TableHead>
-                    <TableHead className="text-center">좋아요</TableHead>
-                    <TableHead>등록일</TableHead>
-                    <TableHead>만료일</TableHead>
-                    <TableHead>작업</TableHead>
+                    <TableHead>{t('jobPostTable.status')}</TableHead>
+                    <TableHead>{t('jobPostTable.title')}</TableHead>
+                    <TableHead className="text-center">{t('jobPostTable.views')}</TableHead>
+                    <TableHead className="text-center">{t('jobPostTable.applyClicks')}</TableHead>
+                    <TableHead className="text-center">{t('jobPostTable.likes')}</TableHead>
+                    <TableHead>{t('jobPostTable.createdAt')}</TableHead>
+                    <TableHead>{t('jobPostTable.expiresAt')}</TableHead>
+                    <TableHead>{t('jobPostTable.actions')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -185,7 +187,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
             </div>
           ) : (
             <div className="text-center py-8 text-slate-400 border border-dashed rounded-lg">
-              활성 공고가 없습니다
+              {t('jobPostTable.noActivePosts')}
             </div>
           )}
         </div>
@@ -193,19 +195,19 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
         {/* Expired posts section */}
         {expiredPosts.length > 0 && (
           <div>
-            <h3 className="text-lg font-semibold mb-4">만료된 공고 ({expiredPosts.length})</h3>
+            <h3 className="text-lg font-semibold mb-4">{t('jobPostTable.expiredJobs')} ({expiredPosts.length})</h3>
             <div className="border rounded-lg overflow-hidden">
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>상태</TableHead>
-                    <TableHead>제목</TableHead>
-                    <TableHead className="text-center">조회수</TableHead>
-                    <TableHead className="text-center">지원클릭</TableHead>
-                    <TableHead className="text-center">좋아요</TableHead>
-                    <TableHead>등록일</TableHead>
-                    <TableHead>만료일</TableHead>
-                    <TableHead>작업</TableHead>
+                    <TableHead>{t('jobPostTable.status')}</TableHead>
+                    <TableHead>{t('jobPostTable.title')}</TableHead>
+                    <TableHead className="text-center">{t('jobPostTable.views')}</TableHead>
+                    <TableHead className="text-center">{t('jobPostTable.applyClicks')}</TableHead>
+                    <TableHead className="text-center">{t('jobPostTable.likes')}</TableHead>
+                    <TableHead>{t('jobPostTable.createdAt')}</TableHead>
+                    <TableHead>{t('jobPostTable.expiresAt')}</TableHead>
+                    <TableHead>{t('jobPostTable.actions')}</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>

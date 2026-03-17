@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface LoginModalProps {
   open: boolean
@@ -18,6 +19,7 @@ interface LoginModalProps {
 
 export function LoginModal({ open, onOpenChange }: LoginModalProps) {
   const router = useRouter()
+  const { t } = useTranslation()
 
   const handleLogin = () => {
     router.push('/login')
@@ -27,16 +29,16 @@ export function LoginModal({ open, onOpenChange }: LoginModalProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>로그인이 필요합니다</DialogTitle>
+          <DialogTitle>{t('loginModal.title')}</DialogTitle>
           <DialogDescription>
-            공고 상세를 보려면 로그인해 주세요.
+            {t('loginModal.description')}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
           <Button variant="outline" onClick={() => onOpenChange(false)}>
-            취소
+            {t('loginModal.cancel')}
           </Button>
-          <Button onClick={handleLogin}>로그인</Button>
+          <Button onClick={handleLogin}>{t('loginModal.login')}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

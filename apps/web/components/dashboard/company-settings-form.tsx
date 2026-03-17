@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useTransition, useState } from 'react'
 import { z } from 'zod'
 import { updateEmployerProfile } from '@/app/actions/employer'
+import { useTranslation } from '@/lib/i18n'
 import { getSignedUploadUrl } from '@/app/actions/storage'
 import {
   Form,
@@ -26,24 +27,29 @@ interface CompanySettingsFormProps {
   profile: EmployerProfile
 }
 
-const companySettingsSchema = z.object({
-  company_name: z.string().min(1, '회사명을 입력해주세요'),
-  company_website: z
-    .string()
-    .url('올바른 URL을 입력해주세요')
-    .optional()
-    .or(z.literal('')),
-  company_description: z.string().optional(),
-})
-
-type CompanySettingsInput = z.infer<typeof companySettingsSchema>
+type CompanySettingsInput = {
+  company_name: string
+  company_website?: string
+  company_description?: string
+}
 
 export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
+  const { t } = useTranslation()
   const [isPending, startTransition] = useTransition()
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [imageRemoved, setImageRemoved] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null)
+
+  const companySettingsSchema = z.object({
+    company_name: z.string().min(1, t('companySettings.companyNameRequired')),
+    company_website: z
+      .string()
+      .url(t('companySettings.invalidUrl'))
+      .optional()
+      .or(z.literal('')),
+    company_description: z.string().optional(),
+  })
 
   const form = useForm<CompanySettingsInput>({
     resolver: zodResolver(companySettingsSchema),
@@ -93,7 +99,7 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
         })
 
         if (!uploadResponse.ok) {
-          setMessage({ type: 'error', text: '이미지 업로드에 실패했습니다.' })
+          setMessage({ type: 'error', text: t('companySettings.imageUploadFailed') })
           setIsUploading(false)
           return
         }
@@ -124,7 +130,7 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
       if ('error' in result) {
         setMessage({ type: 'error', text: result.error })
       } else {
-        setMessage({ type: 'success', text: '프로필이 성공적으로 업데이트되었습니다.' })
+        setMessage({ type: 'success', text: t('companySettings.updateSuccess') })
         setImageFile(null)
         setImageRemoved(false)
       }
@@ -140,9 +146,9 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
           name="company_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>회사명 *</FormLabel>
+              <FormLabel>{t('companySettings.companyName')}</FormLabel>
               <FormControl>
-                <Input placeholder="회사명을 입력해주세요" {...field} />
+                <Input placeholder={t('companySettings.companyNamePlaceholder')} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -155,7 +161,7 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
           name="company_website"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>회사 웹사이트</FormLabel>
+              <FormLabel>{t('companySettings.website')}</FormLabel>
               <FormControl>
                 <Input
                   type="url"
@@ -174,10 +180,10 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
           name="company_description"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>회사 소개</FormLabel>
+              <FormLabel>{t('companySettings.bio')}</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="회사에 대해 간단히 소개해주세요"
+                  placeholder={t('companySettings.bioPlaceholder')}
                   className="min-h-[120px]"
                   {...field}
                 />
@@ -189,7 +195,7 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
 
         {/* Company Logo */}
         <FormItem>
-          <FormLabel>회사 로고</FormLabel>
+          <FormLabel>{t('companySettings.logo')}</FormLabel>
           <ImageUpload
             currentImageUrl={imageRemoved ? null : profile.company_logo_url}
             onImageChange={handleImageChange}
@@ -211,7 +217,7 @@ export function CompanySettingsForm({ profile }: CompanySettingsFormProps) {
 
         {/* Submit Button */}
         <Button type="submit" disabled={isPending || isUploading}>
-          {isUploading ? '이미지 업로드 중...' : isPending ? '저장 중...' : '저장'}
+          {isUploading ? t('companySettings.uploading') : isPending ? t('companySettings.saving') : t('companySettings.save')}
         </Button>
       </form>
     </Form>

@@ -5,6 +5,7 @@ import { createClient } from '@repo/supabase/client'
 import { Sparkles, Shield, Globe, Loader2 } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useCallback, useRef, useState } from 'react'
+import { useTranslation } from '@/lib/i18n'
 
 export default function LoginPage() {
   const [clickCount, setClickCount] = useState(0)
@@ -15,6 +16,7 @@ export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false)
   const lastClickTime = useRef(0)
   const router = useRouter()
+  const { t } = useTranslation()
 
   const handleTitleClick = useCallback(() => {
     const now = Date.now()
@@ -77,7 +79,7 @@ export default function LoginPage() {
           >
             <path d="m15 18-6-6 6-6"/>
           </svg>
-          메인으로
+          {t('loginPage.backToMain')}
         </a>
       </div>
 
@@ -107,10 +109,10 @@ export default function LoginPage() {
                 className="text-4xl font-bold text-center mb-3 tracking-tight text-gray-900 select-none cursor-default"
                 onClick={handleTitleClick}
               >
-                환영합니다
+                {t('loginPage.welcome')}
               </h1>
               <p className="text-center text-lg text-slate-600">
-                한국어 가능한 외국인을 위한 채용 플랫폼
+                {t('loginPage.subtitle')}
               </p>
             </div>
 
@@ -161,13 +163,13 @@ export default function LoginPage() {
                     <div className="p-2 rounded-lg bg-slate-100">
                       <Shield className="w-4 h-4 text-slate-900" />
                     </div>
-                    <span>관리자 승인형 공고로 안전한 플랫폼</span>
+                    <span>{t('loginPage.trustSafe')}</span>
                   </div>
                   <div className="flex items-center gap-3 text-sm text-slate-600">
                     <div className="p-2 rounded-lg bg-slate-100">
                       <Globe className="w-4 h-4 text-slate-900" />
                     </div>
-                    <span>다양한 국적의 글로벌 인재 연결</span>
+                    <span>{t('loginPage.trustGlobal')}</span>
                   </div>
                 </div>
               </div>
@@ -177,7 +179,7 @@ export default function LoginPage() {
 
         {/* Footer note */}
         <p className="text-center text-sm text-slate-600 mt-6">
-          계정이 없으신가요? 로그인 후 자동으로 프로필을 생성합니다
+          {t('loginPage.noAccount')}
         </p>
       </div>
     </div>

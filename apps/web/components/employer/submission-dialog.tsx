@@ -10,6 +10,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 interface SubmissionDialogProps {
   open: boolean
@@ -18,6 +19,7 @@ interface SubmissionDialogProps {
 
 export function SubmissionDialog({ open, onOpenChange }: SubmissionDialogProps) {
   const router = useRouter()
+  const { t } = useTranslation()
 
   const handleConfirm = () => {
     onOpenChange(false)
@@ -28,13 +30,13 @@ export function SubmissionDialog({ open, onOpenChange }: SubmissionDialogProps) 
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>공고가 제출되었습니다</DialogTitle>
+          <DialogTitle>{t('submissionDialog.title')}</DialogTitle>
           <DialogDescription>
-            1일 이내 관리자 승인 후 게시됩니다.
+            {t('submissionDialog.description')}
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button onClick={handleConfirm}>확인</Button>
+          <Button onClick={handleConfirm}>{t('submissionDialog.confirm')}</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>

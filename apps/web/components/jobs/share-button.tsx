@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
+import { useTranslation } from '@/lib/i18n'
 
 interface ShareButtonProps {
   title: string
@@ -17,6 +18,7 @@ interface ShareButtonProps {
 
 export function ShareButton({ title, url }: ShareButtonProps) {
   const [copied, setCopied] = useState(false)
+  const { t } = useTranslation()
 
   const shareUrl = url || (typeof window !== 'undefined' ? window.location.href : '')
 
@@ -65,7 +67,7 @@ export function ShareButton({ title, url }: ShareButtonProps) {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="sm" className="gap-1.5 text-slate-600">
           <Share2 className="w-4 h-4" />
-          <span>공유</span>
+          <span>{t('shareButton.share')}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-48">
@@ -75,19 +77,19 @@ export function ShareButton({ title, url }: ShareButtonProps) {
           ) : (
             <Link2 className="w-4 h-4" />
           )}
-          <span>{copied ? '복사됨!' : '링크 복사'}</span>
+          <span>{copied ? t('shareButton.copied') : t('shareButton.copyLink')}</span>
         </DropdownMenuItem>
 
         {canShare && (
           <DropdownMenuItem onClick={handleNativeShare} className="cursor-pointer">
             <Share2 className="w-4 h-4" />
-            <span>공유하기</span>
+            <span>{t('shareButton.shareTo')}</span>
           </DropdownMenuItem>
         )}
 
         <DropdownMenuItem onClick={handleEmailShare} className="cursor-pointer">
           <Mail className="w-4 h-4" />
-          <span>이메일</span>
+          <span>{t('shareButton.email')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

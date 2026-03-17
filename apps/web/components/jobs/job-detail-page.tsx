@@ -1,3 +1,5 @@
+'use client'
+
 import Link from 'next/link'
 import { Badge } from '@/components/ui/badge'
 import { JobDetailCompanyCard } from './job-detail-company-card'
@@ -7,6 +9,7 @@ import { RelatedJobsCarousel } from './related-jobs-carousel'
 import Image from 'next/image'
 import { JOB_TYPES } from '@repo/lib'
 import type { Database } from '@repo/supabase/types'
+import { useTranslation } from '@/lib/i18n'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
@@ -29,6 +32,8 @@ export function JobDetailPage({
   user,
   companyWebsite,
 }: JobDetailPageProps) {
+  const { t } = useTranslation()
+
   // Check if post is new (within 7 days)
   const isNew = job.published_at
     ? Date.now() - new Date(job.published_at).getTime() < 7 * 24 * 60 * 60 * 1000
@@ -38,9 +43,9 @@ export function JobDetailPage({
   const getWorkLocationTypeName = (type: string | null) => {
     if (!type) return null
     const types = {
-      on_site: '현장근무',
-      remote: '원격근무',
-      hybrid: '하이브리드',
+      on_site: t('common.onSite'),
+      remote: t('common.remote'),
+      hybrid: t('common.hybrid'),
     }
     return types[type as keyof typeof types] || type
   }
@@ -69,7 +74,7 @@ export function JobDetailPage({
         >
           <path d="m15 18-6-6 6-6" />
         </svg>
-        Back to List
+        {t('common.backToList')}
       </Link>
 
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 mt-6">
@@ -104,7 +109,7 @@ export function JobDetailPage({
 
               {/* Hiring status badge */}
               <Badge variant={job.hiring_status === 'hiring' ? 'default' : 'secondary'}>
-                {job.hiring_status === 'hiring' ? '채용중' : '채용마감'}
+                {job.hiring_status === 'hiring' ? t('common.hiring') : t('common.hiringClosed')}
               </Badge>
             </div>
           </div>
@@ -131,7 +136,7 @@ export function JobDetailPage({
 
           {/* Job Description - rich text rendering */}
           <section>
-            <h2 className="text-xl font-bold mb-4 text-gray-900">Job Description</h2>
+            <h2 className="text-xl font-bold mb-4 text-gray-900">{t('common.jobDescription')}</h2>
             <div className="prose prose-slate max-w-none">
               <p className="whitespace-pre-wrap text-slate-700 leading-relaxed">
                 {job.content}

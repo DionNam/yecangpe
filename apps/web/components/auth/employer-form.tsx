@@ -15,10 +15,12 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { useTranslation } from '@/lib/i18n'
 
 export function EmployerForm() {
   const [isPending, startTransition] = useTransition()
   const [error, setError] = useState<string | null>(null)
+  const { t } = useTranslation()
 
   const form = useForm<EmployerProfileInput>({
     resolver: zodResolver(employerProfileSchema),
@@ -55,10 +57,10 @@ export function EmployerForm() {
           name="company_name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>기업/개인명 *</FormLabel>
+              <FormLabel>{t('employerForm.companyName')}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="회사명 또는 개인 이름"
+                  placeholder={t('employerForm.companyNamePlaceholder')}
                   {...field}
                 />
               </FormControl>
@@ -73,10 +75,10 @@ export function EmployerForm() {
           name="referral_source"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>유입 경로</FormLabel>
+              <FormLabel>{t('employerForm.referralSource')}</FormLabel>
               <FormControl>
                 <Input
-                  placeholder="어떻게 알게 되셨나요?"
+                  placeholder={t('employerForm.referralSourcePlaceholder')}
                   {...field}
                   value={field.value || ''}
                 />
@@ -95,7 +97,7 @@ export function EmployerForm() {
 
         {/* Submit button */}
         <Button type="submit" className="w-full" disabled={isPending}>
-          {isPending ? '저장 중...' : '프로필 완성하기'}
+          {isPending ? t('employerForm.saving') : t('employerForm.submit')}
         </Button>
       </form>
     </Form>

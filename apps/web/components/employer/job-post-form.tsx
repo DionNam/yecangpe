@@ -15,6 +15,7 @@ import {
   SALARY_PERIODS,
 } from '@repo/lib'
 import { jobPostSchema, type JobPostInput } from '@/lib/validations/job-post'
+import { useTranslation } from '@/lib/i18n'
 
 // Country/nationality code to default currency mapping
 const COUNTRY_CURRENCY_MAP: Record<string, string> = {
@@ -66,6 +67,7 @@ interface JobPostFormProps {
 }
 
 export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
+  const { t } = useTranslation()
   const [isPending, startTransition] = useTransition()
   const [showDialog, setShowDialog] = useState(false)
   const [imageFile, setImageFile] = useState<File | null>(null)
@@ -127,7 +129,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
         })
 
         if (!uploadResponse.ok) {
-          form.setError('root', { message: '이미지 업로드에 실패했습니다.' })
+          form.setError('root', { message: t('jobPostForm.imageUploadFailed') })
           setIsUploading(false)
           return
         }
@@ -225,9 +227,9 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>제목 *</FormLabel>
+                <FormLabel>{t('jobPostForm.title')} *</FormLabel>
                 <FormControl>
-                  <Input placeholder="구인 공고 제목을 입력해주세요" {...field} />
+                  <Input placeholder={t('jobPostForm.titlePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -240,9 +242,9 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="company_name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>회사명 *</FormLabel>
+                <FormLabel>{t('jobPostForm.companyName')} *</FormLabel>
                 <FormControl>
-                  <Input placeholder="회사명 또는 개인 이름" {...field} />
+                  <Input placeholder={t('jobPostForm.companyNamePlaceholder')} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -255,7 +257,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="target_nationality"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>대상 국적 *</FormLabel>
+                <FormLabel>{t('jobPostForm.targetNationality')} *</FormLabel>
                 <FormControl>
                   <SearchableSelect
                     items={NATIONALITIES}
@@ -268,9 +270,9 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                         form.setValue('salary_currency', currency)
                       }
                     }}
-                    placeholder="채용 대상 국적을 선택해주세요"
-                    searchPlaceholder="국가 검색..."
-                    emptyText="검색 결과가 없습니다."
+                    placeholder={t('jobPostForm.targetNationalityPlaceholder')}
+                    searchPlaceholder={t('jobPostForm.searchCountry')}
+                    emptyText={t('jobPostForm.noResults')}
                   />
                 </FormControl>
                 <FormMessage />
@@ -284,11 +286,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="job_type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>고용 형태 *</FormLabel>
+                <FormLabel>{t('jobPostForm.jobType')} *</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="고용 형태를 선택해주세요" />
+                      <SelectValue placeholder={t('jobPostForm.jobTypePlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -310,11 +312,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="category"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>카테고리 *</FormLabel>
+                <FormLabel>{t('jobPostForm.category')} *</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="카테고리를 선택해주세요" />
+                      <SelectValue placeholder={t('jobPostForm.categoryPlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -336,11 +338,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="career_level"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>경력 수준 (선택사항)</FormLabel>
+                <FormLabel>{t('jobPostForm.careerLevel')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="경력 수준을 선택해주세요" />
+                      <SelectValue placeholder={t('jobPostForm.careerLevelPlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -362,7 +364,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="work_location_type"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>근무 형태 *</FormLabel>
+                <FormLabel>{t('jobPostForm.workLocationType')} *</FormLabel>
                 <Select
                   onValueChange={(value) => {
                     field.onChange(value)
@@ -375,13 +377,13 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                 >
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="근무 형태를 선택해주세요" />
+                      <SelectValue placeholder={t('jobPostForm.workLocationTypePlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
-                    <SelectItem value="remote">원격근무</SelectItem>
-                    <SelectItem value="hybrid">하이브리드</SelectItem>
-                    <SelectItem value="on_site">대면근무</SelectItem>
+                    <SelectItem value="remote">{t('common.remote')}</SelectItem>
+                    <SelectItem value="hybrid">{t('common.hybrid')}</SelectItem>
+                    <SelectItem value="on_site">{t('common.onSite')}</SelectItem>
                   </SelectContent>
                 </Select>
                 <FormMessage />
@@ -396,15 +398,15 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               name="work_location_country"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>근무 국가 *</FormLabel>
+                  <FormLabel>{t('jobPostForm.workLocationCountry')} *</FormLabel>
                   <FormControl>
                     <SearchableSelect
                       items={COUNTRIES}
                       value={field.value}
                       onValueChange={field.onChange}
-                      placeholder="근무 국가를 선택해주세요"
-                      searchPlaceholder="국가 검색..."
-                      emptyText="검색 결과가 없습니다."
+                      placeholder={t('jobPostForm.workLocationCountryPlaceholder')}
+                      searchPlaceholder={t('jobPostForm.searchCountry')}
+                      emptyText={t('jobPostForm.noResults')}
                     />
                   </FormControl>
                   <FormMessage />
@@ -419,11 +421,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="korean_level"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>한국어 레벨 *</FormLabel>
+                <FormLabel>{t('jobPostForm.koreanLevel')} *</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="한국어 레벨을 선택해주세요" />
+                      <SelectValue placeholder={t('jobPostForm.koreanLevelPlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -445,11 +447,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="english_level"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>영어 레벨 (선택사항)</FormLabel>
+                <FormLabel>{t('jobPostForm.englishLevel')}</FormLabel>
                 <Select onValueChange={field.onChange} defaultValue={field.value}>
                   <FormControl>
                     <SelectTrigger>
-                      <SelectValue placeholder="영어 레벨을 선택해주세요" />
+                      <SelectValue placeholder={t('jobPostForm.englishLevelPlaceholder')} />
                     </SelectTrigger>
                   </FormControl>
                   <SelectContent>
@@ -467,7 +469,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
 
           {/* Salary section */}
           <div className="space-y-4 border-t pt-6">
-            <h3 className="text-sm font-medium">급여 정보 (선택사항)</h3>
+            <h3 className="text-sm font-medium">{t('jobPostForm.salarySection')}</h3>
 
             <div className="grid grid-cols-2 gap-4">
               {/* Salary Min field */}
@@ -476,11 +478,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                 name="salary_min"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>최소 급여</FormLabel>
+                    <FormLabel>{t('jobPostForm.salaryMin')}</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
-                        placeholder="최소 급여"
+                        placeholder={t('jobPostForm.salaryMin')}
                         {...field}
                         value={field.value ?? ''}
                         onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
@@ -497,11 +499,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                 name="salary_max"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>최대 급여</FormLabel>
+                    <FormLabel>{t('jobPostForm.salaryMax')}</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
-                        placeholder="최대 급여"
+                        placeholder={t('jobPostForm.salaryMax')}
                         {...field}
                         value={field.value ?? ''}
                         onChange={(e) => field.onChange(e.target.value ? Number(e.target.value) : undefined)}
@@ -520,11 +522,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                 name="salary_currency"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>통화</FormLabel>
+                    <FormLabel>{t('jobPostForm.currency')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="통화를 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.currency')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -546,11 +548,11 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
                 name="salary_period"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>급여 주기</FormLabel>
+                    <FormLabel>{t('jobPostForm.salaryPeriod')}</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value ?? undefined}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="급여 주기를 선택해주세요" />
+                          <SelectValue placeholder={t('jobPostForm.salaryPeriodPlaceholder')} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -571,8 +573,8 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
           {/* Application method section */}
           <div className="space-y-4 border-t pt-6">
             <div>
-              <h3 className="text-sm font-medium">지원 방법 (선택사항)</h3>
-              <p className="text-sm text-muted-foreground">입력하면 공고에 지원하기 버튼이 표시됩니다</p>
+              <h3 className="text-sm font-medium">{t('jobPostForm.applySection')}</h3>
+              <p className="text-sm text-muted-foreground">{t('jobPostForm.applySectionDesc')}</p>
             </div>
 
             {/* Apply URL field */}
@@ -581,7 +583,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               name="apply_url"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>지원 URL</FormLabel>
+                  <FormLabel>{t('jobPostForm.applyUrl')}</FormLabel>
                   <FormControl>
                     <Input
                       type="url"
@@ -601,7 +603,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               name="apply_email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>지원 이메일</FormLabel>
+                  <FormLabel>{t('jobPostForm.applyEmail')}</FormLabel>
                   <FormControl>
                     <Input
                       type="email"
@@ -622,12 +624,12 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
             name="content"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>내용 *</FormLabel>
+                <FormLabel>{t('jobPostForm.content')} *</FormLabel>
                 <FormControl>
                   <RichTextEditor
                     content={field.value}
                     onChange={field.onChange}
-                    placeholder="직무, 자격 요건, 복리후생 등을 작성하세요"
+                    placeholder={t('jobPostForm.contentPlaceholder')}
                     disabled={isPending}
                   />
                 </FormControl>
@@ -638,7 +640,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
 
           {/* Image upload field */}
           <FormItem>
-            <FormLabel>이미지 (선택사항)</FormLabel>
+            <FormLabel>{t('jobPostForm.image')}</FormLabel>
             <ImageUpload
               onImageChange={handleImageChange}
               disabled={isPending || isUploading}
@@ -647,7 +649,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
 
           {/* Submit button */}
           <Button type="submit" className="w-full" disabled={isPending || isUploading}>
-            {isUploading ? '이미지 업로드 중...' : isPending ? '등록 중...' : '구인글 등록하기'}
+            {isUploading ? t('jobPostForm.imageUploading') : isPending ? t('jobPostForm.submitting') : t('jobPostForm.submit')}
           </Button>
         </form>
       </Form>
