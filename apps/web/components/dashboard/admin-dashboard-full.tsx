@@ -79,9 +79,33 @@ export function AdminDashboardFull({
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto">
-        <div className="flex">
-          {/* Sidebar */}
-          <aside className="w-64 bg-white border-r border-slate-200 min-h-screen pt-6 flex-shrink-0">
+        <div className="flex flex-col md:flex-row">
+          {/* Mobile tab bar */}
+          <div className="md:hidden flex overflow-x-auto gap-2 p-4 border-b bg-white">
+            {tabs.map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={cn(
+                  'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
+                  activeTab === tab.id
+                    ? 'bg-blue-50 text-blue-700'
+                    : 'text-slate-700 hover:bg-slate-50'
+                )}
+              >
+                <tab.icon className="h-4 w-4" />
+                {tab.label}
+                {tab.id === 'pending' && stats.pendingCount > 0 && (
+                  <Badge variant="destructive" className="text-xs px-1.5">
+                    {stats.pendingCount}
+                  </Badge>
+                )}
+              </button>
+            ))}
+          </div>
+
+          {/* Desktop Sidebar */}
+          <aside className="hidden md:block w-64 bg-white border-r border-slate-200 min-h-screen pt-6 flex-shrink-0">
             <div className="px-6 mb-6">
               <h1 className="text-xl font-bold text-gray-900">관리자 패널</h1>
               <p className="text-sm text-slate-500 mt-1">Admin Dashboard</p>
@@ -133,7 +157,7 @@ export function AdminDashboardFull({
           </aside>
 
           {/* Main content */}
-          <main className="flex-1 p-6 lg:p-8">
+          <main className="flex-1 p-4 md:p-6 lg:p-8">
             {activeTab === 'posts' && (
               <AdminPostsSection posts={posts} />
             )}

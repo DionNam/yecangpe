@@ -32,9 +32,42 @@ export function SeekerDashboard({ profile, likedJobs }: SeekerDashboardProps) {
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto">
-        <div className="flex">
-          {/* Sidebar */}
-          <aside className="w-64 bg-white border-r border-slate-200 min-h-screen pt-6">
+        <div className="flex flex-col md:flex-row">
+          {/* Mobile tab bar */}
+          <div className="md:hidden flex overflow-x-auto gap-2 p-4 border-b bg-white">
+            <button
+              onClick={() => setActiveTab('profile')}
+              className={cn(
+                'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
+                activeTab === 'profile'
+                  ? 'bg-blue-50 text-blue-700'
+                  : 'text-slate-700 hover:bg-slate-50'
+              )}
+            >
+              <User className="h-4 w-4" />
+              {t('seekerDashboard.profile')}
+            </button>
+            <button
+              onClick={() => setActiveTab('liked-jobs')}
+              className={cn(
+                'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
+                activeTab === 'liked-jobs'
+                  ? 'bg-blue-50 text-blue-700'
+                  : 'text-slate-700 hover:bg-slate-50'
+              )}
+            >
+              <Heart className="h-4 w-4" />
+              {t('seekerDashboard.likedJobs')}
+              {likedJobsCount > 0 && (
+                <span className="bg-slate-200 text-slate-700 text-xs font-semibold px-2 py-0.5 rounded-full">
+                  {likedJobsCount}
+                </span>
+              )}
+            </button>
+          </div>
+
+          {/* Desktop Sidebar */}
+          <aside className="hidden md:block w-64 bg-white border-r border-slate-200 min-h-screen pt-6">
             <div className="px-6 mb-8">
               <h1 className="text-2xl font-bold text-gray-900">{t('seekerDashboard.myPage')}</h1>
             </div>
@@ -74,7 +107,7 @@ export function SeekerDashboard({ profile, likedJobs }: SeekerDashboardProps) {
           </aside>
 
           {/* Main content */}
-          <main className="flex-1 p-6 lg:p-8">
+          <main className="flex-1 p-4 md:p-6 lg:p-8">
             {activeTab === 'profile' && (
               <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
                 <SeekerProfileSection profile={profile} />

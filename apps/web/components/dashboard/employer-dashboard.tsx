@@ -42,9 +42,37 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
   return (
     <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto">
-        <div className="flex">
-          {/* Sidebar */}
-          <aside className="w-64 bg-white border-r border-slate-200 min-h-screen pt-6">
+        <div className="flex flex-col md:flex-row">
+          {/* Mobile tab bar */}
+          <div className="md:hidden flex overflow-x-auto gap-2 p-4 border-b bg-white">
+            <button
+              onClick={() => setActiveTab('posts')}
+              className={cn(
+                'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
+                activeTab === 'posts'
+                  ? 'bg-blue-50 text-blue-700'
+                  : 'text-slate-700 hover:bg-slate-50'
+              )}
+            >
+              <ClipboardList className="h-4 w-4" />
+              {t('employerDashboardPage.postManagement')}
+            </button>
+            <button
+              onClick={() => setActiveTab('settings')}
+              className={cn(
+                'flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-colors',
+                activeTab === 'settings'
+                  ? 'bg-blue-50 text-blue-700'
+                  : 'text-slate-700 hover:bg-slate-50'
+              )}
+            >
+              <Settings className="h-4 w-4" />
+              {t('employerDashboardPage.accountSettings')}
+            </button>
+          </div>
+
+          {/* Desktop Sidebar */}
+          <aside className="hidden md:block w-64 bg-white border-r border-slate-200 min-h-screen pt-6">
             <div className="px-6 mb-2">
               <p className="text-slate-500 text-xs tracking-widest uppercase mb-1">
                 {t('employerDashboardPage.title')}
@@ -84,11 +112,11 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           </aside>
 
           {/* Main content */}
-          <main className="flex-1 p-6 lg:p-8">
+          <main className="flex-1 p-4 md:p-6 lg:p-8">
             {activeTab === 'posts' && (
               <>
                 {/* Stats Summary */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
                   <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-5">
                     <div className="flex items-center justify-between">
                       <div>

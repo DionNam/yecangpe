@@ -41,7 +41,7 @@ export function AdminSubscribersSection({ subscribers: initialSubscribers }: Adm
       <h2 className="text-xl font-bold text-gray-900">뉴스레터 구독자</h2>
 
       {/* Stats */}
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div className="bg-white rounded-xl border p-4">
           <p className="text-sm text-slate-500">총 구독자</p>
           <p className="text-2xl font-bold">{subscribers.length}</p>

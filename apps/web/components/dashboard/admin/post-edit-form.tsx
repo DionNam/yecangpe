@@ -408,7 +408,7 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
         <div className="space-y-4">
           <h3 className="text-sm font-medium">급여 정보 (선택사항)</h3>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="salary_min"
@@ -458,7 +458,7 @@ export function PostEditForm({ postId, defaultValues }: PostEditFormProps) {
             />
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <FormField
               control={form.control}
               name="salary_currency"

@@ -534,7 +534,7 @@ export function PostEditModal({
               <div className="space-y-4 border-t pt-4">
                 <h3 className="text-sm font-medium">{t('jobPostForm.salarySection')}</h3>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Salary Min field */}
                   <FormField
                     control={form.control}
@@ -578,7 +578,7 @@ export function PostEditModal({
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Salary Currency field */}
                   <FormField
                     control={form.control}

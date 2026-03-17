@@ -523,7 +523,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               </label>
             </div>
 
-            {!salaryNegotiable && <><div className="grid grid-cols-2 gap-4">
+            {!salaryNegotiable && <><div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Salary Min field */}
               <FormField
                 control={form.control}
@@ -567,7 +567,7 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Salary Currency field */}
               <FormField
                 control={form.control}
