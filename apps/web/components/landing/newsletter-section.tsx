@@ -30,7 +30,7 @@ export function NewsletterSection() {
   }
 
   return (
-    <section className="relative py-20 bg-slate-900 text-white overflow-hidden">
+    <section className="relative py-12 md:py-20 bg-slate-900 text-white overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -47,7 +47,7 @@ export function NewsletterSection() {
       <div className="absolute bottom-0 right-1/4 w-80 h-80 bg-amber-500/10 rounded-full blur-3xl" />
 
       <div className="relative max-w-4xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-3">
+        <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-3">
           {t('newsletter.title')}
         </h2>
         <p className="text-slate-400 text-center mb-8 text-lg">
@@ -58,7 +58,7 @@ export function NewsletterSection() {
         <div className="flex gap-4 justify-center mb-6">
           <button
             onClick={() => setSelectedType('job_seeker')}
-            className={`px-6 py-2.5 rounded-xl font-semibold transition-all ${
+            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-xl font-semibold transition-all ${
               selectedType === 'job_seeker'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
@@ -68,7 +68,7 @@ export function NewsletterSection() {
           </button>
           <button
             onClick={() => setSelectedType('employer')}
-            className={`px-6 py-2.5 rounded-xl font-semibold transition-all ${
+            className={`px-4 py-2 md:px-6 md:py-2.5 rounded-xl font-semibold transition-all ${
               selectedType === 'employer'
                 ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
                 : 'bg-slate-800 text-slate-300 hover:bg-slate-700'

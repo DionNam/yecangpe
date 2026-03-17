@@ -16,8 +16,8 @@ export function HeroSection() {
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/15 rounded-full blur-3xl" />
       <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-emerald-300/10 rounded-full blur-3xl" />
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16 lg:py-20 w-full">
-        <div className="grid lg:grid-cols-[55%_45%] gap-12 lg:gap-8 items-center">
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-10 md:py-16 lg:py-20 w-full">
+        <div className="grid lg:grid-cols-[55%_45%] gap-8 lg:gap-8 items-center">
           {/* Left: Text Content */}
           <div>
             {/* Badge */}
@@ -37,7 +37,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight"
+              className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight tracking-tight"
             >
               {t('hero.titleLine1')}
               <br />
@@ -65,7 +65,7 @@ export function HeroSection() {
             >
               <Link
                 href="/jobs"
-                className="group px-8 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 text-lg font-semibold"
+                className="group px-6 py-3 md:px-8 md:py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/25 flex items-center justify-center gap-2 text-base md:text-lg font-semibold"
               >
                 {t('hero.ctaSearchJobs')}
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -73,7 +73,7 @@ export function HeroSection() {
 
               <Link
                 href="/employers"
-                className="group px-8 py-4 bg-white text-blue-600 rounded-xl hover:bg-slate-50 transition-all border-2 border-blue-600 flex items-center justify-center gap-2 text-lg font-semibold"
+                className="group px-6 py-3 md:px-8 md:py-4 bg-white text-blue-600 rounded-xl hover:bg-slate-50 transition-all border-2 border-blue-600 flex items-center justify-center gap-2 text-base md:text-lg font-semibold"
               >
                 {t('hero.ctaEmployer')}
                 <Briefcase className="w-5 h-5" />
@@ -85,7 +85,7 @@ export function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="flex flex-wrap items-center gap-6 text-sm text-gray-600"
+              className="flex flex-wrap items-center gap-4 md:gap-6 text-sm text-gray-600"
             >
               <div className="flex items-center gap-2">
                 <CheckCircle className="w-5 h-5 text-emerald-500" />

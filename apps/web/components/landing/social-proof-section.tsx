@@ -29,7 +29,7 @@ export function SocialProofSection({
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white"
+      className="py-10 md:py-16 bg-gradient-to-r from-blue-600 to-blue-700 text-white"
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-8 text-center">
@@ -48,7 +48,7 @@ export function SocialProofSection({
               <AnimatedCounter
                 value={displayJobCount}
                 suffix="+"
-                className="text-5xl lg:text-6xl font-bold text-white"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white"
               />
               <p className="text-white font-semibold mt-2 text-lg">{t('socialProof.activeJobsLabel')}</p>
               <p className="text-blue-200 text-sm">{t('socialProof.activeJobs')}</p>
@@ -72,7 +72,7 @@ export function SocialProofSection({
               <AnimatedCounter
                 value={displayCompanyCount}
                 suffix="+"
-                className="text-5xl lg:text-6xl font-bold text-white"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white"
               />
               <p className="text-white font-semibold mt-2 text-lg">{t('socialProof.companiesLabel')}</p>
               <p className="text-blue-200 text-sm">{t('socialProof.companies')}</p>
@@ -94,7 +94,7 @@ export function SocialProofSection({
               <AnimatedCounter
                 value={displayMemberCount}
                 suffix="+"
-                className="text-5xl lg:text-6xl font-bold text-white"
+                className="text-3xl md:text-5xl lg:text-6xl font-bold text-white"
               />
               <p className="text-white font-semibold mt-2 text-lg">{t('socialProof.jobSeekersLabel')}</p>
               <p className="text-blue-200 text-sm">{t('socialProof.jobSeekers')}</p>

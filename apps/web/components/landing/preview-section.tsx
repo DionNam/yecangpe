@@ -52,7 +52,7 @@ export function PreviewSection({ initialJobs }: PreviewSectionProps) {
   const { t } = useTranslation()
 
   return (
-    <section className="relative py-20 bg-white overflow-hidden">
+    <section className="relative py-12 md:py-20 bg-white overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-blue-50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-50 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
@@ -68,7 +68,7 @@ export function PreviewSection({ initialJobs }: PreviewSectionProps) {
           <p className="text-slate-600 font-medium mb-3 text-xs tracking-widest uppercase">
             {t('preview.eyebrow')}
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 tracking-tight">
             {t('preview.title')}
           </h2>
           <p className="text-sm text-gray-600 max-w-2xl mx-auto">

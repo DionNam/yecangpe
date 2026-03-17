@@ -15,14 +15,14 @@ export function FAQSection() {
   const faqs = t('faq.items') as Array<{ question: string; answer: string }>
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-12 md:py-20 bg-slate-50">
       <div className="max-w-3xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12"
         >
           {t('faq.title')}
         </motion.h2>

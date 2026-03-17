@@ -7,10 +7,10 @@ export function Footer() {
   const { t } = useTranslation()
 
   return (
-    <footer className="bg-slate-900 text-slate-400 py-16">
+    <footer className="bg-slate-900 text-slate-400 py-10 md:py-16">
       <div className="max-w-7xl mx-auto px-6">
         {/* Main footer grid */}
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+        <div className="grid md:grid-cols-4 gap-6 md:gap-8 mb-8">
           {/* Column 1 - Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">

@@ -42,18 +42,18 @@ export function ServiceIntroCards() {
   ]
 
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-12 md:py-20 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-bold text-center mb-12"
+          className="text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-12"
         >
           {t('serviceIntro.title')}
         </motion.h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {cards.map((card, index) => {
             const colors = colorMap[card.color]
             return (
