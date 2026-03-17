@@ -241,6 +241,10 @@ export function JobListFilters() {
     } else {
       params.delete(param)
     }
+    // Clear country filter when on_site is no longer selected
+    if (param === 'location_type' && updated.length > 0 && !updated.includes('on_site')) {
+      params.delete('location_country')
+    }
     params.delete('page')
     saveFilters(params)
     router.push(`/jobs?${params.toString()}`)
@@ -380,20 +384,22 @@ export function JobListFilters() {
             </PopoverContent>
           </Popover>
 
-          {/* 근무 국가 */}
-          <Popover>
-            <PopoverTrigger asChild>
-              <div><FilterPill label={countryLabel} active={locationCountry !== 'all'} /></div>
-            </PopoverTrigger>
-            <PopoverContent className="w-52 p-0" align="start">
-              <SingleSelectContent
-                items={localizedCountries}
-                selected={locationCountry}
-                onSelect={(code) => handleFilterChange('location_country', code)}
-                allLabel={t('filters.allCountry')}
-              />
-            </PopoverContent>
-          </Popover>
+          {/* 근무 국가 - only show when on_site is selected or no location type filter */}
+          {(locationTypes.length === 0 || locationTypes.includes('on_site')) && (
+            <Popover>
+              <PopoverTrigger asChild>
+                <div><FilterPill label={countryLabel} active={locationCountry !== 'all'} /></div>
+              </PopoverTrigger>
+              <PopoverContent className="w-52 p-0" align="start">
+                <SingleSelectContent
+                  items={localizedCountries}
+                  selected={locationCountry}
+                  onSelect={(code) => handleFilterChange('location_country', code)}
+                  allLabel={t('filters.allCountry')}
+                />
+              </PopoverContent>
+            </Popover>
+          )}
 
           {/* 한국어 */}
           <Popover>
