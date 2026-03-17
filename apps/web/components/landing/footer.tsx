@@ -14,10 +14,7 @@ export function Footer() {
           {/* Column 1 - Brand */}
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-slate-900 rounded-lg flex items-center justify-center">
-                <span className="text-lg font-bold text-white italic">H</span>
-              </div>
-              <span className="text-xl font-bold text-white">HangulJobs</span>
+              <img src="/logo-full.png" alt="HangulJobs" className="h-8 brightness-0 invert" />
             </div>
             <p className="text-sm mb-4">
               {t('footer.taglineEn')}
