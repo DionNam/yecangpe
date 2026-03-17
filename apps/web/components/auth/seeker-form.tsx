@@ -459,7 +459,7 @@ export function SeekerForm() {
               render={() => (
                 <FormItem>
                   <FormLabel>{t('seekerOnboarding.preferredJobTypes')}</FormLabel>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     {JOB_TYPES.map((type) => (
                       <FormField
                         key={type.code}
@@ -503,7 +503,7 @@ export function SeekerForm() {
               render={() => (
                 <FormItem>
                   <FormLabel>{t('seekerOnboarding.preferredCategories')}</FormLabel>
-                  <div className="grid grid-cols-2 gap-3 max-h-60 overflow-y-auto">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-h-60 overflow-y-auto">
                     {CATEGORIES.map((cat) => (
                       <FormField
                         key={cat.code}

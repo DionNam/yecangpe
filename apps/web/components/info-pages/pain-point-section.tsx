@@ -9,7 +9,7 @@ export function PainPointSection() {
   const painPoints = t('seekerPage.painPoints') as string[]
 
   return (
-    <section className="bg-slate-50 py-20">
+    <section className="bg-slate-50 py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -29,10 +29,10 @@ export function PainPointSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-white border-2 border-red-200 rounded-xl p-6 flex items-start gap-4"
+              className="bg-white border-2 border-red-200 rounded-xl p-4 md:p-6 flex items-start gap-4"
             >
               <X className="w-6 h-6 text-red-500 flex-shrink-0 mt-1" />
-              <p className="text-gray-700 text-lg">{point}</p>
+              <p className="text-gray-700 text-base md:text-lg">{point}</p>
             </motion.div>
           ))}
         </div>

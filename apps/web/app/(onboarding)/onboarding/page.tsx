@@ -40,7 +40,7 @@ export default function OnboardingPage() {
       <div className="w-full max-w-3xl relative z-10">
         {/* Header */}
         <div className="text-center mb-12 space-y-3">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 tracking-tight">
+          <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-900 tracking-tight">
             {t('onboarding.heading')}
           </h1>
           <p className="text-lg text-slate-600">
@@ -125,7 +125,7 @@ export default function OnboardingPage() {
                 {/* Gradient accent on hover */}
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className="p-8">
+                <div className="p-5 md:p-8">
                   {/* Icon */}
                   <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-blue-50 text-blue-600 group-hover:bg-blue-500 group-hover:text-white transition-all duration-300 group-hover:scale-110">
                     <Briefcase className="w-7 h-7" strokeWidth={2} />
@@ -150,7 +150,7 @@ export default function OnboardingPage() {
           ) : (
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl bg-white border-2 border-slate-200 opacity-40 cursor-not-allowed">
-                <div className="p-8">
+                <div className="p-5 md:p-8">
                   <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-slate-100 text-slate-400">
                     <Briefcase className="w-7 h-7" strokeWidth={2} />
                   </div>
@@ -185,7 +185,7 @@ export default function OnboardingPage() {
                 {/* Gradient accent on hover */}
                 <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-500 to-orange-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                <div className="p-8">
+                <div className="p-5 md:p-8">
                   {/* Icon */}
                   <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-amber-50 text-amber-600 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 group-hover:scale-110">
                     <Users className="w-7 h-7" strokeWidth={2} />
@@ -210,7 +210,7 @@ export default function OnboardingPage() {
           ) : (
             <div className="relative">
               <div className="relative overflow-hidden rounded-2xl bg-white border-2 border-slate-200 opacity-40 cursor-not-allowed">
-                <div className="p-8">
+                <div className="p-5 md:p-8">
                   <div className="mb-6 inline-flex items-center justify-center w-14 h-14 rounded-xl bg-slate-100 text-slate-400">
                     <Users className="w-7 h-7" strokeWidth={2} />
                   </div>

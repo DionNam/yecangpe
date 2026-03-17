@@ -23,7 +23,7 @@ export function FinalCTASection({ variant }: FinalCTASectionProps) {
   const primaryBgClass = variant === 'seeker' ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-600/25' : 'bg-amber-600 hover:bg-amber-700 shadow-amber-600/25'
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-slate-800 py-20">
+    <section className="relative overflow-hidden bg-gradient-to-r from-slate-900 to-slate-800 py-12 md:py-20">
       {/* Decorative blur circles */}
       <div className="absolute top-10 left-20 w-72 h-72 bg-amber-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-10 right-20 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl" />
@@ -37,7 +37,7 @@ export function FinalCTASection({ variant }: FinalCTASectionProps) {
           className="text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">{heading}</h2>
-          <p className="text-xl text-slate-300 mb-8">{subtitle}</p>
+          <p className="text-lg md:text-xl text-slate-300 mb-8">{subtitle}</p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

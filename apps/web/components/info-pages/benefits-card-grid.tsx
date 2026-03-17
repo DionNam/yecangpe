@@ -18,7 +18,7 @@ export function BenefitsCardGrid() {
   const benefits = t('employerPage.benefits') as unknown as Array<{ title: string; description: string }>
 
   return (
-    <section className="relative overflow-hidden bg-slate-50 py-20">
+    <section className="relative overflow-hidden bg-slate-50 py-12 md:py-20">
       {/* Decorative blur circles */}
       <div className="absolute top-10 left-10 w-72 h-72 bg-blue-300/15 rounded-full blur-3xl" />
       <div className="absolute bottom-10 right-10 w-80 h-80 bg-amber-300/15 rounded-full blur-3xl" />
@@ -40,7 +40,7 @@ export function BenefitsCardGrid() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 md:gap-8">
           {Array.isArray(benefits) && benefits.map((benefit, index) => {
             const Icon = icons[index] || DollarSign
             return (
@@ -50,7 +50,7 @@ export function BenefitsCardGrid() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all"
+                className="bg-white rounded-2xl p-5 md:p-8 border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all"
               >
                 <div className={`w-16 h-16 rounded-2xl ${colorClasses[index] || colorClasses[0]} flex items-center justify-center mb-5`}>
                   <Icon className="w-8 h-8" />

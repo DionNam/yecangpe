@@ -64,7 +64,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
     })
   }
 
-  const renderPostRow = (post: JobPost, dimmed = false) => {
+  const getPostMeta = (post: JobPost) => {
     const reviewStatusBadge = {
       published: { text: t('jobPostTable.published'), variant: 'default' as const },
       pending: { text: t('jobPostTable.pending'), variant: 'secondary' as const },
@@ -73,6 +73,67 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
 
     const likeCount = likeCounts[post.id] || 0
     const applyClickCount = post.apply_click_count || 0
+
+    return { reviewStatusBadge, likeCount, applyClickCount }
+  }
+
+  const renderPostCard = (post: JobPost, dimmed = false) => {
+    const { reviewStatusBadge, likeCount } = getPostMeta(post)
+
+    return (
+      <div key={post.id} className={`border rounded-lg p-4 space-y-3 ${dimmed ? 'opacity-60' : ''}`}>
+        <div className="flex items-center justify-between">
+          <Badge variant={reviewStatusBadge.variant}>{reviewStatusBadge.text}</Badge>
+          <span className="text-xs text-slate-500">
+            {new Date(post.published_at || post.created_at).toLocaleDateString('ko-KR')}
+          </span>
+        </div>
+        <div>
+          {post.review_status === 'published' ? (
+            <Link
+              href={`/jobs/${post.slug || post.id}`}
+              className="font-medium text-sm hover:underline"
+              target="_blank"
+            >
+              {post.title}
+            </Link>
+          ) : (
+            <span className="font-medium text-sm">{post.title}</span>
+          )}
+          {post.review_status === 'rejected' && post.rejection_reason && (
+            <p className="text-xs text-red-600 mt-1">{t('jobPostTable.reason')} {post.rejection_reason}</p>
+          )}
+        </div>
+        <div className="flex items-center gap-4 text-xs text-slate-500">
+          <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count}</span>
+          <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5" />{likeCount}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setEditingPost(post)}
+            disabled={isPending}
+          >
+            <Edit className="h-4 w-4 mr-1" />
+            {t('jobPostTable.edit')}
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => handleDelete(post.id, post.title)}
+            disabled={isPending}
+          >
+            <Trash2 className="h-4 w-4 mr-1" />
+            {t('jobPostTable.delete')}
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
+  const renderPostRow = (post: JobPost, dimmed = false) => {
+    const { reviewStatusBadge, likeCount, applyClickCount } = getPostMeta(post)
 
     return (
       <TableRow key={post.id} className={dimmed ? 'opacity-60' : ''}>
@@ -172,25 +233,32 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
         <div>
           <h3 className="text-lg font-semibold mb-4">{t('jobPostTable.activeJobs')} ({activePosts.length})</h3>
           {activePosts.length > 0 ? (
-            <div className="border rounded-lg overflow-hidden">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead>{t('jobPostTable.status')}</TableHead>
-                    <TableHead>{t('jobPostTable.title')}</TableHead>
-                    <TableHead className="text-center">{t('jobPostTable.views')}</TableHead>
-                    <TableHead className="text-center">{t('jobPostTable.applyClicks')}</TableHead>
-                    <TableHead className="text-center">{t('jobPostTable.likes')}</TableHead>
-                    <TableHead>{t('jobPostTable.createdAt')}</TableHead>
-                    <TableHead>{t('jobPostTable.expiresAt')}</TableHead>
-                    <TableHead>{t('jobPostTable.actions')}</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {activePosts.map((post) => renderPostRow(post))}
-                </TableBody>
-              </Table>
-            </div>
+            <>
+              {/* Mobile card view */}
+              <div className="md:hidden space-y-3">
+                {activePosts.map((post) => renderPostCard(post))}
+              </div>
+              {/* Desktop table view */}
+              <div className="hidden md:block border rounded-lg overflow-hidden">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>{t('jobPostTable.status')}</TableHead>
+                      <TableHead>{t('jobPostTable.title')}</TableHead>
+                      <TableHead className="text-center">{t('jobPostTable.views')}</TableHead>
+                      <TableHead className="text-center">{t('jobPostTable.applyClicks')}</TableHead>
+                      <TableHead className="text-center">{t('jobPostTable.likes')}</TableHead>
+                      <TableHead>{t('jobPostTable.createdAt')}</TableHead>
+                      <TableHead>{t('jobPostTable.expiresAt')}</TableHead>
+                      <TableHead>{t('jobPostTable.actions')}</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {activePosts.map((post) => renderPostRow(post))}
+                  </TableBody>
+                </Table>
+              </div>
+            </>
           ) : (
             <div className="text-center py-8 text-slate-400 border border-dashed rounded-lg">
               {t('jobPostTable.noActivePosts')}
@@ -202,7 +270,12 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
         {expiredPosts.length > 0 && (
           <div>
             <h3 className="text-lg font-semibold mb-4">{t('jobPostTable.expiredJobs')} ({expiredPosts.length})</h3>
-            <div className="border rounded-lg overflow-hidden">
+            {/* Mobile card view */}
+            <div className="md:hidden space-y-3">
+              {expiredPosts.map((post) => renderPostCard(post, true))}
+            </div>
+            {/* Desktop table view */}
+            <div className="hidden md:block border rounded-lg overflow-hidden">
               <Table>
                 <TableHeader>
                   <TableRow>

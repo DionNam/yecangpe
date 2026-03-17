@@ -16,7 +16,7 @@ export function ValuePropositionSection() {
   const valueProps = t('seekerPage.valuePropositions') as Array<{ title: string; description: string }>
 
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -39,12 +39,12 @@ export function ValuePropositionSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-slate-50 rounded-xl p-6 hover:shadow-md transition-shadow"
+                className="bg-slate-50 rounded-xl p-4 md:p-6 hover:shadow-md transition-shadow"
               >
                 <div className={`w-12 h-12 rounded-lg ${colorClass} flex items-center justify-center mb-4`}>
                   <Icon className="w-6 h-6" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{prop.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">{prop.title}</h3>
                 <p className="text-gray-600">{prop.description}</p>
               </motion.div>
             )

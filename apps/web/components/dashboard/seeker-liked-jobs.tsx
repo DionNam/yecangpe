@@ -53,15 +53,15 @@ export function SeekerLikedJobs({ jobs }: SeekerLikedJobsProps) {
               key={id}
               className="border rounded-lg p-4 hover:bg-slate-50 transition-colors"
             >
-              <div className="flex items-start justify-between gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2 sm:gap-4">
                 <div className="flex-1 min-w-0">
                   <Link
                     href={`/jobs/${post.slug || post.id}`}
-                    className="font-medium text-slate-900 hover:underline block mb-1"
+                    className="font-medium text-slate-900 hover:underline block mb-1 truncate"
                   >
                     {post.title}
                   </Link>
-                  <p className="text-sm text-muted-foreground mb-2">
+                  <p className="text-sm text-muted-foreground mb-2 truncate">
                     {post.company_name}
                   </p>
                   <div className="flex items-center gap-2 flex-wrap">

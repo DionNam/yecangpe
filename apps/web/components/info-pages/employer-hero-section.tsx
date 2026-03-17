@@ -14,7 +14,7 @@ export function EmployerHeroSection() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-amber-50 via-white to-slate-50 py-20">
+      <section className="relative overflow-hidden bg-gradient-to-b from-amber-50 via-white to-slate-50 py-12 md:py-20">
         {/* Decorative blur circles */}
         <div className="absolute top-20 left-10 w-72 h-72 bg-amber-400/20 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300/15 rounded-full blur-3xl" />
@@ -39,7 +39,7 @@ export function EmployerHeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="text-4xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight"
+              className="text-3xl md:text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight tracking-tight"
             >
               {t('employerPage.title')}
             </motion.h1>
@@ -105,7 +105,7 @@ export function EmployerHeroSection() {
       </section>
 
       {/* Problem -> Solution Section */}
-      <section className="relative overflow-hidden bg-white py-20">
+      <section className="relative overflow-hidden bg-white py-12 md:py-20">
         {/* Decorative blur circles */}
         <div className="absolute top-10 right-20 w-64 h-64 bg-red-200/20 rounded-full blur-3xl" />
         <div className="absolute bottom-10 left-20 w-72 h-72 bg-emerald-200/20 rounded-full blur-3xl" />
@@ -135,7 +135,7 @@ export function EmployerHeroSection() {
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-red-100 text-red-600 flex items-center justify-center font-bold text-sm">
                       {i + 1}
                     </div>
-                    <p className="text-lg text-gray-700">{text}</p>
+                    <p className="text-base md:text-lg text-gray-700">{text}</p>
                   </motion.div>
                 ))}
               </div>
@@ -164,7 +164,7 @@ export function EmployerHeroSection() {
                     <div className="flex-shrink-0 w-8 h-8 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-sm">
                       {i + 1}
                     </div>
-                    <p className="text-lg text-gray-700">{text}</p>
+                    <p className="text-base md:text-lg text-gray-700">{text}</p>
                   </motion.div>
                 ))}
               </div>

@@ -23,7 +23,7 @@ export function JobSeekersPageClient({ initialJobs, isLoggedIn }: JobSeekersPage
   return (
     <main>
       {/* Hero Section */}
-      <section className="bg-gradient-to-b from-slate-50 via-white to-blue-50 py-20">
+      <section className="bg-gradient-to-b from-slate-50 via-white to-blue-50 py-12 md:py-20">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             {/* Badge */}
@@ -32,7 +32,7 @@ export function JobSeekersPageClient({ initialJobs, isLoggedIn }: JobSeekersPage
             </div>
 
             {/* Heading */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
               {t('seekerPage.title')}
             </h1>
 

@@ -95,7 +95,7 @@ export default function LoginPage() {
           {/* Main card */}
           <div className="relative bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
             {/* Header section */}
-            <div className="relative p-8 pb-6 bg-slate-50">
+            <div className="relative p-5 md:p-8 pb-6 bg-slate-50">
               {/* Brand badge */}
               <div className="flex justify-center mb-6">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-900 text-white">
@@ -106,7 +106,7 @@ export default function LoginPage() {
 
               {/* Title - clickable area for hidden login */}
               <h1
-                className="text-4xl font-bold text-center mb-3 tracking-tight text-gray-900 select-none cursor-default"
+                className="text-2xl md:text-4xl font-bold text-center mb-3 tracking-tight text-gray-900 select-none cursor-default"
                 onClick={handleTitleClick}
               >
                 {t('loginPage.welcome')}
@@ -117,7 +117,7 @@ export default function LoginPage() {
             </div>
 
             {/* Login section */}
-            <div className="p-8 pt-6">
+            <div className="p-5 md:p-8 pt-6">
               <LoginButton />
 
               {/* Hidden email/password login form */}

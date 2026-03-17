@@ -72,9 +72,9 @@ export function JobDetailContent({
         {t('common.backToList')}
       </Link>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 mt-6">
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 md:gap-8 mt-6">
         {/* Left: Main Content */}
-        <div className="space-y-8">
+        <div className="space-y-6 md:space-y-8">
           {/* Title + Badges */}
           <div>
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-tight text-gray-900">

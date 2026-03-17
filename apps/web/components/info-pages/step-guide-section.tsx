@@ -26,7 +26,7 @@ export function StepGuideSection({ variant }: StepGuideSectionProps) {
   const heading = t(`${prefix}.stepsTitle`)
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50/50 py-20">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white to-slate-50/50 py-12 md:py-20">
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Eyebrow + Title */}
         <motion.div
@@ -57,7 +57,7 @@ export function StepGuideSection({ variant }: StepGuideSectionProps) {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="bg-white rounded-2xl p-8 border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center text-center relative"
+                className="bg-white rounded-2xl p-5 md:p-8 border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all flex flex-col items-center text-center relative"
               >
                 <div className="relative mb-5">
                   <div className={`w-16 h-16 rounded-full ${colorClasses[index] || colorClasses[0]} ring-4 flex items-center justify-center`}>
