@@ -10,7 +10,7 @@ export function HeroSection() {
   const { t } = useTranslation()
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-[calc(100vh-4rem)]  flex items-center">
+    <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 min-h-screen pt-16 flex items-center">
       {/* Decorative blur circles */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl" />
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-amber-300/15 rounded-full blur-3xl" />
