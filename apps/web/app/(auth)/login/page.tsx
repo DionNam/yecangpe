@@ -1,7 +1,63 @@
+'use client'
+
 import { LoginButton } from '@/components/auth/login-button'
-import { Sparkles, Shield, Globe } from 'lucide-react'
+import { createClient } from '@repo/supabase/client'
+import { Sparkles, Shield, Globe, Loader2 } from 'lucide-react'
+import { useRouter } from 'next/navigation'
+import { useCallback, useRef, useState } from 'react'
 
 export default function LoginPage() {
+  const [clickCount, setClickCount] = useState(0)
+  const [showEmailLogin, setShowEmailLogin] = useState(false)
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const lastClickTime = useRef(0)
+  const router = useRouter()
+
+  const handleTitleClick = useCallback(() => {
+    const now = Date.now()
+    // Reset counter if more than 2 seconds since last click
+    if (now - lastClickTime.current > 2000) {
+      setClickCount(1)
+    } else {
+      setClickCount((prev) => {
+        const next = prev + 1
+        if (next >= 10) {
+          setShowEmailLogin(true)
+        }
+        return next
+      })
+    }
+    lastClickTime.current = now
+  }, [])
+
+  const handleEmailLogin = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setError('')
+    setIsLoading(true)
+
+    try {
+      const supabase = createClient()
+      const { error: signInError } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      })
+
+      if (signInError) {
+        setError(signInError.message)
+        setIsLoading(false)
+        return
+      }
+
+      router.push('/')
+    } catch {
+      setError('An unexpected error occurred')
+      setIsLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden bg-slate-50">
       {/* Back button */}
@@ -46,8 +102,11 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Title */}
-              <h1 className="text-4xl font-bold text-center mb-3 tracking-tight text-gray-900">
+              {/* Title - clickable area for hidden login */}
+              <h1
+                className="text-4xl font-bold text-center mb-3 tracking-tight text-gray-900 select-none cursor-default"
+                onClick={handleTitleClick}
+              >
                 환영합니다
               </h1>
               <p className="text-center text-lg text-slate-600">
@@ -58,6 +117,42 @@ export default function LoginPage() {
             {/* Login section */}
             <div className="p-8 pt-6">
               <LoginButton />
+
+              {/* Hidden email/password login form */}
+              {showEmailLogin && (
+                <form onSubmit={handleEmailLogin} className="mt-4 space-y-3">
+                  <input
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className="w-full h-10 px-3 text-sm border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
+                  />
+                  <input
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className="w-full h-10 px-3 text-sm border border-slate-200 rounded-lg bg-slate-50 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-400"
+                  />
+                  {error && (
+                    <p className="text-xs text-red-500">{error}</p>
+                  )}
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full h-10 text-sm font-medium bg-slate-900 text-white rounded-lg hover:bg-slate-800 disabled:opacity-50 transition-colors flex items-center justify-center"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      'Sign in'
+                    )}
+                  </button>
+                </form>
+              )}
 
               {/* Trust indicators */}
               <div className="mt-8 pt-8 border-t border-slate-200">

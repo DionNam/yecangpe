@@ -54,26 +54,6 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
               </h1>
             </div>
 
-            {/* Stats in sidebar */}
-            <div className="px-4 py-4 space-y-2">
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-50">
-                <span className="text-xs text-slate-600">{t('employerDashboardPage.totalPosts')}</span>
-                <span className="text-sm font-bold text-slate-900">{totalPosts}</span>
-              </div>
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-50">
-                <span className="text-xs text-slate-600">{t('employerDashboardPage.activePosts')}</span>
-                <span className="text-sm font-bold text-green-600">{activePosts}</span>
-              </div>
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-50">
-                <span className="text-xs text-slate-600">{t('employerDashboardPage.totalViews')}</span>
-                <span className="text-sm font-bold text-slate-900">{totalViews.toLocaleString()}</span>
-              </div>
-              <div className="flex items-center justify-between px-3 py-2 rounded-lg bg-slate-50">
-                <span className="text-xs text-slate-600">{t('employerDashboardPage.totalApplyClicks')}</span>
-                <span className="text-sm font-bold text-slate-900">{totalApplyClicks.toLocaleString()}</span>
-              </div>
-            </div>
-
             <nav className="space-y-1 px-3">
               <button
                 onClick={() => setActiveTab('posts')}
@@ -107,6 +87,46 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
           <main className="flex-1 p-6 lg:p-8">
             {activeTab === 'posts' && (
               <>
+                {/* Stats Summary */}
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                  <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-5">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.totalPosts')}</p>
+                        <p className="text-2xl font-bold text-slate-900 mt-1">{totalPosts}</p>
+                      </div>
+                      <FileText className="h-8 w-8 text-blue-500" />
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-5">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.activePosts')}</p>
+                        <p className="text-2xl font-bold text-slate-900 mt-1">{activePosts}</p>
+                      </div>
+                      <CheckCircle2 className="h-8 w-8 text-green-500" />
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-5">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.totalViews')}</p>
+                        <p className="text-2xl font-bold text-slate-900 mt-1">{totalViews.toLocaleString()}</p>
+                      </div>
+                      <Eye className="h-8 w-8 text-purple-500" />
+                    </div>
+                  </div>
+                  <div className="bg-white rounded-lg border border-slate-200 shadow-sm p-5">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium text-slate-600">{t('employerDashboardPage.totalApplyClicks')}</p>
+                        <p className="text-2xl font-bold text-slate-900 mt-1">{totalApplyClicks.toLocaleString()}</p>
+                      </div>
+                      <MousePointerClick className="h-8 w-8 text-amber-500" />
+                    </div>
+                  </div>
+                </div>
+
                 <div className="flex justify-end mb-6">
                   <Button asChild>
                     <Link href="/dashboard/post-job">{t('employerDashboardPage.newPost')}</Link>
