@@ -21,7 +21,7 @@ export function JobDetailShareMenu({ title, slug }: JobDetailShareMenuProps) {
   const { t } = useTranslation()
 
   // Build full URL - use env var with fallback
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim().replace(/\/+$/, '')
   const shareUrl = `${baseUrl}/jobs/${slug}`
   const encodedUrl = encodeURIComponent(shareUrl)
   const encodedTitle = encodeURIComponent(title)
