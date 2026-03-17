@@ -181,7 +181,7 @@ export function JobListFilters() {
   const keyword = searchParams.get('q') || ''
   const jobTypes = searchParams.get('job_type')?.split(',').filter(Boolean) || []
   const locationTypes = searchParams.get('location_type')?.split(',').filter(Boolean) || []
-  const nationality = searchParams.get('nationality') || 'all'
+  const nationality = searchParams.get('nationality') || 'ID'
   const locationCountry = searchParams.get('location_country') || 'all'
   const category = searchParams.get('category') || 'all'
   const koreanLevel = searchParams.get('korean_level') || 'all'
@@ -341,6 +341,21 @@ export function JobListFilters() {
             {t('filters.resetAll')}
           </button>
 
+          {/* 국적 (첫번째) */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div><FilterPill label={nationalityLabel} active={nationality !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-52 p-0" align="start">
+              <SingleSelectContent
+                items={localizedNationalities.filter(n => n.code !== 'ANY')}
+                selected={nationality}
+                onSelect={(code) => handleFilterChange('nationality', code)}
+                allLabel={t('filters.allNationality')}
+              />
+            </PopoverContent>
+          </Popover>
+
           {/* 고용 형태 */}
           <Popover>
             <PopoverTrigger asChild>
@@ -427,21 +442,6 @@ export function JobListFilters() {
                 selected={englishLevel}
                 onSelect={(code) => handleFilterChange('english_level', code)}
                 allLabel={t('filters.allEnglish')}
-              />
-            </PopoverContent>
-          </Popover>
-
-          {/* 국적 */}
-          <Popover>
-            <PopoverTrigger asChild>
-              <div><FilterPill label={nationalityLabel} active={nationality !== 'all'} /></div>
-            </PopoverTrigger>
-            <PopoverContent className="w-52 p-0" align="start">
-              <SingleSelectContent
-                items={localizedNationalities.filter(n => n.code !== 'ANY')}
-                selected={nationality}
-                onSelect={(code) => handleFilterChange('nationality', code)}
-                allLabel={t('filters.allNationality')}
               />
             </PopoverContent>
           </Popover>

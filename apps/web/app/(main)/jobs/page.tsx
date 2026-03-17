@@ -113,7 +113,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const category = params.category
   const koreanLevel = params.korean_level
   const englishLevel = params.english_level
-  const nationality = params.nationality
+  const nationality = params.nationality || 'ID'
   const locationCountry = params.location_country
   const page = parseInt(params.page || '1', 10)
   const sortBy = params.sort || 'latest'
