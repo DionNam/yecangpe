@@ -30,6 +30,27 @@ export const metadata: Metadata = {
 
 export const revalidate = 7200
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: baseUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'For Employers',
+      item: `${baseUrl}/employers`,
+    },
+  ],
+}
+
 export default async function EmployersPage() {
   const supabase = await createClient()
 
@@ -69,6 +90,11 @@ export default async function EmployersPage() {
   const totalEmployerCount = (actualEmployerCount || 0) + employerOffset
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
     <main>
       {/* Hero + Problem/Solution Section */}
       <EmployerHeroSection />
@@ -95,5 +121,6 @@ export default async function EmployersPage() {
       {/* Footer */}
       <Footer />
     </main>
+    </>
   )
 }

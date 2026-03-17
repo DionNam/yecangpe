@@ -257,6 +257,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
         },
         datePosted: job.created_at,
         jobLocationType: job.work_location_type?.toUpperCase(),
+        url: `${baseUrl}/jobs/${(job as any).slug || job.id}`,
       },
     })),
   }

@@ -24,6 +24,27 @@ export const metadata: Metadata = {
 
 export const revalidate = 7200
 
+const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: baseUrl,
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'For Job Seekers',
+      item: `${baseUrl}/job-seekers`,
+    },
+  ],
+}
+
 export default async function JobSeekersPage() {
   const supabase = await createClient()
 
@@ -39,5 +60,13 @@ export default async function JobSeekersPage() {
     .order('published_at', { ascending: false })
     .limit(8)
 
-  return <JobSeekersPageClient initialJobs={previewJobs || []} isLoggedIn={!!user} />
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <JobSeekersPageClient initialJobs={previewJobs || []} isLoggedIn={!!user} />
+    </>
+  )
 }

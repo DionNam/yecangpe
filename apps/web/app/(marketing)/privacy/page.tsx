@@ -10,6 +10,10 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ko_KR',
   },
+  robots: {
+    index: false,
+    follow: true,
+  },
   alternates: {
     canonical: '/privacy',
   },

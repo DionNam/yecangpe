@@ -5,6 +5,8 @@ import { getDisplayMetrics } from '@/lib/utils/metrics'
 import type { Database } from '@repo/supabase/types'
 import type { Metadata } from 'next'
 
+export const revalidate = 300
+
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
 interface JobDetailPageProps {
