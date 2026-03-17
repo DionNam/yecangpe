@@ -136,16 +136,18 @@ export function JobDetailSidebar({
             </div>
           </div>
 
-          {/* Location */}
-          <div className="flex items-start gap-3 pt-3">
-            <MapPin className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
-            <div className="flex-1 min-w-0">
-              <div className="text-xs text-slate-500 mb-1">{t('jobDetail.location')}</div>
-              <div className="text-sm font-medium text-slate-900">
-                {getWorkLocation()}
+          {/* Location - only show for on_site with country */}
+          {job.work_location_type === 'on_site' && job.work_location_country && (
+            <div className="flex items-start gap-3 pt-3">
+              <MapPin className="w-5 h-5 text-slate-400 mt-0.5 flex-shrink-0" />
+              <div className="flex-1 min-w-0">
+                <div className="text-xs text-slate-500 mb-1">{t('jobDetail.location')}</div>
+                <div className="text-sm font-medium text-slate-900">
+                  {getCountryName(job.work_location_country)}
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* Work location type */}
           {getWorkLocationType() && (
