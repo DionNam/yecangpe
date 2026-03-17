@@ -56,7 +56,6 @@ export async function RelatedJobsCarousel({
 
   return (
     <section className="mt-16 border-t border-slate-200 pt-12">
-      <h2 className="text-2xl font-bold mb-6">관련 채용 공고</h2>
       <RelatedJobsCarouselClient jobs={relatedJobs} />
     </section>
   )

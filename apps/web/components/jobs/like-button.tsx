@@ -54,6 +54,9 @@ export function LikeButton({
           className={optimisticState.liked ? 'fill-current' : ''}
           size={16}
         />
+        <span className="text-xs font-medium">
+          {optimisticState.liked ? t('common.saved') : t('common.save')}
+        </span>
       </Button>
     )
   }

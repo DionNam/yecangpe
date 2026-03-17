@@ -431,6 +431,7 @@ export const translations = {
       salaryMax: '최대',
       career: '경력',
       jobContent: '공고 내용',
+      relatedJobs: '관련 채용 공고',
     },
     seekerDashboard: {
       title: '구직자 대시보드',
@@ -1009,6 +1010,7 @@ export const translations = {
       salaryMax: 'Up to',
       career: 'Experience',
       jobContent: 'Job Description',
+      relatedJobs: 'Related Jobs',
     },
     seekerDashboard: {
       title: 'Job Seeker Dashboard',

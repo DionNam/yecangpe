@@ -42,9 +42,11 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
             <Link href="/jobs" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
               {t('header.jobs')}
             </Link>
-            <Link href="/employers" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
-              {t('header.employer')}
-            </Link>
+            {role !== 'seeker' && (
+              <Link href="/employers" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
+                {t('header.employer')}
+              </Link>
+            )}
 
             {/* Language Toggle */}
             <button
@@ -88,9 +90,11 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
             <Link href="/jobs" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
               {t('header.jobs')}
             </Link>
-            <Link href="/employers" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
-              {t('header.employer')}
-            </Link>
+            {role !== 'seeker' && (
+              <Link href="/employers" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
+                {t('header.employer')}
+              </Link>
+            )}
             {!user && (
                 <Link href="/login" className="block w-full text-center px-5 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
                   {t('header.login')}

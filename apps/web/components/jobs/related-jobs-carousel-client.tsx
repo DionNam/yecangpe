@@ -85,6 +85,8 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
   }
 
   return (
+    <>
+    <h2 className="text-2xl font-bold mb-6">{t('jobDetail.relatedJobs')}</h2>
     <Carousel
       opts={{
         align: 'start',
@@ -184,5 +186,6 @@ export function RelatedJobsCarouselClient({ jobs }: RelatedJobsCarouselClientPro
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
+    </>
   )
 }
