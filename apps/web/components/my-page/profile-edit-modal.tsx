@@ -124,12 +124,13 @@ export function ProfileEditModal({
         if (data.preferred_categories?.length) formData.append('preferred_categories', JSON.stringify(data.preferred_categories))
       }
 
+      // Optimistic: close modal immediately
+      onOpenChange(false)
       const result = await updateSeekerProfile(formData) as any
-      if (result?.success) {
-        onOpenChange(false)
-      } else if (result?.error) {
+      if (result?.error) {
         const msg = typeof result.error === 'string' ? result.error : JSON.stringify(result.error)
         setError(msg)
+        onOpenChange(true)
       }
     })
   }

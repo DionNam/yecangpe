@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useTransition } from 'react'
+import { useState, useOptimistic, useTransition } from 'react'
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n'
 import { Eye, MousePointerClick, Heart, Edit, Trash2 } from 'lucide-react'
@@ -31,14 +31,19 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
   const [isPending, startTransition] = useTransition()
   const { t } = useTranslation()
 
+  const [optimisticPosts, updateOptimisticPosts] = useOptimistic(
+    posts,
+    (state: JobPost[], deletedId: string) => state.filter(p => p.id !== deletedId)
+  )
+
   // Split posts into active and expired
   const now = new Date()
-  const activePosts = posts.filter((post) => {
+  const activePosts = optimisticPosts.filter((post) => {
     if (!post.expires_at) return true
     return new Date(post.expires_at) > now
   })
 
-  const expiredPosts = posts.filter((post) => {
+  const expiredPosts = optimisticPosts.filter((post) => {
     if (!post.expires_at) return false
     return new Date(post.expires_at) <= now
   })
@@ -49,6 +54,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
     }
 
     startTransition(async () => {
+      updateOptimisticPosts(postId)
       const result = await deleteJobPost(postId)
       if ('error' in result) {
         alert(result.error)

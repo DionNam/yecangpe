@@ -12,11 +12,11 @@ export function NewsletterSection() {
   const { t } = useTranslation()
 
   async function handleSubmit(formData: FormData) {
+    // Optimistic: show success immediately
     setIsSubmitting(true)
-    setStatus(null)
-    setIsSuccess(false)
+    setStatus(t('newsletter.success'))
+    setIsSuccess(true)
 
-    // Add selected type to form data
     formData.set('type', selectedType)
 
     const result = await subscribeNewsletter(formData)
@@ -24,9 +24,6 @@ export function NewsletterSection() {
     if (result.error) {
       setStatus(result.error)
       setIsSuccess(false)
-    } else {
-      setStatus(t('newsletter.success'))
-      setIsSuccess(true)
     }
 
     setIsSubmitting(false)

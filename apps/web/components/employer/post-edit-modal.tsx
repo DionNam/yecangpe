@@ -232,10 +232,11 @@ export function PostEditModal({
         formData.append('image_url', imageUrl)
       }
 
+      // Optimistic: close modal immediately
+      onOpenChange(false)
       const result = await updateJobPost(formData)
-      if (result.success) {
-        onOpenChange(false)
-      } else if (result.error) {
+      if (result.error) {
+        onOpenChange(true)
         // Handle field errors
         const error = result.error as Record<string, string[] | undefined>
         if (error.title) {

@@ -121,24 +121,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
   const supabase = await createClient()
 
-  // Check if user is authenticated
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-  const isAuthenticated = !!user
-
-  // Check if user is a seeker (can like posts)
-  let canLike = false
-  if (user) {
-    const { data: seekerProfile } = await supabase
-      .from('seeker_profiles')
-      .select('id')
-      .eq('user_id', user.id)
-      .single()
-    canLike = !!seekerProfile
-  }
-
-  // Build query
+  // Build query (doesn't depend on user)
   let query = supabase
     .from('job_posts')
     .select('*', { count: 'exact' })
@@ -200,21 +183,41 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const end = start + pageSize - 1
   query = query.range(start, end)
 
-  const { data: posts, count, error } = await query as { data: JobPost[] | null, count: number | null, error: any }
+  // Run jobs query and user auth check in parallel
+  const [queryResult, userResult] = await Promise.all([
+    query.then((res: any) => res) as Promise<{ data: JobPost[] | null, count: number | null, error: any }>,
+    supabase.auth.getUser(),
+  ])
 
-  // Fetch like status for all posts if user is authenticated
+  const { data: posts, count, error } = queryResult
+  const user = userResult?.data?.user || null
+  const isAuthenticated = !!user
+
+  // Check seeker status and fetch likes in parallel (if user is authenticated)
+  let canLike = false
   let likedPostIds: Set<string> = new Set()
   if (user && posts && posts.length > 0) {
     const postIds = posts.map(p => p.id)
-    const { data: likesData } = await (supabase as any)
-      .from('likes')
-      .select('post_id')
-      .eq('user_id', user.id)
-      .in('post_id', postIds) as { data: Array<{ post_id: string }> | null }
+    const [seekerResult, likesResult] = await Promise.all([
+      supabase.from('seeker_profiles').select('id').eq('user_id', user.id).single(),
+      (supabase as any)
+        .from('likes')
+        .select('post_id')
+        .eq('user_id', user.id)
+        .in('post_id', postIds) as Promise<{ data: Array<{ post_id: string }> | null }>,
+    ])
 
-    if (likesData) {
-      likedPostIds = new Set(likesData.map(l => l.post_id))
+    canLike = !!seekerResult?.data
+    if (likesResult?.data) {
+      likedPostIds = new Set(likesResult.data.map(l => l.post_id))
     }
+  } else if (user) {
+    const { data: seekerProfile } = await supabase
+      .from('seeker_profiles')
+      .select('id')
+      .eq('user_id', user.id)
+      .single()
+    canLike = !!seekerProfile
   }
 
   if (error) {

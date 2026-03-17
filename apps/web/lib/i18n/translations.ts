@@ -484,6 +484,8 @@ export const translations = {
       active: '활성',
       inactive: '비활성',
       deleteConfirm: '이 알림을 삭제하시겠습니까?',
+      toggleFailed: '상태 변경 실패',
+      deleteFailed: '삭제 실패',
     },
     profileSection: {
       title: '프로필 정보',
@@ -1216,6 +1218,8 @@ export const translations = {
       active: 'Active',
       inactive: 'Inactive',
       deleteConfirm: 'Delete this alert?',
+      toggleFailed: 'Failed to toggle',
+      deleteFailed: 'Failed to delete',
     },
     profileSection: {
       title: 'Profile Info',

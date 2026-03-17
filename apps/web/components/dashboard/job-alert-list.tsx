@@ -1,6 +1,6 @@
 'use client'
 
-import { useTransition } from 'react'
+import { useOptimistic, useTransition } from 'react'
 import { Trash2 } from 'lucide-react'
 import { updateJobAlert, deleteJobAlert } from '@/app/actions/job-alerts'
 import { COUNTRIES, JOB_TYPES } from '@repo/lib'
@@ -23,15 +23,35 @@ interface JobAlertListProps {
   alerts: JobAlert[]
 }
 
+type OptimisticAction =
+  | { type: 'toggle'; id: string }
+  | { type: 'delete'; id: string }
+
 export function JobAlertList({ alerts }: JobAlertListProps) {
   const [isPending, startTransition] = useTransition()
   const { t, language } = useTranslation()
 
+  const [optimisticAlerts, updateOptimisticAlerts] = useOptimistic(
+    alerts,
+    (state: JobAlert[], action: OptimisticAction) => {
+      if (action.type === 'toggle') {
+        return state.map(a =>
+          a.id === action.id ? { ...a, is_active: !a.is_active } : a
+        )
+      }
+      if (action.type === 'delete') {
+        return state.filter(a => a.id !== action.id)
+      }
+      return state
+    }
+  )
+
   function handleToggle(alertId: string, currentState: boolean) {
     startTransition(async () => {
+      updateOptimisticAlerts({ type: 'toggle', id: alertId })
       const result = await updateJobAlert(alertId, { is_active: !currentState })
       if (result.error) {
-        alert(`상태 변경 실패: ${result.error}`)
+        alert(`${t('jobAlertList.toggleFailed')}: ${result.error}`)
       }
     })
   }
@@ -42,14 +62,15 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
     }
 
     startTransition(async () => {
+      updateOptimisticAlerts({ type: 'delete', id: alertId })
       const result = await deleteJobAlert(alertId)
       if (result.error) {
-        alert(`삭제 실패: ${result.error}`)
+        alert(`${t('jobAlertList.deleteFailed')}: ${result.error}`)
       }
     })
   }
 
-  if (alerts.length === 0) {
+  if (optimisticAlerts.length === 0) {
     return (
       <div className="text-center py-12 text-slate-600">
         {t('jobAlertList.noAlerts')}
@@ -59,8 +80,7 @@ export function JobAlertList({ alerts }: JobAlertListProps) {
 
   return (
     <div className="space-y-4">
-      {alerts.map((alert) => {
-        // Lookup display names
+      {optimisticAlerts.map((alert) => {
         const countryName = alert.country
           ? COUNTRIES.find((c) => c.code === alert.country)?.name || t('jobAlertForm.allCountries')
           : t('jobAlertForm.allCountries')

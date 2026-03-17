@@ -95,39 +95,36 @@ export default async function DashboardPage() {
 
   if (seekerProfile) {
     const profile = seekerProfile as SeekerProfile
-    // Fetch liked jobs with joined query
-    const { data: likedJobsData } = await (supabase as any)
-      .from('likes')
-      .select(
-        `
-        id,
-        created_at,
-        post:job_posts(
-          id, title, slug, company_name, hiring_status
-        )
-      `
-      )
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false })
 
-    // Transform the data to match expected type
+    // Fetch liked jobs and job alerts in parallel
+    const [likedJobsResult, jobAlertsResult] = await Promise.all([
+      (supabase as any)
+        .from('likes')
+        .select(`
+          id,
+          created_at,
+          post:job_posts(
+            id, title, slug, company_name, hiring_status
+          )
+        `)
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+      (supabase as any)
+        .from('job_alerts')
+        .select('*')
+        .eq('user_id', user.id)
+        .order('created_at', { ascending: false }),
+    ])
+
     const likedJobs =
-      (likedJobsData as any[])?.map((like: any) => ({
+      (likedJobsResult.data as any[])?.map((like: any) => ({
         id: like.id,
         created_at: like.created_at,
         post: Array.isArray(like.post) ? like.post[0] : like.post,
       })) || []
 
-    // Fetch job alerts
-    const { data: jobAlerts } = await (supabase as any)
-      .from('job_alerts')
-      .select('*')
-      .eq('user_id', user.id)
-      .order('created_at', { ascending: false })
+    const alerts = jobAlertsResult.data || []
 
-    const alerts = jobAlerts || []
-
-    // Render seeker dashboard
     return <SeekerDashboard profile={profile} likedJobs={likedJobs} alerts={alerts} />
   }
 

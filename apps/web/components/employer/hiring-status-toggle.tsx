@@ -1,6 +1,6 @@
 'use client'
 
-import { useTransition } from 'react'
+import { useOptimistic, useTransition } from 'react'
 import { Button } from '@/components/ui/button'
 import { updateHiringStatus } from '@/app/actions/jobs'
 import { useTranslation } from '@/lib/i18n'
@@ -18,10 +18,12 @@ export function HiringStatusToggle({
 }: HiringStatusToggleProps) {
   const { t } = useTranslation()
   const [isPending, startTransition] = useTransition()
+  const [optimisticStatus, setOptimisticStatus] = useOptimistic(currentStatus)
 
   const handleToggle = () => {
-    const newStatus = currentStatus === 'hiring' ? 'closed' : 'hiring'
+    const newStatus = optimisticStatus === 'hiring' ? 'closed' : 'hiring'
     startTransition(async () => {
+      setOptimisticStatus(newStatus)
       try {
         await updateHiringStatus(postId, newStatus)
       } catch (error) {
@@ -30,7 +32,7 @@ export function HiringStatusToggle({
     })
   }
 
-  const isHiring = currentStatus === 'hiring'
+  const isHiring = optimisticStatus === 'hiring'
 
   return (
     <Button
@@ -40,7 +42,7 @@ export function HiringStatusToggle({
       disabled={disabled || isPending}
       className="min-w-[60px]"
     >
-      {isPending ? '...' : isHiring ? t('jobPostForm.hiring') : t('jobPostForm.closed')}
+      {isHiring ? t('jobPostForm.hiring') : t('jobPostForm.closed')}
     </Button>
   )
 }

@@ -173,76 +173,48 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
 }
 
 async function renderJobPage(supabase: any, jobData: JobPost) {
-  // Try to fetch company_website separately (won't break if join fails)
-  let companyWebsite: string | null = null
-  try {
-    const { data: employerProfile } = await supabase
+  // Run all independent queries in parallel
+  const [
+    employerProfileResult,
+    userResult,
+    _viewCountResult,
+    configResult,
+    likeCountResult,
+  ] = await Promise.all([
+    // 1. Fetch company_website
+    supabase
       .from('employer_profiles')
       .select('company_website')
       .eq('user_id', jobData.author_id)
       .single()
+      .catch(() => ({ data: null })),
+    // 2. Get authenticated user
+    supabase.auth.getUser(),
+    // 3. Increment view count (fire and forget)
+    supabase.rpc('increment_view_count', { post_id: jobData.id }).catch(() => null),
+    // 4. Fetch global metrics config
+    supabase.from('global_metrics_config').select('ramp_days, curve_strength').single(),
+    // 5. Get like count
+    supabase.rpc('get_like_count', { post_id: jobData.id }).catch(() => ({ data: 0 })),
+  ])
 
-    companyWebsite = employerProfile?.company_website || null
-  } catch {
-    // Silently fail - company website is optional
-  }
+  const companyWebsite: string | null = employerProfileResult?.data?.company_website || null
+  const user = userResult?.data?.user || null
+  const metricsConfig = configResult?.data || { ramp_days: 14, curve_strength: 2.0 }
+  const realLikes = (likeCountResult?.data as number) || 0
 
-  // Get authenticated user (optional for viewing - required for like/apply actions)
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  // Increment view count (SECURITY DEFINER function bypasses RLS)
-  try {
-    await supabase.rpc('increment_view_count', { post_id: jobData.id })
-  } catch {
-    // Non-critical - don't block page render
-  }
-
-  // Fetch global metrics config
-  const { data: configData } = await supabase
-    .from('global_metrics_config')
-    .select('ramp_days, curve_strength')
-    .single()
-
-  const metricsConfig = configData || {
-    ramp_days: 14,
-    curve_strength: 2.0,
-  }
-
-  // Get like count
-  let realLikes = 0
-  try {
-    const { data: likeCountData } = await supabase.rpc('get_like_count', {
-      post_id: jobData.id,
-    })
-    realLikes = (likeCountData as number) || 0
-  } catch {
-    // Non-critical
-  }
-
-  // Check if current user liked the post (only if logged in)
+  // User-dependent queries (only if logged in) - run in parallel
   let isLiked = false
   let canLike = false
 
   if (user) {
-    try {
-      const { data: isLikedData } = await supabase.rpc('user_liked_post', {
-        post_id: jobData.id,
-      })
-      isLiked = (isLikedData as boolean) || false
-    } catch {
-      // Non-critical
-    }
+    const [isLikedResult, seekerProfileResult] = await Promise.all([
+      supabase.rpc('user_liked_post', { post_id: jobData.id }).catch(() => ({ data: false })),
+      supabase.from('seeker_profiles').select('id').eq('user_id', user.id).single(),
+    ])
 
-    // Check if user can like (seeker only)
-    const { data: seekerProfile } = await supabase
-      .from('seeker_profiles')
-      .select('id')
-      .eq('user_id', user.id)
-      .single()
-
-    canLike = !!seekerProfile
+    isLiked = (isLikedResult?.data as boolean) || false
+    canLike = !!seekerProfileResult?.data
   }
 
   // Calculate display metrics
