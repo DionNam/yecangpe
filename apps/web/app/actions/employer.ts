@@ -29,8 +29,17 @@ export async function deleteJobPost(postId: string): Promise<{ success: true } |
     return { error: '공고를 찾을 수 없습니다.' }
   }
 
+  // Check ownership OR admin role
   if (post.author_id !== user.id) {
-    return { error: '공고를 삭제할 권한이 없습니다.' }
+    const { data: userRecord } = await (supabase as any)
+      .from('users')
+      .select('role')
+      .eq('id', user.id)
+      .single()
+
+    if (userRecord?.role !== 'admin') {
+      return { error: '공고를 삭제할 권한이 없습니다.' }
+    }
   }
 
   // Delete the post (hard delete)
