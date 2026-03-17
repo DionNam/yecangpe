@@ -39,10 +39,16 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
-            <Link href="/jobs" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
-              {t('header.jobs')}
-            </Link>
-            {role !== 'seeker' && (
+            {role === 'employer' ? (
+              <Link href="/dashboard" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
+                {t('header.myPosts')}
+              </Link>
+            ) : (
+              <Link href="/jobs" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
+                {t('header.jobs')}
+              </Link>
+            )}
+            {role !== 'seeker' && role !== 'employer' && (
               <Link href="/employers" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
                 {t('header.employer')}
               </Link>
@@ -87,10 +93,16 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-slate-200 px-6 py-4 space-y-4 shadow-lg">
-            <Link href="/jobs" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
-              {t('header.jobs')}
-            </Link>
-            {role !== 'seeker' && (
+            {role === 'employer' ? (
+              <Link href="/dashboard" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
+                {t('header.myPosts')}
+              </Link>
+            ) : (
+              <Link href="/jobs" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
+                {t('header.jobs')}
+              </Link>
+            )}
+            {role !== 'seeker' && role !== 'employer' && (
               <Link href="/employers" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
                 {t('header.employer')}
               </Link>

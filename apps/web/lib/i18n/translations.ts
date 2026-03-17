@@ -2,6 +2,7 @@ export const translations = {
   ko: {
     header: {
       jobs: '공고 보기',
+      myPosts: '내 공고 보기',
       employer: '고용주',
       seeker: '구직자',
       login: '로그인',
@@ -579,6 +580,7 @@ export const translations = {
   en: {
     header: {
       jobs: 'Jobs',
+      myPosts: 'My Posts',
       employer: 'Employers',
       seeker: 'Job Seekers',
       login: 'Login',

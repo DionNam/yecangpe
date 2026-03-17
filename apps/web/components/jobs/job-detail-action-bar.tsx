@@ -38,6 +38,7 @@ export function JobDetailActionBar({
           initialLiked={isLiked}
           initialCount={displayLikes}
           canLike={canLike}
+          compact
         />
       )}
 
