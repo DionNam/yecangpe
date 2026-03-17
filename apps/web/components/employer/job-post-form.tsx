@@ -212,6 +212,21 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
 
   return (
     <>
+      <div className="mb-8">
+        <p className="text-slate-600 font-medium text-xs tracking-widest uppercase mb-2">
+          {t('jobPostForm.pageTitle')}
+        </p>
+        <h1 className="text-3xl font-bold text-gray-900 tracking-tight">
+          {t('jobPostForm.pageHeading')}
+        </h1>
+      </div>
+
+      <div className="rounded-xl border bg-card text-card-foreground shadow-sm">
+        <div className="flex flex-col space-y-1.5 p-6">
+          <h4 className="font-semibold leading-none tracking-tight">{t('jobPostForm.sectionTitle')}</h4>
+          <p className="text-sm text-muted-foreground">{t('jobPostForm.sectionDesc')}</p>
+        </div>
+        <div className="p-6 pt-0">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           {/* Form-level error */}
@@ -653,6 +668,8 @@ export function JobPostForm({ defaultCompanyName }: JobPostFormProps) {
           </Button>
         </form>
       </Form>
+        </div>
+      </div>
 
       <SubmissionDialog open={showDialog} onOpenChange={setShowDialog} />
     </>

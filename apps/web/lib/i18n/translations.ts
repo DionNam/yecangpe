@@ -717,6 +717,13 @@ export const translations = {
       shareTo: '공유하기',
       email: '이메일',
     },
+    imageUpload: {
+      invalidType: 'JPG, PNG, WebP 형식만 지원합니다.',
+      tooLarge: '파일 크기는 5MB 이하여야 합니다.',
+      preview: '업로드된 이미지 미리보기',
+      select: '이미지를 선택하세요 (선택사항)',
+      formats: 'JPG, PNG, WebP / 최대 5MB',
+    },
   },
   en: {
     header: {
@@ -1435,6 +1442,13 @@ export const translations = {
       copyLink: 'Copy Link',
       shareTo: 'Share',
       email: 'Email',
+    },
+    imageUpload: {
+      invalidType: 'Only JPG, PNG, WebP formats are supported.',
+      tooLarge: 'File size must be 5MB or less.',
+      preview: 'Uploaded image preview',
+      select: 'Select an image (optional)',
+      formats: 'JPG, PNG, WebP / Max 5MB',
     },
   },
 } as const

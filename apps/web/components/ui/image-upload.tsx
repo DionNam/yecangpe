@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { X, ImageIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { useTranslation } from '@/lib/i18n'
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024 // 5MB
 const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp']
@@ -24,6 +25,7 @@ export function ImageUpload({
   disabled = false,
   className,
 }: ImageUploadProps) {
+  const { t } = useTranslation()
   const [preview, setPreview] = useState<string | null>(currentImageUrl || null)
   const [error, setError] = useState<string | null>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -38,13 +40,13 @@ export function ImageUpload({
 
     // Validate file type
     if (!ACCEPTED_TYPES.includes(file.type)) {
-      setError('JPG, PNG, WebP 형식만 지원합니다.')
+      setError(t('imageUpload.invalidType'))
       return
     }
 
     // Validate file size
     if (file.size > MAX_FILE_SIZE) {
-      setError('파일 크기는 5MB 이하여야 합니다.')
+      setError(t('imageUpload.tooLarge'))
       return
     }
 
@@ -83,7 +85,7 @@ export function ImageUpload({
         <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-slate-200 bg-slate-50">
           <Image
             src={preview}
-            alt="업로드된 이미지 미리보기"
+            alt={t('imageUpload.preview')}
             fill
             className="object-cover"
             unoptimized={preview.startsWith('blob:')}
@@ -114,8 +116,8 @@ export function ImageUpload({
           )}
         >
           <ImageIcon className="h-8 w-8" />
-          <span className="text-sm">이미지를 선택하세요 (선택사항)</span>
-          <span className="text-xs text-slate-400">JPG, PNG, WebP / 최대 5MB</span>
+          <span className="text-sm">{t('imageUpload.select')}</span>
+          <span className="text-xs text-slate-400">{t('imageUpload.formats')}</span>
         </button>
       )}
 
