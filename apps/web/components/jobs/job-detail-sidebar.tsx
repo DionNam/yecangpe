@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { LoginModal } from './login-modal'
 import {
   Dialog,
   DialogContent,
@@ -55,6 +56,7 @@ export function JobDetailSidebar({
 }: JobDetailSidebarProps) {
   const { t, language } = useTranslation()
   const [showApplyModal, setShowApplyModal] = useState(false)
+  const [showLoginModal, setShowLoginModal] = useState(false)
 
   const hasApplyMethod = !!(job.apply_url || job.apply_email || (job as any).apply_text)
 
@@ -113,7 +115,7 @@ export function JobDetailSidebar({
       {/* Apply Button */}
       {hasApplyMethod && (
         <Button
-          onClick={() => setShowApplyModal(true)}
+          onClick={() => user ? setShowApplyModal(true) : setShowLoginModal(true)}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
           size="lg"
         >
@@ -121,6 +123,9 @@ export function JobDetailSidebar({
           <ExternalLink className="w-5 h-5 ml-2" />
         </Button>
       )}
+
+      {/* Login Modal for non-authenticated users */}
+      <LoginModal open={showLoginModal} onOpenChange={setShowLoginModal} />
 
       {/* Apply Modal */}
       <Dialog open={showApplyModal} onOpenChange={setShowApplyModal}>

@@ -41,11 +41,7 @@ export function JobRow({
   const { t, language } = useTranslation()
 
   const handleClick = () => {
-    if (isAuthenticated) {
-      router.push(`/jobs/${job.slug || job.id}`)
-    } else {
-      setShowLoginModal(true)
-    }
+    router.push(`/jobs/${job.slug || job.id}`)
   }
 
   // Check if post is new (within 7 days)
