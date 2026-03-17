@@ -4,7 +4,7 @@ import { motion } from 'motion/react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, User as UserIcon, LogOut, LayoutDashboard } from 'lucide-react'
 import { User } from '@supabase/supabase-js'
 import { UserMenu } from '@/components/layout/user-menu'
 import { useTranslation } from '@/lib/i18n'
@@ -17,6 +17,8 @@ interface SiteHeaderProps {
 export function SiteHeader({ user, role }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { t, language, setLanguage } = useTranslation()
+
+  const initials = user?.email?.charAt(0).toUpperCase() || 'U'
 
   return (
     <motion.header
@@ -38,6 +40,7 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
             />
           </Link>
 
+          {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             {role === 'employer' ? (
               <Link href="/dashboard" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
@@ -54,7 +57,6 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
               </Link>
             )}
 
-            {/* Language Toggle */}
             <button
               onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
               className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-700 hover:border-gray-400 transition-colors"
@@ -71,15 +73,14 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
             )}
           </nav>
 
-          <div className="flex items-center gap-4 md:hidden">
-             {/* Mobile Language Toggle */}
+          {/* Mobile: Language + Hamburger only */}
+          <div className="flex items-center gap-3 md:hidden">
              <button
                onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
                className="px-3 py-1.5 rounded-full border border-gray-200 text-xs font-bold text-gray-700 hover:border-gray-400 transition-colors"
              >
                {language === 'ko' ? 'EN' : 'KO'}
              </button>
-             {user && <UserMenu user={user} role={role} />}
              <button
                 className="p-2"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -92,25 +93,76 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-t border-slate-200 px-6 py-4 space-y-4 shadow-lg">
+        <div className="md:hidden bg-white border-t border-slate-200 px-6 py-4 space-y-1 shadow-lg">
+            {/* Navigation Links */}
             {role === 'employer' ? (
-              <Link href="/dashboard" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/dashboard" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
+                <LayoutDashboard className="w-4 h-4 text-slate-400" />
                 {t('header.myPosts')}
               </Link>
             ) : (
-              <Link href="/jobs" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/jobs" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
                 {t('header.jobs')}
               </Link>
             )}
             {role !== 'seeker' && role !== 'employer' && (
-              <Link href="/employers" className="block text-sm text-gray-600 font-medium" onClick={() => setMobileMenuOpen(false)}>
+              <Link href="/employers" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
                 {t('header.employer')}
               </Link>
             )}
-            {!user && (
-                <Link href="/login" className="block w-full text-center px-5 py-2 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
+
+            {/* User section */}
+            {user ? (
+              <>
+                <div className="border-t border-slate-100 my-2" />
+
+                {/* User info */}
+                <div className="flex items-center gap-3 px-3 py-3">
+                  <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-sm font-medium text-slate-600">
+                    {initials}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs text-slate-500 truncate">{user.email}</p>
+                  </div>
+                </div>
+
+                {/* Role-based links */}
+                {role === 'employer' && (
+                  <Link href="/dashboard" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
+                    <LayoutDashboard className="w-4 h-4 text-slate-400" />
+                    {t('userMenu.employerDashboard')}
+                  </Link>
+                )}
+                {role === 'seeker' && (
+                  <Link href="/dashboard" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
+                    <UserIcon className="w-4 h-4 text-slate-400" />
+                    {t('userMenu.myPage')}
+                  </Link>
+                )}
+                {role === 'admin' && (
+                  <Link href="/dashboard" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
+                    <LayoutDashboard className="w-4 h-4 text-slate-400" />
+                    {t('userMenu.adminDashboard')}
+                  </Link>
+                )}
+
+                <div className="border-t border-slate-100 my-2" />
+
+                {/* Logout */}
+                <form action="/auth/signout" method="POST">
+                  <button type="submit" className="flex items-center gap-3 px-3 py-3 text-sm text-red-600 font-medium rounded-lg hover:bg-red-50 w-full">
+                    <LogOut className="w-4 h-4" />
+                    {t('userMenu.logout')}
+                  </button>
+                </form>
+              </>
+            ) : (
+              <>
+                <div className="border-t border-slate-100 my-2" />
+                <Link href="/login" className="block w-full text-center px-5 py-3 bg-slate-900 text-white rounded-lg hover:bg-slate-800 transition-colors text-sm font-medium" onClick={() => setMobileMenuOpen(false)}>
                   {t('header.login')}
                 </Link>
+              </>
             )}
         </div>
       )}
