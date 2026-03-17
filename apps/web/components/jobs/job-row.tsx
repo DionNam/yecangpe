@@ -209,13 +209,15 @@ export function JobRow({
             {job.company_name}
           </p>
 
-          {/* Info row: Location + Salary */}
+          {/* Info row: Location (on_site only) + Salary */}
           <div className="flex items-center gap-4 mb-2">
-            {/* Location */}
-            <div className="flex items-center gap-1 text-sm text-slate-600">
-              <MapPin className="w-4 h-4" />
-              <span>{getLocationText()}</span>
-            </div>
+            {/* Location - only for on_site */}
+            {job.work_location_type === 'on_site' && job.work_location_country && (
+              <div className="flex items-center gap-1 text-sm text-slate-600">
+                <MapPin className="w-4 h-4" />
+                <span>{getCountryName(job.work_location_country)}</span>
+              </div>
+            )}
 
             {/* Salary */}
             {salaryText && (

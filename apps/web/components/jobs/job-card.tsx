@@ -199,11 +199,13 @@ export function JobCard({
               {job.company_name}
             </p>
 
-            {/* Location */}
-            <div className="flex items-center gap-1 text-xs text-slate-600 mb-2">
-              <MapPin className="w-3 h-3" />
-              <span>{getLocationText()}</span>
-            </div>
+            {/* Location - only for on_site */}
+            {job.work_location_type === 'on_site' && job.work_location_country && (
+              <div className="flex items-center gap-1 text-xs text-slate-600 mb-2">
+                <MapPin className="w-3 h-3" />
+                <span>{getCountryName(job.work_location_country)}</span>
+              </div>
+            )}
 
             {/* Salary (conditional) */}
             {salaryText && (
