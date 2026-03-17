@@ -125,11 +125,10 @@ export function JobDetailContent({
           {/* Job Description */}
           <section>
             <h2 className="text-xl font-bold mb-4 text-gray-900">{t('common.jobDescription')}</h2>
-            <div className="prose prose-slate max-w-none">
-              <p className="whitespace-pre-wrap text-slate-700 leading-relaxed">
-                {job.content}
-              </p>
-            </div>
+            <div
+              className="prose prose-slate max-w-none text-slate-700 leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: job.content }}
+            />
           </section>
 
           {/* Action Bar */}

@@ -119,18 +119,7 @@ export function JobDetailSidebar({
 
       {/* Job Summary Panel */}
       <Card className="p-6 space-y-4 shadow-sm">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-bold text-lg text-gray-900">{t('jobDetail.jobInfo')}</h3>
-          {user && canLike && (
-            <LikeButton
-              postId={job.id}
-              initialLiked={isLiked}
-              initialCount={displayLikes}
-              canLike={canLike}
-              compact
-            />
-          )}
-        </div>
+        <h3 className="font-bold text-lg text-gray-900 mb-4">{t('jobDetail.jobInfo')}</h3>
 
         <div className="space-y-3 divide-y divide-slate-100">
           {/* Posted date */}
