@@ -13,6 +13,13 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { useTranslation } from '@/lib/i18n'
@@ -76,13 +83,19 @@ export function EmployerForm() {
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t('employerForm.referralSource')}</FormLabel>
-              <FormControl>
-                <Input
-                  placeholder={t('employerForm.referralSourcePlaceholder')}
-                  {...field}
-                  value={field.value || ''}
-                />
-              </FormControl>
+              <Select onValueChange={field.onChange} defaultValue={field.value ?? ''}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t('employerForm.referralSourcePlaceholder')} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  <SelectItem value="google">{t('referralSource.google')}</SelectItem>
+                  <SelectItem value="instagram">{t('referralSource.instagram')}</SelectItem>
+                  <SelectItem value="referral">{t('referralSource.referral')}</SelectItem>
+                  <SelectItem value="other">{t('referralSource.other')}</SelectItem>
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}

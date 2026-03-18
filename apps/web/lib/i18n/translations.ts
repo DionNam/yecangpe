@@ -767,6 +767,12 @@ export const translations = {
       select: '이미지를 선택하세요 (선택사항)',
       formats: 'JPG, PNG, WebP / 최대 5MB',
     },
+    referralSource: {
+      google: '구글 검색',
+      instagram: '인스타 광고',
+      referral: '지인 추천',
+      other: '기타',
+    },
   },
   en: {
     header: {
@@ -1535,6 +1541,12 @@ export const translations = {
       preview: 'Uploaded image preview',
       select: 'Select an image (optional)',
       formats: 'JPG, PNG, WebP / Max 5MB',
+    },
+    referralSource: {
+      google: 'Google Search',
+      instagram: 'Instagram Ad',
+      referral: 'Friend Referral',
+      other: 'Other',
     },
   },
 } as const
