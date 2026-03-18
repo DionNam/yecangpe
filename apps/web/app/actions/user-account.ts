@@ -26,19 +26,15 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
       return { success: false, error: 'Not authenticated' }
     }
 
-    // Soft delete: set deleted_at timestamp
-    const { error: updateError } = await (supabase as any)
-      .from('users')
-      .update({
-        deleted_at: new Date().toISOString(),
-        deletion_reason: reason || 'User requested account deletion',
-        is_active: false,
-      })
-      .eq('id', user.id)
+    // Soft delete using RPC function
+    const { data, error: rpcError } = await supabase.rpc('soft_delete_user_account', {
+      user_id_param: user.id,
+      reason_param: reason || 'User requested account deletion',
+    })
 
-    if (updateError) {
-      console.error('Error deleting account:', updateError)
-      return { success: false, error: updateError.message }
+    if (rpcError || !data) {
+      console.error('Error deleting account:', rpcError)
+      return { success: false, error: rpcError?.message || 'Failed to delete account' }
     }
 
     // Sign out the user
@@ -75,19 +71,15 @@ export async function adminDeleteUser(userId: string, reason?: string): Promise<
       return { success: false, error: 'Unauthorized' }
     }
 
-    // Soft delete user
-    const { error: updateError } = await (supabase as any)
-      .from('users')
-      .update({
-        deleted_at: new Date().toISOString(),
-        deletion_reason: reason || 'Admin deleted account',
-        is_active: false,
-      })
-      .eq('id', userId)
+    // Soft delete using RPC function
+    const { data, error: rpcError } = await supabase.rpc('soft_delete_user_account', {
+      user_id_param: userId,
+      reason_param: reason || 'Admin deleted account',
+    })
 
-    if (updateError) {
-      console.error('Error deleting user:', updateError)
-      return { success: false, error: updateError.message }
+    if (rpcError || !data) {
+      console.error('Error deleting user:', rpcError)
+      return { success: false, error: rpcError?.message || 'Failed to delete user' }
     }
 
     revalidatePath('/dashboard')
@@ -121,19 +113,14 @@ export async function adminRestoreUser(userId: string): Promise<DeleteAccountRes
       return { success: false, error: 'Unauthorized' }
     }
 
-    // Restore user
-    const { error: updateError } = await (supabase as any)
-      .from('users')
-      .update({
-        deleted_at: null,
-        deletion_reason: null,
-        is_active: true,
-      })
-      .eq('id', userId)
+    // Restore using RPC function
+    const { data, error: rpcError } = await supabase.rpc('restore_user_account', {
+      user_id_param: userId,
+    })
 
-    if (updateError) {
-      console.error('Error restoring user:', updateError)
-      return { success: false, error: updateError.message }
+    if (rpcError || !data) {
+      console.error('Error restoring user:', rpcError)
+      return { success: false, error: rpcError?.message || 'Failed to restore user' }
     }
 
     revalidatePath('/dashboard')
@@ -168,12 +155,14 @@ export async function adminHardDeleteUser(userId: string): Promise<DeleteAccount
       return { success: false, error: 'Unauthorized' }
     }
 
-    // Hard delete user (cascades to related tables via FK constraints)
-    const { error: deleteError } = await (supabase as any).from('users').delete().eq('id', userId)
+    // Hard delete using RPC function
+    const { data, error: rpcError } = await supabase.rpc('hard_delete_user_account', {
+      user_id_param: userId,
+    })
 
-    if (deleteError) {
-      console.error('Error hard deleting user:', deleteError)
-      return { success: false, error: deleteError.message }
+    if (rpcError || !data) {
+      console.error('Error hard deleting user:', rpcError)
+      return { success: false, error: rpcError?.message || 'Failed to permanently delete user' }
     }
 
     revalidatePath('/dashboard')
