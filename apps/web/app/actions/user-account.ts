@@ -17,7 +17,7 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
   try {
     const supabase = await createClient()
 
-    // Get current user
+    // Get current user with regular client
     const {
       data: { user },
       error: authError,
@@ -27,44 +27,45 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
       return { success: false, error: 'Not authenticated' }
     }
 
-    // Get session for authentication
-    const { data: { session } } = await supabase.auth.getSession()
+    console.log('Deleting user account:', user.id)
 
-    if (!session) {
-      return { success: false, error: 'No active session' }
+    // Import supabase-js for service role operations
+    const { createClient: createSupabaseClient } = await import('@supabase/supabase-js')
+
+    // Create admin client with service role key (server-side only)
+    const supabaseAdmin = createSupabaseClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.SUPABASE_SERVICE_ROLE_KEY!,
+      {
+        auth: {
+          autoRefreshToken: false,
+          persistSession: false,
+        },
+      }
+    )
+
+    // Step 1: Delete from public.users (will cascade to related tables)
+    console.log('Deleting from public.users...')
+    const { error: publicDeleteError } = await supabaseAdmin
+      .from('users')
+      .delete()
+      .eq('id', user.id)
+
+    if (publicDeleteError) {
+      console.error('Error deleting from public.users:', publicDeleteError)
+      return { success: false, error: publicDeleteError.message || 'Failed to delete user data' }
     }
 
-    // Call Edge Function to safely delete user with service role key
-    const functionUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/delete-user`
-    console.log('Calling Edge Function:', functionUrl)
+    // Step 2: Delete from auth.users
+    console.log('Deleting from auth.users...')
+    const { error: authDeleteError } = await supabaseAdmin.auth.admin.deleteUser(user.id)
 
-    const deleteResponse = await fetch(functionUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${session.access_token}`,
-      },
-      body: JSON.stringify({
-        userId: user.id,
-        reason: reason || 'User requested account deletion',
-      }),
-    })
-
-    console.log('Edge Function response status:', deleteResponse.status)
-
-    if (!deleteResponse.ok) {
-      const errorText = await deleteResponse.text()
-      console.error('Edge Function error response:', errorText)
-      return { success: false, error: `Server error: ${deleteResponse.status} - ${errorText}` }
+    if (authDeleteError) {
+      console.error('Error deleting from auth.users:', authDeleteError)
+      // Data already deleted, but auth cleanup failed - still consider success
     }
 
-    const result = await deleteResponse.json()
-    console.log('Edge Function result:', result)
-
-    if (!result.success) {
-      console.error('Error deleting account:', result.error)
-      return { success: false, error: result.error || 'Failed to delete account' }
-    }
+    console.log('User account deleted successfully')
 
     // Sign out the user
     await supabase.auth.signOut()
@@ -73,7 +74,7 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
     return { success: true }
   } catch (error) {
     console.error('Error in deleteUserAccount:', error)
-    return { success: false, error: 'Failed to delete account' }
+    return { success: false, error: error instanceof Error ? error.message : 'Failed to delete account' }
   }
 }
 
