@@ -115,18 +115,6 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
             {user ? (
               <>
                 <div className="border-t border-slate-100 my-2" />
-
-                {/* User info */}
-                <div className="flex items-center gap-3 px-3 py-3">
-                  <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-sm font-medium text-slate-600">
-                    {initials}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-xs text-slate-500 truncate">{user.email}</p>
-                  </div>
-                </div>
-
-                {/* Role-based links */}
                 {role === 'employer' && (
                   <Link href="/dashboard" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
                     <LayoutDashboard className="w-4 h-4 text-slate-400" />
@@ -145,10 +133,6 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
                     {t('userMenu.adminDashboard')}
                   </Link>
                 )}
-
-                <div className="border-t border-slate-100 my-2" />
-
-                {/* Logout */}
                 <form action="/auth/signout" method="POST">
                   <button type="submit" className="flex items-center gap-3 px-3 py-3 text-sm text-red-600 font-medium rounded-lg hover:bg-red-50 w-full">
                     <LogOut className="w-4 h-4" />
