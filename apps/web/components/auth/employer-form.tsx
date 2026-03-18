@@ -153,7 +153,7 @@ export function EmployerForm() {
                           />
                         </FormControl>
                         <FormLabel className="font-normal cursor-pointer text-sm">
-                          {t('language') === 'en' ? country.name : country.nameKo}
+                          {t('language') === 'en' ? country.nameEn : country.name}
                         </FormLabel>
                       </FormItem>
                     )}
