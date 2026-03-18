@@ -27,23 +27,34 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
       return { success: false, error: 'Not authenticated' }
     }
 
-    // Delete from public.users (will cascade to related tables)
-    const { error: deleteError } = await (supabase as any)
-      .from('users')
-      .delete()
-      .eq('id', user.id)
+    // Get session for authentication
+    const { data: { session } } = await supabase.auth.getSession()
 
-    if (deleteError) {
-      console.error('Error deleting user data:', deleteError)
-      return { success: false, error: deleteError.message || 'Failed to delete account' }
+    if (!session) {
+      return { success: false, error: 'No active session' }
     }
 
-    // Delete from auth.users using admin API
-    const { error: authDeleteError } = await supabase.auth.admin.deleteUser(user.id)
+    // Call Edge Function to safely delete user with service role key
+    const deleteResponse = await fetch(
+      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/delete-user`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${session.access_token}`,
+        },
+        body: JSON.stringify({
+          userId: user.id,
+          reason: reason || 'User requested account deletion',
+        }),
+      }
+    )
 
-    if (authDeleteError) {
-      console.error('Error deleting auth user:', authDeleteError)
-      // Continue anyway since public.users is already deleted
+    const result = await deleteResponse.json()
+
+    if (!result.success) {
+      console.error('Error deleting account:', result.error)
+      return { success: false, error: result.error || 'Failed to delete account' }
     }
 
     // Sign out the user
