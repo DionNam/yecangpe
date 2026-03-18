@@ -27,7 +27,7 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
     }
 
     // Soft delete: set deleted_at timestamp
-    const { error: updateError } = await supabase
+    const { error: updateError } = await (supabase as any)
       .from('users')
       .update({
         deleted_at: new Date().toISOString(),
@@ -76,7 +76,7 @@ export async function adminDeleteUser(userId: string, reason?: string): Promise<
     }
 
     // Soft delete user
-    const { error: updateError } = await supabase
+    const { error: updateError } = await (supabase as any)
       .from('users')
       .update({
         deleted_at: new Date().toISOString(),
@@ -122,7 +122,7 @@ export async function adminRestoreUser(userId: string): Promise<DeleteAccountRes
     }
 
     // Restore user
-    const { error: updateError } = await supabase
+    const { error: updateError } = await (supabase as any)
       .from('users')
       .update({
         deleted_at: null,
