@@ -9,8 +9,9 @@ interface DeleteAccountResult {
 }
 
 /**
- * Soft delete user account (user-initiated)
- * Sets deleted_at timestamp and optionally stores reason
+ * Hard delete user account (user-initiated)
+ * Permanently deletes user and all related data from database
+ * WARNING: This is irreversible
  */
 export async function deleteUserAccount(reason?: string): Promise<DeleteAccountResult> {
   try {
@@ -26,10 +27,9 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
       return { success: false, error: 'Not authenticated' }
     }
 
-    // Soft delete using RPC function
-    const { data, error: rpcError } = await supabase.rpc('soft_delete_user_account', {
+    // Hard delete using RPC function - permanently removes user from database
+    const { data, error: rpcError } = await supabase.rpc('hard_delete_user_account', {
       user_id_param: user.id,
-      reason_param: reason || 'User requested account deletion',
     })
 
     if (rpcError || !data) {
