@@ -126,7 +126,7 @@ export function JobDetailContent({
           <section>
             <h2 className="text-xl font-bold mb-4 text-gray-900">{t('common.jobDescription')}</h2>
             <div
-              className="prose prose-slate max-w-none text-slate-700 leading-relaxed whitespace-pre-wrap"
+              className="prose prose-slate max-w-none text-slate-700 leading-relaxed whitespace-pre-wrap [&_p:empty]:h-6"
               dangerouslySetInnerHTML={{ __html: job.content }}
             />
           </section>
