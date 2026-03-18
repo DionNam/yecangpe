@@ -325,3 +325,26 @@ export async function updateHiringStatus(
   revalidatePath('/employer/posts')
   return { success: true }
 }
+
+/**
+ * Track apply click (increment apply_click_count)
+ */
+export async function trackApplyClick(postId: string): Promise<{ success: boolean }> {
+  try {
+    const supabase = await createClient()
+
+    // Increment apply_click_count
+    const { error } = await (supabase as any)
+      .rpc('increment_apply_click', { post_id: postId })
+
+    if (error) {
+      console.error('Error tracking apply click:', error)
+      return { success: false }
+    }
+
+    return { success: true }
+  } catch (error) {
+    console.error('Error in trackApplyClick:', error)
+    return { success: false }
+  }
+}
