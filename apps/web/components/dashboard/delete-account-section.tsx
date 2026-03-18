@@ -47,13 +47,13 @@ export function DeleteAccountSection() {
   }
 
   return (
-    <div className="border border-red-200 rounded-lg p-6 bg-red-50">
-      <div className="flex items-start gap-4">
-        <AlertTriangle className="h-6 w-6 text-red-600 flex-shrink-0 mt-0.5" />
+    <div className="border border-gray-200 rounded-lg p-6 bg-gray-50">
+      <div className="flex items-start gap-3">
+        <AlertTriangle className="h-5 w-5 text-gray-500 flex-shrink-0 mt-0.5" />
         <div className="flex-1">
-          <h3 className="text-lg font-semibold text-red-900 mb-2">{t('deleteAccount.title')}</h3>
-          <p className="text-sm text-red-700 mb-4">{t('deleteAccount.description')}</p>
-          <Button variant="destructive" size="sm" onClick={() => setIsOpen(true)}>
+          <h3 className="text-base font-medium text-gray-900 mb-1">{t('deleteAccount.title')}</h3>
+          <p className="text-sm text-gray-600 mb-3">{t('deleteAccount.description')}</p>
+          <Button variant="ghost" size="sm" onClick={() => setIsOpen(true)} className="text-red-600 hover:text-red-700 hover:bg-red-50">
             <Trash2 className="h-4 w-4 mr-2" />
             {t('deleteAccount.button')}
           </Button>
