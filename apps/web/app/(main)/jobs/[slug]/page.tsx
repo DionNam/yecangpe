@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
   const jobData = job as any
   const plainText = jobData.content?.replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim() || ''
   const description = plainText.substring(0, 160)
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
   const canonicalSlug = jobData.slug || slug
 
   return {
@@ -221,7 +221,7 @@ async function renderJobPage(supabase: any, jobData: JobPost) {
     metricsConfig
   )
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
   const canonicalSlug = (jobData as any).slug || jobData.id
 
   const breadcrumbSchema = {

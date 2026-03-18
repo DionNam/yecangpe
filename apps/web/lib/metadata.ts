@@ -11,7 +11,7 @@ export function generateInfoPageMetadata({
   description,
   path,
 }: GenerateInfoPageMetadataParams): Metadata {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
   const url = `${baseUrl}${path}`
 
   return {

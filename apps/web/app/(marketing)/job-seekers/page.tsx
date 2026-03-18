@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 7200
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
 
 const breadcrumbSchema = {
   '@context': 'https://schema.org',

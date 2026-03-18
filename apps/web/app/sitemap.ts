@@ -7,7 +7,7 @@ const LOCATION_TYPES = ['remote', 'on_site', 'hybrid']
 export const revalidate = 3600 // Regenerate sitemap every hour
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
 
   const staticPages: MetadataRoute.Sitemap = [
     {

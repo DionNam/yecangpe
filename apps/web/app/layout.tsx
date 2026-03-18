@@ -16,7 +16,7 @@ const pretendard = localFont({
   weight: '100 900',
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),

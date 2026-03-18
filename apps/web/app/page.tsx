@@ -86,7 +86,7 @@ export default async function Home() {
   const employerOffset = Number(employerOffsetConfig?.value || 0)
   const totalEmployerCount = (actualEmployerCount || 0) + employerOffset
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
 
   const organizationSchema = {
     '@context': 'https://schema.org',

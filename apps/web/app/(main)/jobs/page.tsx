@@ -241,7 +241,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const totalPages = count ? Math.ceil(count / pageSize) : 0
 
   // Create ItemList structured data for SEO
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com').trim()
   const itemListSchema = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
