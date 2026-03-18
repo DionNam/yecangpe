@@ -116,7 +116,15 @@ export function JobDetailSidebar({
       {/* Apply Button */}
       {hasApplyMethod && (
         <Button
-          onClick={() => user ? setShowApplyModal(true) : setShowLoginModal(true)}
+          onClick={() => {
+            if (user) {
+              setShowApplyModal(true)
+              // Track apply click when modal opens
+              trackApplyClick(job.id).catch(console.error)
+            } else {
+              setShowLoginModal(true)
+            }
+          }}
           className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-6 text-lg rounded-xl shadow-lg hover:shadow-xl transition-all"
           size="lg"
         >
