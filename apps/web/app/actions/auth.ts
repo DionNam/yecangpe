@@ -110,9 +110,9 @@ export async function createSeekerProfile(formData: FormData) {
     return { error: profileError.message }
   }
 
-  // Revalidate and redirect
+  // Revalidate and redirect to jobs page for seekers
   revalidatePath('/')
-  redirect('/')
+  redirect('/jobs')
 }
 
 export async function createEmployerProfile(formData: FormData) {
