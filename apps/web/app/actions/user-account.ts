@@ -35,22 +35,31 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
     }
 
     // Call Edge Function to safely delete user with service role key
-    const deleteResponse = await fetch(
-      `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/delete-user`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${session.access_token}`,
-        },
-        body: JSON.stringify({
-          userId: user.id,
-          reason: reason || 'User requested account deletion',
-        }),
-      }
-    )
+    const functionUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/functions/v1/delete-user`
+    console.log('Calling Edge Function:', functionUrl)
+
+    const deleteResponse = await fetch(functionUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${session.access_token}`,
+      },
+      body: JSON.stringify({
+        userId: user.id,
+        reason: reason || 'User requested account deletion',
+      }),
+    })
+
+    console.log('Edge Function response status:', deleteResponse.status)
+
+    if (!deleteResponse.ok) {
+      const errorText = await deleteResponse.text()
+      console.error('Edge Function error response:', errorText)
+      return { success: false, error: `Server error: ${deleteResponse.status} - ${errorText}` }
+    }
 
     const result = await deleteResponse.json()
+    console.log('Edge Function result:', result)
 
     if (!result.success) {
       console.error('Error deleting account:', result.error)
