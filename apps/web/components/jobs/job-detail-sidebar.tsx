@@ -117,10 +117,11 @@ export function JobDetailSidebar({
       {hasApplyMethod && (
         <Button
           onClick={() => {
+            // Track apply click regardless of login status
+            trackApplyClick(job.id).catch(console.error)
+
             if (user) {
               setShowApplyModal(true)
-              // Track apply click when modal opens
-              trackApplyClick(job.id).catch(console.error)
             } else {
               setShowLoginModal(true)
             }
