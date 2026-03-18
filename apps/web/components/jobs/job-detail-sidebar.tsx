@@ -140,7 +140,10 @@ export function JobDetailSidebar({
                 href={job.apply_url}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => trackApplyClick(job.id)}
+                onClick={(e) => {
+                  // Fire and forget - don't block navigation
+                  trackApplyClick(job.id).catch(console.error)
+                }}
                 className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
               >
                 <Globe className="w-5 h-5 text-blue-600 flex-shrink-0" />
@@ -155,7 +158,10 @@ export function JobDetailSidebar({
             {job.apply_email && (
               <a
                 href={`mailto:${job.apply_email}`}
-                onClick={() => trackApplyClick(job.id)}
+                onClick={(e) => {
+                  // Fire and forget - don't block navigation
+                  trackApplyClick(job.id).catch(console.error)
+                }}
                 className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
               >
                 <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />

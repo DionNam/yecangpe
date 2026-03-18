@@ -37,7 +37,13 @@ export function LikeButton({
     const newLikedState = !optimisticState.liked
     startTransition(async () => {
       setOptimisticState(newLikedState)
-      await toggleLike(postId)
+      try {
+        await toggleLike(postId)
+      } catch (error) {
+        console.error('Error toggling like:', error)
+        // Revert optimistic update on error
+        setOptimisticState(!newLikedState)
+      }
     })
   }
 

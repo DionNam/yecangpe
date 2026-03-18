@@ -40,25 +40,44 @@ export async function toggleLike(postId: string) {
 
   if (existingLike) {
     // Unlike: delete the existing like
-    await (supabase as any)
+    const { error: deleteError } = await (supabase as any)
       .from('likes')
       .delete()
       .eq('id', existingLike.id)
+
+    if (deleteError) {
+      console.error('Error deleting like:', deleteError)
+      throw new Error('Failed to unlike post')
+    }
     liked = false
   } else {
     // Like: insert new like
-    await (supabase as any)
+    const { error: insertError } = await (supabase as any)
       .from('likes')
       .insert({
         user_id: user.id,
         post_id: postId,
       })
+
+    if (insertError) {
+      console.error('Error inserting like:', insertError)
+      throw new Error('Failed to like post')
+    }
     liked = true
   }
 
+  // Fetch job slug for revalidation
+  const { data: jobData } = await (supabase as any)
+    .from('job_posts')
+    .select('slug')
+    .eq('id', postId)
+    .single()
+
   // Revalidate paths
   revalidatePath('/jobs')
-  revalidatePath(`/jobs/${postId}`)
+  if (jobData?.slug) {
+    revalidatePath(`/jobs/${jobData.slug}`)
+  }
   revalidatePath('/my-page')
 
   return { success: true, liked }
