@@ -14,35 +14,19 @@ serve(async (req) => {
   }
 
   try {
-    // Verify JWT token from request
+    // Get authorization header
     const authHeader = req.headers.get('Authorization')
     if (!authHeader) {
+      console.error('Missing authorization header')
       return new Response(
         JSON.stringify({ success: false, error: 'Missing authorization header' }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 401 }
       )
     }
 
-    // Create client to verify user token
-    const supabaseClient = createClient(
-      Deno.env.get('SUPABASE_URL') ?? '',
-      Deno.env.get('SUPABASE_ANON_KEY') ?? '',
-      {
-        global: { headers: { Authorization: authHeader } }
-      }
-    )
+    console.log('Auth header present, verifying token...')
 
-    // Verify the user is authenticated
-    const { data: { user: requestingUser }, error: authError } = await supabaseClient.auth.getUser()
-
-    if (authError || !requestingUser) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'Unauthorized' }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 401 }
-      )
-    }
-
-    // Create admin client with service role key
+    // Create Supabase client with service role for admin operations
     const supabaseAdmin = createClient(
       Deno.env.get('SUPABASE_URL') ?? '',
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY') ?? '',
@@ -54,6 +38,20 @@ serve(async (req) => {
       }
     )
 
+    // Verify JWT using service role (can verify any token)
+    const token = authHeader.replace('Bearer ', '')
+    const { data: { user: requestingUser }, error: verifyError } = await supabaseAdmin.auth.getUser(token)
+
+    if (verifyError || !requestingUser) {
+      console.error('Token verification failed:', verifyError?.message)
+      return new Response(
+        JSON.stringify({ success: false, error: 'Invalid or expired token' }),
+        { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 401 }
+      )
+    }
+
+    console.log('Token verified for user:', requestingUser.id)
+
     const { userId, reason } = await req.json()
 
     if (!userId) {
@@ -64,15 +62,16 @@ serve(async (req) => {
     }
 
     // Security check: User can only delete their own account (unless admin)
-    const { data: adminCheck } = await supabaseAdmin
+    const { data: requestingUserData } = await supabaseAdmin
       .from('users')
       .select('role')
       .eq('id', requestingUser.id)
       .single()
 
-    const isAdmin = adminCheck?.role === 'admin'
+    const isAdmin = requestingUserData?.role === 'admin'
 
     if (!isAdmin && requestingUser.id !== userId) {
+      console.error(`Unauthorized: User ${requestingUser.id} tried to delete ${userId}`)
       return new Response(
         JSON.stringify({ success: false, error: 'You can only delete your own account' }),
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 403 }
@@ -94,6 +93,8 @@ serve(async (req) => {
         { headers: { ...corsHeaders, 'Content-Type': 'application/json' }, status: 500 }
       )
     }
+
+    console.log('Deleted from public.users, now deleting from auth.users...')
 
     // Step 2: Delete user from auth.users
     const { error: authDeleteError } = await supabaseAdmin.auth.admin.deleteUser(userId)
