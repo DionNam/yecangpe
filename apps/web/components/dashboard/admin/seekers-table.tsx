@@ -13,6 +13,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { toggleUserActive } from '@/app/actions/admin-users'
+import { UserActionsDropdown } from './user-actions-dropdown'
 
 interface SeekerProfile {
   nationality: string
@@ -25,6 +26,7 @@ interface Seeker {
   email: string
   is_active: boolean
   created_at: string
+  deleted_at?: string | null
   seeker_profiles: SeekerProfile[]
 }
 
@@ -83,7 +85,11 @@ export function SeekersTable({ seekers }: SeekersTableProps) {
                   {new Date(seeker.created_at).toLocaleDateString('ko-KR')}
                 </TableCell>
                 <TableCell>
-                  {seeker.is_active ? (
+                  {seeker.deleted_at ? (
+                    <Badge variant="outline" className="bg-red-50 text-red-700">
+                      삭제됨
+                    </Badge>
+                  ) : seeker.is_active ? (
                     <Badge variant="outline" className="bg-green-50 text-green-700">
                       활성
                     </Badge>
@@ -106,10 +112,15 @@ export function SeekersTable({ seekers }: SeekersTableProps) {
                       size="sm"
                       variant={seeker.is_active ? 'destructive' : 'default'}
                       onClick={() => handleToggleActive(seeker.id, seeker.is_active)}
-                      disabled={isPending}
+                      disabled={isPending || !!seeker.deleted_at}
                     >
                       {seeker.is_active ? '비활성화' : '활성화'}
                     </Button>
+                    <UserActionsDropdown
+                      userId={seeker.id}
+                      userEmail={seeker.email}
+                      isDeleted={!!seeker.deleted_at}
+                    />
                   </div>
                 </TableCell>
               </TableRow>

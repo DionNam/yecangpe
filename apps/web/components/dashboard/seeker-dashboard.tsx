@@ -4,6 +4,7 @@ import { Heart, User } from 'lucide-react'
 import { useState } from 'react'
 import { SeekerLikedJobs } from './seeker-liked-jobs'
 import { SeekerProfileSection } from './seeker-profile-section'
+import { DeleteAccountSection } from './delete-account-section'
 import type { Database } from '@repo/supabase/types'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -109,8 +110,13 @@ export function SeekerDashboard({ profile, likedJobs }: SeekerDashboardProps) {
           {/* Main content */}
           <main className="flex-1 p-4 md:p-6 lg:p-8">
             {activeTab === 'profile' && (
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                <SeekerProfileSection profile={profile} />
+              <div className="space-y-6">
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                  <SeekerProfileSection profile={profile} />
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                  <DeleteAccountSection />
+                </div>
               </div>
             )}
 

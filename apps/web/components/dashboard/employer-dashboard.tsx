@@ -6,6 +6,7 @@ import { Eye, MousePointerClick, FileText, CheckCircle2, Settings, ClipboardList
 import { Button } from '@/components/ui/button'
 import { JobPostTable } from './job-post-table'
 import { CompanySettingsForm } from './company-settings-form'
+import { DeleteAccountSection } from './delete-account-section'
 import type { Database } from '@repo/supabase/types'
 import { useTranslation } from '@/lib/i18n'
 import { cn } from '@/lib/utils'
@@ -167,9 +168,14 @@ export function EmployerDashboard({ profile, posts, likeCounts }: EmployerDashbo
             )}
 
             {activeTab === 'settings' && (
-              <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
-                <h2 className="text-xl font-semibold mb-6">{t('employerDashboardPage.companyInfo')}</h2>
-                <CompanySettingsForm profile={profile} />
+              <div className="space-y-6">
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                  <h2 className="text-xl font-semibold mb-6">{t('employerDashboardPage.companyInfo')}</h2>
+                  <CompanySettingsForm profile={profile} />
+                </div>
+                <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-8">
+                  <DeleteAccountSection />
+                </div>
               </div>
             )}
           </main>

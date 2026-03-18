@@ -13,6 +13,7 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { toggleUserActive } from '@/app/actions/admin-users'
+import { UserActionsDropdown } from './user-actions-dropdown'
 
 interface EmployerProfile {
   company_name: string
@@ -23,6 +24,7 @@ interface Employer {
   email: string
   is_active: boolean
   created_at: string
+  deleted_at?: string | null
   employer_profiles: EmployerProfile[]
   post_count: number
 }
@@ -71,7 +73,11 @@ export function EmployersTable({ employers }: EmployersTableProps) {
                 </TableCell>
                 <TableCell>{employer.post_count}</TableCell>
                 <TableCell>
-                  {employer.is_active ? (
+                  {employer.deleted_at ? (
+                    <Badge variant="outline" className="bg-red-50 text-red-700">
+                      삭제됨
+                    </Badge>
+                  ) : employer.is_active ? (
                     <Badge variant="outline" className="bg-green-50 text-green-700">
                       활성
                     </Badge>
@@ -94,10 +100,15 @@ export function EmployersTable({ employers }: EmployersTableProps) {
                       size="sm"
                       variant={employer.is_active ? 'destructive' : 'default'}
                       onClick={() => handleToggleActive(employer.id, employer.is_active)}
-                      disabled={isPending}
+                      disabled={isPending || !!employer.deleted_at}
                     >
                       {employer.is_active ? '비활성화' : '활성화'}
                     </Button>
+                    <UserActionsDropdown
+                      userId={employer.id}
+                      userEmail={employer.email}
+                      isDeleted={!!employer.deleted_at}
+                    />
                   </div>
                 </TableCell>
               </TableRow>

@@ -46,8 +46,8 @@ export default async function DashboardPage() {
     ] = await Promise.all([
       (supabase as any).from('job_posts').select('*').order('created_at', { ascending: false }),
       (supabase as any).from('job_posts').select('*').eq('review_status', 'pending').order('created_at', { ascending: true }),
-      (supabase as any).from('users').select('id, email, is_active, created_at, role, seeker_profiles(*)').eq('role', 'seeker').order('created_at', { ascending: false }),
-      (supabase as any).from('users').select('id, email, is_active, created_at, role, employer_profiles(*)').eq('role', 'employer').order('created_at', { ascending: false }),
+      (supabase as any).from('users').select('id, email, is_active, deleted_at, created_at, role, seeker_profiles(*)').eq('role', 'seeker').order('created_at', { ascending: false }),
+      (supabase as any).from('users').select('id, email, is_active, deleted_at, created_at, role, employer_profiles(*)').eq('role', 'employer').order('created_at', { ascending: false }),
       (supabase as any).from('newsletter_subscribers').select('*').order('created_at', { ascending: false }),
       (supabase as any).from('global_metrics_config').select('*').maybeSingle(),
       (supabase as any).from('site_config').select('*').eq('key', 'member_count_offset').maybeSingle(),
