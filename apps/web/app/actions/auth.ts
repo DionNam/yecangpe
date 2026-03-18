@@ -163,7 +163,7 @@ export async function createEmployerProfile(formData: FormData) {
     return { error: profileError.message }
   }
 
-  // Revalidate and redirect
+  // Revalidate and redirect to employers page
   revalidatePath('/')
-  redirect('/')
+  redirect('/employers')
 }
