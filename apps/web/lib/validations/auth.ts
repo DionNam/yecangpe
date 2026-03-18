@@ -16,6 +16,7 @@ export const seekerProfileSchema = z.object({
   korean_level: z.enum(koreanLevelCodes).optional(),
   occupation: z.string().max(100).nullable().optional(),
   referral_source: z.string().max(200).nullable().optional(),
+  marketing_consent: z.boolean().optional(),
   // Extended fields for public profiles
   display_name: z.string().max(100).optional().or(z.literal('')),
   bio: z.string().max(500, '자기소개는 최대 500자까지 작성 가능합니다').optional().or(z.literal('')),
@@ -43,6 +44,8 @@ export const seekerProfileSchema = z.object({
 export const employerProfileSchema = z.object({
   company_name: z.string().min(1, '기업/개인명을 입력해주세요').max(100),
   referral_source: z.string().max(200).nullable().optional(),
+  target_countries: z.array(z.string()).optional(),
+  marketing_consent: z.boolean().optional(),
 })
 
 export type SeekerProfileInput = z.infer<typeof seekerProfileSchema>

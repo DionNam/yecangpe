@@ -63,6 +63,8 @@ export async function createSeekerProfile(formData: FormData) {
       id: user.id,
       email: user.email!,
       role: 'seeker',
+      marketing_consent: result.data.marketing_consent || false,
+      marketing_consent_at: result.data.marketing_consent ? new Date().toISOString() : null,
     } as any)
 
   if (userError) {
@@ -124,10 +126,23 @@ export async function createEmployerProfile(formData: FormData) {
     return { error: 'Unauthorized' }
   }
 
+  // Helper to parse JSON arrays
+  const parseArray = (key: string): string[] | undefined => {
+    const value = formData.get(key)
+    if (!value) return undefined
+    try {
+      return JSON.parse(value as string)
+    } catch {
+      return undefined
+    }
+  }
+
   // Parse form data
   const rawData = {
     company_name: formData.get('company_name'),
     referral_source: formData.get('referral_source') || null,
+    target_countries: parseArray('target_countries'),
+    marketing_consent: formData.get('marketing_consent') === 'true',
   }
 
   // Validate with Zod schema
@@ -143,6 +158,8 @@ export async function createEmployerProfile(formData: FormData) {
       id: user.id,
       email: user.email!,
       role: 'employer',
+      marketing_consent: result.data.marketing_consent || false,
+      marketing_consent_at: result.data.marketing_consent ? new Date().toISOString() : null,
     } as any)
 
   if (userError) {
@@ -155,7 +172,9 @@ export async function createEmployerProfile(formData: FormData) {
     .from('employer_profiles')
     .insert({
       user_id: user.id,
-      ...result.data,
+      company_name: result.data.company_name,
+      referral_source: result.data.referral_source,
+      target_countries: result.data.target_countries || null,
     } as any)
 
   if (profileError) {

@@ -3,7 +3,7 @@
 import { useState, useOptimistic, useTransition } from 'react'
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n'
-import { Eye, MousePointerClick, Heart, Edit, Trash2 } from 'lucide-react'
+import { Eye, MousePointerClick, Bookmark, Edit, Trash2 } from 'lucide-react'
 import {
   Table,
   TableBody,
@@ -106,7 +106,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
         </div>
         <div className="flex items-center gap-4 text-xs text-slate-500">
           <span className="flex items-center gap-1"><Eye className="h-3.5 w-3.5" />{post.view_count}</span>
-          <span className="flex items-center gap-1"><Heart className="h-3.5 w-3.5" />{likeCount}</span>
+          <span className="flex items-center gap-1"><Bookmark className="h-3.5 w-3.5" />{likeCount}</span>
         </div>
         <div className="flex items-center gap-2">
           <Button
@@ -174,7 +174,7 @@ export function JobPostTable({ posts, likeCounts, onPostDeleted }: JobPostTableP
         </TableCell>
         <TableCell className="text-center">
           <div className="flex items-center justify-center gap-1">
-            <Heart className="h-4 w-4 text-slate-500" />
+            <Bookmark className="h-4 w-4 text-slate-500" />
             <span>{likeCount}</span>
           </div>
         </TableCell>

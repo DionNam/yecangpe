@@ -66,6 +66,7 @@ export function SeekerForm() {
       preferred_categories: [],
       preferred_countries: [],
       preferred_location_type: undefined,
+      marketing_consent: false,
     },
   })
 
@@ -82,6 +83,7 @@ export function SeekerForm() {
     // Required fields
     formData.append('is_profile_public', String(data.is_profile_public))
     formData.append('nationality', data.nationality)
+    formData.append('marketing_consent', String(data.marketing_consent || false))
 
     // Korean level
     if (data.korean_level) {
@@ -587,6 +589,41 @@ export function SeekerForm() {
                 </SelectContent>
               </Select>
               <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        {/* Marketing consent */}
+        <FormField
+          control={form.control}
+          name="marketing_consent"
+          render={({ field }) => (
+            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+              <FormControl>
+                <Checkbox
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              </FormControl>
+              <div className="space-y-1 leading-none">
+                <FormLabel className="cursor-pointer">
+                  {language === 'en'
+                    ? 'I agree to receive marketing emails'
+                    : '마케팅 정보 수신에 동의합니다 (선택)'}
+                </FormLabel>
+                <FormDescription>
+                  {language === 'en'
+                    ? 'Receive job opportunities and updates via email. '
+                    : '채용 정보 및 업데이트를 이메일로 받습니다. '}
+                  <a
+                    href="/marketing-consent"
+                    target="_blank"
+                    className="text-blue-600 hover:underline"
+                  >
+                    {language === 'en' ? 'View details' : '자세히 보기'}
+                  </a>
+                </FormDescription>
+              </div>
             </FormItem>
           )}
         />
