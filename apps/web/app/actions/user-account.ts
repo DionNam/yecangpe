@@ -69,7 +69,7 @@ export async function adminDeleteUser(userId: string, reason?: string): Promise<
       return { success: false, error: 'Not authenticated' }
     }
 
-    const { data: adminUser } = await supabase.from('users').select('role').eq('id', user.id).single()
+    const { data: adminUser } = await (supabase as any).from('users').select('role').eq('id', user.id).single()
 
     if (adminUser?.role !== 'admin') {
       return { success: false, error: 'Unauthorized' }
@@ -115,7 +115,7 @@ export async function adminRestoreUser(userId: string): Promise<DeleteAccountRes
       return { success: false, error: 'Not authenticated' }
     }
 
-    const { data: adminUser } = await supabase.from('users').select('role').eq('id', user.id).single()
+    const { data: adminUser } = await (supabase as any).from('users').select('role').eq('id', user.id).single()
 
     if (adminUser?.role !== 'admin') {
       return { success: false, error: 'Unauthorized' }
@@ -162,14 +162,14 @@ export async function adminHardDeleteUser(userId: string): Promise<DeleteAccount
       return { success: false, error: 'Not authenticated' }
     }
 
-    const { data: adminUser } = await supabase.from('users').select('role').eq('id', user.id).single()
+    const { data: adminUser } = await (supabase as any).from('users').select('role').eq('id', user.id).single()
 
     if (adminUser?.role !== 'admin') {
       return { success: false, error: 'Unauthorized' }
     }
 
     // Hard delete user (cascades to related tables via FK constraints)
-    const { error: deleteError } = await supabase.from('users').delete().eq('id', userId)
+    const { error: deleteError } = await (supabase as any).from('users').delete().eq('id', userId)
 
     if (deleteError) {
       console.error('Error hard deleting user:', deleteError)
