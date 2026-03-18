@@ -28,7 +28,7 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
     }
 
     // Hard delete using RPC function - permanently removes user from database
-    const { data, error: rpcError } = await supabase.rpc('hard_delete_user_account', {
+    const { data, error: rpcError } = await (supabase as any).rpc('hard_delete_user_account', {
       user_id_param: user.id,
     })
 
@@ -72,7 +72,7 @@ export async function adminDeleteUser(userId: string, reason?: string): Promise<
     }
 
     // Soft delete using RPC function
-    const { data, error: rpcError } = await supabase.rpc('soft_delete_user_account', {
+    const { data, error: rpcError } = await (supabase as any).rpc('soft_delete_user_account', {
       user_id_param: userId,
       reason_param: reason || 'Admin deleted account',
     })
@@ -114,7 +114,7 @@ export async function adminRestoreUser(userId: string): Promise<DeleteAccountRes
     }
 
     // Restore using RPC function
-    const { data, error: rpcError } = await supabase.rpc('restore_user_account', {
+    const { data, error: rpcError } = await (supabase as any).rpc('restore_user_account', {
       user_id_param: userId,
     })
 
@@ -156,7 +156,7 @@ export async function adminHardDeleteUser(userId: string): Promise<DeleteAccount
     }
 
     // Hard delete using RPC function
-    const { data, error: rpcError } = await supabase.rpc('hard_delete_user_account', {
+    const { data, error: rpcError } = await (supabase as any).rpc('hard_delete_user_account', {
       user_id_param: userId,
     })
 
