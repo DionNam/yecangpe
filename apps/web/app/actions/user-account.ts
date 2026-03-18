@@ -27,14 +27,23 @@ export async function deleteUserAccount(reason?: string): Promise<DeleteAccountR
       return { success: false, error: 'Not authenticated' }
     }
 
-    // Hard delete using RPC function - permanently removes user from database
-    const { data, error: rpcError } = await (supabase as any).rpc('hard_delete_user_account', {
-      user_id_param: user.id,
-    })
+    // Delete from public.users (will cascade to related tables)
+    const { error: deleteError } = await (supabase as any)
+      .from('users')
+      .delete()
+      .eq('id', user.id)
 
-    if (rpcError || !data) {
-      console.error('Error deleting account:', rpcError)
-      return { success: false, error: rpcError?.message || 'Failed to delete account' }
+    if (deleteError) {
+      console.error('Error deleting user data:', deleteError)
+      return { success: false, error: deleteError.message || 'Failed to delete account' }
+    }
+
+    // Delete from auth.users using admin API
+    const { error: authDeleteError } = await supabase.auth.admin.deleteUser(user.id)
+
+    if (authDeleteError) {
+      console.error('Error deleting auth user:', authDeleteError)
+      // Continue anyway since public.users is already deleted
     }
 
     // Sign out the user
