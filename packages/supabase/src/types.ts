@@ -286,6 +286,8 @@ export type Database = {
                     email: string;
                     role: Database["public"]["Enums"]["user_role"] | null;
                     is_active: boolean | null;
+                    deleted_at: string | null;
+                    deletion_reason: string | null;
                     created_at: string;
                     updated_at: string;
                 };
@@ -294,6 +296,8 @@ export type Database = {
                     email: string;
                     role?: Database["public"]["Enums"]["user_role"] | null;
                     is_active?: boolean | null;
+                    deleted_at?: string | null;
+                    deletion_reason?: string | null;
                     created_at?: string;
                     updated_at?: string;
                 };
@@ -302,6 +306,8 @@ export type Database = {
                     email?: string;
                     role?: Database["public"]["Enums"]["user_role"] | null;
                     is_active?: boolean | null;
+                    deleted_at?: string | null;
+                    deletion_reason?: string | null;
                     created_at?: string;
                     updated_at?: string;
                 };
