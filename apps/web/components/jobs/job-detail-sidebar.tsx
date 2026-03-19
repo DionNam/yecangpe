@@ -143,7 +143,7 @@ export function JobDetailSidebar({
           <DialogHeader>
             <DialogTitle>{t('jobDetail.applyMethodTitle')}</DialogTitle>
           </DialogHeader>
-          <div className="space-y-4 pt-2">
+          <div className="space-y-4 pt-2 overflow-hidden">
             {job.apply_url && (
               <a
                 href={job.apply_url}
