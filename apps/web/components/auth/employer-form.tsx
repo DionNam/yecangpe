@@ -38,7 +38,7 @@ export function EmployerForm() {
       company_name: '',
       referral_source: '',
       target_countries: [],
-      marketing_consent: false,
+      marketing_consent: true, // Auto-consent to marketing
     },
   })
 
@@ -161,41 +161,6 @@ export function EmployerForm() {
                 ))}
               </div>
               <FormMessage />
-            </FormItem>
-          )}
-        />
-
-        {/* Marketing consent */}
-        <FormField
-          control={form.control}
-          name="marketing_consent"
-          render={({ field }) => (
-            <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
-              <FormControl>
-                <Checkbox
-                  checked={field.value}
-                  onCheckedChange={field.onChange}
-                />
-              </FormControl>
-              <div className="space-y-1 leading-none">
-                <FormLabel className="cursor-pointer">
-                  {t('language') === 'en'
-                    ? 'I agree to receive marketing emails'
-                    : '마케팅 정보 수신에 동의합니다 (선택)'}
-                </FormLabel>
-                <FormDescription>
-                  {t('language') === 'en'
-                    ? 'Receive talent recommendations and updates via email. '
-                    : '인재 추천 및 업데이트를 이메일로 받습니다. '}
-                  <a
-                    href="/marketing-consent"
-                    target="_blank"
-                    className="text-blue-600 hover:underline"
-                  >
-                    {t('language') === 'en' ? 'View details' : '자세히 보기'}
-                  </a>
-                </FormDescription>
-              </div>
             </FormItem>
           )}
         />
