@@ -169,12 +169,14 @@ export function JobDetailSidebar({
                 onClick={(e) => {
                   e.preventDefault()
                   // Copy email to clipboard
-                  navigator.clipboard.writeText(job.apply_email).then(() => {
-                    // Optional: show a toast notification
-                    alert(t('common.copiedToClipboard') || 'Copied to clipboard!')
-                  }).catch((err) => {
-                    console.error('Failed to copy:', err)
-                  })
+                  if (job.apply_email) {
+                    navigator.clipboard.writeText(job.apply_email).then(() => {
+                      // Optional: show a toast notification
+                      alert(t('common.copiedToClipboard') || 'Copied to clipboard!')
+                    }).catch((err) => {
+                      console.error('Failed to copy:', err)
+                    })
+                  }
                   // Track apply click
                   trackApplyClick(job.id).catch(console.error)
                 }}
