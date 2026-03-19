@@ -14,13 +14,13 @@ export const contentType = 'image/png'
 // UUID regex pattern
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 
-const jobTypeLabels: Record<string, string> = {
-  full_time: 'Full-time',
-  part_time: 'Part-time',
-  contract: 'Contract',
-  freelance: 'Freelance',
-  internship: 'Internship',
-  temporary: 'Temporary',
+const jobTypeLabels: Record<string, { ko: string; en: string }> = {
+  full_time: { ko: '정규직', en: 'Full-time' },
+  part_time: { ko: '파트타임', en: 'Part-time' },
+  contract: { ko: '계약직', en: 'Contract' },
+  freelance: { ko: '프리랜서', en: 'Freelance' },
+  internship: { ko: '인턴', en: 'Internship' },
+  temporary: { ko: '임시직', en: 'Temporary' },
 }
 
 function formatSalary(min: number | null, max: number | null, currency: string | null): string | null {
@@ -62,8 +62,11 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
   // Fallback if job not found
   const title = job?.title || 'Job Posting'
   const company = job?.company_name || 'HangulJobs'
-  const jobType = job?.job_type ? jobTypeLabels[job.job_type] || job.job_type : null
+  const jobType = job?.job_type ? (jobTypeLabels[job.job_type]?.ko || job.job_type) : null
   const salary = job ? formatSalary(job.salary_min, job.salary_max, job.salary_currency) : null
+
+  // Fetch logo image
+  const logoUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'}/hanguljobs-logo-og.png`
 
   return new ImageResponse(
     (
@@ -73,119 +76,124 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
           width: '100%',
           display: 'flex',
           flexDirection: 'column',
-          backgroundColor: '#ffffff',
-          padding: '60px 80px',
+          backgroundColor: '#f8fafc',
+          padding: 0,
           position: 'relative',
         }}
       >
-        {/* Top accent bar */}
+        {/* Top section with logo */}
         <div
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            height: 8,
-            backgroundColor: '#2563eb',
             display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '50px 80px 40px',
+            backgroundColor: '#ffffff',
+            borderBottom: '1px solid #e2e8f0',
           }}
-        />
-
-        {/* Job Type Badge */}
-        {jobType && (
-          <div
+        >
+          <img
+            src={logoUrl}
+            alt="HangulJobs"
+            width="400"
+            height="80"
             style={{
-              display: 'flex',
-              marginBottom: 24,
+              objectFit: 'contain',
             }}
-          >
+          />
+        </div>
+
+        {/* Main content */}
+        <div
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            padding: '60px 80px',
+            backgroundColor: '#ffffff',
+          }}
+        >
+          {/* Job Type Badge */}
+          {jobType && (
             <div
               style={{
-                backgroundColor: '#eff6ff',
-                color: '#2563eb',
-                fontSize: 22,
-                fontWeight: 600,
-                padding: '8px 20px',
-                borderRadius: 8,
+                display: 'flex',
+                marginBottom: 24,
+              }}
+            >
+              <div
+                style={{
+                  backgroundColor: '#1e293b',
+                  color: '#ffffff',
+                  fontSize: 20,
+                  fontWeight: 600,
+                  padding: '10px 24px',
+                  borderRadius: 6,
+                  display: 'flex',
+                }}
+              >
+                {jobType}
+              </div>
+            </div>
+          )}
+
+          {/* Job Title */}
+          <div
+            style={{
+              fontSize: title.length > 30 ? 52 : 64,
+              fontWeight: 800,
+              color: '#0f172a',
+              lineHeight: 1.1,
+              marginBottom: 24,
+              display: 'flex',
+              maxWidth: '100%',
+            }}
+          >
+            {title.length > 50 ? title.substring(0, 47) + '...' : title}
+          </div>
+
+          {/* Company Name */}
+          <div
+            style={{
+              fontSize: 32,
+              fontWeight: 600,
+              color: '#64748b',
+              marginBottom: salary ? 16 : 0,
+              display: 'flex',
+            }}
+          >
+            {company}
+          </div>
+
+          {/* Salary */}
+          {salary && (
+            <div
+              style={{
+                fontSize: 28,
+                fontWeight: 700,
+                color: '#10b981',
                 display: 'flex',
               }}
             >
-              {jobType}
+              {salary}
             </div>
-          </div>
-        )}
-
-        {/* Job Title */}
-        <div
-          style={{
-            fontSize: title.length > 40 ? 40 : 48,
-            fontWeight: 700,
-            color: '#0f172a',
-            lineHeight: 1.2,
-            marginBottom: 20,
-            display: 'flex',
-            maxWidth: '100%',
-            overflow: 'hidden',
-          }}
-        >
-          {title.length > 60 ? title.substring(0, 57) + '...' : title}
+          )}
         </div>
 
-        {/* Company Name */}
-        <div
-          style={{
-            fontSize: 28,
-            fontWeight: 500,
-            color: '#475569',
-            marginBottom: 16,
-            display: 'flex',
-            alignItems: 'center',
-          }}
-        >
-          {company}
-        </div>
-
-        {/* Salary */}
-        {salary && (
-          <div
-            style={{
-              fontSize: 26,
-              fontWeight: 600,
-              color: '#16a34a',
-              marginBottom: 16,
-              display: 'flex',
-              alignItems: 'center',
-            }}
-          >
-            {salary}
-          </div>
-        )}
-
-        {/* Spacer */}
-        <div style={{ flex: 1, display: 'flex' }} />
-
-        {/* Bottom branding */}
+        {/* Bottom bar */}
         <div
           style={{
             display: 'flex',
-            justifyContent: 'space-between',
+            justifyContent: 'flex-end',
             alignItems: 'center',
-            width: '100%',
+            padding: '24px 80px',
+            backgroundColor: '#1e293b',
           }}
         >
           <div
             style={{
-              fontSize: 30,
-              fontWeight: 700,
-              color: '#2563eb',
-              display: 'flex',
-            }}
-          >
-            HangulJobs
-          </div>
-          <div
-            style={{
-              fontSize: 20,
+              fontSize: 22,
               color: '#94a3b8',
               display: 'flex',
             }}
@@ -193,19 +201,6 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
             hanguljobs.com
           </div>
         </div>
-
-        {/* Bottom accent bar */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 8,
-            backgroundColor: '#0f172a',
-            display: 'flex',
-          }}
-        />
       </div>
     ),
     {
