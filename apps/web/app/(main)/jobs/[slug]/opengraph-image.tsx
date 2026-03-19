@@ -85,18 +85,17 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
         <div
           style={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'flex-start',
             alignItems: 'center',
-            padding: '50px 80px 40px',
+            padding: '40px 60px 30px',
             backgroundColor: '#ffffff',
-            borderBottom: '1px solid #e2e8f0',
           }}
         >
           <img
             src={logoUrl}
             alt="HangulJobs"
-            width="400"
-            height="80"
+            width="280"
+            height="56"
             style={{
               objectFit: 'contain',
             }}
@@ -110,7 +109,7 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
-            padding: '60px 80px',
+            padding: '40px 60px',
             backgroundColor: '#ffffff',
           }}
         >
@@ -187,13 +186,13 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
             display: 'flex',
             justifyContent: 'flex-end',
             alignItems: 'center',
-            padding: '24px 80px',
+            padding: '20px 60px',
             backgroundColor: '#1e293b',
           }}
         >
           <div
             style={{
-              fontSize: 22,
+              fontSize: 20,
               color: '#94a3b8',
               display: 'flex',
             }}

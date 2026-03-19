@@ -60,7 +60,6 @@ export async function generateMetadata({ params }: JobDetailPageProps): Promise<
       locale: 'ko_KR',
       siteName: 'HangulJobs',
       url: `${baseUrl}/jobs/${canonicalSlug}`,
-      ...(jobData.image_url && { images: [{ url: jobData.image_url, alt: `${jobData.title} - ${jobData.company_name}` }] }),
     },
     twitter: {
       card: 'summary_large_image',
