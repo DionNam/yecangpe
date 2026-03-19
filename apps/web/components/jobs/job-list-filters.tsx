@@ -344,14 +344,14 @@ export function JobListFilters() {
           {/* 국적 (첫번째) */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={nationalityLabel} active={nationality !== 'all'} /></div>
+              <div className="inline-block"><FilterPill label={nationalityLabel} active={nationality !== 'all'} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-52 p-0" align="start">
               <SingleSelectContent
                 items={localizedNationalities.filter(n => n.code !== 'ANY')}
                 selected={nationality}
                 onSelect={(code) => handleFilterChange('nationality', code)}
-                allLabel={t('filters.allNationality')}
+                allLabel={t('filters.allNationalities')}
               />
             </PopoverContent>
           </Popover>
@@ -359,7 +359,7 @@ export function JobListFilters() {
           {/* 고용 형태 */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={jobTypeLabel} active={jobTypes.length > 0} /></div>
+              <div className="inline-block"><FilterPill label={jobTypeLabel} active={jobTypes.length > 0} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-48 p-0" align="start">
               <MultiSelectContent
@@ -373,7 +373,7 @@ export function JobListFilters() {
           {/* 근무 형태 */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={locationTypeLabel} active={locationTypes.length > 0} /></div>
+              <div className="inline-block"><FilterPill label={locationTypeLabel} active={locationTypes.length > 0} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-44 p-0" align="start">
               <MultiSelectContent
@@ -387,7 +387,7 @@ export function JobListFilters() {
           {/* 카테고리 */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={categoryLabel} active={category !== 'all'} /></div>
+              <div className="inline-block"><FilterPill label={categoryLabel} active={category !== 'all'} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-52 p-0" align="start">
               <SingleSelectContent
@@ -403,7 +403,7 @@ export function JobListFilters() {
           {(locationTypes.length === 0 || locationTypes.includes('on_site')) && (
             <Popover>
               <PopoverTrigger asChild>
-                <div><FilterPill label={countryLabel} active={locationCountry !== 'all'} /></div>
+                <div className="inline-block"><FilterPill label={countryLabel} active={locationCountry !== 'all'} /></div>
               </PopoverTrigger>
               <PopoverContent className="w-52 p-0" align="start">
                 <SingleSelectContent
@@ -419,7 +419,7 @@ export function JobListFilters() {
           {/* 한국어 */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={koreanLabel} active={koreanLevel !== 'all'} /></div>
+              <div className="inline-block"><FilterPill label={koreanLabel} active={koreanLevel !== 'all'} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-44 p-0" align="start">
               <SingleSelectContent
@@ -434,7 +434,7 @@ export function JobListFilters() {
           {/* 영어 */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={englishLabel} active={englishLevel !== 'all'} /></div>
+              <div className="inline-block"><FilterPill label={englishLabel} active={englishLevel !== 'all'} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-48 p-0" align="start">
               <SingleSelectContent
@@ -449,7 +449,7 @@ export function JobListFilters() {
           {/* 정렬 */}
           <Popover>
             <PopoverTrigger asChild>
-              <div><FilterPill label={sortLabel} active={sortBy !== 'latest'} /></div>
+              <div className="inline-block"><FilterPill label={sortLabel} active={sortBy !== 'latest'} /></div>
             </PopoverTrigger>
             <PopoverContent className="w-36 p-0" align="start">
               <SingleSelectContent
