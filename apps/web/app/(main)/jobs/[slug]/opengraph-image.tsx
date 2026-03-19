@@ -57,7 +57,7 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
     query = query.eq('slug', slug)
   }
 
-  const { data: job } = await query.single()
+  const { data: job, error } = await query.maybeSingle()
 
   // Fallback if job not found
   const title = job?.title || 'Job Posting'
