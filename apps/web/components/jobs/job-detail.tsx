@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/dialog'
 import { X } from 'lucide-react'
 import type { Database } from '@repo/supabase/types'
+import { useTranslation } from '@/lib/i18n'
 
 type JobPost = Database['public']['Tables']['job_posts']['Row']
 
@@ -30,6 +31,7 @@ export function JobDetail({
   canLike,
 }: JobDetailProps) {
   const [isImageDialogOpen, setIsImageDialogOpen] = useState(false)
+  const { language } = useTranslation()
 
   return (
     <div>
@@ -47,6 +49,7 @@ export function JobDetail({
         workLocationType={job.work_location_type}
         workLocationCountry={job.work_location_country}
         jobId={job.id}
+        language={language}
       />
 
       {/* Job image (if exists) */}

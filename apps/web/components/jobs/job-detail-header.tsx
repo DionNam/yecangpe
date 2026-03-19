@@ -18,6 +18,7 @@ interface JobDetailHeaderProps {
   workLocationType: WorkLocationType
   workLocationCountry: string | null
   jobId: string
+  language?: 'ko' | 'en'
 }
 
 export function JobDetailHeader({
@@ -31,6 +32,7 @@ export function JobDetailHeader({
   workLocationType,
   workLocationCountry,
   jobId,
+  language = 'ko',
 }: JobDetailHeaderProps) {
   // Get Korean name for nationality
   const nationalityInfo = NATIONALITIES.find(n => n.code === nationality)
@@ -45,7 +47,7 @@ export function JobDetailHeader({
         return '하이브리드'
       case 'on_site':
         return workLocationCountry
-          ? `대면근무 · ${getCountryName(workLocationCountry)}`
+          ? `대면근무 · ${getCountryName(workLocationCountry, language)}`
           : '대면근무'
       default:
         return '대면근무'

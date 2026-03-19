@@ -218,8 +218,10 @@ export const COUNTRIES = [
 
 export type CountryCode = typeof COUNTRIES[number]['code']
 
-export function getCountryName(code: string): string {
-  return COUNTRIES.find(c => c.code === code)?.name || code
+export function getCountryName(code: string, language: 'ko' | 'en' = 'ko'): string {
+  const country = COUNTRIES.find(c => c.code === code)
+  if (!country) return code
+  return language === 'en' ? country.nameEn : country.name
 }
 
 export function getCountryNameEn(code: string): string {

@@ -94,7 +94,7 @@ export function JobRow({
         return t('filters.hybrid')
       case 'on_site':
         return job.work_location_country
-          ? getCountryName(job.work_location_country)
+          ? getCountryName(job.work_location_country, language)
           : t('filters.onSite')
       default:
         return t('filters.onSite')
@@ -212,7 +212,7 @@ export function JobRow({
             {job.work_location_type === 'on_site' && job.work_location_country && (
               <div className="flex items-center gap-1 text-sm text-slate-600">
                 <MapPin className="w-4 h-4" />
-                <span>{getCountryName(job.work_location_country)}</span>
+                <span>{getCountryName(job.work_location_country, language)}</span>
               </div>
             )}
 

@@ -89,7 +89,7 @@ export function JobCard({
         return t('filters.hybrid')
       case 'on_site':
         return job.work_location_country
-          ? getCountryName(job.work_location_country)
+          ? getCountryName(job.work_location_country, language)
           : t('filters.onSite')
       default:
         return t('filters.onSite')
@@ -200,7 +200,7 @@ export function JobCard({
             {job.work_location_type === 'on_site' && job.work_location_country && (
               <div className="flex items-center gap-1 text-xs text-slate-600 mb-2">
                 <MapPin className="w-3 h-3" />
-                <span>{getCountryName(job.work_location_country)}</span>
+                <span>{getCountryName(job.work_location_country, language)}</span>
               </div>
             )}
 

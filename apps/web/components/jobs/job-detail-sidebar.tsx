@@ -85,7 +85,7 @@ export function JobDetailSidebar({
     if (job.work_location_type === 'remote') return t('filters.remote')
     if (job.work_location_type === 'hybrid') return t('filters.hybrid')
     if (job.work_location_type === 'on_site' && job.work_location_country) {
-      return getCountryName(job.work_location_country)
+      return getCountryName(job.work_location_country, language)
     }
     return t('common.onSiteShort')
   }
@@ -221,7 +221,7 @@ export function JobDetailSidebar({
               <div className="flex-1 min-w-0">
                 <div className="text-xs text-slate-500 mb-1">{t('jobDetail.location')}</div>
                 <div className="text-sm font-medium text-slate-900">
-                  {getCountryName(job.work_location_country)}
+                  {getCountryName(job.work_location_country, language)}
                 </div>
               </div>
             </div>
