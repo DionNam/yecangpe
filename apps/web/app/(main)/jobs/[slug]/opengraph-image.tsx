@@ -65,9 +65,6 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
   const jobType = job?.job_type ? (jobTypeLabels[job.job_type]?.ko || job.job_type) : null
   const salary = job ? formatSalary(job.salary_min, job.salary_max, job.salary_currency) : null
 
-  // Fetch logo image
-  const logoUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://hanguljobs.com'}/hanguljobs-logo-og.png`
-
   return new ImageResponse(
     (
       <div
@@ -81,7 +78,7 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
           position: 'relative',
         }}
       >
-        {/* Top section with logo */}
+        {/* Top section with logo text */}
         <div
           style={{
             display: 'flex',
@@ -91,15 +88,17 @@ export default async function OGImage({ params }: { params: Promise<{ slug: stri
             backgroundColor: '#ffffff',
           }}
         >
-          <img
-            src={logoUrl}
-            alt="HangulJobs"
-            width="280"
-            height="56"
+          <div
             style={{
-              objectFit: 'contain',
+              fontSize: 48,
+              fontWeight: 700,
+              color: '#1e293b',
+              display: 'flex',
+              letterSpacing: '-0.02em',
             }}
-          />
+          >
+            HangulJobs
+          </div>
         </div>
 
         {/* Main content */}
