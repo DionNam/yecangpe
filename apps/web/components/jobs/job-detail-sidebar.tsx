@@ -165,13 +165,20 @@ export function JobDetailSidebar({
             )}
 
             {job.apply_email && (
-              <a
-                href={`mailto:${job.apply_email}`}
+              <button
                 onClick={(e) => {
-                  // Fire and forget - don't block navigation
+                  e.preventDefault()
+                  // Copy email to clipboard
+                  navigator.clipboard.writeText(job.apply_email).then(() => {
+                    // Optional: show a toast notification
+                    alert(t('common.copiedToClipboard') || 'Copied to clipboard!')
+                  }).catch((err) => {
+                    console.error('Failed to copy:', err)
+                  })
+                  // Track apply click
                   trackApplyClick(job.id).catch(console.error)
                 }}
-                className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
+                className="flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors w-full text-left"
               >
                 <Mail className="w-5 h-5 text-blue-600 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
@@ -179,7 +186,7 @@ export function JobDetailSidebar({
                   <p className="text-xs text-slate-500 truncate">{job.apply_email}</p>
                 </div>
                 <ExternalLink className="w-4 h-4 text-slate-400 flex-shrink-0" />
-              </a>
+              </button>
             )}
 
             {(job as any).apply_text && (
