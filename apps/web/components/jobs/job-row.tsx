@@ -161,8 +161,9 @@ export function JobRow({
 
   // Format relative date
   const getRelativeDate = () => {
-    if (!job.published_at) return '-'
-    return formatDistanceToNow(new Date(job.published_at), {
+    const date = job.published_at || job.created_at
+    if (!date) return '-'
+    return formatDistanceToNow(new Date(date), {
       addSuffix: true,
       locale: language === 'en' ? enUS : ko,
     })
