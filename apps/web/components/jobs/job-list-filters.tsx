@@ -390,21 +390,6 @@ export function JobListFilters() {
             </PopoverContent>
           </Popover>
 
-          {/* 카테고리 */}
-          <Popover>
-            <PopoverTrigger asChild>
-              <div className="inline-block"><FilterPill label={categoryLabel} active={category !== 'all'} /></div>
-            </PopoverTrigger>
-            <PopoverContent className="w-52 p-0" align="start">
-              <SingleSelectContent
-                items={localizedCategories}
-                selected={category}
-                onSelect={(code) => handleFilterChange('category', code)}
-                allLabel={t('filters.allCategory')}
-              />
-            </PopoverContent>
-          </Popover>
-
           {/* 근무 국가 - only show when on_site or hybrid is selected */}
           {(locationTypes.includes('on_site') || locationTypes.includes('hybrid')) && (
             <Popover>
@@ -421,6 +406,21 @@ export function JobListFilters() {
               </PopoverContent>
             </Popover>
           )}
+
+          {/* 카테고리 */}
+          <Popover>
+            <PopoverTrigger asChild>
+              <div className="inline-block"><FilterPill label={categoryLabel} active={category !== 'all'} /></div>
+            </PopoverTrigger>
+            <PopoverContent className="w-52 p-0" align="start">
+              <SingleSelectContent
+                items={localizedCategories}
+                selected={category}
+                onSelect={(code) => handleFilterChange('category', code)}
+                allLabel={t('filters.allCategory')}
+              />
+            </PopoverContent>
+          </Popover>
 
           {/* 한국어 */}
           <Popover>
