@@ -1,10 +1,18 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import { useTranslation } from '@/lib/i18n'
 
 export function Footer() {
   const { t } = useTranslation()
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('contact@hanguljobs.com')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <footer className="bg-slate-900 text-slate-400 py-10 md:py-16">
@@ -96,6 +104,14 @@ export function Footer() {
                 <Link href="/contact" className="hover:text-white transition-colors">
                   {t('footer.contact')}
                 </Link>
+              </li>
+              <li>
+                <button
+                  onClick={copyEmail}
+                  className="hover:text-white transition-colors cursor-pointer"
+                >
+                  {copied ? t('common.copiedToClipboard') : 'contact@hanguljobs.com'}
+                </button>
               </li>
             </ul>
           </div>

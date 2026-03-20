@@ -1,12 +1,20 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import { Mail, Clock, Flag, Scale } from 'lucide-react'
+import { Mail, Clock, Flag, Scale, Copy, Check } from 'lucide-react'
 import { Footer } from '@/components/landing/footer'
 import { useTranslation } from '@/lib/i18n'
 
 export function ContactPageClient() {
   const { t } = useTranslation()
+  const [copied, setCopied] = useState(false)
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('contact@hanguljobs.com')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
     <>
@@ -30,12 +38,20 @@ export function ContactPageClient() {
             </div>
             <div>
               <h2 className="font-semibold text-gray-900 mb-1">{t('contactPage.email')}</h2>
-              <a
-                href="mailto:contact@hanguljobs.com"
-                className="text-blue-600 hover:underline font-medium"
+              <button
+                onClick={copyEmail}
+                className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium cursor-pointer"
               >
                 {t('contactPage.emailValue')}
-              </a>
+                {copied ? (
+                  <Check className="w-4 h-4 text-green-500" />
+                ) : (
+                  <Copy className="w-4 h-4" />
+                )}
+              </button>
+              {copied && (
+                <span className="text-xs text-green-600 ml-2">{t('common.copiedToClipboard')}</span>
+              )}
               <p className="text-sm text-gray-500 mt-1">{t('contactPage.emailDesc')}</p>
             </div>
           </div>
