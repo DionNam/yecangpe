@@ -181,7 +181,13 @@ export function JobListFilters() {
   const keyword = searchParams.get('q') || ''
   const jobTypes = searchParams.get('job_type')?.split(',').filter(Boolean) || []
   const locationTypes = searchParams.get('location_type')?.split(',').filter(Boolean) || []
-  const nationality = searchParams.get('nationality') || 'ID'
+  // IP-based default nationality from cookie
+  const supportedNationalities = ['ID', 'VN', 'CN', 'JP', 'RU']
+  const ipCountryCookie = typeof document !== 'undefined'
+    ? document.cookie.match(/hanguljobs-ip-country=(\w+)/)?.[1] || ''
+    : ''
+  const defaultNationality = supportedNationalities.includes(ipCountryCookie) ? ipCountryCookie : 'ID'
+  const nationality = searchParams.get('nationality') || defaultNationality
   const locationCountry = searchParams.get('location_country') || 'all'
   const category = searchParams.get('category') || 'all'
   const koreanLevel = searchParams.get('korean_level') || 'all'

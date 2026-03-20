@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import { cookies } from 'next/headers'
 import { createClient } from '@repo/supabase/server'
 import { JobListTable } from '@/components/jobs/job-list-table'
 import { JobListFilters } from '@/components/jobs/job-list-filters'
@@ -113,7 +114,12 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
   const category = params.category
   const koreanLevel = params.korean_level
   const englishLevel = params.english_level
-  const nationality = params.nationality || 'ID'
+  // IP-based default nationality: use geo cookie from middleware
+  const supportedNationalities = ['ID', 'VN', 'CN', 'JP', 'RU']
+  const cookieStore = await cookies()
+  const ipCountry = cookieStore.get('hanguljobs-ip-country')?.value || ''
+  const defaultNationality = supportedNationalities.includes(ipCountry) ? ipCountry : 'ID'
+  const nationality = params.nationality || defaultNationality
   const locationCountry = params.location_country
   const page = parseInt(params.page || '1', 10)
   const sortBy = params.sort || 'latest'
