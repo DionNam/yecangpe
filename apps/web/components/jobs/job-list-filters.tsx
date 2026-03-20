@@ -405,8 +405,8 @@ export function JobListFilters() {
             </PopoverContent>
           </Popover>
 
-          {/* 근무 국가 - only show when on_site or hybrid is selected, or no location type filter */}
-          {(locationTypes.length === 0 || locationTypes.includes('on_site') || locationTypes.includes('hybrid')) && (
+          {/* 근무 국가 - only show when on_site or hybrid is selected */}
+          {(locationTypes.includes('on_site') || locationTypes.includes('hybrid')) && (
             <Popover>
               <PopoverTrigger asChild>
                 <div className="inline-block"><FilterPill label={countryLabel} active={locationCountry !== 'all'} /></div>
