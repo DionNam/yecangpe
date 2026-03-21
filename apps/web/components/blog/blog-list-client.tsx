@@ -31,12 +31,12 @@ const LANGUAGE_LABELS: Record<string, string> = {
 }
 
 export function BlogListClient({ posts }: { posts: BlogPost[] }) {
-  const { t } = useTranslation()
-  const [selectedLang, setSelectedLang] = useState<string>('all')
+  const { t, language } = useTranslation()
+  // Default language based on site language setting
+  const defaultLang = language === 'ko' ? 'ko' : 'en'
+  const [selectedLang, setSelectedLang] = useState<string>(defaultLang)
 
-  const filtered = selectedLang === 'all'
-    ? posts
-    : posts.filter(p => p.language === selectedLang)
+  const filtered = posts.filter(p => p.language === selectedLang)
 
   // Count posts per language
   const langCounts = posts.reduce<Record<string, number>>((acc, p) => {
@@ -66,7 +66,6 @@ export function BlogListClient({ posts }: { posts: BlogPost[] }) {
               onChange={e => setSelectedLang(e.target.value)}
               className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-gray-400 cursor-pointer"
             >
-              <option value="all">{t('blog.allPosts')} ({posts.length})</option>
               {LANGUAGES.map(lang => {
                 const count = langCounts[lang] || 0
                 return (
