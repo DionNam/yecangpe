@@ -134,34 +134,39 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }
 
   // Blog pages
-  let blogPages: MetadataRoute.Sitemap = []
+  let blogPages: MetadataRoute.Sitemap = [
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+      changeFrequency: 'daily' as const,
+      priority: 0.8,
+    },
+  ]
   try {
     const supabase2 = await createClient()
-    const { data: blogs } = await supabase2
+    const { data: blogs, error: blogError } = await (supabase2 as any)
       .from('blog_posts')
       .select('slug, published_at, updated_at')
       .eq('is_published', true)
       .order('published_at', { ascending: false })
       .limit(500)
 
-    if (blogs) {
-      blogPages = [
-        {
-          url: `${baseUrl}/blog`,
-          lastModified: new Date(),
-          changeFrequency: 'daily' as const,
-          priority: 0.8,
-        },
-        ...(blogs as Array<{ slug: string; published_at: string | null; updated_at: string | null }>).map(post => ({
+    if (blogError) {
+      console.error('Sitemap blog fetch error:', blogError)
+    }
+
+    if (blogs && Array.isArray(blogs)) {
+      blogPages.push(
+        ...blogs.map((post: { slug: string; published_at: string | null; updated_at: string | null }) => ({
           url: `${baseUrl}/blog/${post.slug}`,
           lastModified: new Date(post.updated_at || post.published_at || new Date()),
           changeFrequency: 'weekly' as const,
           priority: 0.6,
         })),
-      ]
+      )
     }
-  } catch {
-    // Non-critical
+  } catch (e) {
+    console.error('Sitemap blog error:', e)
   }
 
   return [
