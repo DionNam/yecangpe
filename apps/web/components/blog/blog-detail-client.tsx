@@ -91,16 +91,29 @@ export function BlogDetailClient({ post }: { post: BlogPost }) {
       <section className="pb-16 bg-white">
         <div className="max-w-3xl mx-auto px-6">
           <div
-            className="prose prose-slate prose-lg max-w-none
-              prose-headings:font-bold prose-headings:text-gray-900
-              prose-p:text-gray-700 prose-p:leading-relaxed
-              prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
-              prose-img:rounded-xl
-              prose-blockquote:border-l-slate-300 prose-blockquote:text-gray-600"
+            className="blog-content"
             dangerouslySetInnerHTML={{ __html: formatContent(post.content) }}
           />
         </div>
       </section>
+
+      {/* Scoped styles for blog content */}
+      <style>{`
+        .blog-content h1 { font-size: 1.875rem; font-weight: 700; color: #111827; margin-top: 2.5rem; margin-bottom: 1rem; line-height: 1.3; }
+        .blog-content h2 { font-size: 1.5rem; font-weight: 700; color: #111827; margin-top: 2rem; margin-bottom: 0.75rem; line-height: 1.3; border-bottom: 1px solid #e5e7eb; padding-bottom: 0.5rem; }
+        .blog-content h3 { font-size: 1.25rem; font-weight: 600; color: #1f2937; margin-top: 1.5rem; margin-bottom: 0.5rem; line-height: 1.4; }
+        .blog-content p { color: #374151; line-height: 1.8; margin-bottom: 1rem; font-size: 1.0625rem; }
+        .blog-content ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .blog-content ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .blog-content li { color: #374151; line-height: 1.8; margin-bottom: 0.375rem; font-size: 1.0625rem; }
+        .blog-content blockquote { border-left: 3px solid #cbd5e1; padding-left: 1rem; margin: 1.5rem 0; }
+        .blog-content blockquote p { color: #6b7280; font-style: italic; }
+        .blog-content a { color: #2563eb; text-decoration: none; }
+        .blog-content a:hover { text-decoration: underline; }
+        .blog-content strong { font-weight: 600; color: #111827; }
+        .blog-content em { font-style: italic; }
+        .blog-content h2:first-child { margin-top: 0; }
+      `}</style>
 
       <Footer />
     </>
@@ -116,9 +129,9 @@ function formatContent(content: string): string {
       if (!block) return ''
 
       // Headings
-      if (block.startsWith('### ')) return `<h3>${escapeHtml(block.slice(4))}</h3>`
-      if (block.startsWith('## ')) return `<h2>${escapeHtml(block.slice(3))}</h2>`
-      if (block.startsWith('# ')) return `<h1>${escapeHtml(block.slice(2))}</h1>`
+      if (block.startsWith('### ')) return `<h3>${inlineFormat(block.slice(4))}</h3>`
+      if (block.startsWith('## ')) return `<h2>${inlineFormat(block.slice(3))}</h2>`
+      if (block.startsWith('# ')) return `<h1>${inlineFormat(block.slice(2))}</h1>`
 
       // Unordered list
       if (block.match(/^[-*] /m)) {

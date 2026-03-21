@@ -59,34 +59,23 @@ export function BlogListClient({ posts }: { posts: BlogPost[] }) {
 
       <section className="py-12 bg-white min-h-[50vh]">
         <div className="max-w-5xl mx-auto px-6">
-          {/* Language tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-4 mb-8 scrollbar-hide">
-            <button
-              onClick={() => setSelectedLang('all')}
-              className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                selectedLang === 'all'
-                  ? 'bg-slate-900 text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-              }`}
+          {/* Language dropdown */}
+          <div className="mb-8">
+            <select
+              value={selectedLang}
+              onChange={e => setSelectedLang(e.target.value)}
+              className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-700 focus:outline-none focus:ring-2 focus:ring-slate-900/10 focus:border-gray-400 cursor-pointer"
             >
-              {t('blog.allPosts')} ({posts.length})
-            </button>
-            {LANGUAGES.map(lang => {
-              const count = langCounts[lang] || 0
-              return (
-                <button
-                  key={lang}
-                  onClick={() => setSelectedLang(lang)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all ${
-                    selectedLang === lang
-                      ? 'bg-slate-900 text-white'
-                      : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                  }`}
-                >
-                  {LANGUAGE_LABELS[lang]} ({count})
-                </button>
-              )
-            })}
+              <option value="all">{t('blog.allPosts')} ({posts.length})</option>
+              {LANGUAGES.map(lang => {
+                const count = langCounts[lang] || 0
+                return (
+                  <option key={lang} value={lang}>
+                    {LANGUAGE_LABELS[lang]} ({count})
+                  </option>
+                )
+              })}
+            </select>
           </div>
 
           {/* Posts grid */}
