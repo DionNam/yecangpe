@@ -31,9 +31,13 @@ const LANGUAGE_LABELS: Record<string, string> = {
 }
 
 export function BlogListClient({ posts }: { posts: BlogPost[] }) {
-  const { t, language } = useTranslation()
-  // Default language based on site language setting
-  const defaultLang = language === 'ko' ? 'ko' : 'en'
+  const { t } = useTranslation()
+  // Default blog language from IP country cookie (same as job filter)
+  const countryToLang: Record<string, string> = { ID: 'id', VN: 'vi', CN: 'zh', JP: 'ja', KR: 'ko' }
+  const ipCountry = typeof document !== 'undefined'
+    ? document.cookie.match(/hanguljobs-ip-country=(\w+)/)?.[1] || ''
+    : ''
+  const defaultLang = countryToLang[ipCountry] || 'en'
   const [selectedLang, setSelectedLang] = useState<string>(defaultLang)
 
   const filtered = posts.filter(p => p.language === selectedLang)
