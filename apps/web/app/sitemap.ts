@@ -133,6 +133,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Non-critical - sitemap works without dynamic job pages
   }
 
+  // Blog pages
+  let blogPages: MetadataRoute.Sitemap = []
+  try {
+    const supabase2 = await createClient()
+    const { data: blogs } = await supabase2
+      .from('blog_posts')
+      .select('slug, published_at, updated_at')
+      .eq('is_published', true)
+      .order('published_at', { ascending: false })
+      .limit(500)
+
+    if (blogs) {
+      blogPages = [
+        {
+          url: `${baseUrl}/blog`,
+          lastModified: new Date(),
+          changeFrequency: 'daily' as const,
+          priority: 0.8,
+        },
+        ...(blogs as Array<{ slug: string; published_at: string | null; updated_at: string | null }>).map(post => ({
+          url: `${baseUrl}/blog/${post.slug}`,
+          lastModified: new Date(post.updated_at || post.published_at || new Date()),
+          changeFrequency: 'weekly' as const,
+          priority: 0.6,
+        })),
+      ]
+    }
+  } catch {
+    // Non-critical
+  }
+
   return [
     ...staticPages,
     ...jobTypePages,
@@ -141,5 +172,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...categoryPages,
     ...languageLevelPages,
     ...jobPages,
+    ...blogPages,
   ]
 }
