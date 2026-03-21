@@ -56,6 +56,9 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
                 {t('header.employer')}
               </Link>
             )}
+            <Link href="/blog" className="text-sm text-gray-600 hover:text-slate-900 transition-colors font-medium">
+              {t('blog.title')}
+            </Link>
 
             <button
               onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
@@ -110,6 +113,9 @@ export function SiteHeader({ user, role }: SiteHeaderProps) {
                 {t('header.employer')}
               </Link>
             )}
+            <Link href="/blog" className="flex items-center gap-3 px-3 py-3 text-sm text-gray-700 font-medium rounded-lg hover:bg-slate-50" onClick={() => setMobileMenuOpen(false)}>
+              {t('blog.title')}
+            </Link>
 
             {/* User section */}
             {user ? (

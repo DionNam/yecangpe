@@ -83,6 +83,11 @@ export function Footer() {
                   {t('footer.about')}
                 </Link>
               </li>
+              <li>
+                <Link href="/blog" className="hover:text-white transition-colors">
+                  {t('footer.blog')}
+                </Link>
+              </li>
             </ul>
           </div>
 
