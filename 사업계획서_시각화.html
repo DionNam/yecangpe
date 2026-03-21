@@ -924,23 +924,24 @@
   <div class="page-header">03 Scale-up</div>
   <h3>3-1. 경쟁사 분석 & 포지셔닝</h3>
 
-  <div style="display: flex; gap: 30px; align-items: flex-start; margin: 20px 0;">
+  <div style="display: flex; gap: 50px; align-items: flex-start; margin: 20px 0;">
     <!-- 포지셔닝 맵 (왼쪽) -->
-    <div style="flex: 1;">
+    <div style="flex: 0 0 420px;">
       <div style="width: 420px; height: 360px; position: relative;">
         <!-- 축 -->
-        <div style="position:absolute; bottom:0; left:40px; right:0; height:2px; background:#1B2A4A;"></div>
-        <div style="position:absolute; bottom:0; left:40px; top:0; width:2px; background:#1B2A4A;"></div>
-        <!-- 라벨 -->
-        <div style="position:absolute; bottom:-25px; left:40px; font-size:11px; color:#94A3B8;">국내 한정</div>
+        <div style="position:absolute; bottom:0; left:0; right:0; height:2px; background:#1B2A4A;"></div>
+        <div style="position:absolute; bottom:0; left:0; top:0; width:2px; background:#1B2A4A;"></div>
+        <!-- Y축 라벨 (축에 붙임) -->
+        <div style="position:absolute; top:5px; left:8px; font-size:11px; color:#94A3B8;">AI 검증/매칭</div>
+        <div style="position:absolute; bottom:8px; left:8px; font-size:11px; color:#94A3B8;">수동</div>
+        <!-- X축 라벨 -->
+        <div style="position:absolute; bottom:-25px; left:0; font-size:11px; color:#94A3B8;">국내 한정</div>
         <div style="position:absolute; bottom:-25px; right:0; font-size:11px; color:#94A3B8;">글로벌</div>
-        <div style="position:absolute; top:0; right:0; font-size:11px; color:#94A3B8; text-align:right;">AI 검증/매칭</div>
-        <div style="position:absolute; bottom:5px; right:0; font-size:11px; color:#94A3B8; text-align:right;">수동</div>
 
         <!-- 점들 -->
-        <div class="pos-dot competitor" style="left:60px; bottom:25px;">잡코리아/사람인</div>
-        <div class="pos-dot competitor" style="left:100px; bottom:100px;">KOWORK</div>
-        <div class="pos-dot competitor" style="left:60px; bottom:140px;">WorknPlay</div>
+        <div class="pos-dot competitor" style="left:40px; bottom:25px;">잡코리아/사람인</div>
+        <div class="pos-dot competitor" style="left:80px; bottom:100px;">KOWORK</div>
+        <div class="pos-dot competitor" style="left:40px; bottom:140px;">WorknPlay</div>
         <div class="pos-dot competitor" style="right:40px; bottom:30px;">NihongoJobs</div>
         <div class="pos-dot competitor" style="right:20px; bottom:160px;">LinkedIn</div>
         <div class="pos-dot ours" style="right:10px; top:15px;">HangulJobs ★</div>
@@ -948,18 +949,20 @@
     </div>
 
     <!-- 설명 (오른쪽) -->
-    <div style="flex: 1; font-size: 13px; color: #64748B; line-height: 1.8; padding-top: 10px;">
-      <div style="margin-bottom: 16px;">
-        <strong style="color: #3B82F6; font-size: 15px;">HangulJobs — 유일한 "글로벌 + AI" 포지션</strong><br>
-        한국어 인재에 특화된 유일한 글로벌 채용 플랫폼. AI 동영상 검증과 매칭으로 경쟁사가 진입하지 않은 영역을 선점.
+    <div style="flex: 1; padding-top: 20px;">
+      <div style="background: #F8FAFC; border-radius: 12px; padding: 20px; border: 1px solid #E2E8F0; margin-bottom: 16px;">
+        <div style="font-size: 16px; font-weight: 700; color: #3B82F6; margin-bottom: 8px;">HangulJobs — 유일한 "글로벌 + AI" 포지션</div>
+        <div style="font-size: 13px; color: #64748B; line-height: 1.8;">한국어 인재에 특화된 유일한 글로벌 채용 플랫폼.<br>AI 동영상 검증과 매칭으로 경쟁사가 진입하지 않은 영역을 선점.</div>
       </div>
-      <div style="margin-bottom: 12px;">
-        <strong style="color: #1B2A4A;">잡코리아/사람인</strong> — 국내 한국인 대상, 외국인 채용 기능 없음<br>
-        <strong style="color: #1B2A4A;">LinkedIn</strong> — 글로벌이나 한국어 특화 없음, 언어 검증 불가<br>
-        <strong style="color: #1B2A4A;">NihongoJobs</strong> — 일본어만, 미국만, AI 기능 없음
+
+      <div style="font-size: 13px; line-height: 2.2; margin-bottom: 16px;">
+        <div><strong style="color: #1B2A4A;">잡코리아/사람인</strong> <span style="color:#94A3B8;">—</span> <span style="color:#64748B;">국내 한국인 대상, 외국인 채용 기능 없음</span></div>
+        <div><strong style="color: #1B2A4A;">LinkedIn</strong> <span style="color:#94A3B8;">—</span> <span style="color:#64748B;">글로벌이나 한국어 특화 없음, 언어 검증 불가</span></div>
+        <div><strong style="color: #1B2A4A;">NihongoJobs</strong> <span style="color:#94A3B8;">—</span> <span style="color:#64748B;">일본어만, 미국만, AI 기능 없음</span></div>
       </div>
-      <div style="background: #EFF6FF; border-radius: 8px; padding: 12px; font-size: 12px; color: #1E40AF;">
-        한국어 인재 시장에서 "글로벌 범위 + AI 검증/매칭"을 동시에 제공하는 플랫폼은 HangulJobs가 유일 → <strong>First-mover advantage</strong>
+
+      <div style="background: #EFF6FF; border-radius: 8px; padding: 14px 16px; font-size: 13px; color: #1E40AF; line-height: 1.6;">
+        한국어 인재 시장에서 "글로벌 + AI 검증/매칭"을 동시에 제공하는 플랫폼은 HangulJobs가 유일<br>→ <strong>First-mover advantage</strong>
       </div>
     </div>
   </div>
